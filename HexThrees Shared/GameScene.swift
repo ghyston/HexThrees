@@ -13,7 +13,7 @@ class GameScene: SKScene {
     
     //fileprivate var label : SKLabelNode?
     //fileprivate var spinnyNode : SKShapeNode?
-
+    var hexCalculator : HexCalculator?
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -30,47 +30,33 @@ class GameScene: SKScene {
     
     func setUpScene() {
         
-        //let hexCell = HexCell(k: 0, h: 0, l: 0)
-        //self.addChild(hexCell)
+        let width = 4
+        let height = 4
+        let emptyHexSprite = SKSpriteNode.init(imageNamed: "hex")
         
-        for i1 in 0 ... 3 {
-            for i2 in 0 ... 3 {
+        hexCalculator = HexCalculator(
+            width : width,
+            height : height,
+            gap: 10.0,
+            cellSize: emptyHexSprite.size)
+        
+        let hexCell = HexCell2(text: "\(0, 0)")
+        self.addChild(hexCell)
+        hexCell.position = hexCalculator!.ToScreenCoord(AxialCoord(0, 0))
+        
+        /*for i1 in 0 ... 4 {
+            for i2 in 0 ... 4 {
+                let hexCell = HexCell2(text: "\(i1, i2)")
+                self.addChild(hexCell)
+                hexCell.position = hexCalculator!.ToScreenCoord(AxialCoord(i1, i2))
+            }
+        }*/
+        
+        /*for i1 in 0 ... 4 {
+            for i2 in 0 ... 4 {
                 let hexCell = HexCell(k: i1, h: i2, l: 0)
                 self.addChild(hexCell)
             }
-        }
-        
-        
-        
-        // Get label node from scene and store it for use later
-        /*self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-            
-            #if os(watchOS)
-                // For watch we just periodically create one of these and let it spin
-                // For other platforms we let user touch/mouse events create these
-                spinnyNode.position = CGPoint(x: 0.0, y: 0.0)
-                spinnyNode.strokeColor = SKColor.red
-                self.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 2.0),
-                                                                   SKAction.run({
-                                                                       let n = spinnyNode.copy() as! SKShapeNode
-                                                                       self.addChild(n)
-                                                                   })])))
-            #endif
         }*/
     }
     

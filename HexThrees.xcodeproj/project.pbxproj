@@ -25,6 +25,10 @@
 		3F06B37E207C823B00C8315A /* hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B37D207C823B00C8315A /* hex.png */; };
 		3F06B380207C836300C8315A /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B37F207C836300C8315A /* HexCell.swift */; };
 		3F06B381207C836300C8315A /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B37F207C836300C8315A /* HexCell.swift */; };
+		3F06B383207E806400C8315A /* HexCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B382207E806400C8315A /* HexCalculator.swift */; };
+		3F06B384207E806400C8315A /* HexCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B382207E806400C8315A /* HexCalculator.swift */; };
+		3FAAC76B207F27E9006F5196 /* HexCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell2.swift */; };
+		3FAAC76C207F27E9006F5196 /* HexCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,8 @@
 		3F06B36C207C81E000C8315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F06B37D207C823B00C8315A /* hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hex.png; sourceTree = "<group>"; };
 		3F06B37F207C836300C8315A /* HexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell.swift; sourceTree = "<group>"; };
+		3F06B382207E806400C8315A /* HexCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCalculator.swift; sourceTree = "<group>"; };
+		3FAAC76A207F27E9006F5196 /* HexCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,8 @@
 				3F06B34B207C81E000C8315A /* GameScene.swift */,
 				3F06B34C207C81E000C8315A /* Assets.xcassets */,
 				3F06B37F207C836300C8315A /* HexCell.swift */,
+				3F06B382207E806400C8315A /* HexCalculator.swift */,
+				3FAAC76A207F27E9006F5196 /* HexCell2.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -228,9 +236,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAAC76B207F27E9006F5196 /* HexCell2.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3F06B380207C836300C8315A /* HexCell.swift in Sources */,
 				3F06B357207C81E000C8315A /* GameViewController.swift in Sources */,
+				3F06B383207E806400C8315A /* HexCalculator.swift in Sources */,
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,9 +249,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAAC76C207F27E9006F5196 /* HexCell2.swift in Sources */,
 				3F06B372207C81E000C8315A /* GameScene.swift in Sources */,
 				3F06B381207C836300C8315A /* HexCell.swift in Sources */,
 				3F06B368207C81E000C8315A /* GameViewController.swift in Sources */,
+				3F06B384207E806400C8315A /* HexCalculator.swift in Sources */,
 				3F06B366207C81E000C8315A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
