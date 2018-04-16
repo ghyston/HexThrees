@@ -14,6 +14,7 @@ class GameScene: SKScene {
     //fileprivate var label : SKLabelNode?
     //fileprivate var spinnyNode : SKShapeNode?
     var hexCalculator : HexCalculator?
+    var hexes : [HexCell2] = [HexCell2]()
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -37,20 +38,21 @@ class GameScene: SKScene {
         hexCalculator = HexCalculator(
             width : width,
             height : height,
-            gap: 10.0,
+            gap: 0.0,
             cellSize: emptyHexSprite.size)
         
-        let hexCell = HexCell2(text: "\(0, 0)")
+        /*let hexCell = HexCell2(text: "\(0, 0)")
         self.addChild(hexCell)
-        hexCell.position = hexCalculator!.ToScreenCoord(AxialCoord(0, 0))
+        hexCell.position = hexCalculator!.ToScreenCoord(AxialCoord(0, 0))*/
         
-        /*for i1 in 0 ... 4 {
-            for i2 in 0 ... 4 {
+        for i1 in -2 ... 2 {
+            for i2 in -2 ... 2 {
                 let hexCell = HexCell2(text: "\(i1, i2)")
                 self.addChild(hexCell)
                 hexCell.position = hexCalculator!.ToScreenCoord(AxialCoord(i1, i2))
+                self.hexes.append(hexCell)
             }
-        }*/
+        }
         
         /*for i1 in 0 ... 4 {
             for i2 in 0 ... 4 {

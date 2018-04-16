@@ -18,12 +18,14 @@ class HexCell2 : SKNode {
         
         self.sprite = SKSpriteNode.init(imageNamed: "hex")
         self.label = SKLabelNode(text: text)
-        self.label.fontSize = 12.0
+        self.label.fontSize = 22.0
+        self.label.fontName = "Chalkduster"
+        self.label.position = CGPoint(x: 0, y: 0)
         
         super.init()
         
-        self.sprite.addChild(self.label)
         self.addChild(self.sprite)
+        self.sprite.addChild(self.label)
     }
     
     required init?(coder aDecoder: NSCoder) {

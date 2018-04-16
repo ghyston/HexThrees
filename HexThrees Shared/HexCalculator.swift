@@ -73,12 +73,12 @@ class HexCalculator {
     func ToScreenCoord(_ a : AxialCoord) -> CGPoint {
         
         //@todo: check this, add gap
-        let x = Float(a.c) * 0.5;
-        let y = Float(a.c - a.r) * 0.7211
+        let x = Float(a.c - a.r) * 0.5 * self.cellWidth
+        let y = Float(a.c + a.r) * (self.cellWidth * 0.5 + self.cellHeight / (2.0 * 1.732))
         
         return CGPoint(
-            x: CGFloat(x * (self.cellWidth + self.gap)),
-            y: CGFloat(y * (self.cellHeight + self.gap)))
+            x: CGFloat(x),
+            y: CGFloat(y))
     }
     
     func ToScreenCoord(_ a : CubeCoord) -> CGPoint {
