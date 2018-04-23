@@ -72,9 +72,12 @@ class HexCalculator {
     
     func ToScreenCoord(_ a : AxialCoord) -> CGPoint {
         
+        let w = self.cellWidth + self.gap
+        let h = self.cellHeight + self.gap
+        
         //@todo: check this, add gap
-        let x = Float(a.c - a.r) * 0.5 * self.cellWidth
-        let y = Float(a.c + a.r) * (self.cellWidth * 0.5 + self.cellHeight / (2.0 * 1.732))
+        let x = Float(a.c - a.r) * 0.5 * w
+        let y = Float(a.c + a.r) * (w * 0.5 + h / (2.0 * 1.732))
         
         return CGPoint(
             x: CGFloat(x),
@@ -101,6 +104,7 @@ class CellsStorage {
         grid = Array(repeating: HexCellValue(), count: height * width)
     }
 }
+
 
 
 
