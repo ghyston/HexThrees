@@ -49,10 +49,6 @@ class CubeCoord {
     }
 }
 
-class HexCellValue {
-    var value : Int?
-}
-
 class HexCalculator {
     
     let width : Int
@@ -95,16 +91,6 @@ class HexCalculator {
     }
     
 }
-
-class CellsStorage {
-    
-    var grid : [HexCellValue]
-    
-    init(width : Int, height : Int) {
-        grid = Array(repeating: HexCellValue(), count: height * width)
-    }
-}
-
 
 
 

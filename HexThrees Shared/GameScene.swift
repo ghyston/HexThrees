@@ -10,11 +10,12 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    
-    //fileprivate var label : SKLabelNode?
-    //fileprivate var spinnyNode : SKShapeNode?
     var hexCalculator : HexCalculator?
-    var hexes : [HexCell] = [HexCell]()
+    var bgHexes : [BgCell] = [BgCell]()
+    let fieldWidth: Int = 5
+    let fieldHeight: Int = 5
+    let startOffsetX: Int = -2
+    let startOffsetY: Int = -2
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -31,22 +32,81 @@ class GameScene: SKScene {
     
     func setUpScene() {
         
-        let width = 4
-        let height = 4
         let emptyHexSprite = SKSpriteNode.init(imageNamed: "hex")
         
         hexCalculator = HexCalculator(
-            width : width,
-            height : height,
+            width : fieldWidth,
+            height : fieldHeight,
             gap: 5.0,
             cellSize: emptyHexSprite.size)
         
-        for i1 in -2 ... 2 {
-            for i2 in -2 ... 2 {
-                let hexCell = HexCell(text: "\(i1, i2)")
+        var i = 0
+        for i1 in startOffsetX ... (startOffsetX + fieldWidth - 1) {
+            for i2 in startOffsetY ... (startOffsetY + fieldHeight - 1) {
+                let hexCell = BgCell(
+                    coord: AxialCoord(i1, i2),
+                    hexCalc : hexCalculator!)
                 self.addChild(hexCell)
-                hexCell.position = hexCalculator!.ToScreenCoord(AxialCoord(i1, i2))
-                self.hexes.append(hexCell)
+                self.bgHexes.append(hexCell)
+                i += 1
+            }
+        }
+        
+        //addRandomElement()
+        //addRandomElement()
+        //addRandomElement()
+        //addRandomElement()
+        
+        let firstElement = GameCell(val: 1)
+        self.bgHexes[0].addGameCell(cell: firstElement)
+        
+        let secondElement = GameCell(val: 1)
+        self.bgHexes[1].addGameCell(cell: secondElement)
+    }
+    
+    private func addRandomElement() {
+        
+        var freeCells = Array<BgCell>()
+        for i in self.bgHexes {
+            if(i.gameCell == nil) {
+                freeCells.append(i)
+            }
+        }
+        
+        let random = Int(arc4random()) % freeCells.count
+        
+        let newElement = GameCell(val: 1)
+        freeCells[random].addGameCell(cell: newElement)
+    }
+    
+    //@todo: make cmd from it
+    private func moveXUp() {
+        
+        for i2 in 0 ... (fieldHeight - 1) {
+            for i1 in 0 ... (fieldWidth - 1) {
+             
+                let hexCell = self.bgHexes[i2 * fieldWidth + i1]
+                guard let gameCell = hexCell.gameCell else {
+                    continue
+                }
+                    
+                if(i1 == fieldWidth - 1) {
+                    hexCell.removeGameCell()
+                    continue
+                }
+                    
+                let newCellRoot = self.bgHexes[i2 * fieldWidth + i1 + 1]
+                let coordDiff = CGVector(
+                    dx:  newCellRoot.position.x - hexCell.position.x,
+                    dy:  newCellRoot.position.y - hexCell.position.y)
+                
+                gameCell.newParent = newCellRoot
+                
+                let moveAction = SKAction.move(by: coordDiff, duration: 1.0)
+                let resetAction = SKAction.perform(#selector(GameCell.resetCoordinates), onTarget: gameCell)
+                let addToNewRootAction = SKAction.perform(#selector(GameCell.switchToNewParent), onTarget: gameCell)
+                gameCell.run(SKAction.sequence([moveAction, resetAction, addToNewRootAction]))
+                
             }
         }
         
@@ -120,6 +180,7 @@ extension GameScene {
             label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
         }
         self.makeSpinny(at: event.location(in: self), color: SKColor.green)*/
+        self.moveXUp()
     }
     
     override func mouseDragged(with event: NSEvent) {
