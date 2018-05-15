@@ -32,6 +32,10 @@ class HexCell : SKNode {
         self.sprite.zPosition = 1
     }
     
+    func updateText(text: String) {
+        self.label.text = text
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

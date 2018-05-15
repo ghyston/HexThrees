@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class GameCell : HexCell {
     
@@ -19,6 +20,18 @@ class GameCell : HexCell {
         super.init(text: "\(val)", isGray: false)
     }
     
+    func playAppearAnimation() {
+        self.setScale(0.01)
+        self.run(SKAction.scale(to: 1.0, duration: 0.5))
+    }
+    
+    func playUpdateAnimation() {
+        
+        let zoomIn = SKAction.scale(to: 1.5, duration: 0.3)
+        let zoomOut = SKAction.scale(to: 1.0, duration: 0.2)
+        self.run(SKAction.sequence([zoomIn, zoomOut]))
+    }
+    
     // this is because SKAction selector cannot take arguments (or I dotn know how)
     @objc func switchToNewParent() {
         (self.parent as? BgCell)?.removeGameCell()
@@ -28,6 +41,12 @@ class GameCell : HexCell {
     
     @objc func resetCoordinates() {
         self.position = CGPoint(x: 0, y: 0)
+    }
+    
+    func updateValue(_ val: Int) {
+        self.value = val //@todo: setter
+        self.updateText(text: "\(val)")
+        self.playUpdateAnimation() //@todo: should it be called from outside?
     }
     
     required init?(coder aDecoder: NSCoder) {
