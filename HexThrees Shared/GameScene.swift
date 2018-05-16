@@ -139,31 +139,6 @@ class GameScene: SKScene {
         }
     }
     
-    
-    /*
-     //This code movin one by one:
-     let hexCell = self.bgHexes[i2 * fieldWidth + i1]
-     guard let gameCell = hexCell.gameCell else {
-     continue
-     }
-     
-     if(i1 == fieldWidth - 1) {
-     hexCell.removeGameCell()
-     continue
-     }
-     
-     let newCellRoot = self.bgHexes[i2 * fieldWidth + i1 + 1]
-     let coordDiff = CGVector(
-     dx:  newCellRoot.position.x - hexCell.position.x,
-     dy:  newCellRoot.position.y - hexCell.position.y)
-     
-     gameCell.newParent = newCellRoot
-     
-     let moveAction = SKAction.move(by: coordDiff, duration: 1.0)
-     let resetAction = SKAction.perform(#selector(GameCell.resetCoordinates), onTarget: gameCell)
-     let addToNewRootAction = SKAction.perform(#selector(GameCell.switchToNewParent), onTarget: gameCell)
-     gameCell.run(SKAction.sequence([moveAction, resetAction, addToNewRootAction]))*/
-    
     //@todo: make separate class or cmd from this
     private func moveLine(cells: Array<BgCell>) {
         
@@ -272,14 +247,6 @@ class GameScene: SKScene {
         self.setUpScene()
     }
     #endif
-
-    /*func makeSpinny(at pos: CGPoint, color: SKColor) {
-        if let spinny = self.spinnyNode?.copy() as! SKShapeNode? {
-            spinny.position = pos
-            spinny.strokeColor = color
-            self.addChild(spinny)
-        }
-    }*/
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -291,31 +258,19 @@ class GameScene: SKScene {
 extension GameScene {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
         
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.green)
-        }*/
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
-        }*/
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }*/
+        
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }*/
+        
     }
     
    
@@ -327,11 +282,7 @@ extension GameScene {
 extension GameScene {
 
     override func mouseDown(with event: NSEvent) {
-        /*if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        self.makeSpinny(at: event.location(in: self), color: SKColor.green)*/
-        //self.moveXUp()
+        
         let coord = event.location(in: self)
         if coord.x < 0 && coord.y < 0 {
             self.moveXDown()
@@ -349,11 +300,11 @@ extension GameScene {
     }
     
     override func mouseDragged(with event: NSEvent) {
-        //self.makeSpinny(at: event.location(in: self), color: SKColor.blue)
+        
     }
     
     override func mouseUp(with event: NSEvent) {
-        //self.makeSpinny(at: event.location(in: self), color: SKColor.red)
+        
     }
 
 }
