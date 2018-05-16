@@ -83,13 +83,6 @@ class HexCalculator {
     func ToScreenCoord(_ a : CubeCoord) -> CGPoint {
         return ToScreenCoord(AxialCoord(a))
     }
-    
-    func ArrayPosition(_ a : AxialCoord) -> Int {
-        
-        //@todo: check this
-        return a.c * self.width + a.r
-    }
-    
 }
 
 

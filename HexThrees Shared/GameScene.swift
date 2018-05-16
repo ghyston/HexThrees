@@ -14,7 +14,7 @@ class GameScene: SKScene {
     var mergingStrategy : MergingStrategy = FibonacciMergingStrategy()
     var bgHexes : [BgCell] = [BgCell]()
     let fieldWidth: Int = 5
-    let fieldHeight: Int = 5 //@todo: test & fix with different values!
+    let fieldHeight: Int = 5
     let startOffsetX: Int = -2
     let startOffsetY: Int = -2
     
@@ -42,10 +42,11 @@ class GameScene: SKScene {
             cellSize: emptyHexSprite.size)
         
         var i = 0
-        for i1 in startOffsetX ..< startOffsetX + fieldWidth {
-            for i2 in startOffsetY ..< startOffsetY + fieldHeight {
+        for i2 in startOffsetY ..< startOffsetY + fieldHeight {
+            for i1 in startOffsetX ..< startOffsetX + fieldWidth {
+             
                 let hexCell = BgCell(
-                    coord: AxialCoord(i1, i2),
+                    coord: AxialCoord(i2, i1),
                     hexCalc : hexCalculator!)
                 self.addChild(hexCell)
                 self.bgHexes.append(hexCell)
@@ -53,25 +54,16 @@ class GameScene: SKScene {
             }
         }
         
-        //addRandomElement()
-        //addRandomElement()
-        //addRandomElement()
-        //addRandomElement()
+        let initialRandomElementsCount = 3
         
-        let firstElement = GameCell(val: 1)
-        self.bgHexes[0].addGameCell(cell: firstElement)
+        for _ in 0 ..< initialRandomElementsCount {
+          addRandomElement()
+        }
         
-        let secondElement = GameCell(val: 1)
-        self.bgHexes[1].addGameCell(cell: secondElement)
-        
-        let secondElement2 = GameCell(val: 1)
-        self.bgHexes[2].addGameCell(cell: secondElement2)
-        
-        let secondElement3 = GameCell(val: 1)
-        self.bgHexes[3].addGameCell(cell: secondElement3)
-        
-        let secondElement4 = GameCell(val: 1)
-        self.bgHexes[4].addGameCell(cell: secondElement4)
+        /*for i8 in 0 ... 16 {
+            let firstElement = GameCell(val: i8)
+            self.bgHexes[i8].addGameCell(cell: firstElement)
+        }*/
     }
     
     private func addRandomElement() {
@@ -93,11 +85,11 @@ class GameScene: SKScene {
     //@todo: make cmd from it
     private func moveXUp() {
         
-        for i2 in 0 ..< fieldHeight {
+        for i1 in 0 ..< fieldHeight {
             var line = Array<BgCell>()
-            for i1 in 0 ..< fieldWidth {
+            for i2 in 0 ..< fieldWidth {
                 //it should be i1 in fieldWidth ..< 0 but swift sucks
-                line.append(self.bgHexes[(i2 + 1) * fieldWidth - i1 - 1])
+                line.append(self.bgHexes[(i1 + 1) * fieldWidth - i2 - 1])
             }
             moveLine(cells: line)
         }
