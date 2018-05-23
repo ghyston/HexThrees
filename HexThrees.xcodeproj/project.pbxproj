@@ -34,6 +34,22 @@
 		3F555CF32091AE66003C67A7 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CF12091AE66003C67A7 /* GameCell.swift */; };
 		3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell.swift */; };
 		3FAAC76C207F27E9006F5196 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell.swift */; };
+		3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */; };
+		3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */; };
+		3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644D20B5DE010083C56C /* GameModel.swift */; };
+		3FAC644F20B5DE010083C56C /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644D20B5DE010083C56C /* GameModel.swift */; };
+		3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645020B5E1240083C56C /* MoveLineCMD.swift */; };
+		3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645020B5E1240083C56C /* MoveLineCMD.swift */; };
+		3FAC645420B5E2580083C56C /* MoveXUpCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645320B5E2580083C56C /* MoveXUpCMD.swift */; };
+		3FAC645520B5E2580083C56C /* MoveXUpCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645320B5E2580083C56C /* MoveXUpCMD.swift */; };
+		3FAC645720B5E3170083C56C /* GameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645620B5E3170083C56C /* GameCMD.swift */; };
+		3FAC645820B5E3170083C56C /* GameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645620B5E3170083C56C /* GameCMD.swift */; };
+		3FAC645A20B5E4040083C56C /* MoveXDownCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */; };
+		3FAC645B20B5E4040083C56C /* MoveXDownCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */; };
+		3FAC645D20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */; };
+		3FAC645E20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */; };
+		3FAC646020B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */; };
+		3FAC646120B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +74,14 @@
 		3F555CEE2091AE49003C67A7 /* BgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCell.swift; sourceTree = "<group>"; };
 		3F555CF12091AE66003C67A7 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
 		3FAAC76A207F27E9006F5196 /* HexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell.swift; sourceTree = "<group>"; };
+		3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellCMD.swift; sourceTree = "<group>"; };
+		3FAC644D20B5DE010083C56C /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		3FAC645020B5E1240083C56C /* MoveLineCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLineCMD.swift; sourceTree = "<group>"; };
+		3FAC645320B5E2580083C56C /* MoveXUpCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveXUpCMD.swift; sourceTree = "<group>"; };
+		3FAC645620B5E3170083C56C /* GameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCMD.swift; sourceTree = "<group>"; };
+		3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveXDownCMD.swift; sourceTree = "<group>"; };
+		3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYUpCMD.swift; sourceTree = "<group>"; };
+		3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYDownCMD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +116,7 @@
 		3F06B348207C81E000C8315A /* HexThrees Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3FAC644920B5DD7E0083C56C /* Commands */,
 				3F06B349207C81E000C8315A /* Actions.sks */,
 				3F06B34A207C81E000C8315A /* GameScene.sks */,
 				3F06B34B207C81E000C8315A /* GameScene.swift */,
@@ -101,6 +126,7 @@
 				3F555CE5208E7AA5003C67A7 /* Fibonacci.swift */,
 				3F555CEE2091AE49003C67A7 /* BgCell.swift */,
 				3F555CF12091AE66003C67A7 /* GameCell.swift */,
+				3FAC644D20B5DE010083C56C /* GameModel.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -135,6 +161,20 @@
 				3F06B36C207C81E000C8315A /* Info.plist */,
 			);
 			path = "HexThrees macOS";
+			sourceTree = "<group>";
+		};
+		3FAC644920B5DD7E0083C56C /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				3FAC645620B5E3170083C56C /* GameCMD.swift */,
+				3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */,
+				3FAC645020B5E1240083C56C /* MoveLineCMD.swift */,
+				3FAC645320B5E2580083C56C /* MoveXUpCMD.swift */,
+				3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */,
+				3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */,
+				3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,12 +287,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,
+				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
+				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
+				3FAC645D20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */,
 				3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
+				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
+				3FAC645720B5E3170083C56C /* GameCMD.swift in Sources */,
+				3FAC646020B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */,
+				3FAC645420B5E2580083C56C /* MoveXUpCMD.swift in Sources */,
 				3F555CE6208E7AA5003C67A7 /* Fibonacci.swift in Sources */,
 				3F06B357207C81E000C8315A /* GameViewController.swift in Sources */,
 				3F06B383207E806400C8315A /* HexCalculator.swift in Sources */,
+				3FAC645A20B5E4040083C56C /* MoveXDownCMD.swift in Sources */,
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,12 +310,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F555CF02091AE49003C67A7 /* BgCell.swift in Sources */,
+				3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */,
+				3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
+				3FAC645E20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */,
 				3FAAC76C207F27E9006F5196 /* HexCell.swift in Sources */,
 				3F06B372207C81E000C8315A /* GameScene.swift in Sources */,
 				3F555CF32091AE66003C67A7 /* GameCell.swift in Sources */,
+				3FAC644F20B5DE010083C56C /* GameModel.swift in Sources */,
+				3FAC645820B5E3170083C56C /* GameCMD.swift in Sources */,
+				3FAC646120B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */,
+				3FAC645520B5E2580083C56C /* MoveXUpCMD.swift in Sources */,
 				3F555CE7208E7AA5003C67A7 /* Fibonacci.swift in Sources */,
 				3F06B368207C81E000C8315A /* GameViewController.swift in Sources */,
 				3F06B384207E806400C8315A /* HexCalculator.swift in Sources */,
+				3FAC645B20B5E4040083C56C /* MoveXDownCMD.swift in Sources */,
 				3F06B366207C81E000C8315A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
