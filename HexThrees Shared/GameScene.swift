@@ -230,6 +230,22 @@ class GameScene: SKScene {
         processCell(counter: 0)
     }
     
+    func touch(coord: CGPoint) {
+        if coord.x < 0 && coord.y < 0 {
+            self.moveXDown()
+        }
+        else if coord.x < 0 && coord.y > 0 {
+            self.moveYUp()
+        }
+        else if coord.x > 0 && coord.y < 0 {
+            self.moveYDown()
+        }
+        else if coord.x > 0 && coord.y > 0 {
+            self.moveXUp()
+        }
+        addRandomElement()
+    }
+    
     #if os(watchOS)
     override func sceneDidLoad() {
         self.setUpScene()
@@ -259,6 +275,12 @@ extension GameScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        //@todo: handle multitouch
+        guard let firstTouch = touches.first else {
+            return
+        }
+        
+        touch(coord: firstTouch.location(in: self))
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -275,20 +297,7 @@ extension GameScene {
 
     override func mouseDown(with event: NSEvent) {
         
-        let coord = event.location(in: self)
-        if coord.x < 0 && coord.y < 0 {
-            self.moveXDown()
-        }
-        else if coord.x < 0 && coord.y > 0 {
-            self.moveYUp()
-        }
-        else if coord.x > 0 && coord.y < 0 {
-            self.moveYDown()
-        }
-        else if coord.x > 0 && coord.y > 0 {
-            self.moveXUp()
-        }
-        addRandomElement()
+        touch(event.location(in: self))
     }
     
     override func mouseDragged(with event: NSEvent) {
