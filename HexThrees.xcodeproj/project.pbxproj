@@ -50,6 +50,10 @@
 		3FAC645E20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */; };
 		3FAC646020B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */; };
 		3FAC646120B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */; };
+		3FAC646320B7577B0083C56C /* MoveLeftCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */; };
+		3FAC646420B7577B0083C56C /* MoveLeftCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */; };
+		3FAC646620B75EC00083C56C /* MoveRightCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646520B75EC00083C56C /* MoveRightCMD.swift */; };
+		3FAC646720B75EC00083C56C /* MoveRightCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646520B75EC00083C56C /* MoveRightCMD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +86,8 @@
 		3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveXDownCMD.swift; sourceTree = "<group>"; };
 		3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYUpCMD.swift; sourceTree = "<group>"; };
 		3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYDownCMD.swift; sourceTree = "<group>"; };
+		3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLeftCMD.swift; sourceTree = "<group>"; };
+		3FAC646520B75EC00083C56C /* MoveRightCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRightCMD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,8 @@
 				3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */,
 				3FAC645C20B5E49E0083C56C /* MoveYUpCMD.swift */,
 				3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */,
+				3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */,
+				3FAC646520B75EC00083C56C /* MoveRightCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -286,9 +294,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAC646620B75EC00083C56C /* MoveRightCMD.swift in Sources */,
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
+				3FAC646320B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
 				3FAC645D20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */,
 				3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
@@ -309,9 +319,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FAC646720B75EC00083C56C /* MoveRightCMD.swift in Sources */,
 				3F555CF02091AE49003C67A7 /* BgCell.swift in Sources */,
 				3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
+				3FAC646420B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
 				3FAC645E20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */,
 				3FAAC76C207F27E9006F5196 /* HexCell.swift in Sources */,
 				3F06B372207C81E000C8315A /* GameScene.swift in Sources */,

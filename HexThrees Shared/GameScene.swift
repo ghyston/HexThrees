@@ -36,7 +36,7 @@ class GameScene: SKScene {
             scene: self)
        
         
-        let initialRandomElementsCount = 3
+        let initialRandomElementsCount = 4
         
         for _ in 0 ..< initialRandomElementsCount {
           AddRandomCellCMD(self.gameModel!).run()
@@ -49,7 +49,17 @@ class GameScene: SKScene {
     }
     
     func touch(coord: CGPoint) {
-        if coord.x < 0 && coord.y < 0 {
+        
+        
+        
+        if coord.x < 0 {
+            MoveLeftCMD(self.gameModel!).run()
+        }
+        else if coord.x > 0 {
+            MoveRightCMD(self.gameModel!).run()
+        }
+        
+        /*if coord.x < 0 && coord.y < 0 {
             MoveXDownCMD(self.gameModel!).run()
         }
         else if coord.x < 0 && coord.y > 0 {
@@ -60,7 +70,7 @@ class GameScene: SKScene {
         }
         else if coord.x > 0 && coord.y > 0 {
             MoveXUpCMD(self.gameModel!).run()
-        }
+        }*/
         AddRandomCellCMD(self.gameModel!).run()
     }
     
@@ -115,7 +125,7 @@ extension GameScene {
 
     override func mouseDown(with event: NSEvent) {
         
-        touch(event.location(in: self))
+        touch(coord: event.location(in: self))
     }
     
     override func mouseDragged(with event: NSEvent) {
