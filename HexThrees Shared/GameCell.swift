@@ -28,24 +28,44 @@ class GameCell : HexCell {
     func playUpdateAnimation() {
         
         let zoomIn = SKAction.scale(to: 1.5, duration: 0.3)
+        zoomIn.timingMode = SKActionTimingMode.easeIn
         let zoomOut = SKAction.scale(to: 1.0, duration: 0.2)
+        zoomOut.timingMode = SKActionTimingMode.easeIn
         self.run(SKAction.sequence([zoomIn, zoomOut]))
     }
     
-    // this is because SKAction selector cannot take arguments (or I dotn know how)
-    @objc func switchToNewParent() {
-        (self.parent as? BgCell)?.removeGameCell()
-        newParent?.addGameCell(cell: self)
-        newParent = nil
+    func playMoveAnimation(diff: CGVector, duration: Double) {
+        
+        let moveAnimation = SKAction.move(by: diff, duration: duration)
+        moveAnimation.timingMode = SKActionTimingMode.easeInEaseOut
+        self.run(moveAnimation)
+    }
+    
+    //@todo: rename!!
+    @objc func removeFromBgCellWithoutDelay() {
+        self.removeFromParent()
+    }
+    
+    func removeFromParentCell(delay: Double) {
+        let delay = SKAction.wait(forDuration: delay)
+        let delete = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: self)
+        self.run(SKAction.sequence([delay, delete]))
     }
     
     @objc func resetCoordinates() {
         self.position = CGPoint(x: 0, y: 0)
     }
     
-    func updateValue(_ val: Int) {
-        self.value = val //@todo: setter
-        self.updateText(text: "\(val)")
+    func updateValue(_ val: Int, delay: TimeInterval) {
+        self.value = val
+        let delayAction = SKAction.wait(forDuration: delay)
+        let updateAction = SKAction.perform(#selector(GameCell.updateValueVisually), onTarget: self)
+        self.run(SKAction.sequence([delayAction, updateAction]))
+    }
+    
+    @objc func updateValueVisually() {
+        
+        self.updateText(text: "\(self.value)")
         self.playUpdateAnimation() //@todo: should it be called from outside?
     }
     

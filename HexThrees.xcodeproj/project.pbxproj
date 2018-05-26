@@ -122,14 +122,12 @@
 		3F06B348207C81E000C8315A /* HexThrees Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3FAC646820B8791D0083C56C /* Assets */,
 				3FAC644920B5DD7E0083C56C /* Commands */,
-				3F06B349207C81E000C8315A /* Actions.sks */,
-				3F06B34A207C81E000C8315A /* GameScene.sks */,
 				3F06B34B207C81E000C8315A /* GameScene.swift */,
-				3F06B34C207C81E000C8315A /* Assets.xcassets */,
 				3F06B382207E806400C8315A /* HexCalculator.swift */,
-				3FAAC76A207F27E9006F5196 /* HexCell.swift */,
 				3F555CE5208E7AA5003C67A7 /* Fibonacci.swift */,
+				3FAAC76A207F27E9006F5196 /* HexCell.swift */,
 				3F555CEE2091AE49003C67A7 /* BgCell.swift */,
 				3F555CF12091AE66003C67A7 /* GameCell.swift */,
 				3FAC644D20B5DE010083C56C /* GameModel.swift */,
@@ -183,6 +181,16 @@
 				3FAC646520B75EC00083C56C /* MoveRightCMD.swift */,
 			);
 			path = Commands;
+			sourceTree = "<group>";
+		};
+		3FAC646820B8791D0083C56C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				3F06B34C207C81E000C8315A /* Assets.xcassets */,
+				3F06B349207C81E000C8315A /* Actions.sks */,
+				3F06B34A207C81E000C8315A /* GameScene.sks */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -16,10 +16,12 @@ class GameModel {
     var hexCalculator : HexCalculator?
     var mergingStrategy : MergingStrategy = FibonacciMergingStrategy()
     var bgHexes : [BgCell] = [BgCell]()
-    let fieldWidth: Int = 5
-    let fieldHeight: Int = 5
+    let fieldWidth: Int = 4
+    let fieldHeight: Int = 4
     let startOffsetX: Int = -2
     let startOffsetY: Int = -2
+    
+    var lastDuration = 0 //@todo: use this to implement "current move finished"
     
     func setupCleanGameField(cellSize: CGSize, scene: GameScene) {
         

@@ -42,6 +42,13 @@ class GameScene: SKScene {
           AddRandomCellCMD(self.gameModel!).run()
         }
         
+        /*let firstElement = GameCell(val: 1)
+        let secondElement = GameCell(val: 1)
+        
+        self.gameModel?.bgHexes[8].addGameCell(cell: firstElement)
+        self.gameModel?.bgHexes[16].addGameCell(cell: secondElement)*/
+        
+        
         /*for i8 in 0 ... 16 {
             let firstElement = GameCell(val: i8)
             self.bgHexes[i8].addGameCell(cell: firstElement)
@@ -50,16 +57,12 @@ class GameScene: SKScene {
     
     func touch(coord: CGPoint) {
         
-        
-        
-        if coord.x < 0 {
+        if coord.x < -500 {
             MoveLeftCMD(self.gameModel!).run()
         }
-        else if coord.x > 0 {
+        else if coord.x > 500 {
             MoveRightCMD(self.gameModel!).run()
-        }
-        
-        /*if coord.x < 0 && coord.y < 0 {
+        } else if coord.x < 0 && coord.y < 0 {
             MoveXDownCMD(self.gameModel!).run()
         }
         else if coord.x < 0 && coord.y > 0 {
@@ -70,7 +73,7 @@ class GameScene: SKScene {
         }
         else if coord.x > 0 && coord.y > 0 {
             MoveXUpCMD(self.gameModel!).run()
-        }*/
+        }
         AddRandomCellCMD(self.gameModel!).run()
     }
     

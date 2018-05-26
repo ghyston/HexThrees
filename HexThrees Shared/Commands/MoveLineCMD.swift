@@ -22,17 +22,56 @@ class MoveLineCMD : GameCMD {
             from.gameCell = nil
         }
         
-        func moveCell(from: Int, to: Int, newVal: Int?) {
-            
-            if from == to {
-                return
-            }
-            
+        func checkMoveCellsAvailable(_ from: Int, _ to: Int) {
             //@todo: throw if from >= count
             //@todo: throw if to >= count
             //@todo: throw if from >= to
             //@todo: throw if _from_ cell have gamecell (what if merging?)
             //@todo: throw if _to_ cell doesnt have gamecell
+            
+        }
+        
+        func moveCellAndDelete(from: Int, to: Int) -> Double {
+            
+            if from == to {
+                return 0.0
+            }
+            
+            checkMoveCellsAvailable(from, to)
+            
+            let fromCell = cells[from]
+            let toCell = cells[to]
+            
+            //@todo: Add BGCell.distantion(to: BGCell)
+            //@todo: add extensions to CGVector.init(points diff)
+            let diff = CGVector(
+                dx: toCell.position.x - fromCell.position.x,
+                dy: toCell.position.y - fromCell.position.y)
+            
+            let secondsPerCell = 0.2 //@todo: move ot config?
+            let duration = Double(from - to) * secondsPerCell
+            
+            let gameCell = fromCell.gameCell!
+            
+            fromCell.gameCell = nil
+            
+            gameCell.zPosition = 2 //@todo: define them as constants
+            gameCell.playMoveAnimation(
+                diff: diff,
+                duration: duration)
+            
+            gameCell.removeFromParentCell(delay: duration)
+            
+            return duration
+        }
+        
+        func moveCell(from: Int, to: Int) {
+            
+            if from == to {
+                return
+            }
+            
+            checkMoveCellsAvailable(from, to)
             
             let fromCell = cells[from]
             let toCell = cells[to]
@@ -47,17 +86,21 @@ class MoveLineCMD : GameCMD {
             toCell.gameCell?.position.x -= diff.dx
             toCell.gameCell?.position.y -= diff.dy
             
-            let moveAction = SKAction.move(by: diff, duration: Double(from - to) * 0.2) //@todo: duration should depend from distance
-            toCell.gameCell?.run(moveAction)
+            let secondsPerCell = 0.2
+            let duration = Double(from - to) * secondsPerCell
             
-            if newVal != nil {
-                //@todo: run some animation?
-                toCell.gameCell?.updateValue(newVal!)
-            }
+            toCell.gameCell?.playMoveAnimation(
+                diff: diff,
+                duration: duration)
         }
         
-        func deleteCell(index: Int) {
+        /*func deleteCell(index: Int) {
             cells[index].removeGameCell()
+        }*/
+        
+        func updateCell(index: Int, newVal: Int, timeDelay: Double) {
+            
+            cells[index].gameCell?.updateValue(newVal, delay: timeDelay)
         }
         
         func findNextNonEmpty(startIndex: Int) -> Int? {
@@ -86,7 +129,7 @@ class MoveLineCMD : GameCMD {
             }
             
             guard let second : Int = findNextNonEmpty(startIndex: first + 1) else {
-                moveCell(from: first, to: counter, newVal: nil) //@todo: make newVal a optional parameter
+                moveCell(from: first, to: counter)
                 return
             }
             
@@ -94,13 +137,27 @@ class MoveLineCMD : GameCMD {
             let secondVal = cells[second].gameCell!.value
             
             if let newVal = gameModel.mergingStrategy.isSiblings(firstVal, secondVal) {
-                deleteCell(index: first)
-                moveCell(from: second, to: counter, newVal: newVal)
+                
+                if first == counter {
+                    
+                    let duration = moveCellAndDelete(from: second, to: counter)
+                    updateCell(index: counter, newVal: newVal, timeDelay: duration - 0.2)
+                }
+                else {
+                    
+                    let duration = moveCellAndDelete(from: second, to: counter)
+                    moveCell(from: first, to: counter)
+                    updateCell(index: counter, newVal: newVal, timeDelay: duration - 0.2)
+                    
+                }
+                
+                
+                
                 processCell(counter: counter + 1)
             }
             else {
-                moveCell(from: first, to: counter, newVal: nil)
-                moveCell(from: second, to: counter + 1, newVal: nil)
+                moveCell(from: first, to: counter)
+                moveCell(from: second, to: counter + 1)
                 processCell(counter: counter + 1)
             }
         }

@@ -19,6 +19,10 @@ class AddRandomCellCMD : GameCMD {
             }
         }
         
+        guard freeCells.count > 0 else {
+            return
+        }
+        
         let random = Int(arc4random()) % freeCells.count
         
         let newElement = GameCell(val: 1)
