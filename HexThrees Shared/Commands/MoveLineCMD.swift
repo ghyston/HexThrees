@@ -9,160 +9,146 @@
 import Foundation
 import SpriteKit
 
+// Try to move/merge cells in one dimension array from end to 0
 class MoveLineCMD : GameCMD {
+    
+    private var count: Int = 0
+    private var cells = Array<BgCell>()
     
     func run(cells: Array<BgCell>) {
         
-        let count = cells.count
-        
-        func switchCellParent(from: BgCell, to: BgCell) {
-            //@todo: after this do we need BGCell functions remove/add?
-            from.gameCell?.removeFromParent()
-            to.addGameCell(cell: from.gameCell!)
-            from.gameCell = nil
-        }
-        
-        func checkMoveCellsAvailable(_ from: Int, _ to: Int) {
-            //@todo: throw if from >= count
-            //@todo: throw if to >= count
-            //@todo: throw if from >= to
-            //@todo: throw if _from_ cell have gamecell (what if merging?)
-            //@todo: throw if _to_ cell doesnt have gamecell
-            
-        }
-        
-        func moveCellAndDelete(from: Int, to: Int) -> Double {
-            
-            if from == to {
-                return 0.0
-            }
-            
-            checkMoveCellsAvailable(from, to)
-            
-            let fromCell = cells[from]
-            let toCell = cells[to]
-            
-            //@todo: Add BGCell.distantion(to: BGCell)
-            //@todo: add extensions to CGVector.init(points diff)
-            let diff = CGVector(
-                dx: toCell.position.x - fromCell.position.x,
-                dy: toCell.position.y - fromCell.position.y)
-            
-            let secondsPerCell = 0.2 //@todo: move ot config?
-            let duration = Double(from - to) * secondsPerCell
-            
-            let gameCell = fromCell.gameCell!
-            
-            fromCell.gameCell = nil
-            
-            gameCell.zPosition = 2 //@todo: define them as constants
-            gameCell.playMoveAnimation(
-                diff: diff,
-                duration: duration)
-            
-            gameCell.removeFromParentCell(delay: duration)
-            
-            return duration
-        }
-        
-        func moveCell(from: Int, to: Int) {
-            
-            if from == to {
-                return
-            }
-            
-            checkMoveCellsAvailable(from, to)
-            
-            let fromCell = cells[from]
-            let toCell = cells[to]
-            
-            switchCellParent(from: fromCell, to: toCell)
-            
-            //@todo: add extensions to CGVector.init(points diff)
-            let diff = CGVector(
-                dx: toCell.position.x - fromCell.position.x,
-                dy: toCell.position.y - fromCell.position.y)
-            
-            toCell.gameCell?.position.x -= diff.dx
-            toCell.gameCell?.position.y -= diff.dy
-            
-            let secondsPerCell = 0.2
-            let duration = Double(from - to) * secondsPerCell
-            
-            toCell.gameCell?.playMoveAnimation(
-                diff: diff,
-                duration: duration)
-        }
-        
-        /*func deleteCell(index: Int) {
-            cells[index].removeGameCell()
-        }*/
-        
-        func updateCell(index: Int, newVal: Int, timeDelay: Double) {
-            
-            cells[index].gameCell?.updateValue(newVal, delay: timeDelay)
-        }
-        
-        func findNextNonEmpty(startIndex: Int) -> Int? {
-            
-            var i = startIndex
-            
-            while i < count {
-                if cells[i].gameCell != nil {
-                    return i
-                }
-                i += 1
-            }
-            
-            return nil
-        }
-        
-        func processCell(counter: Int) {
-            
-            // end of algorithm
-            if counter >= count {
-                return
-            }
-            
-            guard let first : Int = findNextNonEmpty(startIndex: counter) else {
-                return
-            }
-            
-            guard let second : Int = findNextNonEmpty(startIndex: first + 1) else {
-                moveCell(from: first, to: counter)
-                return
-            }
-            
-            let firstVal = cells[first].gameCell!.value
-            let secondVal = cells[second].gameCell!.value
-            
-            if let newVal = gameModel.mergingStrategy.isSiblings(firstVal, secondVal) {
-                
-                if first == counter {
-                    
-                    let duration = moveCellAndDelete(from: second, to: counter)
-                    updateCell(index: counter, newVal: newVal, timeDelay: duration - 0.2)
-                }
-                else {
-                    
-                    let duration = moveCellAndDelete(from: second, to: counter)
-                    moveCell(from: first, to: counter)
-                    updateCell(index: counter, newVal: newVal, timeDelay: duration - 0.2)
-                    
-                }
-                
-                
-                
-                processCell(counter: counter + 1)
-            }
-            else {
-                moveCell(from: first, to: counter)
-                moveCell(from: second, to: counter + 1)
-                processCell(counter: counter + 1)
-            }
-        }
+        self.count = cells.count
+        self.cells = cells
         
         //run recursive algorithm, starting with 0
         processCell(counter: 0)
+    }
+    
+    private func processCell(counter: Int) {
+        
+        // end of algorithm : last cell achieved
+        if counter >= count {
+            return
+        }
+        
+        // end of algorithm : no more cells with values
+        guard let first : Int = findNextNonEmpty(startIndex: counter) else {
+            return
+        }
+        
+        // end of algorithm : one cells value, move it and collapse
+        guard let second : Int = findNextNonEmpty(startIndex: first + 1) else {
+            
+            moveCell(from: first, to: counter)
+            return
+        }
+        
+        let firstVal = cells[first].gameCell!.value
+        let secondVal = cells[second].gameCell!.value
+        
+        // If we have two cells in line with values, that can be collapsed
+        if let newVal = gameModel.mergingStrategy.isSiblings(firstVal, secondVal) {
+            
+            let duration = moveCellAndDelete(from: second, to: counter) - GameConstants.SecondsPerCell
+            
+            //If first cellue with value in the beginning of index, we dont need to move it
+            if first == counter {
+                
+                updateCell(index: counter, newVal: newVal, timeDelay: duration)
+            }
+            else {
+                
+                moveCell(from: first, to: counter)
+                updateCell(index: counter, newVal: newVal, timeDelay: duration)
+            }
+            
+            processCell(counter: counter + 1)
+        }
+        else {
+            
+            moveCell(from: first, to: counter)
+            moveCell(from: second, to: counter + 1)
+            processCell(counter: counter + 1)
+        }
+    }
+    
+    private func moveCell(from: Int, to: Int) {
+        
+        if from == to {
+            return
+        }
+        
+        checkMoveCellsAvailable(from, to)
+        
+        let fromCell = cells[from]
+        let toCell = cells[to]
+        
+        SwitchParentsCMD(self.gameModel).run(from: fromCell, to: toCell)
+        
+        let diff = fromCell.destination(to: toCell)
+        
+        toCell.gameCell?.position.x -= diff.dx
+        toCell.gameCell?.position.y -= diff.dy
+        
+        let duration = Double(from - to) * GameConstants.SecondsPerCell
+        
+        MoveCellSpriteCMD(self.gameModel).run(
+            cell: toCell.gameCell!,
+            diff: diff,
+            duration: duration)
+    }
+    
+    private func moveCellAndDelete(from: Int, to: Int) -> Double {
+        
+        if from == to {
+            return 0.0
+        }
+        
+        checkMoveCellsAvailable(from, to)
+        
+        let fromCell = cells[from]
+        let toCell = cells[to]
+        
+        let diff = fromCell.destination(to: toCell)
+        
+        let gameCell = fromCell.gameCell!
+        
+        let duration = Double(from - to) * GameConstants.SecondsPerCell
+        
+        MoveCellSpriteCMD(self.gameModel).run(
+            cell: gameCell,
+            diff: diff,
+            duration: duration)
+        
+        RemoveCellCMD(self.gameModel).run(cell: fromCell, delay: duration)
+        
+        return duration
+    }
+    
+    private func updateCell(index: Int, newVal: Int, timeDelay: Double) {
+        
+        UpdateCellCMD(self.gameModel).run(
+            cell: cells[index].gameCell!,
+            value: newVal,
+            delay: timeDelay)
+    }
+    
+    private func findNextNonEmpty(startIndex: Int) -> Int? {
+        
+        for i in startIndex ..< count {
+            if cells[i].gameCell != nil {
+                return i
+            }
+        }
+        
+        return nil
+    }
+    
+    private func checkMoveCellsAvailable(_ from: Int, _ to: Int) {
+        
+        assert(from < count, "MoveLineCMD: from >= count")
+        assert(to < count, "MoveLineCMD: to >= count")
+        assert(from > to, "MoveLineCMD: from >= to")
+        assert(cells[from].gameCell != nil, "MoveLineCMD: \"from\" cell is empty")
     }
 }

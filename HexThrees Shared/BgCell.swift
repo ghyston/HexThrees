@@ -31,6 +31,13 @@ class BgCell: HexCell {
         self.gameCell = nil
     }
     
+    func destination(to: BgCell) -> CGVector {
+        //@todo: add extensions to CGVector.init(points diff)
+        return CGVector(
+            dx: to.position.x - position.x,
+            dy: to.position.y - position.y)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

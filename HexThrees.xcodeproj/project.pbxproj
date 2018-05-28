@@ -54,6 +54,16 @@
 		3FAC646420B7577B0083C56C /* MoveLeftCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */; };
 		3FAC646620B75EC00083C56C /* MoveRightCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646520B75EC00083C56C /* MoveRightCMD.swift */; };
 		3FAC646720B75EC00083C56C /* MoveRightCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646520B75EC00083C56C /* MoveRightCMD.swift */; };
+		3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646920BC84980083C56C /* SwitchParentsCMD.swift */; };
+		3FAC646B20BC84980083C56C /* SwitchParentsCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646920BC84980083C56C /* SwitchParentsCMD.swift */; };
+		3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646C20BC85320083C56C /* MoveCellSpriteCMD.swift */; };
+		3FAC646E20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646C20BC85320083C56C /* MoveCellSpriteCMD.swift */; };
+		3FAC647020BC89530083C56C /* RemoveCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */; };
+		3FAC647120BC89530083C56C /* RemoveCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */; };
+		3FAC647320BCA52B0083C56C /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC647220BCA52B0083C56C /* GameConstants.swift */; };
+		3FAC647420BCA52B0083C56C /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC647220BCA52B0083C56C /* GameConstants.swift */; };
+		3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */; };
+		3FAC647720BCA6660083C56C /* UpdateCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +98,11 @@
 		3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYDownCMD.swift; sourceTree = "<group>"; };
 		3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLeftCMD.swift; sourceTree = "<group>"; };
 		3FAC646520B75EC00083C56C /* MoveRightCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRightCMD.swift; sourceTree = "<group>"; };
+		3FAC646920BC84980083C56C /* SwitchParentsCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchParentsCMD.swift; sourceTree = "<group>"; };
+		3FAC646C20BC85320083C56C /* MoveCellSpriteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCellSpriteCMD.swift; sourceTree = "<group>"; };
+		3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveCellCMD.swift; sourceTree = "<group>"; };
+		3FAC647220BCA52B0083C56C /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
+		3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCellCMD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +146,7 @@
 				3F555CEE2091AE49003C67A7 /* BgCell.swift */,
 				3F555CF12091AE66003C67A7 /* GameCell.swift */,
 				3FAC644D20B5DE010083C56C /* GameModel.swift */,
+				3FAC647220BCA52B0083C56C /* GameConstants.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -179,6 +195,10 @@
 				3FAC645F20B5E4FB0083C56C /* MoveYDownCMD.swift */,
 				3FAC646220B7577B0083C56C /* MoveLeftCMD.swift */,
 				3FAC646520B75EC00083C56C /* MoveRightCMD.swift */,
+				3FAC646920BC84980083C56C /* SwitchParentsCMD.swift */,
+				3FAC646C20BC85320083C56C /* MoveCellSpriteCMD.swift */,
+				3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */,
+				3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -307,8 +327,13 @@
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646320B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
+				3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
+				3FAC647020BC89530083C56C /* RemoveCellCMD.swift in Sources */,
+				3FAC647320BCA52B0083C56C /* GameConstants.swift in Sources */,
 				3FAC645D20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */,
 				3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */,
+				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
+				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
@@ -332,8 +357,13 @@
 				3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646420B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
+				3FAC646B20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
+				3FAC647120BC89530083C56C /* RemoveCellCMD.swift in Sources */,
+				3FAC647420BCA52B0083C56C /* GameConstants.swift in Sources */,
 				3FAC645E20B5E49E0083C56C /* MoveYUpCMD.swift in Sources */,
 				3FAAC76C207F27E9006F5196 /* HexCell.swift in Sources */,
+				3FAC647720BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
+				3FAC646E20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
 				3F06B372207C81E000C8315A /* GameScene.swift in Sources */,
 				3F555CF32091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FAC644F20B5DE010083C56C /* GameModel.swift in Sources */,
