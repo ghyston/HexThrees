@@ -41,25 +41,16 @@ class GameCell : HexCell {
         self.run(moveAnimation)
     }
     
-    //@todo: rename!!
-    @objc func removeFromBgCellWithoutDelay() {
-        self.removeFromParent()
-    }
-    
-    func removeFromParentCell(delay: Double) {
+    func removeFromParentWithDelay(delay: Double) {
         let delay = SKAction.wait(forDuration: delay)
         let delete = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: self)
         self.run(SKAction.sequence([delay, delete]))
     }
     
-    @objc func resetCoordinates() {
-        self.position = CGPoint(x: 0, y: 0)
-    }
-    
     func updateValue(_ val: Int) {
         self.value = val
         self.updateText(text: "\(self.value)")
-        self.playUpdateAnimation() //@todo: should it be called from outside?
+        self.playUpdateAnimation()
     }
     
     required init?(coder aDecoder: NSCoder) {
