@@ -127,10 +127,11 @@ class MoveLineCMD : GameCMD {
     
     private func updateCell(index: Int, newVal: Int, timeDelay: Double) {
         
-        UpdateCellCMD(self.gameModel).run(
-            cell: cells[index].gameCell!,
-            value: newVal,
-            delay: timeDelay)
+        UpdateCellCMD(self.gameModel)
+            .setup(
+                cell: cells[index].gameCell!,
+                value: newVal)
+            .runWithDelay(delay: timeDelay)
     }
     
     private func findNextNonEmpty(startIndex: Int) -> Int? {

@@ -10,9 +10,18 @@ import Foundation
 
 class UpdateCellCMD : GameCMD {
     
-    func run(cell: GameCell, value: Int, delay: Double) {
+    var cell : GameCell?
+    var value : Int?
+    
+    func setup(cell: GameCell, value: Int) -> UpdateCellCMD {
+        self.cell = cell
+        self.value = value
+        return self
+    }
+    
+    override func run() {
         
-        cell.updateValue(value, delay: delay)
+        self.cell?.updateValue(self.value!)
     }
     
 }

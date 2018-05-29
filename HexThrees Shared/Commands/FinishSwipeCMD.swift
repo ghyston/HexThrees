@@ -10,17 +10,7 @@ import Foundation
 
 class FinishSwipeCMD : GameCMD {
     
-    func runWithDelay(delay : Double) {
-        
-        Timer.scheduledTimer(
-            timeInterval: delay,
-            target: self,
-            selector: #selector(FinishSwipeCMD.run), //@todo: good place to use common interface for GameCMD
-            userInfo: nil,
-            repeats: false)
-    }
-    
-    @objc func run() {
+    override func run() {
         
         AddRandomCellCMD(gameModel).run()
         gameModel.swipeStatus.delay = 0.0

@@ -10,7 +10,7 @@ import Foundation
 
 class MoveYUpCMD : GameCMD {
     
-    func run() {
+    override func run() {
         
         for i1 in 0 ..< self.gameModel.fieldWidth {
             var line = Array<BgCell>()

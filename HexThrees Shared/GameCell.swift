@@ -56,15 +56,8 @@ class GameCell : HexCell {
         self.position = CGPoint(x: 0, y: 0)
     }
     
-    func updateValue(_ val: Int, delay: TimeInterval) {
+    func updateValue(_ val: Int) {
         self.value = val
-        let delayAction = SKAction.wait(forDuration: delay)
-        let updateAction = SKAction.perform(#selector(GameCell.updateValueVisually), onTarget: self)
-        self.run(SKAction.sequence([delayAction, updateAction]))
-    }
-    
-    @objc func updateValueVisually() {
-        
         self.updateText(text: "\(self.value)")
         self.playUpdateAnimation() //@todo: should it be called from outside?
     }

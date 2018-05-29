@@ -8,15 +8,32 @@
 
 import Foundation
 
-protocol CMD {
-    func run()
+@objc protocol CMD {
+    @objc func run()
 }
 
-//@todo: Swift: abstract classes to implement CMD properly?
-class GameCMD {
+extension CMD {
+    
+    func runWithDelay(delay : Double) {
+        
+        Timer.scheduledTimer(
+            timeInterval: delay,
+            target: self,
+            selector: #selector(CMD.run),
+            userInfo: nil,
+            repeats: false)
+    }
+}
+
+class GameCMD : CMD {
     
     let gameModel: GameModel
     init(_ gameModel: GameModel) {
         self.gameModel = gameModel
     }
+    
+    @objc func run() {
+        assert(false, "GameCMD should not be run")
+    }
 }
+

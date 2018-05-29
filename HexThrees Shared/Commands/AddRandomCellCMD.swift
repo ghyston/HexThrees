@@ -10,7 +10,7 @@ import Foundation
 
 class AddRandomCellCMD : GameCMD {
     
-    func run() {
+    override func run() {
         
         var freeCells = Array<BgCell>()
         for i in self.gameModel.bgHexes {

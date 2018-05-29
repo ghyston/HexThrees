@@ -10,7 +10,7 @@ import Foundation
 
 class MoveLeftCMD : GameCMD {
     
-    func run() {
+    override func run() {
         
         let w = self.gameModel.fieldWidth
         let h = self.gameModel.fieldHeight
