@@ -57,6 +57,12 @@ class GameScene: SKScene {
     
     func touch(coord: CGPoint) {
         
+        if self.gameModel?.swipeStatus.inProgress ?? true {
+            return
+        }
+        
+        self.gameModel?.swipeStatus.inProgress = true
+        
         if coord.x < -500 {
             MoveLeftCMD(self.gameModel!).run()
         }
@@ -74,7 +80,8 @@ class GameScene: SKScene {
         else if coord.x > 0 && coord.y > 0 {
             MoveXUpCMD(self.gameModel!).run()
         }
-        AddRandomCellCMD(self.gameModel!).run()
+        
+        FinishSwipeCMD(self.gameModel!).runWithDelay(delay: gameModel?.swipeStatus.delay ?? 0.0)
     }
     
     #if os(watchOS)

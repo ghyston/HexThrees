@@ -12,6 +12,8 @@ class MoveCellSpriteCMD : GameCMD {
     
     func run(cell: GameCell, diff: CGVector, duration: Double){
         
+        gameModel.swipeStatus.incrementDelay(delay: duration)
+        
         cell.playMoveAnimation(
             diff: diff,
             duration: duration)
