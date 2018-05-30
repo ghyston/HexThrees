@@ -22,14 +22,14 @@ class GameScene: SKScene {
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
         
+        scene.gameModel = GameModel()
+        
         return scene
     }
     
     func setUpScene() {
         
         let emptyHexSprite = SKSpriteNode.init(imageNamed: "hex")
-        
-        self.gameModel = GameModel()
         
         self.gameModel?.setupCleanGameField(
             cellSize: emptyHexSprite.size,
@@ -55,97 +55,11 @@ class GameScene: SKScene {
         }*/
     }
     
-    func touch(coord: CGPoint) {
-        
-        if self.gameModel?.swipeStatus.inProgress ?? true {
-            return
-        }
-        
-        self.gameModel?.swipeStatus.inProgress = true
-        
-        if coord.x < -500 {
-            MoveLeftCMD(self.gameModel!).run()
-        }
-        else if coord.x > 500 {
-            MoveRightCMD(self.gameModel!).run()
-        } else if coord.x < 0 && coord.y < 0 {
-            MoveXDownCMD(self.gameModel!).run()
-        }
-        else if coord.x < 0 && coord.y > 0 {
-            MoveYUpCMD(self.gameModel!).run()
-        }
-        else if coord.x > 0 && coord.y < 0 {
-            MoveYDownCMD(self.gameModel!).run()
-        }
-        else if coord.x > 0 && coord.y > 0 {
-            MoveXUpCMD(self.gameModel!).run()
-        }
-        
-        FinishSwipeCMD(self.gameModel!).runWithDelay(delay: gameModel?.swipeStatus.delay ?? 0.0)
-    }
-    
-    #if os(watchOS)
-    override func sceneDidLoad() {
-        self.setUpScene()
-    }
-    #else
     override func didMove(to view: SKView) {
         self.setUpScene()
     }
-    #endif
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
     }
 }
-
-#if os(iOS) || os(tvOS)
-// Touch-based event handling
-extension GameScene {
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        //@todo: handle multitouch
-        guard let firstTouch = touches.first else {
-            return
-        }
-        
-        touch(coord: firstTouch.location(in: self))
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
-    
-   
-}
-#endif
-
-#if os(OSX)
-// Mouse-based event handling
-extension GameScene {
-
-    override func mouseDown(with event: NSEvent) {
-        
-        touch(coord: event.location(in: self))
-    }
-    
-    override func mouseDragged(with event: NSEvent) {
-        
-    }
-    
-    override func mouseUp(with event: NSEvent) {
-        
-    }
-
-}
-#endif
-

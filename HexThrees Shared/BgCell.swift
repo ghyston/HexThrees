@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SpriteKit
 
 class BgCell: HexCell {
     
