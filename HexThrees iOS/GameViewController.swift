@@ -85,6 +85,7 @@ extension GameViewController: UIGestureRecognizerDelegate {
         case .YDown:
             MoveYDownCMD(self.gameModel!).run()
         case .Unknown:
+            self.gameModel?.swipeStatus.inProgress = false
             return
         }
         

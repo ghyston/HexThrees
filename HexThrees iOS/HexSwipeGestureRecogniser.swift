@@ -11,7 +11,8 @@ import UIKit
 
 class HexSwipeGestureRecogniser : UIGestureRecognizer {
     
-    let distanceToDetect = 200
+    let distanceToDetect : CGFloat = 4.0
+    let distanceToSwype : CGFloat = 200.0
     
     enum Direction {
         case Unknown
@@ -23,22 +24,62 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         case Right
     }
     
-    var gestureStart:CGPoint = CGPoint.zero
+    var firstPoint:CGPoint = CGPoint.zero
+    var lastPoint:CGPoint = CGPoint.zero
     var direction:Direction = .Unknown
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            self.gestureStart = touch.location(in: self.view)
+            self.firstPoint = touch.location(in: self.view)
+            self.lastPoint = firstPoint
         }
     }
     
+    //@todo: code review!!!
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        guard let touch = touches.first else {
+            return
+        }
+        
+        let currentPoint = touch.location(in: self.view)
+        
+        let diff = CGVector(
+            dx: currentPoint.x - lastPoint.x,
+            dy: currentPoint.y - lastPoint.y)
+        
+        let sqrLen = diff.dx * diff.dx + diff.dy * diff.dy
+        if sqrLen < distanceToDetect {
+            return
+        }
+        
+        let angle = self.angleToX(vector: diff)
+        
+        let direction = self.angleToDirection(tan: angle)
+        print("\(direction)")
+        
+        if self.direction != .Unknown && self.direction != direction {
+            self.reset()
+            return
+        }
+        
+        let diff2 = CGVector(
+            dx: currentPoint.x - firstPoint.x,
+            dy: currentPoint.y - firstPoint.y)
+        
+        let sqrLen2 = diff2.dx * diff2.dx + diff2.dy * diff2.dy
+        
+        if (sqrLen2) > distanceToSwype {
+            self.state = .ended
+        }
+        
+        self.direction = direction
+        self.lastPoint = currentPoint
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        guard let touch = touches.first else {
+        /*guard let touch = touches.first else {
             return
         }
         
@@ -66,11 +107,66 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
             self.direction = .XUp
         }
         
-        self.state = .ended
+        self.state = .ended*/
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+    }
+    
+    override func reset() {
+        
+        self.firstPoint = CGPoint.zero
+        self.lastPoint = CGPoint.zero
+        self.direction = .Unknown
+        if self.state == .possible {
+            self.state = .failed
+        }
+    }
+    
+    private func angleToX(vector: CGVector) -> CGFloat {
+        
+        return atan2(vector.dy, vector.dx)
+    }
+    
+    private func angleToDirection(tan: CGFloat) -> Direction {
+        
+        //@todo: simplify?
+        
+        if tan <= 0 {
+            
+            if tan > -0.471 { // -30 grad
+                return .Right
+            }
+            
+            if tan > -1.414 { // -150 grad
+                return .XUp
+            }
+            
+            if tan > -2.3562 { // -150 grad
+                return .YUp
+            }
+            
+            return .Left
+            
+        } else {
+            
+            if tan < 0.471 { // 30 grad
+                return .Right
+            }
+            
+            if tan < 1.414 { // -150 grad
+                return .YDown
+            }
+            
+            if tan < 2.3562 { // -150 grad
+                return .XDown
+            }
+            
+            return .Left
+        }
+        
+        return .Unknown
     }
     
 }
