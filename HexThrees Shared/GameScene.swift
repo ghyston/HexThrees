@@ -29,6 +29,8 @@ class GameScene: SKScene {
     
     func setUpScene() {
         
+        TextureGenerator.generate(view: self.view!)
+        
         let emptyHexSprite = SKSpriteNode.init(imageNamed: "hex")
         
         self.gameModel?.setupCleanGameField(

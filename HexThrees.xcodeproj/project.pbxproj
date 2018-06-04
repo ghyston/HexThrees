@@ -24,6 +24,8 @@
 		3F06B374207C81E000C8315A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34C207C81E000C8315A /* Assets.xcassets */; };
 		3F06B383207E806400C8315A /* HexCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B382207E806400C8315A /* HexCalculator.swift */; };
 		3F06B384207E806400C8315A /* HexCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B382207E806400C8315A /* HexCalculator.swift */; };
+		3F21DF4620C5AE8F00A979D5 /* TextureGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4520C5AE8F00A979D5 /* TextureGenerator.swift */; };
+		3F21DF4720C5AE8F00A979D5 /* TextureGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4520C5AE8F00A979D5 /* TextureGenerator.swift */; };
 		3F555CE6208E7AA5003C67A7 /* Fibonacci.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CE5208E7AA5003C67A7 /* Fibonacci.swift */; };
 		3F555CE7208E7AA5003C67A7 /* Fibonacci.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CE5208E7AA5003C67A7 /* Fibonacci.swift */; };
 		3F555CEC208FC30D003C67A7 /* Resourses in Resources */ = {isa = PBXBuildFile; fileRef = 3F555CEB208FC30D003C67A7 /* Resourses */; };
@@ -89,6 +91,7 @@
 		3F06B36A207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F06B36C207C81E000C8315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F06B382207E806400C8315A /* HexCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCalculator.swift; sourceTree = "<group>"; };
+		3F21DF4520C5AE8F00A979D5 /* TextureGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureGenerator.swift; sourceTree = "<group>"; };
 		3F555CE5208E7AA5003C67A7 /* Fibonacci.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fibonacci.swift; sourceTree = "<group>"; };
 		3F555CEB208FC30D003C67A7 /* Resourses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resourses; sourceTree = "<group>"; };
 		3F555CEE2091AE49003C67A7 /* BgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCell.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 				3FAC644D20B5DE010083C56C /* GameModel.swift */,
 				3FAC647220BCA52B0083C56C /* GameConstants.swift */,
 				3FAC647820BDC4040083C56C /* SwipeStatus.swift */,
+				3F21DF4520C5AE8F00A979D5 /* TextureGenerator.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -351,6 +355,7 @@
 				3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */,
 				3FAC647C20BDC7E00083C56C /* FinishSwipeCMD.swift in Sources */,
 				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
+				3F21DF4620C5AE8F00A979D5 /* TextureGenerator.swift in Sources */,
 				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
@@ -384,6 +389,7 @@
 				3FAAC76C207F27E9006F5196 /* HexCell.swift in Sources */,
 				3FAC647D20BDC7E00083C56C /* FinishSwipeCMD.swift in Sources */,
 				3FAC647720BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
+				3F21DF4720C5AE8F00A979D5 /* TextureGenerator.swift in Sources */,
 				3FAC646E20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
 				3F06B372207C81E000C8315A /* GameScene.swift in Sources */,
 				3FAC647A20BDC4040083C56C /* SwipeStatus.swift in Sources */,
