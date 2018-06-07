@@ -13,14 +13,13 @@ class BgCell: HexCell {
     
     var gameCell: GameCell?
     
-    init(coord: AxialCoord, hexCalc: HexCalculator) {
-        super.init(text: "\(coord.c, coord.r)", isGray: true)
-        self.position = hexCalc.ToScreenCoord(coord)
-        self.position.y += 70.0 //@todo: move to screen calculator!
+    init() {
+        super.init(text: "", isGray: true)
     }
     
     @objc func addGameCell(cell: GameCell) {
-        //@todo: throw, if already exist
+        
+        assert(self.gameCell == nil, "BgCell already contain game cell")
         
         self.gameCell = cell
         self.addChild(cell)

@@ -10,34 +10,9 @@ import Foundation
 import SpriteKit
 import GameKit
 
-extension SKColor {
-    convenience init(red: Int, green: Int, blue: Int) {
-        assert(red >= 0 && red <= 255, "Invalid red component")
-        assert(green >= 0 && green <= 255, "Invalid green component")
-        assert(blue >= 0 && blue <= 255, "Invalid blue component")
-        
-        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-    }
-    
-    convenience init(rgb: Int) {
-        self.init(
-            red: (rgb >> 16) & 0xFF,
-            green: (rgb >> 8) & 0xFF,
-            blue: rgb & 0xFF
-        )
-    }
-}
-
 class TextureGenerator {
     
     static var grayHexTexture: SKTexture?
-    
-    //$color1: rgba(19, 21, 21, 1);
-    //$color2: rgba(43, 44, 40, 1);
-    //$color3: rgba(51, 153, 137, 1);
-    //$color4: rgba(125, 226, 209, 1);
-    //$color5: rgba(255, 250, 251, 1);
-    
     
     static let colors: Dictionary =
         [1: SKColor(rgb: 0xfffafb),

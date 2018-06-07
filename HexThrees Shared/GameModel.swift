@@ -34,16 +34,10 @@ class GameModel {
             gap: 5.0,
             cellSize: cellSize)
         
-        var i = 0
         for i2 in startOffsetY ..< startOffsetY + fieldHeight {
             for i1 in startOffsetX ..< startOffsetX + fieldWidth {
                 
-                let hexCell = BgCell(
-                    coord: AxialCoord(i2, i1),
-                    hexCalc : hexCalculator!)
-                scene.addChild(hexCell)
-                self.bgHexes.append(hexCell)
-                i += 1
+                AddBgCellCMD(self).run(scene: scene, coord: AxialCoord(i2, i1))
             }
         }
     }
