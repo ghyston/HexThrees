@@ -51,6 +51,7 @@ class GameCell : HexCell {
         self.value = val
         self.updateText(text: "\(self.value)")
         self.playUpdateAnimation()
+        self.sprite.texture = TextureGenerator.getTexture(value: val)
     }
     
     required init?(coder aDecoder: NSCoder) {

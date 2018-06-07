@@ -16,6 +16,7 @@ class BgCell: HexCell {
     init(coord: AxialCoord, hexCalc: HexCalculator) {
         super.init(text: "\(coord.c, coord.r)", isGray: true)
         self.position = hexCalc.ToScreenCoord(coord)
+        self.position.y += 70.0 //@todo: move to screen calculator!
     }
     
     @objc func addGameCell(cell: GameCell) {

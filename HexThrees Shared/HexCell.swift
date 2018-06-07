@@ -19,7 +19,7 @@ class HexCell : SKNode {
         //self.sprite = SKSpriteNode.init(imageNamed: isGray ?  "hex_gray" : "hex")
         self.sprite = SKSpriteNode.init(texture: isGray ?
             TextureGenerator.grayHexTexture :
-            TextureGenerator.blueHexTexture)
+            TextureGenerator.getTexture(value: 1)) //@todo: not pretty
         
         self.label = SKLabelNode(text: text)
         self.label.fontSize = 22.0

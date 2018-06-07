@@ -18,7 +18,7 @@ class GameModel {
     
     let fieldWidth: Int = 4
     let fieldHeight: Int = 4
-    let startOffsetX: Int = -2
+    let startOffsetX: Int = -2 //@todo: remo this, use 0 as default, but use screen offset
     let startOffsetY: Int = -2
     
     var bgHexes : [BgCell] = [BgCell]()
