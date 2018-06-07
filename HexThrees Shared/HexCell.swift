@@ -11,15 +11,17 @@ import SpriteKit
 
 class HexCell : SKNode {
     
-    let sprite : SKSpriteNode
+    //let sprite : SKSpriteNode
+    let hexShape : SKShapeNode
     let label : SKLabelNode
     
-    init(text: String, isGray: Bool) {
+    init(model: GameModel, text: String, color: SKColor) {
         
-        //self.sprite = SKSpriteNode.init(imageNamed: isGray ?  "hex_gray" : "hex")
-        self.sprite = SKSpriteNode.init(texture: isGray ?
-            TextureGenerator.grayHexTexture :
-            TextureGenerator.getTexture(value: 1)) //@todo: not pretty
+        self.hexShape = SKShapeNode()
+        hexShape.path = model.hexPath
+        hexShape.strokeColor = SKColor.white
+        hexShape.lineWidth = 1
+        hexShape.fillColor = color
         
         self.label = SKLabelNode(text: text)
         self.label.fontSize = 22.0
@@ -30,10 +32,10 @@ class HexCell : SKNode {
         
         super.init()
         
-        self.addChild(self.sprite)
-        self.sprite.addChild(self.label)
+        self.addChild(self.hexShape)
+        self.hexShape.addChild(self.label)
         
-        self.sprite.zPosition = 1
+        self.hexShape.zPosition = 1
     }
     
     func updateText(text: String) {

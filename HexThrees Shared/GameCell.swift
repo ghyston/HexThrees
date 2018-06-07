@@ -14,10 +14,10 @@ class GameCell : HexCell {
     var value: Int
     var newParent : BgCell?
     
-    init(val: Int) {
+    init(model: GameModel, val: Int) {
         self.value = val
         
-        super.init(text: "\(val)", isGray: false)
+        super.init(model: model, text: "\(val)", color: PaletteManager.color(value: val))
     }
     
     func playAppearAnimation() {
@@ -51,7 +51,7 @@ class GameCell : HexCell {
         self.value = val
         self.updateText(text: "\(self.value)")
         self.playUpdateAnimation()
-        self.sprite.texture = TextureGenerator.getTexture(value: val)
+        self.hexShape.fillColor = PaletteManager.color(value: val)
     }
     
     required init?(coder aDecoder: NSCoder) {

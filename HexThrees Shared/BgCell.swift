@@ -13,8 +13,8 @@ class BgCell: HexCell {
     
     var gameCell: GameCell?
     
-    init() {
-        super.init(text: "", isGray: true)
+    init(model: GameModel) {
+        super.init(model: model, text: "", color: PaletteManager.cellBgColor())
     }
     
     @objc func addGameCell(cell: GameCell) {

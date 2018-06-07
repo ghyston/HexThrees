@@ -25,7 +25,7 @@ class AddRandomCellCMD : GameCMD {
         
         let random = Int(arc4random()) % freeCells.count
         
-        let newElement = GameCell(val: 1)
+        let newElement = GameCell(model: self.gameModel, val: 1)
         freeCells[random].addGameCell(cell: newElement)
         newElement.playAppearAnimation()
     }
