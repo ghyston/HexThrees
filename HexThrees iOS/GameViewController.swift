@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
             action:#selector(handleSwipe(recognizer:)))
-        recognizer.delegate = self as! UIGestureRecognizerDelegate
+        recognizer.delegate = self
         self.view.addGestureRecognizer(recognizer)
         
     }

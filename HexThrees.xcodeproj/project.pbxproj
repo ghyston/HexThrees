@@ -78,6 +78,8 @@
 		3FAC647D20BDC7E00083C56C /* FinishSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC647B20BDC7E00083C56C /* FinishSwipeCMD.swift */; };
 		3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC647E20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift */; };
 		3FAC648520BF20D30083C56C /* GameScene.MouseTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC648420BF20D30083C56C /* GameScene.MouseTouch.swift */; };
+		3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
+		3FE9202820CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,7 @@
 		3FAC647E20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexSwipeGestureRecogniser.swift; sourceTree = "<group>"; };
 		3FAC648120BF18C40083C56C /* HexThrees iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HexThrees iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FAC648420BF20D30083C56C /* GameScene.MouseTouch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.MouseTouch.swift; sourceTree = "<group>"; };
+		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,7 @@
 				3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */,
 				3F21DF5120C9989D00A979D5 /* PaletteManager.swift */,
 				3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */,
+				3FE9202620CEE646009B7370 /* CGVector.extensions.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -356,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAC646620B75EC00083C56C /* MoveRightCMD.swift in Sources */,
+				3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */,
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FAC646720B75EC00083C56C /* MoveRightCMD.swift in Sources */,
+				3FE9202820CEE646009B7370 /* CGVector.extensions.swift in Sources */,
 				3F555CF02091AE49003C67A7 /* BgCell.swift in Sources */,
 				3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
@@ -563,6 +569,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AU77L4BHS3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "HexThrees iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

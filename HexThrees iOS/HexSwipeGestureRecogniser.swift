@@ -11,8 +11,11 @@ import UIKit
 
 class HexSwipeGestureRecogniser : UIGestureRecognizer {
     
-    let distanceToDetect : CGFloat = 4.0
-    let distanceToSwype : CGFloat = 200.0
+    let squareDistanceToDetect = sqr(20.0)
+    let distanceToSwype = sqr(80.0)
+    let rad30 = toRadian(30.0)
+    let rad90 = toRadian(90.0)
+    let rad150 = toRadian(150.0)
     
     enum Direction {
         case Unknown
@@ -32,10 +35,10 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         if let touch = touches.first {
             self.firstPoint = touch.location(in: self.view)
             self.lastPoint = firstPoint
+            printDebug("touch begin at: \(self.firstPoint)")
         }
     }
     
-    //@todo: code review!!!
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         guard let touch = touches.first else {
@@ -43,33 +46,28 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         }
         
         let currentPoint = touch.location(in: self.view)
+        printDebug("touch move at: \(currentPoint)")
         
-        let diff = CGVector(
-            dx: currentPoint.x - lastPoint.x,
-            dy: currentPoint.y - lastPoint.y)
-        
-        let sqrLen = diff.dx * diff.dx + diff.dy * diff.dy
-        if sqrLen < distanceToDetect {
+        let diff = CGVector(from: lastPoint, to: currentPoint)
+        if diff.squareLen() < squareDistanceToDetect {
+            
+            printDebug("diff too small")
             return
         }
         
-        let angle = self.angleToX(vector: diff)
-        
-        let direction = self.angleToDirection(tan: angle)
-        print("\(direction)")
+        let direction = self.getDirection(vector: diff)
+        printDebug("direction is: \(direction)")
         
         if self.direction != .Unknown && self.direction != direction {
-            self.reset()
+            
+            printDebug("Direction changed!")
+            self.reset() //@todo: detect, what will happen here
             return
         }
         
-        let diff2 = CGVector(
-            dx: currentPoint.x - firstPoint.x,
-            dy: currentPoint.y - firstPoint.y)
-        
-        let sqrLen2 = diff2.dx * diff2.dx + diff2.dy * diff2.dy
-        
-        if (sqrLen2) > distanceToSwype {
+        let sqrLenFromFirstTouch = CGVector(from: currentPoint, to: firstPoint).squareLen()
+        if (sqrLenFromFirstTouch) > distanceToSwype {
+            printDebug("Detect touch! sqrLenFromFirstTouch: \(sqrLenFromFirstTouch)")
             self.state = .ended
         }
         
@@ -78,40 +76,11 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        /*guard let touch = touches.first else {
-            return
-        }
-        
-        let gestureEnd = touch.location(in: self.view)
-
-        let diff = CGVector(
-            dx: gestureEnd.x - gestureStart.x,
-            dy: gestureEnd.y - gestureStart.y)
-        
-        if diff.dx < -500 {
-            self.direction = .Left
-        }
-        else if diff.dx > 500 {
-            self.direction = .Right
-        } else if diff.dx < 0 && diff.dy < 0 {
-            self.direction = .XDown
-        }
-        else if diff.dx < 0 && diff.dy > 0 {
-            self.direction = .YUp
-        }
-        else if diff.dx > 0 && diff.dy < 0 {
-            self.direction = .YDown
-        }
-        else if diff.dx > 0 && diff.dy > 0 {
-            self.direction = .XUp
-        }
-        
-        self.state = .ended*/
+        printDebug("touchesEnded")
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        printDebug("touchesCancelled")
     }
     
     override func reset() {
@@ -124,49 +93,63 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         }
     }
     
-    private func angleToX(vector: CGVector) -> CGFloat {
+    private func getDirection(vector: CGVector) -> Direction {
         
-        return atan2(vector.dy, vector.dx)
+        let tang = atan2(-vector.dy, vector.dx) //minus because y increasing up
+        
+        if tang > 0 {
+         
+             if tang < rad30 {
+                return .Right
+             }
+            
+             if tang < rad90 {
+                return .XUp
+             }
+            
+             if tang < rad150 {
+                return .YUp
+             }
+            
+             return .Left
+         
+         } else {
+         
+             if tang > -rad30 {
+                return .Right
+             }
+            
+             if tang > -rad90 {
+                return .YDown
+             }
+            
+             if tang > -rad150 {
+                return .XDown
+             }
+         
+            return .Left
+         }
     }
     
-    private func angleToDirection(tan: CGFloat) -> Direction {
+    private class func toRadian(_ degree: CGFloat) -> CGFloat {
         
-        //@todo: simplify?
+        return (degree * .pi) / 180.0
+    }
+    
+    private class func toDegree(_ rad: CGFloat) -> CGFloat {
         
-        if tan <= 0 {
-            
-            if tan > -0.471 { // -30 grad
-                return .Right
-            }
-            
-            if tan > -1.414 { // -150 grad
-                return .XUp
-            }
-            
-            if tan > -2.3562 { // -150 grad
-                return .YUp
-            }
-            
-            return .Left
-            
-        } else {
-            
-            if tan < 0.471 { // 30 grad
-                return .Right
-            }
-            
-            if tan < 1.414 { // -150 grad
-                return .YDown
-            }
-            
-            if tan < 2.3562 { // -150 grad
-                return .XDown
-            }
-            
-            return .Left
-        }
+        return rad * (180.0) / .pi
+    }
+    
+    private class func sqr(_ val: CGFloat) -> CGFloat {
+        return val * val;
+    }
+    
+    private func printDebug(_ message: String) {
         
-        return .Unknown
+#if PRINT_TOUCH_DEBUG
+        print(message)
+#endif
     }
     
 }
