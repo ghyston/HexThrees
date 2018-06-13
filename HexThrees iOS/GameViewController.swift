@@ -63,33 +63,6 @@ extension GameViewController: UIGestureRecognizerDelegate {
     
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
-        //@todo: make a command to swipe?
-        
-        //@todo: make a queue of swipes
-        if self.gameModel?.swipeStatus.inProgress ?? true {
-            return
-        }
-        
-        self.gameModel?.swipeStatus.inProgress = true
-        
-        switch recognizer.direction {
-        case .Left:
-            MoveLeftCMD(self.gameModel!).run()
-        case .Right:
-            MoveRightCMD(self.gameModel!).run()
-        case .XUp:
-            MoveXUpCMD(self.gameModel!).run()
-        case .YUp:
-            MoveYUpCMD(self.gameModel!).run()
-        case .XDown:
-            MoveXDownCMD(self.gameModel!).run()
-        case .YDown:
-            MoveYDownCMD(self.gameModel!).run()
-        case .Unknown:
-            self.gameModel?.swipeStatus.inProgress = false
-            return
-        }
-        
-        FinishSwipeCMD(self.gameModel!).runWithDelay(delay: gameModel?.swipeStatus.delay ?? 0.0)
+        DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
     }
 }

@@ -78,6 +78,8 @@ class MoveLineCMD : GameCMD {
             return
         }
         
+        self.gameModel.swipeStatus.somethingChangeed = true
+        
         checkMoveCellsAvailable(from, to)
         
         let fromCell = cells[from]
@@ -103,6 +105,8 @@ class MoveLineCMD : GameCMD {
         if from == to {
             return 0.0
         }
+        
+        self.gameModel.swipeStatus.somethingChangeed = true
         
         checkMoveCellsAvailable(from, to)
         

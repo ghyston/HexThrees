@@ -11,6 +11,7 @@ import Foundation
 //@todo: this should be struct, GameModel too, !!BUT!! gameModel logic should be class (to use by ref)
 class SwipeStatus {
     var inProgress : Bool = false
+    var somethingChangeed : Bool = false
     var delay : Double = 0.0
 
     func incrementDelay(delay : Double) {

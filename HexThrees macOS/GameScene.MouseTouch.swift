@@ -20,7 +20,9 @@ extension GameScene {
             return
         }
         
-        self.gameModel?.swipeStatus.inProgress = true
+        //@todo: check direction and call DoSwipeCMD
+        
+        /*self.gameModel?.swipeStatus.inProgress = true
         
         if coord.x < -500 {
             MoveLeftCMD(self.gameModel!).run()
@@ -40,7 +42,7 @@ extension GameScene {
             MoveXUpCMD(self.gameModel!).run()
         }
         
-        FinishSwipeCMD(self.gameModel!).runWithDelay(delay: gameModel?.swipeStatus.delay ?? 0.0)
+        FinishSwipeCMD(self.gameModel!).runWithDelay(delay: gameModel?.swipeStatus.delay ?? 0.0)*/
         
     }
 }

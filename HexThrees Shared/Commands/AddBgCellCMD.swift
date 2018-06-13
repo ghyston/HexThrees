@@ -14,7 +14,7 @@ class AddBgCellCMD : GameCMD {
         
         let hexCell = BgCell(model: self.gameModel)
         
-        hexCell.updateText(text: "\(coord.c, coord.r)") //For debug purposes
+        //hexCell.updateText(text: "\(coord.c, coord.r)") //For debug purposes
         
         hexCell.position = self.gameModel.ToScreenCoord(coord)
         hexCell.position.y += 70.0 //@todo: move to screen calculator!

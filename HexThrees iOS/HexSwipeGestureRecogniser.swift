@@ -17,19 +17,9 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
     let rad90 = toRadian(90.0)
     let rad150 = toRadian(150.0)
     
-    enum Direction {
-        case Unknown
-        case XUp
-        case XDown
-        case YUp
-        case YDown
-        case Left
-        case Right
-    }
-    
     var firstPoint:CGPoint = CGPoint.zero
     var lastPoint:CGPoint = CGPoint.zero
-    var direction:Direction = .Unknown
+    var direction:SwipeDirection = .Unknown
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
@@ -93,7 +83,7 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         }
     }
     
-    private func getDirection(vector: CGVector) -> Direction {
+    private func getDirection(vector: CGVector) -> SwipeDirection {
         
         let tang = atan2(-vector.dy, vector.dx) //minus because y increasing up
         
