@@ -27,7 +27,7 @@ class HexCell : SKNode {
         self.label.fontSize = 22.0
         self.label.fontName = "Chalkduster"
         self.label.position = CGPoint(x: 0, y: 0)
-        self.label.fontColor = .lightGray
+        self.label.fontColor = .white
         self.label.zPosition = 2 //@todo: predefine all z-positions!
         
         super.init()

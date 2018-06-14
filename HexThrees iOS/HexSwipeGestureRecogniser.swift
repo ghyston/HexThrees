@@ -12,7 +12,7 @@ import UIKit
 class HexSwipeGestureRecogniser : UIGestureRecognizer {
     
     let squareDistanceToDetect = sqr(20.0)
-    let distanceToSwype = sqr(80.0)
+    let distanceToSwype = sqr(60.0)
     let rad30 = toRadian(30.0)
     let rad90 = toRadian(90.0)
     let rad150 = toRadian(150.0)
