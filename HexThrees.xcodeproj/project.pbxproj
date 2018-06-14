@@ -82,6 +82,8 @@
 		3FE9203020D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
 		3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203120D1B049009B7370 /* SwipeDirection.swift */; };
 		3FE9203320D1B049009B7370 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203120D1B049009B7370 /* SwipeDirection.swift */; };
+		3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */; };
+		3FE9203620D232F1009B7370 /* DebugPaletteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -132,6 +134,7 @@
 		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
 		3FE9203120D1B049009B7370 /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = "HexThrees Shared/SwipeDirection.swift"; sourceTree = SOURCE_ROOT; };
+		3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPaletteCMD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +240,7 @@
 				3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */,
 				3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */,
 				3FE9203120D1B049009B7370 /* SwipeDirection.swift */,
+				3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -378,6 +382,7 @@
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646320B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
+				3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
 				3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */,
 				3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
 				3F21DF4920C8F79600A979D5 /* SKColor.extensions.swift in Sources */,
@@ -417,6 +422,7 @@
 				3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646420B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
+				3FE9203620D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
 				3FE9203020D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */,
 				3FAC646B20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
 				3F21DF4A20C8F79600A979D5 /* SKColor.extensions.swift in Sources */,

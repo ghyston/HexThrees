@@ -21,6 +21,8 @@ class PaletteManager {
         return .gray
     }
     
+    //@todo: index should not depend on strategy!!!
+    
     /*static private let colors: Dictionary =
         [1: SKColor(rgb: 0xfffafb),
          2: SKColor(rgb: 0x7de2d1),
@@ -37,11 +39,11 @@ class PaletteManager {
          233: SKColor(rgb: 0x07BEB8)]*/
     
     static private let colors: Dictionary =
-        [1: SKColor(rgb: 0xE9E228),
-         2: SKColor(rgb: 0xBDB962),
-         3: SKColor(rgb: 0xD8D35C),
-         5: SKColor(rgb: 0xF1E800),
-         8: SKColor(rgb: 0xFFF500),
+        [1: SKColor(rgb: 0xfffafb),
+         2: SKColor(rgb: 0xE9E228),
+         3: SKColor(rgb: 0xBDB962),
+         5: SKColor(rgb: 0xD8D35C),
+         8: SKColor(rgb: 0xF1E800),
          
          13: SKColor(rgb: 0xE99528),
          21: SKColor(rgb: 0xBD9562),
@@ -49,33 +51,14 @@ class PaletteManager {
          55: SKColor(rgb: 0xF18800),
          89: SKColor(rgb: 0xFF9000),
          144: SKColor(rgb: 0x9CEAEF),
-         233: SKColor(rgb: 0x07BEB8)]
-    
-  
-    
-  /*  #216596
-    #436279
-    #406C8B
-    #075E9B
-    #0568AE*/
-    
-    /*shade 0 = #66239D = rgb(102, 35,157) = rgba(102, 35,157,1) = rgb0(0.4,0.137,0.616)
-    shade 1 = #65467F = rgb(101, 70,127) = rgba(101, 70,127,1) = rgb0(0.396,0.275,0.498)
-    shade 2 = #6E4491 = rgb(110, 68,145) = rgba(110, 68,145,1) = rgb0(0.431,0.267,0.569)
-    shade 3 = #5D08A2 = rgb( 93,  8,162) = rgba( 93,  8,162,1) = rgb0(0.365,0.031,0.635)
-    shade 4 = #6706B5 = rgb(103,  6,181) = rgba(103,  6,181,1) = rgb0(0.404,0.024,0.71)
-    
-   
-    *** Secondary color (2):
-    
-    shade 0 = #216596 = rgb( 33,101,150) = rgba( 33,101,150,1) = rgb0(0.129,0.396,0.588)
-    shade 1 = #436279 = rgb( 67, 98,121) = rgba( 67, 98,121,1) = rgb0(0.263,0.384,0.475)
-    shade 2 = #406C8B = rgb( 64,108,139) = rgba( 64,108,139,1) = rgb0(0.251,0.424,0.545)
-    shade 3 = #075E9B = rgb(  7, 94,155) = rgba(  7, 94,155,1) = rgb0(0.027,0.369,0.608)
-    shade 4 = #0568AE = rgb(  5,104,174) = rgba(  5,104,174,1) = rgb0(0.02,0.408,0.682)
-    
-    *** Complement color:*/
-    
-    
+         233: SKColor(rgb: 0x07BEB8),
+         
+         377: SKColor(rgb: 0x216596),
+         610: SKColor(rgb: 0x436279),
+         987: SKColor(rgb: 0x436279),
+         1597: SKColor(rgb: 0x406C8B),
+         2584: SKColor(rgb: 0x075E9B),
+         4181: SKColor(rgb: 0x0568AE),
+         6765: SKColor(rgb: 0x07BEB8)]
     
 }
