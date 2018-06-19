@@ -14,7 +14,7 @@ class AddRandomCellCMD : GameCMD {
         
         var freeCells = Array<BgCell>()
         for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil) {
+            if(i.gameCell == nil && i.isBlocked == false) {
                 freeCells.append(i)
             }
         }

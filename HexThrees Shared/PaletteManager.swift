@@ -21,6 +21,10 @@ class PaletteManager {
         return .gray
     }
     
+    static func cellBlockedBgColor() -> SKColor {
+        return .darkGray
+    }
+    
     //@todo: index should not depend on strategy!!!
     
     /*static private let colors: Dictionary =

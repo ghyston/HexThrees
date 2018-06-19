@@ -32,12 +32,12 @@ class GameScene: SKScene {
         
         assert(self.gameModel?.fieldWidth == self.gameModel?.fieldHeight, "Only square fields are supported currently")
         
-        DebugPaletteCMD(self.gameModel!).run()
-        /*
+        //DebugPaletteCMD(self.gameModel!).run()
+        
         let initialRandomElementsCount = 4
         for _ in 0 ..< initialRandomElementsCount {
           AddRandomCellCMD(self.gameModel!).runWithDelay(delay: Double.random)
-        }*/
+        }
     }
     
     override func didMove(to view: SKView) {

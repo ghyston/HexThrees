@@ -12,9 +12,13 @@ import SpriteKit
 class BgCell: HexCell {
     
     var gameCell: GameCell?
+    var isBlocked: Bool
     
-    init(model: GameModel) {
-        super.init(model: model, text: "", color: PaletteManager.cellBgColor())
+    init(model: GameModel, blocked: Bool) {
+        
+        self.isBlocked = blocked
+        super.init(model: model, text: "", color: blocked ?
+            PaletteManager.cellBgColor() : PaletteManager.cellBlockedBgColor())
     }
     
     @objc func addGameCell(cell: GameCell) {

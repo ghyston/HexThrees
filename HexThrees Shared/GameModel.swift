@@ -94,7 +94,11 @@ class GameModel {
         for i2 in startOffsetY ..< startOffsetY + fieldHeight {
             for i1 in startOffsetX ..< startOffsetX + fieldWidth {
                 
-                AddBgCellCMD(self).run(scene: scene, coord: AxialCoord(i2, i1))
+                let blocked : Bool = i1 == 0 && i2 == 0
+                AddBgCellCMD(self).run(
+                    scene: scene,
+                    coord: AxialCoord(i2, i1),
+                    isBlocked: blocked)
             }
         }
     }
