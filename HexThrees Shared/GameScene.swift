@@ -27,10 +27,14 @@ class GameScene: SKScene {
     
     func setUpScene() {
         
+        let fieldSize = 5
+        let initialRandomElementsCount = 4
+        let initialBlockedCellsCount = 5
+        
         self.gameModel = GameModel(
             scene: self,
             view: self.view!,
-            fieldSize: 4,
+            fieldSize: fieldSize,
             merging: FibonacciMergingStrategy())
         self.gameModel?.setupCleanGameField(scene: self)
         
@@ -38,13 +42,11 @@ class GameScene: SKScene {
         
         //DebugPaletteCMD(self.gameModel!).run()
         
-        let initialRandomElementsCount = 4
         for _ in 0 ..< initialRandomElementsCount {
           
             AddRandomCellCMD(self.gameModel!).runWithDelay(delay: Double.random)
         }
         
-        let initialBlockedCellsCount = 3
         for _ in 0 ..< initialBlockedCellsCount {
             
             BlockRandomCellCMD(self.gameModel!).run()
