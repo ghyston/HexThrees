@@ -10,9 +10,9 @@ import Foundation
 
 class AddBgCellCMD : GameCMD {
     
-    func run(scene: GameScene, coord: AxialCoord) {
+    func run(scene: GameScene, coord: AxialCoord, isBlocked: Bool = false) {
         
-        let hexCell = BgCell(model: self.gameModel)
+        let hexCell = BgCell(model: self.gameModel, blocked: isBlocked)
         
         //hexCell.updateText(text: "\(coord.c, coord.r)") //For debug purposes
         

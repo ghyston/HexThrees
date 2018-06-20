@@ -14,11 +14,10 @@ class MoveLeftCMD : GameCMD {
         
         let w = self.gameModel.fieldWidth
         let h = self.gameModel.fieldHeight
+        let line = LineCellsContainer(self.gameModel)
         
         // Move along X from bottom to middle
         for i in 0 ..< w {
-            
-            var cells = [BgCell]()
             
             let len = i >= h ? h : i + 1
             
@@ -29,17 +28,16 @@ class MoveLeftCMD : GameCMD {
             for j in (0 ..< len).reversed() {
                 let x = i - j
                 let y = j
-                
-                cells.append(self.gameModel.bgHexes[y * w + x])
+            
+                line.add(y * w + x)
             }
             
-            MoveLineCMD(self.gameModel).run(cells: cells)
+            line.flush()
         }
         
         // Continue moving along Y from middle to top
         for i in 1..<h {
             
-            var cells = [BgCell]()
             let len = i > (h - w) ? h - i : w 
             
             if len < 2 {
@@ -51,10 +49,10 @@ class MoveLeftCMD : GameCMD {
                 let x = w - j - 1
                 let y = i + j
                 
-                cells.append(self.gameModel.bgHexes[y * w + x])
+                line.add(y * w + x)
             }
             
-            MoveLineCMD(self.gameModel).run(cells: cells)
+            line.flush()
         }
         
     }

@@ -1,20 +1,20 @@
 //
-//  AddRandomCellCMD.swift
+//  MarkRandomCellAsBlockedCMD.swift
 //  HexThrees
 //
-//  Created by Ilja Stepanow on 23.05.18.
+//  Created by Ilja Stepanow on 20.06.18.
 //  Copyright © 2018 Ilja Stepanow. All rights reserved.
 //
 
 import Foundation
 
-class AddRandomCellCMD : GameCMD {
+class BlockRandomCellCMD : GameCMD {
     
     override func run() {
         
-        var freeCells = Array<BgCell>()
+        var freeCells = [BgCell]()
         for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil && i.isBlocked == false) {
+            if(i.gameCell == nil && !i.isBlocked) {
                 freeCells.append(i)
             }
         }
@@ -26,8 +26,7 @@ class AddRandomCellCMD : GameCMD {
         //@todo: wwdc game sessions about random!
         let random = Int(arc4random()) % freeCells.count
         
-        let newElement = GameCell(model: self.gameModel, val: 1)
-        freeCells[random].addGameCell(cell: newElement)
-        newElement.playAppearAnimation()
+        freeCells[random].block()
     }
+    
 }

@@ -11,7 +11,7 @@ import SpriteKit
 
 class GameModel {
     
-    //@todo: think throw fields vision
+    //@todo: overthink fields vision
     
     // Properties, that are set from c-tor //@todo: allow only get
     
@@ -19,9 +19,10 @@ class GameModel {
     
     let fieldWidth: Int
     let fieldHeight: Int
-    let startOffsetX: Int = -2 //@todo: remo this, use 0 as default, but use screen offset
-    let startOffsetY: Int = -2
+    
     let gap = 5.0  //@todo: move somewhere or calculate?
+    
+    var fieldHalfHeight : CGFloat = 0
     
     // Calculated properties. @todo: readonly!!!
     
@@ -33,6 +34,9 @@ class GameModel {
     // Some common properties
     var bgHexes : [BgCell] = [BgCell]()
     var swipeStatus = SwipeStatus()
+    var score : Int = 0
+    var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
+    
     
     init(scene: GameScene, view: SKView, fieldSize: Int, merging: MergingStrategy) {
         
@@ -45,6 +49,9 @@ class GameModel {
         
         self.cellWidth = hexRad * 1.732
         self.cellHeight = hexRad * 2
+        
+        let furthestCellCoord = ToScreenCoord(AxialCoord(fieldSize, fieldSize))
+        self.fieldHalfHeight = furthestCellCoord.y / 2.0
     }
     
     class func calculateHexRad(viewWidth: CGFloat, hexCount: Int, gap: Double) -> Double {
@@ -80,9 +87,10 @@ class GameModel {
         let x = Float(a.c - a.r) * 0.5 * w
         let y = Float(a.c + a.r) * (w * 0.5 + h / (2.0 * 1.732))
         
+        
         return CGPoint(
             x: CGFloat(x),
-            y: CGFloat(y))
+            y: CGFloat(y) - self.fieldHalfHeight)
     }
     
     func ToScreenCoord(_ a : CubeCoord) -> CGPoint {
@@ -91,10 +99,12 @@ class GameModel {
     
     func setupCleanGameField(scene: GameScene) {
         
-        for i2 in startOffsetY ..< startOffsetY + fieldHeight {
-            for i1 in startOffsetX ..< startOffsetX + fieldWidth {
+        for i2 in 0 ..< fieldHeight {
+            for i1 in 0 ..< fieldWidth {
                 
-                AddBgCellCMD(self).run(scene: scene, coord: AxialCoord(i2, i1))
+                AddBgCellCMD(self).run(
+                    scene: scene,
+                    coord: AxialCoord(i2, i1))
             }
         }
     }

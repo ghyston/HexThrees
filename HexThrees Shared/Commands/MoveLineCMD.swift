@@ -136,6 +136,7 @@ class MoveLineCMD : GameCMD {
                 cell: cells[index].gameCell!,
                 value: newVal)
             .runWithDelay(delay: timeDelay)
+        UpdateScoreCMD(self.gameModel).run(newVal)
     }
     
     private func findNextNonEmpty(startIndex: Int) -> Int? {

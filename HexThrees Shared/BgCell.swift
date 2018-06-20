@@ -12,9 +12,18 @@ import SpriteKit
 class BgCell: HexCell {
     
     var gameCell: GameCell?
+    var isBlocked: Bool = false
     
-    init(model: GameModel) {
-        super.init(model: model, text: "", color: PaletteManager.cellBgColor())
+    init(model: GameModel, blocked: Bool) {
+        
+        self.isBlocked = blocked
+        super.init(
+            model: model,
+            text: "",
+            color: PaletteManager.cellBgColor())
+        if blocked {
+            block()
+        }
     }
     
     @objc func addGameCell(cell: GameCell) {
@@ -29,6 +38,18 @@ class BgCell: HexCell {
     @objc func removeGameCell() {
         self.gameCell?.removeFromParent()
         self.gameCell = nil
+    }
+    
+    func block() {
+        
+        self.hexShape.removeFromParent()
+        self.isBlocked = true
+    }
+    
+    func unblock() {
+        
+        addChild(self.hexShape)
+        self.isBlocked = false
     }
     
     func destination(to: BgCell) -> CGVector {
