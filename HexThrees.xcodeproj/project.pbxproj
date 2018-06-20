@@ -82,6 +82,8 @@
 		3FB703A120DA1B69009718F3 /* BlockRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB7039F20DA1B69009718F3 /* BlockRandomCellCMD.swift */; };
 		3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */; };
 		3FB703A420DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */; };
+		3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703A520DA1FEC009718F3 /* UpdateScoreCMD.swift */; };
+		3FB703A720DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703A520DA1FEC009718F3 /* UpdateScoreCMD.swift */; };
 		3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 		3FE9202820CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 		3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
@@ -140,6 +142,7 @@
 		3FB7039C20D967AF009718F3 /* LineCellsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCellsContainer.swift; sourceTree = "<group>"; };
 		3FB7039F20DA1B69009718F3 /* BlockRandomCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockRandomCellCMD.swift; sourceTree = "<group>"; };
 		3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockRandomCellCMD.swift; sourceTree = "<group>"; };
+		3FB703A520DA1FEC009718F3 /* UpdateScoreCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateScoreCMD.swift; sourceTree = "<group>"; };
 		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
 		3FE9203120D1B049009B7370 /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = "HexThrees Shared/SwipeDirection.swift"; sourceTree = SOURCE_ROOT; };
@@ -192,6 +195,7 @@
 				3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */,
 				3F21DF5120C9989D00A979D5 /* PaletteManager.swift */,
 				3FB7039C20D967AF009718F3 /* LineCellsContainer.swift */,
+				3FE9203120D1B049009B7370 /* SwipeDirection.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -237,6 +241,8 @@
 				3FAC645620B5E3170083C56C /* GameCMD.swift */,
 				3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */,
 				3F21DF4E20C8F94500A979D5 /* AddBgCellCMD.swift */,
+				3FB7039F20DA1B69009718F3 /* BlockRandomCellCMD.swift */,
+				3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */,
 				3FAC645020B5E1240083C56C /* MoveLineCMD.swift */,
 				3FAC645320B5E2580083C56C /* MoveXUpCMD.swift */,
 				3FAC645920B5E4040083C56C /* MoveXDownCMD.swift */,
@@ -249,10 +255,8 @@
 				3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */,
 				3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */,
 				3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */,
-				3FE9203120D1B049009B7370 /* SwipeDirection.swift */,
 				3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */,
-				3FB7039F20DA1B69009718F3 /* BlockRandomCellCMD.swift */,
-				3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */,
+				3FB703A520DA1FEC009718F3 /* UpdateScoreCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -387,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
 				3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */,
 				3FAC646620B75EC00083C56C /* MoveRightCMD.swift in Sources */,
 				3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */,
@@ -430,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB703A720DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
 				3FE9203320D1B049009B7370 /* SwipeDirection.swift in Sources */,
 				3FAC646720B75EC00083C56C /* MoveRightCMD.swift in Sources */,
 				3FE9202820CEE646009B7370 /* CGVector.extensions.swift in Sources */,

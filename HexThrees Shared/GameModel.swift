@@ -33,6 +33,9 @@ class GameModel {
     // Some common properties
     var bgHexes : [BgCell] = [BgCell]()
     var swipeStatus = SwipeStatus()
+    var score : Int = 0
+    var newUnblockCellScore : Int = 20 //@todo: make proper calculation regarding this
+    
     
     init(scene: GameScene, view: SKView, fieldSize: Int, merging: MergingStrategy) {
         
