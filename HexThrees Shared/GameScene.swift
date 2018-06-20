@@ -27,7 +27,11 @@ class GameScene: SKScene {
     
     func setUpScene() {
         
-        self.gameModel = GameModel(scene: self, view: self.view!, fieldSize: 4, merging: FibonacciMergingStrategy())
+        self.gameModel = GameModel(
+            scene: self,
+            view: self.view!,
+            fieldSize: 4,
+            merging: FibonacciMergingStrategy())
         self.gameModel?.setupCleanGameField(scene: self)
         
         assert(self.gameModel?.fieldWidth == self.gameModel?.fieldHeight, "Only square fields are supported currently")
@@ -36,7 +40,14 @@ class GameScene: SKScene {
         
         let initialRandomElementsCount = 4
         for _ in 0 ..< initialRandomElementsCount {
-          AddRandomCellCMD(self.gameModel!).runWithDelay(delay: Double.random)
+          
+            AddRandomCellCMD(self.gameModel!).runWithDelay(delay: Double.random)
+        }
+        
+        let initialBlockedCellsCount = 3
+        for _ in 0 ..< initialBlockedCellsCount {
+            
+            BlockRandomCellCMD(self.gameModel!).run()
         }
     }
     
