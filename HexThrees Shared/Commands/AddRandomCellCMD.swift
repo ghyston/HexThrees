@@ -26,7 +26,9 @@ class AddRandomCellCMD : GameCMD {
         //@todo: wwdc game sessions about random!
         let random = Int(arc4random()) % freeCells.count
         
-        let newElement = GameCell(model: self.gameModel, val: 1)
+        let newElement = GameCell(
+            model: self.gameModel,
+            val: self.gameModel.mergingStrategy.startValue)
         freeCells[random].addGameCell(cell: newElement)
         newElement.playAppearAnimation()
     }

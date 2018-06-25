@@ -9,10 +9,14 @@
 import Foundation
 
 protocol MergingStrategy {
-    func isSiblings(_ one: Int, _ two: Int) -> Int? //@todo: use as static?
+    
+    var startValue: Int { get }
+    func isSiblings(_ one: Int, _ two: Int) -> Int?
 }
 
 class FibonacciMergingStrategy : MergingStrategy {
+    
+    var startValue: Int = 1
     
     func isSiblings(_ one: Int, _ two: Int) -> Int? {
         
@@ -46,5 +50,15 @@ class FibonacciMergingStrategy : MergingStrategy {
         return one + two
     }
     
+}
+
+class PowerOfTwoMergingStrategy : MergingStrategy {
+    
+    var startValue: Int = 2
+    
+    func isSiblings(_ one: Int, _ two: Int) -> Int? {
+        
+        return one == two ? one + two : nil
+    }
 }
 
