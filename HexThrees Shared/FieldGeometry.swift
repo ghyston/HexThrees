@@ -19,10 +19,10 @@ class FieldGeometry {
     private let cellWidth: Double
     private let cellHeight: Double
     
-    init(viewWidth: CGFloat, fieldSize: Int) {
+    init(screenWidth: CGFloat, fieldSize: Int) {
         
         self.hexRad = FieldGeometry.calculateHexRad(
-            viewWidth: viewWidth,
+            viewWidth: screenWidth,
             hexCount: fieldSize,
             gap: gap)
         

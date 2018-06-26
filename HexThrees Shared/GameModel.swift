@@ -22,10 +22,10 @@ class GameModel {
     var score : Int = 0
     var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
     
-    init(scene: SKScene, view: SKView, fieldSize: Int, strategy: MergingStrategy) {
+    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
         
         self.geometry = FieldGeometry(
-            viewWidth: view.frame.width,
+            screenWidth: screenWidth,
             fieldSize: fieldSize)
         self.strategy = strategy
         self.fieldWidth = fieldSize

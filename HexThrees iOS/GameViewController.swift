@@ -23,8 +23,6 @@ class GameViewController: UIViewController {
         let skView = self.view as! SKView
         skView.presentScene(scene)
         
-        self.gameModel = scene.gameModel //@todo: use singleton/container for this AND/OR define all dependencies
-        
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true

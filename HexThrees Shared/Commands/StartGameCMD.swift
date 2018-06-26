@@ -26,13 +26,9 @@ class StartGameCMD : CMD {
     func run() {
         
         let gameModel = GameModel(
-            scene: scene,
-            view: view,
+            screenWidth: view.frame.width,
             fieldSize: params.fieldSize,
             strategy: params.strategy)
-        
-        
-        //@todo: clean field first
         
         for i2 in 0 ..< params.fieldSize {
             for i1 in 0 ..< params.fieldSize {
