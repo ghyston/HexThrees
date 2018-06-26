@@ -12,7 +12,7 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    var gameModel : GameModel? //@todo: use singleton for this
+    var gameModel : GameModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +23,22 @@ class GameViewController: UIViewController {
         let skView = self.view as! SKView
         skView.presentScene(scene)
         
-        self.gameModel = scene.gameModel //@todo: use singleton/container for this AND/OR define all dependencies
-        
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true
+        
+        let startParams = GameParams(
+            fieldSize: 4,
+            randomElementsCount: 4,
+            blockedCellsCount: 2,
+            strategy: PowerOfTwoMergingStrategy())
+        
+        let cmd = StartGameCMD(
+            scene: scene,
+            view: skView,
+            params: startParams)
+        cmd.run()
+        self.gameModel = cmd.gameModel
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,

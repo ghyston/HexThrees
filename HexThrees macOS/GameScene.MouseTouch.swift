@@ -16,9 +16,9 @@ extension GameScene {
     override func mouseDown(with event: NSEvent) {
         
         let coord = event.location(in: self)
-        if self.gameModel?.swipeStatus.inProgress ?? true {
+        /*if self.gameModel?.swipeStatus.inProgress ?? true {
             return
-        }
+        }*/
         
         //@todo: check direction and call DoSwipeCMD
         

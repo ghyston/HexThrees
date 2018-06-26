@@ -10,54 +10,22 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var gameModel : GameModel?
-    
     class func newGameScene() -> GameScene {
-        // Load 'GameScene.sks' as an SKScene.
+        
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
             print("Failed to load GameScene.sks")
             abort()
         }
         
-        // Set the scale mode to scale to fit the window
         scene.scaleMode = .resizeFill
-        
         return scene
     }
     
-    func setUpScene() {
-        
-        let fieldSize = 5
-        let initialRandomElementsCount = 4
-        let initialBlockedCellsCount = 5
-        
-        self.gameModel = GameModel(
-            scene: self,
-            view: self.view!,
-            fieldSize: fieldSize,
-            merging: FibonacciMergingStrategy())
-        self.gameModel?.setupCleanGameField(scene: self)
-        
-        assert(self.gameModel?.fieldWidth == self.gameModel?.fieldHeight, "Only square fields are supported currently")
-        
-        //DebugPaletteCMD(self.gameModel!).run()
-        
-        for _ in 0 ..< initialRandomElementsCount {
-          
-            AddRandomCellCMD(self.gameModel!).runWithDelay(delay: Double.random)
-        }
-        
-        for _ in 0 ..< initialBlockedCellsCount {
-            
-            BlockRandomCellCMD(self.gameModel!).run()
-        }
-    }
-    
     override func didMove(to view: SKView) {
-        self.setUpScene()
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        
     }
 }
