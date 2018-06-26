@@ -17,8 +17,7 @@ class HexCell : SKNode {
     
     init(model: GameModel, text: String, color: SKColor) {
         
-        self.hexShape = SKShapeNode()
-        hexShape.path = model.hexPath
+        self.hexShape = model.geometry.createHexShape()
         hexShape.strokeColor = SKColor.white
         hexShape.lineWidth = 1
         hexShape.fillColor = color

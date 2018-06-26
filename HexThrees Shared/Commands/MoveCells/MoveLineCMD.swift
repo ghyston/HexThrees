@@ -47,7 +47,7 @@ class MoveLineCMD : GameCMD {
         let secondVal = cells[second].gameCell!.value
         
         // If we have two cells in line with values, that can be collapsed
-        if let newVal = gameModel.mergingStrategy.isSiblings(firstVal, secondVal) {
+        if let newVal = gameModel.strategy.isSiblings(firstVal, secondVal) {
             
             let duration = moveCellAndDelete(from: second, to: counter) - GameConstants.SecondsPerCell
             

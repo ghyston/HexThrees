@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/PaletteManager.swift"
-            timestampString = "551640991.521016"
+            timestampString = "551727944.685277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
@@ -170,13 +170,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/GameModel.swift"
-            timestampString = "551167025.660974"
+            timestampString = "551727944.685722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "setupCleanGameField(scene:)"
-            landmarkType = "7">
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "GameModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
