@@ -68,6 +68,7 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
 }
 
 extension GameViewController: UIGestureRecognizerDelegate {
@@ -75,5 +76,13 @@ extension GameViewController: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
         DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
+    }
+    
+    // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if (touch.view is UIButton) {
+            return false
+        }
+        return true
     }
 }
