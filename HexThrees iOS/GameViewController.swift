@@ -40,6 +40,8 @@ class GameViewController: UIViewController {
         cmd.run()
         self.gameModel = cmd.gameModel
         
+        ContainerConfig.instance.Register(self.gameModel as! GameModel)
+        
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
             action:#selector(handleSwipe(recognizer:)))
