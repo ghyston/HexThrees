@@ -10,7 +10,7 @@ import Cocoa
 import SpriteKit
 import GameplayKit
 
-class GameViewController: NSViewController {
+class GameVC: NSViewController {
 
     var gameModel: GameModel?
     

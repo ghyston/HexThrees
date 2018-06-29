@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameVC: UIViewController {
 
     var gameModel : GameModel?
     
@@ -73,7 +73,7 @@ class GameViewController: UIViewController {
     
 }
 
-extension GameViewController: UIGestureRecognizerDelegate {
+extension GameVC: UIGestureRecognizerDelegate {
     
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
