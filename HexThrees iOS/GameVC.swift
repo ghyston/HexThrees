@@ -48,6 +48,11 @@ class GameVC: UIViewController {
         recognizer.delegate = self
         self.view.addGestureRecognizer(recognizer)
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onGameReset),
+            name: .resetGame,
+            object: nil)
     }
     
     override var shouldAutorotate: Bool {
@@ -71,6 +76,10 @@ class GameVC: UIViewController {
         return true
     }
     
+    @objc func onGameReset(notification: Notification) {
+        //@todo
+        print("onGameReset")
+    }
 }
 
 extension GameVC: UIGestureRecognizerDelegate {

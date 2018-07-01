@@ -48,6 +48,8 @@
 		3F555CF02091AE49003C67A7 /* BgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CEE2091AE49003C67A7 /* BgCell.swift */; };
 		3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CF12091AE66003C67A7 /* GameCell.swift */; };
 		3F555CF32091AE66003C67A7 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CF12091AE66003C67A7 /* GameCell.swift */; };
+		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
+		3F95A6BE20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell.swift */; };
 		3FAAC76C207F27E9006F5196 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell.swift */; };
 		3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */; };
@@ -136,6 +138,7 @@
 		3F555CEB208FC30D003C67A7 /* Resourses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resourses; sourceTree = "<group>"; };
 		3F555CEE2091AE49003C67A7 /* BgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCell.swift; sourceTree = "<group>"; };
 		3F555CF12091AE66003C67A7 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3FAAC76A207F27E9006F5196 /* HexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell.swift; sourceTree = "<group>"; };
 		3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellCMD.swift; sourceTree = "<group>"; };
 		3FAC644D20B5DE010083C56C /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 				3FAC647820BDC4040083C56C /* SwipeStatus.swift */,
 				3FB703AE20E16613009718F3 /* FieldGeometry.swift */,
 				3FB703B120E168EE009718F3 /* GameParams.swift */,
+				3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -434,6 +438,7 @@
 				3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */,
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
+				3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646320B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
 				3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
@@ -484,6 +489,7 @@
 				3FE9202820CEE646009B7370 /* CGVector.extensions.swift in Sources */,
 				3F555CF02091AE49003C67A7 /* BgCell.swift in Sources */,
 				3FAC645220B5E1240083C56C /* MoveLineCMD.swift in Sources */,
+				3F95A6BE20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,
 				3FAC644C20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646420B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
 				3FE9203620D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,

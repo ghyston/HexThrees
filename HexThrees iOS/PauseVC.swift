@@ -11,7 +11,7 @@ import UIKit
 
 class PauseVC : UIViewController {
     
-    var gameModel : GameModel?
+    //var gameModel : GameModel?
     
     @IBOutlet weak var popupView: UIView!
     
@@ -19,12 +19,13 @@ class PauseVC : UIViewController {
         
         super.viewDidLoad()
         popupView.layer.cornerRadius = 20
-        self.gameModel = ContainerConfig.instance.Resolve() as GameModel
+        //self.gameModel = ContainerConfig.instance.Resolve() as GameModel //@todo: do I still need it?
     }
     
     @IBAction func onReset(_ sender: Any) {
         
-        //@todo
+        NotificationCenter.default.post(name: .resetGame, object: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onClose(_ sender: Any) {
