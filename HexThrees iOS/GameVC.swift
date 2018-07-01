@@ -13,34 +13,27 @@ import GameplayKit
 class GameVC: UIViewController {
 
     var gameModel : GameModel?
+    var scene : GameScene?
+    var defaultGameParams: GameParams?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene.newGameScene()
+        self.scene = GameScene.newGameScene()
 
         // Present the scene
         let skView = self.view as! SKView
-        skView.presentScene(scene)
+        skView.presentScene(self.scene)
         
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true
         
-        let startParams = GameParams(
+        self.defaultGameParams = GameParams(
             fieldSize: 4,
             randomElementsCount: 4,
             blockedCellsCount: 2,
             strategy: PowerOfTwoMergingStrategy())
-        
-        let cmd = StartGameCMD(
-            scene: scene,
-            view: skView,
-            params: startParams)
-        cmd.run()
-        self.gameModel = cmd.gameModel
-        
-        ContainerConfig.instance.Register(self.gameModel as! GameModel)
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -53,6 +46,8 @@ class GameVC: UIViewController {
             selector: #selector(onGameReset),
             name: .resetGame,
             object: nil)
+        
+        startGame()
     }
     
     override var shouldAutorotate: Bool {
@@ -76,9 +71,21 @@ class GameVC: UIViewController {
         return true
     }
     
+    private func startGame() {
+        
+        let cmd = StartGameCMD(
+            scene: self.scene!,
+            view: self.view as! SKView,
+            params: self.defaultGameParams!)
+        cmd.run()
+        self.gameModel = cmd.gameModel
+        //ContainerConfig.instance.Register(self.gameModel as! GameModel)
+    }
+    
     @objc func onGameReset(notification: Notification) {
-        //@todo
-        print("onGameReset")
+        
+        CleanGameCMD(self.gameModel!).run()
+        startGame()
     }
 }
 

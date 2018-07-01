@@ -31,4 +31,14 @@ class GameModel {
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
     }
+    
+    func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
+        
+        self.geometry = FieldGeometry(
+            screenWidth: screenWidth,
+            fieldSize: fieldSize)
+        self.strategy = strategy
+        self.fieldWidth = fieldSize
+        self.fieldHeight = fieldSize
+    }
 }
