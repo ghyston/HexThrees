@@ -13,7 +13,7 @@ class UpdateScoreCMD : GameCMD {
     func run(_ val : Int) {
     
         self.gameModel.score += val
-        print("new score: \(self.gameModel.score)")
+        NotificationCenter.default.post(name: .updateScore, object: nil)
         
         if(self.gameModel.score > self.gameModel.newUnblockCellScore) {
             

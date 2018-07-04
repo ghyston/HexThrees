@@ -26,10 +26,20 @@
                                     <segue destination="hfV-uc-Gim" kind="presentation" id="wQr-Rf-fr0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llv-3h-4gE">
+                                <rect key="frame" x="317" y="20" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="bNo-s9-wk6"/>
                     </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="Llv-3h-4gE" id="0Zr-3Y-Gun"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,6 +88,9 @@
                                         <state key="disabled" title="Settings">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="NBg-LN-5S6" kind="presentation" id="SDk-WZ-kCc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,6 +128,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REB-pM-vPf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1080.8" y="96.7016491754123"/>
+        </scene>
+        <!--SettingsVC-->
+        <scene sceneID="zYc-sA-mSm">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="NBg-LN-5S6" customClass="SettingsVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6CO-UM-fgK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAJ-iY-ipv">
+                                <rect key="frame" x="67.5" y="156" width="240" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="C2u-Nd-tDd">
+                                        <rect key="frame" x="0.0" y="49" width="240" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="st2-NY-bBa">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+                                                <state key="normal" title="Save"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTc-VO-JH8">
+                                                <rect key="frame" x="0.0" y="30" width="240" height="30"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="onCancel:" destination="NBg-LN-5S6" eventType="touchUpInside" id="k83-aH-yBC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Z3X-eQ-VGW"/>
+                                    <constraint firstItem="C2u-Nd-tDd" firstAttribute="leading" secondItem="RAJ-iY-ipv" secondAttribute="leading" id="aRJ-yp-Mhu"/>
+                                    <constraint firstAttribute="trailing" secondItem="C2u-Nd-tDd" secondAttribute="trailing" id="hUx-AV-1LE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.19847601232394366" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RAJ-iY-ipv" firstAttribute="centerX" secondItem="6CO-UM-fgK" secondAttribute="centerX" id="sfk-Ff-xrT"/>
+                            <constraint firstItem="RAJ-iY-ipv" firstAttribute="centerY" secondItem="6CO-UM-fgK" secondAttribute="centerY" id="zF3-9d-5WT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="u5G-e1-1l9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MS3-KK-Lbo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2036" y="96.7016491754123"/>
         </scene>
     </scenes>
 </document>

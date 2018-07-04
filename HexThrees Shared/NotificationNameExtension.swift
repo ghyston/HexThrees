@@ -10,4 +10,5 @@ import Foundation
 
 extension NSNotification.Name {
     static let resetGame = Notification.Name(rawValue: "resetGame")
+    static let updateScore = Notification.Name(rawValue: "updateScore")
 }

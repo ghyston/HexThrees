@@ -12,6 +12,8 @@ import GameplayKit
 
 class GameVC: UIViewController {
 
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     var gameModel : GameModel?
     var scene : GameScene?
     var defaultGameParams: GameParams?
@@ -45,6 +47,12 @@ class GameVC: UIViewController {
             self,
             selector: #selector(onGameReset),
             name: .resetGame,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onScoreUpdate),
+            name: .updateScore,
             object: nil)
         
         startGame()
@@ -86,6 +94,11 @@ class GameVC: UIViewController {
         
         CleanGameCMD(self.gameModel!).run()
         startGame()
+    }
+    
+    @objc func onScoreUpdate(notification: Notification) {
+        
+        scoreLabel.text = "\(self.gameModel!.score)"
     }
 }
 
