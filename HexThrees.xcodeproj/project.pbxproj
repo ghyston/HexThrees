@@ -32,6 +32,9 @@
 		3F95A6C320E8F1610052E1C6 /* RestartGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* RestartGameCMD.swift */; };
 		3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C520E966D70052E1C6 /* SettingsVC.swift */; };
 		3F95A6C920EC955C0052E1C6 /* CheckGameEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEnd.swift */; };
+		3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */; };
+		3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */; };
+		3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */; };
 		3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell.swift */; };
 		3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */; };
 		3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644D20B5DE010083C56C /* GameModel.swift */; };
@@ -91,6 +94,9 @@
 		3F95A6C220E8F1610052E1C6 /* RestartGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C520E966D70052E1C6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3F95A6C820EC955C0052E1C6 /* CheckGameEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEnd.swift; sourceTree = "<group>"; };
+		3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGameCMD.swift; sourceTree = "<group>"; };
+		3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameCMD.swift; sourceTree = "<group>"; };
+		3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGame.swift; sourceTree = "<group>"; };
 		3FAAC76A207F27E9006F5196 /* HexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell.swift; sourceTree = "<group>"; };
 		3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellCMD.swift; sourceTree = "<group>"; };
 		3FAC644D20B5DE010083C56C /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -213,6 +219,9 @@
 				3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */,
 				3F95A6C220E8F1610052E1C6 /* RestartGameCMD.swift */,
 				3F95A6C820EC955C0052E1C6 /* CheckGameEnd.swift */,
+				3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */,
+				3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */,
+				3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
+				3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */,
 				3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */,
 				3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */,
 				3FAC646620B75EC00083C56C /* MoveRightCMD.swift in Sources */,
@@ -339,6 +349,7 @@
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,
 				3F95A6C320E8F1610052E1C6 /* RestartGameCMD.swift in Sources */,
+				3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3FAC646320B7577B0083C56C /* MoveLeftCMD.swift in Sources */,
 				3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
@@ -358,6 +369,7 @@
 				3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */,
 				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
+				3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */,
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,

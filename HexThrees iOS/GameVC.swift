@@ -84,7 +84,8 @@ class GameVC: UIViewController {
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!)
+            params: self.defaultGameParams!,
+            tempAddRandomStaff: true)
         cmd.run()
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.Register(self.gameModel as! GameModel)
@@ -99,6 +100,27 @@ class GameVC: UIViewController {
     @objc func onScoreUpdate(notification: Notification) {
         
         scoreLabel.text = "\(self.gameModel!.score)"
+    }
+    
+    @IBAction func onLoad(_ sender: Any) {
+        
+        CleanGameCMD(self.gameModel!).run()
+        
+        //@todo: this is hardcode and should be removed!!
+        let cmd = StartGameCMD(
+            scene: self.scene!,
+            view: self.view as! SKView,
+            params: self.defaultGameParams!,
+            tempAddRandomStaff: false)
+        cmd.run()
+        self.gameModel = cmd.gameModel
+        
+        LoadGameCMD(self.gameModel!).run()
+    }
+    
+    @IBAction func onSave(_ sender: Any) {
+        
+        SaveGameCMD(self.gameModel!).run()
     }
 }
 

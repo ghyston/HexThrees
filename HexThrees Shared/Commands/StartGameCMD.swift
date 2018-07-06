@@ -16,11 +16,14 @@ class StartGameCMD : CMD {
     let params : GameParams
     var gameModel : GameModel?
     
-    init(scene: SKScene, view: SKView, params: GameParams) {
+    let tempAddRandomStaff : Bool
+    
+    init(scene: SKScene, view: SKView, params: GameParams, tempAddRandomStaff: Bool) {
         
         self.scene = scene
         self.view = view
         self.params = params
+        self.tempAddRandomStaff = tempAddRandomStaff
     }
     
     func run() {
@@ -44,15 +47,20 @@ class StartGameCMD : CMD {
         
         //DebugPaletteCMD(self.gameModel!).run()
         
-        for _ in 0 ..< params.randomElementsCount {
+        //@todo: remove that!!!
+        if(tempAddRandomStaff) {
             
-            AddRandomCellCMD(gameModel).runWithDelay(delay: Double.random)
+            for _ in 0 ..< params.randomElementsCount {
+                
+                AddRandomCellCMD(gameModel).runWithDelay(delay: Double.random)
+            }
+            
+            for _ in 0 ..< params.blockedCellsCount {
+                
+                BlockRandomCellCMD(gameModel).run()
+            }
         }
         
-        for _ in 0 ..< params.blockedCellsCount {
-            
-            BlockRandomCellCMD(gameModel).run()
-        }
         self.gameModel = gameModel
     }
 }
