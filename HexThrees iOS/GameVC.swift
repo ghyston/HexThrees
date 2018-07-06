@@ -87,7 +87,7 @@ class GameVC: UIViewController {
             params: self.defaultGameParams!)
         cmd.run()
         self.gameModel = cmd.gameModel
-        //ContainerConfig.instance.Register(self.gameModel as! GameModel)
+        ContainerConfig.instance.Register(self.gameModel as! GameModel)
     }
     
     @objc func onGameReset(notification: Notification) {
