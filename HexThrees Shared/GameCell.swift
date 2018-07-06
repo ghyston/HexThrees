@@ -15,9 +15,10 @@ class GameCell : HexCell {
     var newParent : BgCell?
     
     init(model: GameModel, val: Int) {
-        self.value = val
         
-        super.init(model: model, text: "\(val)", color: PaletteManager.color(value: val))
+        self.value = val
+        let strategyValue = model.strategy.value(index: self.value)
+        super.init(model: model, text: "\(strategyValue)", color: PaletteManager.color(value: val))
     }
     
     func playAppearAnimation() {
@@ -47,11 +48,12 @@ class GameCell : HexCell {
         self.run(SKAction.sequence([delay, delete]))
     }
     
-    func updateValue(_ val: Int) {
-        self.value = val
-        self.updateText(text: "\(self.value)")
+    func updateValue(value: Int, strategy: MergingStrategy) {
+        self.value = value
+        let strategyValue = strategy.value(index: self.value)
+        self.updateText(text: "\(strategyValue)")
         self.playUpdateAnimation()
-        self.hexShape.fillColor = PaletteManager.color(value: val)
+        self.hexShape.fillColor = PaletteManager.color(value: value)
     }
     
     required init?(coder aDecoder: NSCoder) {

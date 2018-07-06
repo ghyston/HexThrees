@@ -21,7 +21,9 @@ class UpdateCellCMD : GameCMD {
     
     override func run() {
         
-        self.cell?.updateValue(self.value!)
+        self.cell?.updateValue(
+            value: self.value!,
+            strategy: self.gameModel.strategy)
     }
     
 }

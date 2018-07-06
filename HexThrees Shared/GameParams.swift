@@ -13,5 +13,5 @@ struct GameParams {
     let fieldSize: Int
     let randomElementsCount: Int
     let blockedCellsCount: Int
-    let strategy: MergingStrategy
+    let strategy: MergingStrategyName
 }

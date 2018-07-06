@@ -35,7 +35,7 @@ class GameVC: UIViewController {
             fieldSize: 4,
             randomElementsCount: 4,
             blockedCellsCount: 2,
-            strategy: PowerOfTwoMergingStrategy())
+            strategy: .Fibonacci)
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,

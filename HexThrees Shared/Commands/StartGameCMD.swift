@@ -25,10 +25,13 @@ class StartGameCMD : CMD {
     
     func run() {
         
+    
         let gameModel = GameModel(
             screenWidth: view.frame.width,
             fieldSize: params.fieldSize,
-            strategy: params.strategy)
+            strategy: MerginStrategyFabric.createByName(params.strategy))
+        
+        gameModel.strategy.prefilValues(maxIndex: self.params.fieldSize * self.params.fieldSize)
         
         for i2 in 0 ..< params.fieldSize {
             for i1 in 0 ..< params.fieldSize {

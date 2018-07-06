@@ -28,7 +28,7 @@ class AddRandomCellCMD : GameCMD {
         
         let newElement = GameCell(
             model: self.gameModel,
-            val: self.gameModel.strategy.startValue)
+            val: 0)
         freeCells[random].addGameCell(cell: newElement)
         newElement.playAppearAnimation()
     }
