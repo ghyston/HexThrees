@@ -38,6 +38,7 @@ class LoadGameCMD: GameCMD {
                 newElement.playAppearAnimation()
             }
         }
+        gameModel.score = gameSave.score
     }
     
     private func decodeJsonToGameState(_ json : String) -> SavedGame? {
