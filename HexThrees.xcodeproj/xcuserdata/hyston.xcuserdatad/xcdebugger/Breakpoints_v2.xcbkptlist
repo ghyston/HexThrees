@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/GameCell.swift"
-            timestampString = "552604178.681192"
+            timestampString = "554921750.182083"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "removeFromParentWithDelay(delay:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "updateValue(value:strategy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -81,22 +81,6 @@
             endingLineNumber = "19"
             landmarkName = "unknown"
             landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HexThrees Shared/PaletteManager.swift"
-            timestampString = "552604178.6813461"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "color(value:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

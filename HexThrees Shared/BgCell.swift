@@ -32,7 +32,7 @@ class BgCell: HexCell {
         
         self.gameCell = cell
         self.addChild(cell)
-        self.gameCell?.zPosition = 3
+        self.gameCell?.zPosition = zPositions.bgCellZ.rawValue
     }
     
     @objc func removeGameCell() {
@@ -53,10 +53,7 @@ class BgCell: HexCell {
     }
     
     func destination(to: BgCell) -> CGVector {
-        //@todo: add extensions to CGVector.init(points diff)
-        return CGVector(
-            dx: to.position.x - position.x,
-            dy: to.position.y - position.y)
+        return CGVector(from: position, to: to.position);
     }
     
     required init?(coder aDecoder: NSCoder) {

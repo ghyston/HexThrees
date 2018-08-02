@@ -18,6 +18,7 @@ class GameScene: SKScene {
         }
         
         scene.scaleMode = .resizeFill
+        
         return scene
     }
     
