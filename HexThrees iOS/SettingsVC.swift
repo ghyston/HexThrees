@@ -36,7 +36,7 @@ class SettingsVC :  UIViewController {
         
         super.viewDidLoad()
         
-        self.gameModel = ContainerConfig.instance.Resolve() as GameModel
+        self.gameModel = ContainerConfig.instance.resolve() as GameModel
         
         settingsPopupView.layer.cornerRadius = 20
         

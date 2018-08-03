@@ -11,15 +11,12 @@ import UIKit
 
 class PauseVC : UIViewController {
     
-    //var gameModel : GameModel?
-    
     @IBOutlet weak var popupView: UIView!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         popupView.layer.cornerRadius = 20
-        //self.gameModel = ContainerConfig.instance.Resolve() as GameModel //@todo: do I still need it?
     }
     
     @IBAction func onReset(_ sender: Any) {

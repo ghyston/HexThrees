@@ -53,7 +53,7 @@ class FibonacciMergingStrategy : MergingStrategy {
     
     func value(index: Int) -> Int {
         
-        //@todo: throw if index is more that values size
+        assert(index < values.endIndex, "FibonacciMergingStrategy: index \(index) out of range")
         return values[index]
     }
     
@@ -79,7 +79,7 @@ class PowerOfTwoMergingStrategy : MergingStrategy {
     
     func value(index: Int) -> Int {
         
-        //@todo: throw if index is more that values size
+        assert(index < values.endIndex, "PowerOfTwoMergingStrategy: index \(index) out of range")
         return values[index]
     }
     
