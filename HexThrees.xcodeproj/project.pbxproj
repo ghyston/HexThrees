@@ -15,6 +15,9 @@
 		3F06B36F207C81E000C8315A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34A207C81E000C8315A /* GameScene.sks */; };
 		3F06B371207C81E000C8315A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B34B207C81E000C8315A /* GameScene.swift */; };
 		3F06B373207C81E000C8315A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34C207C81E000C8315A /* Assets.xcassets */; };
+		3F1A626721181DE400CC6586 /* grid.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626621181DE400CC6586 /* grid.fsh */; };
+		3F1A62692118A74100CC6586 /* gridDervative.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A62682118A74100CC6586 /* gridDervative.fsh */; };
+		3F1A626B2118B38A00CC6586 /* simple.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626A2118B38A00CC6586 /* simple.fsh */; };
 		3F21DF4920C8F79600A979D5 /* SKColor.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4820C8F79600A979D5 /* SKColor.extensions.swift */; };
 		3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */; };
 		3F21DF4F20C8F94500A979D5 /* AddBgCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4E20C8F94500A979D5 /* AddBgCellCMD.swift */; };
@@ -77,6 +80,9 @@
 		3F06B359207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F06B35C207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F06B35E207C81E000C8315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F1A626621181DE400CC6586 /* grid.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = grid.fsh; sourceTree = "<group>"; };
+		3F1A62682118A74100CC6586 /* gridDervative.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = gridDervative.fsh; sourceTree = "<group>"; };
+		3F1A626A2118B38A00CC6586 /* simple.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = simple.fsh; sourceTree = "<group>"; };
 		3F21DF4820C8F79600A979D5 /* SKColor.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKColor.extensions.swift; sourceTree = "<group>"; };
 		3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTypes.swift; sourceTree = "<group>"; };
 		3F21DF4E20C8F94500A979D5 /* AddBgCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBgCellCMD.swift; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 		3F06B348207C81E000C8315A /* HexThrees Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3F1A626521181DB500CC6586 /* Shaders */,
 				3FE9202920D03286009B7370 /* Common */,
 				3FAC646820B8791D0083C56C /* Assets */,
 				3FAC644920B5DD7E0083C56C /* Commands */,
@@ -200,6 +207,16 @@
 				3FB703A820DAE7A6009718F3 /* View.xib */,
 			);
 			path = "HexThrees iOS";
+			sourceTree = "<group>";
+		};
+		3F1A626521181DB500CC6586 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				3F1A626621181DE400CC6586 /* grid.fsh */,
+				3F1A62682118A74100CC6586 /* gridDervative.fsh */,
+				3F1A626A2118B38A00CC6586 /* simple.fsh */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 		3FAC644920B5DD7E0083C56C /* Commands */ = {
@@ -324,7 +341,10 @@
 			files = (
 				3FB703A920DAE7A6009718F3 /* View.xib in Resources */,
 				3F06B36F207C81E000C8315A /* GameScene.sks in Resources */,
+				3F1A62692118A74100CC6586 /* gridDervative.fsh in Resources */,
+				3F1A626B2118B38A00CC6586 /* simple.fsh in Resources */,
 				3F06B35A207C81E000C8315A /* Main.storyboard in Resources */,
+				3F1A626721181DE400CC6586 /* grid.fsh in Resources */,
 				3F555CEC208FC30D003C67A7 /* Resourses in Resources */,
 				3F06B36D207C81E000C8315A /* Actions.sks in Resources */,
 				3F06B35D207C81E000C8315A /* LaunchScreen.storyboard in Resources */,

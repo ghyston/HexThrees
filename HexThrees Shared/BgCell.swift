@@ -14,9 +14,13 @@ class BgCell: HexCell {
     var gameCell: GameCell?
     var isBlocked: Bool = false
     
+    //@todo: make it lazy static (to init once per game)
+    var blockShader : SKShader
+    
     init(model: GameModel, blocked: Bool) {
         
         self.isBlocked = blocked
+        self.blockShader = SKShader.init(fileNamed: "gridDervative.fsh")
         super.init(
             model: model,
             text: "",
@@ -42,13 +46,13 @@ class BgCell: HexCell {
     
     func block() {
         
-        self.hexShape.removeFromParent()
+        self.hexShape.fillShader = blockShader
         self.isBlocked = true
     }
     
     func unblock() {
         
-        addChild(self.hexShape)
+        self.hexShape.fillShader = nil
         self.isBlocked = false
     }
     
