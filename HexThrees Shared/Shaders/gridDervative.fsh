@@ -1,7 +1,7 @@
 
 void main()
 {
-    float steps = 7.0;
+    float steps = 5.0;
     
     float temp1 = v_tex_coord.x * steps;
     float temp2 = v_tex_coord.y * steps;

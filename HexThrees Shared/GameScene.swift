@@ -19,15 +19,18 @@ class GameScene: SKScene {
         
         scene.scaleMode = .resizeFill
         
-        /*let fShader = SKShader.init(fileNamed: "gridDervative.fsh")
+        let motionBlurHolder = SKEffectNode.init();
+        let fShader = SKShader.init(fileNamed: "blur.fsh")
+        let sprite = SKSpriteNode.init(imageNamed: "fucking_cat")
         let circle = SKShapeNode.init(circleOfRadius: 150)
-        let hexTexture = SKTexture.init(imageNamed: "hex")
         
-        //circle.fillTexture = hexTexture
-        circle.fillShader = fShader
-        circle.zPosition = 20
-        circle.position.y = 200
-        scene.addChild(circle)*/
+        circle.fillColor = .red
+        motionBlurHolder.shader = fShader
+        motionBlurHolder.zPosition = 20
+        
+        motionBlurHolder.addChild(circle)
+        motionBlurHolder.addChild(sprite)
+        scene.addChild(motionBlurHolder)
         
         return scene
     }
