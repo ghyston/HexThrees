@@ -81,14 +81,20 @@ class GameVC: UIViewController {
     
     private func startGame() {
         
-        let cmd = StartGameCMD(
+        InitGameModelCMD(
+            view: self.view as! SKView,
+            params: self.defaultGameParams!)
+            .run()
+        
+        let gameModel = ContainerConfig.instance.resolve() as GameModel
+        self.gameModel = gameModel
+        
+        StartGameCMD(self.gameModel!)
+            .run(
             scene: self.scene!,
             view: self.view as! SKView,
             params: self.defaultGameParams!,
             tempAddRandomStaff: true)
-        cmd.run()
-        self.gameModel = cmd.gameModel
-        ContainerConfig.instance.register(self.gameModel as! GameModel)
     }
     
     @objc func onGameReset(notification: Notification) {
@@ -106,14 +112,16 @@ class GameVC: UIViewController {
         
         CleanGameCMD(self.gameModel!).run()
         
+        //@todo: I'm not sure, do I need to reinitialise model
+        
         //@todo: this is hardcode and should be removed!!
-        let cmd = StartGameCMD(
-            scene: self.scene!,
-            view: self.view as! SKView,
-            params: self.defaultGameParams!,
-            tempAddRandomStaff: false)
-        cmd.run()
-        self.gameModel = cmd.gameModel
+    
+        StartGameCMD(self.gameModel!)
+            .run(
+                scene: self.scene!,
+                view: self.view as! SKView,
+                params: self.defaultGameParams!,
+                tempAddRandomStaff: true)
         
         LoadGameCMD(self.gameModel!).run()
     }

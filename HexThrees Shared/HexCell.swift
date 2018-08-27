@@ -40,6 +40,8 @@ class HexCell : SKNode {
         self.addChild(self.hexShape)
         self.hexShape.addChild(self.label)
         
+        self.label.name = "CELL_LABLE" //@todo: define somewhere
+        
         self.hexShape.zPosition = zPositions.hexCellZ.rawValue
     }
     

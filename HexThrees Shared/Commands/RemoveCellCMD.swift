@@ -10,7 +10,7 @@ import Foundation
 
 class RemoveCellCMD : GameCMD {
     
-    func run(cell: BgCell, delay: Double) {
+    func run(cell: BgCellNode, delay: Double) {
         
         assert(cell.gameCell != nil, "RemoveCellCMD: BgCell is empty")
         

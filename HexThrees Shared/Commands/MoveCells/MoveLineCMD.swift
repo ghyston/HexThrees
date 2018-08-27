@@ -13,9 +13,9 @@ import SpriteKit
 class MoveLineCMD : GameCMD {
     
     private var count: Int = 0
-    private var cells = Array<BgCell>()
+    private var cells = Array<BgCellNode>()
     
-    func run(cells: Array<BgCell>) {
+    func run(cells: Array<BgCellNode>) {
         
         self.count = cells.count
         self.cells = cells

@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 
 class GameScene: SKScene {
     
@@ -19,18 +20,31 @@ class GameScene: SKScene {
         
         scene.scaleMode = .resizeFill
         
-        /*let fShader = SKShader.init(fileNamed: "gridDervative.fsh")
-        let circle = SKShapeNode.init(circleOfRadius: 150)
-        let hexTexture = SKTexture.init(imageNamed: "hex")
-        
-        //circle.fillTexture = hexTexture
-        circle.fillShader = fShader
-        circle.zPosition = 20
-        circle.position.y = 200
-        scene.addChild(circle)*/
-        
         return scene
     }
+    
+    func add(entity: GKEntity, _ layer: zPositions) {
+        
+        guard let nodeCmpt = entity.component(ofType: GKSKNodeComponent.self) else {
+            return
+        }
+        
+        nodeCmpt.node.zPosition = zPositions.bgCellZ.rawValue
+        self.addChild(nodeCmpt.node)
+    }
+    
+    func remove(entity: GKEntity) {
+        
+        guard let nodeCmpt = entity.component(ofType: GKSKNodeComponent.self) else {
+            return
+        }
+        
+        if nodeCmpt.node.inParentHierarchy(self) {
+            
+           nodeCmpt.node.removeFromParent()
+        }
+    }
+    
     
     override func didMove(to view: SKView) {
         

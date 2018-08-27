@@ -10,7 +10,7 @@ import Foundation
 
 class SwitchParentsCMD : GameCMD {
     
-    func run(from: BgCell, to: BgCell) {
+    func run(from: BgCellNode, to: BgCellNode) {
         //@todo: after this do we need BGCell functions remove/add?
         from.gameCell?.removeFromParent()
         to.addGameCell(cell: from.gameCell!)

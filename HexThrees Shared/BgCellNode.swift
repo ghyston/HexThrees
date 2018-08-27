@@ -9,12 +9,12 @@
 import Foundation
 import SpriteKit
 
-class BgCell: HexCell {
+class BgCellNode: HexCell {
     
-    var gameCell: GameCell?
+    var gameCell: PlCellNode?
     var isBlocked: Bool = false
     
-    //@todo: make it lazy static (to init once per game)
+    //@todo: make it lazy || static || class (to init once per game)
     var blockShader : SKShader
     
     init(model: GameModel, blocked: Bool) {
@@ -30,19 +30,19 @@ class BgCell: HexCell {
         }
     }
     
-    @objc func addGameCell(cell: GameCell) {
+    /*@objc func addGameCell(cell: PlCellNode) {
         
         assert(self.gameCell == nil, "BgCell already contain game cell")
         
         self.gameCell = cell
         self.addChild(cell)
         self.gameCell?.zPosition = zPositions.bgCellZ.rawValue
-    }
+    }*/
     
-    @objc func removeGameCell() {
+    /*@objc func removeGameCell() {
         self.gameCell?.removeFromParent()
         self.gameCell = nil
-    }
+    }*/
     
     func block() {
         
@@ -56,7 +56,7 @@ class BgCell: HexCell {
         self.isBlocked = false
     }
     
-    func destination(to: BgCell) -> CGVector {
+    func destination(to: BgCellNode) -> CGVector {
         return CGVector(from: position, to: to.position);
     }
     

@@ -12,7 +12,7 @@ class BlockRandomCellCMD : GameCMD {
     
     override func run() {
         
-        var freeCells = [BgCell]()
+        var freeCells = [BgCellNode]()
         for i in self.gameModel.bgHexes {
             if(i.gameCell == nil && !i.isBlocked) {
                 freeCells.append(i)

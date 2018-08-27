@@ -9,10 +9,10 @@
 import Foundation
 import SpriteKit
 
-class GameCell : HexCell {
+class PlCellNode : HexCell {
     
     var value: Int
-    var newParent : BgCell?
+    var newParent : BgCellNode?
     
     init(model: GameModel, val: Int) {
         
@@ -44,7 +44,7 @@ class GameCell : HexCell {
     
     func removeFromParentWithDelay(delay: Double) {
         let delay = SKAction.wait(forDuration: delay)
-        let delete = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: self)
+        let delete = SKAction.perform(#selector(PlCellNode.removeFromParent), onTarget: self)
         self.run(SKAction.sequence([delay, delete]))
     }
     

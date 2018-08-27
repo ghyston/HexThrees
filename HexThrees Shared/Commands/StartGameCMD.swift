@@ -9,33 +9,10 @@
 import Foundation
 import SpriteKit
 
-class StartGameCMD : CMD {
+class StartGameCMD : GameCMD {
     
-    let scene : SKScene
-    let view : SKView
-    let params : GameParams
-    var gameModel : GameModel?
+    func run(scene: GameScene, view: SKView, params: GameParams, tempAddRandomStaff: Bool) {
     
-    let tempAddRandomStaff : Bool
-    
-    init(scene: SKScene, view: SKView, params: GameParams, tempAddRandomStaff: Bool) {
-        
-        self.scene = scene
-        self.view = view
-        self.params = params
-        self.tempAddRandomStaff = tempAddRandomStaff
-    }
-    
-    func run() {
-        
-    
-        let gameModel = GameModel(
-            screenWidth: view.frame.width,
-            fieldSize: params.fieldSize,
-            strategy: MerginStrategyFabric.createByName(params.strategy))
-        
-        gameModel.strategy.prefilValues(maxIndex: self.params.fieldSize * self.params.fieldSize)
-        
         for i2 in 0 ..< params.fieldSize {
             for i1 in 0 ..< params.fieldSize {
                 
@@ -60,7 +37,5 @@ class StartGameCMD : CMD {
                 BlockRandomCellCMD(gameModel).run()
             }
         }
-        
-        self.gameModel = gameModel
     }
 }

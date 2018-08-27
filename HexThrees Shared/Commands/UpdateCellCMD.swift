@@ -10,10 +10,10 @@ import Foundation
 
 class UpdateCellCMD : GameCMD {
     
-    var cell : GameCell?
+    var cell : PlCellNode?
     var value : Int?
     
-    func setup(cell: GameCell, value: Int) -> UpdateCellCMD {
+    func setup(cell: PlCellNode, value: Int) -> UpdateCellCMD {
         self.cell = cell
         self.value = value
         return self

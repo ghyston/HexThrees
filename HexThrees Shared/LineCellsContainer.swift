@@ -10,7 +10,7 @@ import Foundation
 
 class LineCellsContainer {
     
-    var cells = [BgCell]()
+    var cells = [BgCellNode]()
     let gameModel : GameModel
     
     init(_ gameModel: GameModel) {

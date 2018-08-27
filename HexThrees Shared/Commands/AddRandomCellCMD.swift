@@ -12,7 +12,7 @@ class AddRandomCellCMD : GameCMD {
     
     override func run() {
         
-        var freeCells = Array<BgCell>()
+        var freeCells = Array<BgCellNode>()
         for i in self.gameModel.bgHexes {
             if(i.gameCell == nil && i.isBlocked == false) {
                 freeCells.append(i)
@@ -26,7 +26,9 @@ class AddRandomCellCMD : GameCMD {
         //@todo: wwdc game sessions about random!
         let random = Int(arc4random()) % freeCells.count
         
-        let newElement = GameCell(
+        let entity = EntityFabric.createPlCell(coordinates: <#T##CGPoint#>)
+        
+        let newElement = PlCellNode(
             model: self.gameModel,
             val: 0)
         freeCells[random].addGameCell(cell: newElement)

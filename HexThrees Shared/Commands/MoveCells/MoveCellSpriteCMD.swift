@@ -11,7 +11,7 @@ import SpriteKit
 
 class MoveCellSpriteCMD : GameCMD {
     
-    func run(cell: GameCell, diff: CGVector, duration: Double){
+    func run(cell: PlCellNode, diff: CGVector, duration: Double){
         
         gameModel.swipeStatus.incrementDelay(delay: duration)
         

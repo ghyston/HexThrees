@@ -17,7 +17,7 @@ class GameModel {
     var geometry: FieldGeometry
     
     // Some common properties
-    var bgHexes : [BgCell] = [BgCell]()
+    var bgHexes : [BgCellNode] = [BgCellNode]()
     var swipeStatus = SwipeStatus()
     var score : Int = 0
     var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy

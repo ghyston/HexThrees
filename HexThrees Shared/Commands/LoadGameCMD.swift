@@ -31,7 +31,7 @@ class LoadGameCMD: GameCMD {
             }
             else if gameSave.cells[i].val != nil {
                 
-                let newElement = GameCell(
+                let newElement = PlCellNode(
                     model: self.gameModel,
                     val: gameSave.cells[i].val!)
                 gameModel.bgHexes[i].addGameCell(cell: newElement)
