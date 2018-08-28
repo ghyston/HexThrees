@@ -71,6 +71,7 @@
 		3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */; };
 		3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12A21346D8200D9FCBC /* HexField.swift */; };
 		3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */; };
+		3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,6 +142,7 @@
 		3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusFabric.swift; sourceTree = "<group>"; };
 		3FEBD12A21346D8200D9FCBC /* HexField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
 		3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRandomBonusCMD.swift; sourceTree = "<group>"; };
+		3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBonusesCounterCMD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */,
 				3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */,
 				3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */,
+				3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */,
 				3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */,
 				3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */,
+				3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */,
 				3FB7039D20D967AF009718F3 /* LineCellsContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

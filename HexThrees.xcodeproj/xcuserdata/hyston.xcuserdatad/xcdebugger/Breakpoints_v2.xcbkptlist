@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/Commands/DoSwipeCMD.swift"
-            timestampString = "557132122.904002"
+            timestampString = "557170630.194546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "run(direction:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,12 +266,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/BonusNode.swift"
-            timestampString = "557132122.904078"
+            timestampString = "557170630.19468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "removeFromParentWithDelay(delay:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "playPickingAnimationAndRemoveFromParent(delay:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

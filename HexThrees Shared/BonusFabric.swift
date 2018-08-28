@@ -12,12 +12,18 @@ class BonusFabric {
     
     class func createUnlockBonus(gameModel: GameModel) -> BonusNode {
         
-        return BonusNode(spriteName: "bonus_unlock", command: UnlockRandomCellCMD(gameModel))
+        return BonusNode(
+            spriteName: "bonus_unlock",
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: UnlockRandomCellCMD(gameModel))
     }
     
     class func createLockBonus(gameModel: GameModel) -> BonusNode {
         
-        return BonusNode(spriteName: "bonus_lock", command: BlockRandomCellCMD(gameModel))
+        return BonusNode(
+            spriteName: "bonus_lock",
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: BlockRandomCellCMD(gameModel))
     }
     
     /*class func createX2Bonus(gameModel: GameModel) -> BonusNode {

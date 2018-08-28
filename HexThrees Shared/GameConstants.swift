@@ -9,6 +9,7 @@
 class GameConstants {
     
     static let SecondsPerCell = 0.2
-    static let BonusPickUpAnimationDuration = 1.0
+    static let BonusAnimationDuration = 0.5
+    static let BonusTurnsLifetime = 2
     
 }

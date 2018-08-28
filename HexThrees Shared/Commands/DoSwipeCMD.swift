@@ -39,6 +39,7 @@ class DoSwipeCMD : GameCMD {
         
         if gameModel.swipeStatus.somethingChangeed {
             
+            UpdateBonusesCounterCMD(gameModel).run()
             AddRandomCellCMD(gameModel).run()
             DropRandomBonusCMD(gameModel).run()
         }

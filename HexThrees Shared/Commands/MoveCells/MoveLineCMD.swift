@@ -162,7 +162,7 @@ class MoveLineCMD : GameCMD {
                 
                 let delay = Double(from - i) * GameConstants.SecondsPerCell
                 bonus.command.runWithDelay(delay: delay)
-                cells[i].removeBonusWithAnimation(delay)
+                cells[i].removeBonusWithPickingAnimation(delay)
             }
         }
     }

@@ -68,15 +68,15 @@ class BgCell: HexCell {
         addChild(self.bonus!)
     }
     
-    func removeBonus() {
+    func removeBonusWithDisposeAnimation() {
         
-        self.bonus?.removeFromParent()
+        self.bonus?.playDisposeAnimationAndRemoveFromParent()
         self.bonus = nil
     }
     
-    func removeBonusWithAnimation(_ delay: Double) {
+    func removeBonusWithPickingAnimation(_ delay: Double) {
         
-        self.bonus?.removeFromParentWithDelay(delay: delay)
+        self.bonus?.playPickingAnimationAndRemoveFromParent(delay: delay)
         self.bonus = nil
     }
     
