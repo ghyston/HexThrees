@@ -12,6 +12,7 @@ import SpriteKit
 class BgCell: HexCell {
     
     var gameCell: GameCell?
+    var bonus: BonusNode?
     var isBlocked: Bool = false
     
     //@todo: make it lazy static (to init once per game)
@@ -58,6 +59,25 @@ class BgCell: HexCell {
     
     func destination(to: BgCell) -> CGVector {
         return CGVector(from: position, to: to.position);
+    }
+    
+    func addBonus(_ bonusNode: BonusNode) {
+        
+        self.bonus = bonusNode
+        self.bonus?.zPosition = 10.0
+        addChild(self.bonus!)
+    }
+    
+    func removeBonus() {
+        
+        self.bonus?.removeFromParent()
+        self.bonus = nil
+    }
+    
+    func removeBonusWithAnimation(_ delay: Double) {
+        
+        self.bonus?.removeFromParentWithDelay(delay: delay)
+        self.bonus = nil
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -40,6 +40,7 @@ class DoSwipeCMD : GameCMD {
         if gameModel.swipeStatus.somethingChangeed {
             
             AddRandomCellCMD(gameModel).run()
+            DropRandomBonusCMD(gameModel).run()
         }
         
         gameModel.swipeStatus.delay = 0.0

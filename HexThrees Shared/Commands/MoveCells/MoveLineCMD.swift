@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 
+//@todo: a god, you need to write some tests to this algorithm
 // Try to move/merge cells in one dimension array from end to 0
 class MoveLineCMD : GameCMD {
     
@@ -82,6 +83,8 @@ class MoveLineCMD : GameCMD {
         
         checkMoveCellsAvailable(from, to)
         
+        pickUpBonuses(from, to)
+        
         let fromCell = cells[from]
         let toCell = cells[to]
         
@@ -109,6 +112,8 @@ class MoveLineCMD : GameCMD {
         self.gameModel.swipeStatus.somethingChangeed = true
         
         checkMoveCellsAvailable(from, to)
+        
+        pickUpBonuses(from, to)
         
         let fromCell = cells[from]
         let toCell = cells[to]
@@ -148,6 +153,18 @@ class MoveLineCMD : GameCMD {
         }
         
         return nil
+    }
+    
+    private func pickUpBonuses(_ from: Int, _ to: Int) {
+        
+        for i in to...from {
+            if let bonus = cells[i].bonus {
+                
+                let delay = Double(from - i) * GameConstants.SecondsPerCell
+                bonus.command.runWithDelay(delay: delay)
+                cells[i].removeBonusWithAnimation(delay)
+            }
+        }
     }
     
     private func checkMoveCellsAvailable(_ from: Int, _ to: Int) {

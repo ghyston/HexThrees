@@ -10,9 +10,11 @@ import Foundation
 import SpriteKit
 
 enum zPositions: CGFloat {
-    case bgCellZ = 3
-    case labelZ = 2
-    case hexCellZ = 1
+    
+    case bonusZ = 5
+    case bgCellZ = 4
+    case labelZ = 3
+    case hexCellZ = 2
 }
 
 class HexCell : SKNode {
