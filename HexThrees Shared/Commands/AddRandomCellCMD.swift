@@ -26,13 +26,15 @@ class AddRandomCellCMD : GameCMD {
             return
         }
         
-        //@todo: wwdc game sessions about random!
-        let random = Int(arc4random()) % freeCells.count
+        let random = Int.random(min: 0, max: freeCells.count - 1)
         
         let newElement = GameCell(
             model: self.gameModel,
             val: 0)
         freeCells[random].addGameCell(cell: newElement)
         newElement.playAppearAnimation()
+        
+        freeCells[random].bonus?.command.run()
+        freeCells[random].removeBonusWithPickingAnimation(0.0)
     }
 }

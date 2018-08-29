@@ -21,6 +21,7 @@ class GameModel {
     var swipeStatus = SwipeStatus()
     var score : Int = 0
     var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
+    var turnsWithoutBonus : Int = 0
     
     func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
         
@@ -29,7 +30,12 @@ class GameModel {
     
     func hasBgCells(compare: (_: BgCell) -> Bool) -> Bool {
         
-        return self.bgHexes.first(where: compare) == nil
+        return self.bgHexes.first(where: compare) != nil
+    }
+    
+    func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
+        
+        return self.bgHexes.filter(compare).count
     }
     
     init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {

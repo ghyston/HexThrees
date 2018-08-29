@@ -23,8 +23,7 @@ class UnlockRandomCellCMD : GameCMD {
             return
         }
         
-        let random = Int(arc4random()) % blockedCells.count
-        
+        let random = Int.random(min: 0, max: blockedCells.count - 1)
         blockedCells[random].unblock()
     }
     

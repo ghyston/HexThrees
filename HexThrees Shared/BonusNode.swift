@@ -18,6 +18,7 @@ enum BonusType {
 class BonusNode : SKNode {
     
     let sprite : SKSpriteNode
+    let circle : SKShapeNode
     let countLabel : SKLabelNode
     let command : GameCMD
     var turnsCount : Int
@@ -36,10 +37,10 @@ class BonusNode : SKNode {
         self.countLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
         
         let radius : CGFloat = 10.0
-        let circle = SKShapeNode(circleOfRadius: radius)
-        circle.fillColor = .red //@todo: use palette manager
-        circle.strokeColor = .red //@todo: use palette manager
-        circle.position = CGPoint(
+        self.circle = SKShapeNode(circleOfRadius: radius)
+        self.circle.fillColor = .red //@todo: use palette manager
+        self.circle.strokeColor = .red //@todo: use palette manager
+        self.circle.position = CGPoint(
             x: Double((self.sprite.size.width - radius) / 2.0 ),
             y: Double((-self.sprite.size.height + radius) / 2.0))
         
@@ -53,7 +54,9 @@ class BonusNode : SKNode {
     
     func playPickingAnimationAndRemoveFromParent(delay: Double) {
         
-        //@todo: hide count label with delay
+        let delayHide = SKAction.wait(forDuration: delay)
+        let hide = SKAction.fadeAlpha(to: 0.0, duration: GameConstants.BonusAnimationDuration)
+        self.circle.run(SKAction.sequence([delayHide, hide]))
         
         //@todo: may be make sence make it in animation editor?
         let animationDuration = GameConstants.BonusAnimationDuration

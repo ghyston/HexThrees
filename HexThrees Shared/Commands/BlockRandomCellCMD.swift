@@ -10,21 +10,36 @@ import Foundation
 
 class BlockRandomCellCMD : GameCMD {
     
+    private func dontHaveGameCellAndBonuses (cell: BgCell) -> Bool {
+        
+        return
+            cell.gameCell == nil &&
+                !cell.isBlocked &&
+                cell.bonus == nil
+    }
+    
+    private func dontContainGameCell (cell: BgCell) -> Bool {
+        
+        return
+            cell.gameCell == nil &&
+            !cell.isBlocked
+    }
+    
     override func run() {
         
-        var freeCells = [BgCell]()
-        for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil && !i.isBlocked) {
-                freeCells.append(i)
-            }
-        }
+        var freeCells = gameModel.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
+            gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
+            gameModel.getBgCells(compare: self.dontContainGameCell)
         
         guard freeCells.count > 0 else {
             return
         }
         
-        //@todo: wwdc game sessions about random!
-        let random = Int(arc4random()) % freeCells.count
+        let random = Int.random(min: 0, max: freeCells.count - 1)
+        if freeCells[random].bonus != nil {
+            
+            freeCells[random].removeBonusWithDisposeAnimation()
+        }
         
         freeCells[random].block()
     }

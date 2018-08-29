@@ -11,5 +11,7 @@ class GameConstants {
     static let SecondsPerCell = 0.2
     static let BonusAnimationDuration = 0.5
     static let BonusTurnsLifetime = 2
+    static let BaseBonusDropProbability = 0.1
+    static let MaxBonusesOnScreen = 3
     
 }
