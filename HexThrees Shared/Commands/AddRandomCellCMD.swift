@@ -10,14 +10,17 @@ import Foundation
 
 class AddRandomCellCMD : GameCMD {
     
+    
+    private func isCellFree(cell: BgCell) -> Bool {
+        
+        return cell.gameCell == nil &&
+            cell.isBlocked == false
+    }
+    
     override func run() {
         
-        var freeCells = Array<BgCell>()
-        for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil && i.isBlocked == false) {
-                freeCells.append(i)
-            }
-        }
+        var freeCells = self.gameModel.getBgCells(
+            compare: self.isCellFree)
         
         guard freeCells.count > 0 else {
             return

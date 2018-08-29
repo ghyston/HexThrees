@@ -22,6 +22,16 @@ class GameModel {
     var score : Int = 0
     var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
     
+    func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
+        
+        return self.bgHexes.filter(compare)
+    }
+    
+    func hasBgCells(compare: (_: BgCell) -> Bool) -> Bool {
+        
+        return self.bgHexes.first(where: compare) == nil
+    }
+    
     init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
         
         self.geometry = FieldGeometry(

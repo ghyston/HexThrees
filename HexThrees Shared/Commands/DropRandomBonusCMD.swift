@@ -10,17 +10,19 @@ import Foundation
 
 class DropRandomBonusCMD : GameCMD {
     
+    private func cellForBonus(cell: BgCell) -> Bool {
+        
+        return
+            cell.gameCell == nil &&
+            cell.isBlocked == false &&
+            cell.bonus == nil
+    }
+    
     override func run() {
         
         //@todo: add random generator with probabilities etc
         
-        //@todo: move selectors logic like this to HexField
-        var freeCells = [BgCell]()
-        for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil && i.isBlocked == false && i.bonus == nil) {
-                freeCells.append(i)
-            }
-        }
+        var freeCells = self.gameModel.getBgCells(compare: self.cellForBonus)
         
         guard freeCells.count > 0 else {
             return
