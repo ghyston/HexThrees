@@ -10,7 +10,7 @@ import Foundation
 
 class DropRandomBonusCMD : GameCMD {
     
-    private func cellForBonus(cell: BgCell) -> Bool {
+    private func freeCell(cell: BgCell) -> Bool {
         
         return
             cell.gameCell == nil &&
@@ -30,9 +30,7 @@ class DropRandomBonusCMD : GameCMD {
     
     override func run() {
         
-        //@todo: add random generator with probabilities etc
-        
-        var freeCells = self.gameModel.getBgCells(compare: self.cellForBonus)
+        var freeCells = self.gameModel.getBgCells(compare: self.freeCell)
         
         guard freeCells.count > 0 else {
             return
@@ -59,25 +57,23 @@ class DropRandomBonusCMD : GameCMD {
             return
         }
         
-        let hasBlockedCells = self.gameModel.hasBgCells(compare: self.cellIsBlocked)
+        let bonusTypes = ProbabilityArray<BonusType>()
         
-        let blockBonusProbability: Float = hasBlockedCells ? 0.5 : 0.0
-        let unlockBonusProbability: Float = 0.5
-        
-        let bonusDice = Float.random(
-            min: 0.0,
-            max: Float(blockBonusProbability + unlockBonusProbability))
-        
-        //@todo: check, this is actually wrong!
-        if(bonusDice < blockBonusProbability) {
+        if self.gameModel.hasBgCells(compare: self.cellIsBlocked) {
             
-            let bonusNode = BonusFabric.createLockBonus(gameModel: self.gameModel)
-            freeCells[random].addBonus(bonusNode)
+            bonusTypes.add(.UNLOCK_CELL, 0.3)
         }
-        else {
+        
+        if self.gameModel.countBgCells(compare: self.freeCell) > 2 {
             
-            let bonusNode = BonusFabric.createUnlockBonus(gameModel: self.gameModel)
-            freeCells[random].addBonus(bonusNode)
+            bonusTypes.add(.BLOCK_CELL, 0.3)
         }
+       
+        guard let bonusType = bonusTypes.getRandom() else {
+            return
+        }
+        
+        let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: gameModel)
+        freeCells[random].addBonus(bonusNode)
     }
 }

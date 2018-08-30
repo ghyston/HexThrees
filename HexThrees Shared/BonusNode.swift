@@ -9,12 +9,6 @@
 import Foundation
 import SpriteKit
 
-enum BonusType {
-    case blockCell
-    case unblockCell
-    case x2Points
-}
-
 class BonusNode : SKNode {
     
     let sprite : SKSpriteNode
@@ -22,8 +16,11 @@ class BonusNode : SKNode {
     let countLabel : SKLabelNode
     let command : GameCMD
     var turnsCount : Int
+    let type: BonusType
     
-    init(spriteName: String, turnsToDispose: Int, onPick: GameCMD) {
+    init(type: BonusType, spriteName: String, turnsToDispose: Int, onPick: GameCMD) {
+        
+        self.type = type
         
         self.sprite = SKSpriteNode(imageNamed: spriteName)
         self.command = onPick

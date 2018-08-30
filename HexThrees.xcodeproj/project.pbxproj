@@ -72,6 +72,7 @@
 		3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12A21346D8200D9FCBC /* HexField.swift */; };
 		3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */; };
 		3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */; };
+		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,7 @@
 		3FEBD12A21346D8200D9FCBC /* HexField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
 		3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRandomBonusCMD.swift; sourceTree = "<group>"; };
 		3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBonusesCounterCMD.swift; sourceTree = "<group>"; };
+		3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityDice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				3FEBD12621346A5900D9FCBC /* BonusNode.swift */,
 				3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */,
 				3FEBD12A21346D8200D9FCBC /* HexField.swift */,
+				3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
 				3FAC645720B5E3170083C56C /* GameCMD.swift in Sources */,
 				3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */,
+				3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */,
 				3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */,
 				3FAC646020B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */,
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
