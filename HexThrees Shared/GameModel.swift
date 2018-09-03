@@ -17,9 +17,11 @@ class GameModel {
     var geometry: FieldGeometry
     
     // Some common properties
-    var bgHexes : [BgCell] = [BgCell]()
+    var bgHexes = [BgCell]()
     var swipeStatus = SwipeStatus()
     var score : Int = 0
+    var scoreBuffs = [ScoreBuff]()
+    var scoreMultiplier : Int = 1
     var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
     var turnsWithoutBonus : Int = 0
     

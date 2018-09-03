@@ -12,7 +12,8 @@ enum BonusType {
     
     case UNLOCK_CELL
     case BLOCK_CELL
-    //case X2_POINTS
+    case X2_POINTS
+    case X3_POINTS
 }
 
 class BonusFabric {
@@ -24,6 +25,10 @@ class BonusFabric {
             return createUnlockBonus(gameModel: gameModel)
         case .BLOCK_CELL:
             return createLockBonus(gameModel: gameModel)
+        case .X2_POINTS:
+            return createX2Bonus(gameModel: gameModel)
+        case .X3_POINTS:
+            return createX3Bonus(gameModel: gameModel)
         }
     }
     
@@ -45,9 +50,22 @@ class BonusFabric {
             onPick: BlockRandomCellCMD(gameModel))
     }
     
-    /*class func createX2Bonus(gameModel: GameModel) -> BonusNode {
+    class func createX2Bonus(gameModel: GameModel) -> BonusNode {
         
-        return BonusNode(spriteName: "x2", command: UnlockRandomCellCMD(gameModel))
-    }*/
+        return BonusNode(
+            type: .BLOCK_CELL,
+            spriteName: "bonus_x2",
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: AddScoreBaffCMD(gameModel, factor: 2))
+    }
+    
+    class func createX3Bonus(gameModel: GameModel) -> BonusNode {
+        
+        return BonusNode(
+            type: .BLOCK_CELL,
+            spriteName: "bonus_x2",
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: AddScoreBaffCMD(gameModel, factor: 3))
+    }
     
 }

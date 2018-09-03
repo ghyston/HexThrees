@@ -19,6 +19,8 @@ class DoSwipeCMD : GameCMD {
         self.gameModel.swipeStatus.inProgress = true
         self.gameModel.swipeStatus.somethingChangeed = false
         
+        ApplyScoreBuffCMD(self.gameModel).run()
+        
         switch direction {
         case .Left:
             MoveLeftCMD(self.gameModel).run()

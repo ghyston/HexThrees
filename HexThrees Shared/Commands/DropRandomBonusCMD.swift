@@ -58,15 +58,17 @@ class DropRandomBonusCMD : GameCMD {
         }
         
         let bonusTypes = ProbabilityArray<BonusType>()
+        bonusTypes.add(.X2_POINTS, GameConstants.X2BonusProbability)
+        bonusTypes.add(.X3_POINTS, GameConstants.X3BonusProbability)
         
         if self.gameModel.hasBgCells(compare: self.cellIsBlocked) {
             
-            bonusTypes.add(.UNLOCK_CELL, 0.3)
+            bonusTypes.add(.UNLOCK_CELL, GameConstants.UnlockBonusProbability)
         }
         
         if self.gameModel.countBgCells(compare: self.freeCell) > 2 {
             
-            bonusTypes.add(.BLOCK_CELL, 0.3)
+            bonusTypes.add(.BLOCK_CELL, GameConstants.LockBonusProbability)
         }
        
         guard let bonusType = bonusTypes.getRandom() else {
