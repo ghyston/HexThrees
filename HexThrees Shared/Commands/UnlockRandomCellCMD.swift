@@ -19,12 +19,7 @@ class UnlockRandomCellCMD : GameCMD {
             }
         }
         
-        guard blockedCells.count > 0 else {
-            return
-        }
-        
-        let random = Int.random(min: 0, max: blockedCells.count - 1)
-        blockedCells[random].unblock()
+        blockedCells.randomElement()?.unblock()
     }
     
 }
