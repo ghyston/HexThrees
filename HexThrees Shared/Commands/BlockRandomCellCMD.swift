@@ -27,21 +27,20 @@ class BlockRandomCellCMD : GameCMD {
     
     override func run() {
         
-        var freeCells = gameModel.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
+        let freeCells = gameModel.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
             gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
             gameModel.getBgCells(compare: self.dontContainGameCell)
         
-        guard freeCells.count > 0 else {
+        guard let randomCell = freeCells.randomElement() else {
             return
         }
         
-        let random = Int.random(min: 0, max: freeCells.count - 1)
-        if freeCells[random].bonus != nil {
+        if randomCell.bonus != nil {
             
-            freeCells[random].removeBonusWithDisposeAnimation()
+            randomCell.removeBonusWithDisposeAnimation()
         }
         
-        freeCells[random].block()
+        randomCell.block()
     }
     
 }

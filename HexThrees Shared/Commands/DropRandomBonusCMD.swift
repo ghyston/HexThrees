@@ -30,19 +30,15 @@ class DropRandomBonusCMD : GameCMD {
     
     override func run() {
         
-        var freeCells = self.gameModel.getBgCells(compare: self.freeCell)
-        
-        guard freeCells.count > 0 else {
+        guard let randomFreeCell = self.gameModel.getBgCells(compare: self.freeCell).randomElement() else {
             return
         }
-        
-        let random = Int.random(min: 0, max: freeCells.count - 1)
         
         let dropBonusProbability =
             Float(GameConstants.BaseBonusDropProbability) *
             Float(gameModel.turnsWithoutBonus)
-        let rand = Float.random
-        if rand > dropBonusProbability {
+        
+        if Float.random > dropBonusProbability {
             
             gameModel.turnsWithoutBonus += 1
             return
@@ -76,6 +72,6 @@ class DropRandomBonusCMD : GameCMD {
         }
         
         let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: gameModel)
-        freeCells[random].addBonus(bonusNode)
+        randomFreeCell.addBonus(bonusNode)
     }
 }

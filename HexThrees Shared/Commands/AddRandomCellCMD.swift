@@ -19,22 +19,17 @@ class AddRandomCellCMD : GameCMD {
     
     override func run() {
         
-        var freeCells = self.gameModel.getBgCells(
-            compare: self.isCellFree)
-        
-        guard freeCells.count > 0 else {
+        guard let bgCell = self.gameModel.getBgCells(compare: self.isCellFree).randomElement() else {
             return
         }
-        
-        let random = Int.random(min: 0, max: freeCells.count - 1)
         
         let newElement = GameCell(
             model: self.gameModel,
             val: 0)
-        freeCells[random].addGameCell(cell: newElement)
+        bgCell.addGameCell(cell: newElement)
         newElement.playAppearAnimation()
         
-        freeCells[random].bonus?.command.run()
-        freeCells[random].removeBonusWithPickingAnimation(0.0)
+        bgCell.bonus?.command.run()
+        bgCell.removeBonusWithPickingAnimation(0.0)
     }
 }
