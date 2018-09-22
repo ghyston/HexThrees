@@ -12,15 +12,9 @@ class MoveXUpCMD : GameCMD {
     
     override func run() {
         
-        let line = LineCellsContainer(self.gameModel)
-        for i1 in 0 ..< self.gameModel.fieldHeight {
-            
-            for i2 in 0 ..< self.gameModel.fieldWidth {
-                //it should be i1 in fieldWidth ..< 0 but swift sucks
-                let index = (i1 + 1) * self.gameModel.fieldWidth - i2 - 1
-                line.add(index)
-            }
-            
+        let lines = LineCellsContainerFabric.fillWithXUp(gameModel: self.gameModel)
+        
+        for line in lines {
             line.flush()
         }
     }

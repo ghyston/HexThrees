@@ -12,15 +12,11 @@ class MoveXDownCMD : GameCMD {
     
     override func run() {
         
-        let line = LineCellsContainer(self.gameModel)
-        for i2 in 0 ..< self.gameModel.fieldHeight {
+        let containers = LineCellsContainerFabric.fillWithXDown(gameModel: self.gameModel)
+        
+        for container in containers {
             
-            for i1 in 0 ..< self.gameModel.fieldWidth {
-                let index = i2 * self.gameModel.fieldWidth + i1
-                line.add(index)
-            }
-            
-            line.flush()
+            container.flush()
         }
     }
 }
