@@ -19,6 +19,17 @@ class CheckGameEnd : GameCMD {
             }
         }
         
+        //@todo: this is pseudo code to check lines using iterators
+        /*var iterator = MoveLeftIterator(self.gameModel)
+         while var container = iterator.next() {
+         
+         if container.canBeMerged { //@todo: implement this
+         return true
+         }
+         }
+         return false*/
+        // end of pseudo code
+        
         
         
         

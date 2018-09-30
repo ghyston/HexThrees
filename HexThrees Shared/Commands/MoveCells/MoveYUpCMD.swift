@@ -12,16 +12,16 @@ class MoveYUpCMD : GameCMD {
     
     override func run() {
         
-        let line = LineCellsContainer(self.gameModel)
+       /* let line = LineCellsContainer(self.gameModel)
         for i1 in 0 ..< self.gameModel.fieldWidth {
             
             for i2 in 0 ..< self.gameModel.fieldHeight {
-                //it should be i1 in fieldWidth ..< 0 but swift sucks
+                
                 let index = (self.gameModel.fieldHeight - i2 - 1) * self.gameModel.fieldWidth + i1
                 line.add(index)
             }
             
             line.flush()
-        }
+        }*/
     }
 }

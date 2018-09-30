@@ -12,11 +12,11 @@ class MoveXUpCMD : GameCMD {
     
     override func run() {
         
-        let lines = LineCellsContainerFabric.fillWithXUp(gameModel: self.gameModel)
+        /*let lines = LineCellsContainerFabric.fillWithXUp(gameModel: self.gameModel)
         
         for line in lines {
             line.flush()
-        }
+        }*/
     }
     
     

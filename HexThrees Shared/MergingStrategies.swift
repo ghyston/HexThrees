@@ -30,7 +30,7 @@ class MerginStrategyFabric {
 protocol MergingStrategy {
     
     func prefilValues(maxIndex: Int)
-    func value(index: Int) -> Int
+    func value(index: Int) -> Int //@todo: can we use subscribe at protocol?
     func isSiblings(_ one: Int, _ two: Int) -> Int?
 }
 

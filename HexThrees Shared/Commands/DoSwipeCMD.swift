@@ -21,25 +21,18 @@ class DoSwipeCMD : GameCMD {
         
         ApplyScoreBuffCMD(self.gameModel).run()
         
-        switch direction {
-        case .Left:
-            MoveLeftCMD(self.gameModel).run()
-        case .Right:
-            MoveRightCMD(self.gameModel).run()
-        case .XUp:
-            MoveXUpCMD(self.gameModel).run()
-        case .YUp:
-            MoveYUpCMD(self.gameModel).run()
-        case .XDown:
-            MoveXDownCMD(self.gameModel).run()
-        case .YDown:
-            MoveYDownCMD(self.gameModel).run()
-        case .Unknown:
+        if let iterator = self.chooseIterator(direction) {
+            while let container = iterator.next() {
+                MoveLineCMD(self.gameModel, cells: container).run()
+            }
+        }
+        else {
             self.gameModel.swipeStatus.inProgress = false
-            return
         }
         
         if gameModel.swipeStatus.somethingChangeed {
+            
+            CheckGameEnd(gameModel).run() //@todo: unclear, where to show end screen?
             
             UpdateBonusesCounterCMD(gameModel).run()
             AddRandomCellCMD(gameModel).run()
@@ -48,6 +41,29 @@ class DoSwipeCMD : GameCMD {
         
         gameModel.swipeStatus.delay = 0.0
         gameModel.swipeStatus.inProgress = false
+        
+    }
+    
+    private func chooseIterator(_ direction : SwipeDirection) -> CellsIterator? {
+        
+        switch direction {
+        //case .Left:
+        //MoveLeftCMD(self.gameModel).run()
+        //case .Right:
+        //MoveRightCMD(self.gameModel).run()
+        //case .XUp:
+        //MoveXUpCMD(self.gameModel).run()
+        case .YUp:
+            return MoveYUpIterator(gameModel: self.gameModel)
+        //case .XDown:
+        //MoveXDownCMD(self.gameModel).run()
+        case .YDown:
+            return MoveYDownIterator(gameModel: self.gameModel)
+        case .Unknown:
+            fallthrough
+        default:
+            return nil
+        }
         
     }
 }

@@ -12,7 +12,7 @@ class MoveYDownCMD : GameCMD {
     
     override func run() {
         
-        let line = LineCellsContainer(self.gameModel)
+        /*let line = LineCellsContainer(self.gameModel)
         for i1 in 0 ..< self.gameModel.fieldWidth {
             
             for i2 in 0 ..< self.gameModel.fieldHeight {
@@ -21,6 +21,6 @@ class MoveYDownCMD : GameCMD {
             }
             
             line.flush()
-        }
+        }*/
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 //@todo: remove old implementation, when new will be ready
-class LineCellsContainer {
+/*class LineCellsContainer {
     
     var cells = [BgCell]()
     let gameModel : GameModel
@@ -35,34 +35,56 @@ class LineCellsContainer {
     
     func flush() {
         
-        MoveLineCMD(self.gameModel).run(cells: cells)
+        MoveLineCMD(self.gameModel, cells).run()
         self.cells.removeAll(keepingCapacity: true)
     }
     
-}
+}*/
 
-class LineCellsContainer2<FlushCommand : GameCMD> {
+
+//@todo: implement can be merged ?
+
+class LineCellsContainer2 {
     
     var cells = [BgCell]()
-    let gameModel : GameModel
     
-    required init(_ gameModel: GameModel) {
+    var count : Int {
         
-        self.gameModel = gameModel
+        return cells.count
     }
     
-    func add(_ index: Int) {
+    func add(_ cell: BgCell) {
+        self.cells.append(cell)
+    }
+    
+    subscript (index: Int) -> BgCell {
         
-        let cell = self.gameModel.bgHexes[index]
+        return cells[index];
+    }
+    
+    func findNext(startIndex: Int, condition: (BgCell) -> Bool) -> (index: Int, cell: BgCell)? {
         
-        if cell.isBlocked {
-            
-            self.flush()
+        for (index, cell) in cells[startIndex...].enumerated() {
+            if condition(cell) {
+                return (startIndex + index, cell)
+            }
         }
-        else {
-            
-            self.cells.append(cell)
-        }
+        
+        return nil
+    }
+    
+    func cellsAvailableForMove(_ from: Int, _ to: Int) {
+        
+        assert(from < count, "MoveLineCMD: from >= count")
+        assert(to < count, "MoveLineCMD: to >= count")
+        assert(from > to, "MoveLineCMD: from >= to")
+        assert(cells[from].gameCell != nil, "MoveLineCMD: \"from\" cell is empty")
+    }
+
+    func canBeMoved() -> Bool {
+        
+        //@todo: implement this!
+        return true
     }
     
     func clear() {
@@ -76,9 +98,11 @@ class LineCellsContainer2<FlushCommand : GameCMD> {
         
         //FlushCommand(self.gameModel).run()
         
-        MoveLineCMD(self.gameModel).run(cells: cells)
+        //MoveLineCMD(self.gameModel, cells: self).run()
         
-        self.cells.removeAll()
+        self.cells.removeAll(keepingCapacity: true)
     }
+    
+    
     
 }

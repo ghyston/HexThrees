@@ -12,11 +12,11 @@ class MoveXDownCMD : GameCMD {
     
     override func run() {
         
-        let containers = LineCellsContainerFabric.fillWithXDown(gameModel: self.gameModel)
+        /*let containers = LineCellsContainerFabric.fillWithXDown(gameModel: self.gameModel)
         
         for container in containers {
             
             container.flush()
-        }
+        }*/
     }
 }

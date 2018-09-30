@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F064870215B9070005461C7 /* MoveYDownIterator.swift */; };
+		3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F064873215D4167005461C7 /* MoveYUpIterator.swift */; };
+		3F064876215D4180005461C7 /* CellsIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F064875215D4180005461C7 /* CellsIterator.swift */; };
 		3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B354207C81E000C8315A /* AppDelegate.swift */; };
 		3F06B357207C81E000C8315A /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B356207C81E000C8315A /* GameVC.swift */; };
 		3F06B35A207C81E000C8315A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B358207C81E000C8315A /* Main.storyboard */; };
@@ -80,6 +83,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F064870215B9070005461C7 /* MoveYDownIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYDownIterator.swift; sourceTree = "<group>"; };
+		3F064873215D4167005461C7 /* MoveYUpIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYUpIterator.swift; sourceTree = "<group>"; };
+		3F064875215D4180005461C7 /* CellsIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsIterator.swift; sourceTree = "<group>"; };
 		3F06B349207C81E000C8315A /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		3F06B34A207C81E000C8315A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		3F06B34B207C81E000C8315A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -166,6 +172,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F064872215D4150005461C7 /* Iterators */ = {
+			isa = PBXGroup;
+			children = (
+				3F064870215B9070005461C7 /* MoveYDownIterator.swift */,
+				3F064873215D4167005461C7 /* MoveYUpIterator.swift */,
+				3F064875215D4180005461C7 /* CellsIterator.swift */,
+			);
+			path = Iterators;
+			sourceTree = "<group>";
+		};
 		3F06B343207C81E000C8315A = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +195,7 @@
 		3F06B348207C81E000C8315A /* HexThrees Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3F064872215D4150005461C7 /* Iterators */,
 				3F1A626521181DB500CC6586 /* Shaders */,
 				3FE9202920D03286009B7370 /* Common */,
 				3FAC646820B8791D0083C56C /* Assets */,
@@ -422,14 +439,17 @@
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */,
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
+				3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
+				3F064876215D4180005461C7 /* CellsIterator.swift in Sources */,
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
 				3FAC645720B5E3170083C56C /* GameCMD.swift in Sources */,
 				3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */,
 				3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */,
 				3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */,
+				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,
 				3FAC646020B5E4FB0083C56C /* MoveYDownCMD.swift in Sources */,
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
 				3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */,

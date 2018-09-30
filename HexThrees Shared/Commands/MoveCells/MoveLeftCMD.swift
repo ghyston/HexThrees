@@ -12,7 +12,7 @@ class MoveLeftCMD : GameCMD {
     
     override func run() {
         
-        let w = self.gameModel.fieldWidth
+        /*let w = self.gameModel.fieldWidth
         let h = self.gameModel.fieldHeight
         let line = LineCellsContainer(self.gameModel)
         
@@ -53,7 +53,7 @@ class MoveLeftCMD : GameCMD {
             }
             
             line.flush()
-        }
+        }*/
         
     }
 }

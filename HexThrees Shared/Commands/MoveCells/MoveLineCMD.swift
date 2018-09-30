@@ -13,13 +13,15 @@ import SpriteKit
 // Try to move/merge cells in one dimension array from end to 0
 class MoveLineCMD : GameCMD {
     
-    private var count: Int = 0
-    private var cells = Array<BgCell>()
+    private var cells : LineCellsContainer2
     
-    func run(cells: Array<BgCell>) {
+    init(_ gameModel: GameModel, cells: LineCellsContainer2) {
         
-        self.count = cells.count
         self.cells = cells
+        super.init(gameModel)
+    }
+    
+    override func run() {
         
         //run recursive algorithm, starting with 0
         processCell(counter: 0)
@@ -28,38 +30,50 @@ class MoveLineCMD : GameCMD {
     private func processCell(counter: Int) {
         
         // end of algorithm : last cell achieved
-        if counter >= count {
+        if counter >= cells.count {
             return
         }
         
+        func notEmpty (cell: BgCell) -> Bool {
+            
+            return cell.gameCell != nil
+        }
+        
         // end of algorithm : no more cells with values
-        guard let first : Int = findNextNonEmpty(startIndex: counter) else {
+        guard let first = cells.findNext(
+            startIndex: counter,
+            condition: notEmpty) else {
             return
         }
         
         // end of algorithm : one cells value, move it and collapse
-        guard let second : Int = findNextNonEmpty(startIndex: first + 1) else {
+        guard let second = cells.findNext(
+            startIndex: first.index + 1,
+            condition: notEmpty) else {
             
-            moveCell(from: first, to: counter)
+            moveCell(from: first.index, to: counter)
             return
         }
         
-        let firstVal = cells[first].gameCell!.value
-        let secondVal = cells[second].gameCell!.value
+        let firstVal = first.cell.gameCell!.value
+        let secondVal = second.cell.gameCell!.value
         
         // If we have two cells in line with values, that can be collapsed
         if let newVal = gameModel.strategy.isSiblings(firstVal, secondVal) {
             
-            let duration = moveCellAndDelete(from: second, to: counter) - GameConstants.SecondsPerCell
+            let duration = moveCellAndDelete(
+                from: second.index,
+                to: counter)
+                - GameConstants.SecondsPerCell
             
             //If first cellue with value in the beginning of index, we dont need to move it
-            if first == counter {
+            if first.index == counter {
                 
                 updateCell(index: counter, newVal: newVal, timeDelay: duration)
             }
             else {
                 
-                moveCell(from: first, to: counter)
+                moveCell(from: first.index, to: counter)
                 updateCell(index: counter, newVal: newVal, timeDelay: duration)
             }
             
@@ -67,8 +81,8 @@ class MoveLineCMD : GameCMD {
         }
         else {
             
-            moveCell(from: first, to: counter)
-            moveCell(from: second, to: counter + 1)
+            moveCell(from: first.index, to: counter)
+            moveCell(from: second.index, to: counter + 1)
             processCell(counter: counter + 1)
         }
     }
@@ -81,7 +95,7 @@ class MoveLineCMD : GameCMD {
         
         self.gameModel.swipeStatus.somethingChangeed = true
         
-        checkMoveCellsAvailable(from, to)
+        cells.cellsAvailableForMove(from, to)
         
         pickUpBonuses(from, to)
         
@@ -111,7 +125,7 @@ class MoveLineCMD : GameCMD {
         
         self.gameModel.swipeStatus.somethingChangeed = true
         
-        checkMoveCellsAvailable(from, to)
+        cells.cellsAvailableForMove(from, to)
         
         pickUpBonuses(from, to)
         
@@ -144,17 +158,6 @@ class MoveLineCMD : GameCMD {
         UpdateScoreCMD(self.gameModel).run(newVal)
     }
     
-    private func findNextNonEmpty(startIndex: Int) -> Int? {
-        
-        for i in startIndex ..< count {
-            if cells[i].gameCell != nil {
-                return i
-            }
-        }
-        
-        return nil
-    }
-    
     private func pickUpBonuses(_ from: Int, _ to: Int) {
         
         for i in to...from {
@@ -165,13 +168,5 @@ class MoveLineCMD : GameCMD {
                 cells[i].removeBonusWithPickingAnimation(delay)
             }
         }
-    }
-    
-    private func checkMoveCellsAvailable(_ from: Int, _ to: Int) {
-        
-        assert(from < count, "MoveLineCMD: from >= count")
-        assert(to < count, "MoveLineCMD: to >= count")
-        assert(from > to, "MoveLineCMD: from >= to")
-        assert(cells[from].gameCell != nil, "MoveLineCMD: \"from\" cell is empty")
     }
 }

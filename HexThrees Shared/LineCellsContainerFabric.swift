@@ -8,23 +8,28 @@
 
 import Foundation
 
-class LineCellsContainerFabric {
+
+//@todo: different directions is different iterators over gameModel.cells[]
+// iterator should return cell, not block 
+/*class LineCellsContainerFabric {
     
-    private static var containers = [LineCellsContainer]()
+    private static var containers = [LineCellsContainer2]()
     
-    static func fillWithXUp(gameModel : GameModel) -> [LineCellsContainer] {
+    static func fillWithXUp(gameModel : GameModel) -> [LineCellsContainer2] {
         
         containers.removeAll(keepingCapacity: true)
         
         for i1 in 0 ..< gameModel.fieldHeight {
             
-            let line = LineCellsContainer(gameModel)
+            var line = LineCellsContainer2(gameModel)
             for i2 in 0 ..< gameModel.fieldWidth {
                 //it should be i1 in fieldWidth ..< 0 but swift sucks
                 let index = (i1 + 1) * gameModel.fieldWidth - i2 - 1
-                line.add(index)
+                if(line.add(index)) {
+                    containers.append(line)
+                    line = LineCellsContainer2(gameModel) //@todo: memory!!
+                }
             }
-            
             containers.append(line)
         }
         return containers
@@ -46,7 +51,7 @@ class LineCellsContainerFabric {
         }
         
         return containers
-    }
+    }*/
     
     // @todo: use this iterators!!
     /*static func iterateXDown(
@@ -65,4 +70,4 @@ class LineCellsContainerFabric {
         }
     }*/
     
-}
+//}
