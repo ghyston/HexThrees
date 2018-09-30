@@ -51,12 +51,12 @@ class DoSwipeCMD : GameCMD {
             return MoveLeftIterator(self.gameModel)
         case .Right:
             return MoveRightIterator(self.gameModel)
-        //case .XUp:
-        //MoveXUpCMD(self.gameModel).run()
+        case .XUp:
+            return MoveXUpIterator(self.gameModel)
         case .YUp:
             return MoveYUpIterator(self.gameModel)
-        //case .XDown:
-        //MoveXDownCMD(self.gameModel).run()
+        case .XDown:
+            return MoveXDownIterator(self.gameModel)
         case .YDown:
             return MoveYDownIterator(self.gameModel)
         case .Unknown:
