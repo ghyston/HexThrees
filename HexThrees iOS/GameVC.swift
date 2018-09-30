@@ -89,7 +89,7 @@ class GameVC: UIViewController {
             tempAddRandomStaff: true)
         cmd.run()
         self.gameModel = cmd.gameModel
-        ContainerConfig.instance.register(self.gameModel as! GameModel)
+        ContainerConfig.instance.register(self.gameModel)
     }
     
     @objc func onGameReset(notification: Notification) {

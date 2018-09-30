@@ -47,8 +47,8 @@ class DoSwipeCMD : GameCMD {
     private func chooseIterator(_ direction : SwipeDirection) -> CellsIterator? {
         
         switch direction {
-        //case .Left:
-        //MoveLeftCMD(self.gameModel).run()
+        case .Left:
+            return MoveLeftIterator(gameModel: self.gameModel)
         //case .Right:
         //MoveRightCMD(self.gameModel).run()
         //case .XUp:
