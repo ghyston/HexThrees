@@ -8,29 +8,8 @@
 
 import Foundation
 
-
-
-class MoveYDownIterator: CellsIterator {
+class MoveYDownIterator: BaseCellsIterator, CellsIterator {
     
-    let gameModel : GameModel
-    
-    private var line = LineCellsContainer2()
-    
-    private var y: Int = 0
-    private var x: Int = 0
-    private var w: Int { return self.gameModel.fieldWidth }
-    private var h: Int { return self.gameModel.fieldHeight }
-    
-    init(gameModel: GameModel) {
-        
-        self.gameModel = gameModel
-    }
-    
-    private func getCell(_ x: Int, _ y: Int) -> BgCell {
-        let index = y * self.gameModel.fieldWidth + x
-        return self.gameModel.bgHexes[index]
-    }
-   
     func next() -> LineCellsContainer2? {
         
         line.flush()
