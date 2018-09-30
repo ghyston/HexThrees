@@ -48,17 +48,17 @@ class DoSwipeCMD : GameCMD {
         
         switch direction {
         case .Left:
-            return MoveLeftIterator(gameModel: self.gameModel)
-        //case .Right:
-        //MoveRightCMD(self.gameModel).run()
+            return MoveLeftIterator(self.gameModel)
+        case .Right:
+            return MoveRightIterator(self.gameModel)
         //case .XUp:
         //MoveXUpCMD(self.gameModel).run()
         case .YUp:
-            return MoveYUpIterator(gameModel: self.gameModel)
+            return MoveYUpIterator(self.gameModel)
         //case .XDown:
         //MoveXDownCMD(self.gameModel).run()
         case .YDown:
-            return MoveYDownIterator(gameModel: self.gameModel)
+            return MoveYDownIterator(self.gameModel)
         case .Unknown:
             fallthrough
         default:

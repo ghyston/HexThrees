@@ -10,6 +10,12 @@ import Foundation
 
 class MoveYUpIterator: BaseCellsIterator, CellsIterator {
     
+    override init(_ gameModel: GameModel) {
+        
+        super.init(gameModel)
+        y = h - 1
+    }
+    
     func next() -> LineCellsContainer2? {
         
         line.flush()

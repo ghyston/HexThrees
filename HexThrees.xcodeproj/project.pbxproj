@@ -11,6 +11,7 @@
 		3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F064873215D4167005461C7 /* MoveYUpIterator.swift */; };
 		3F064876215D4180005461C7 /* CellsIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F064875215D4180005461C7 /* CellsIterator.swift */; };
 		3F06487821611AA6005461C7 /* MoveLeftIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06487721611AA6005461C7 /* MoveLeftIterator.swift */; };
+		3F06487A2161343B005461C7 /* MoveRightIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0648792161343B005461C7 /* MoveRightIterator.swift */; };
 		3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B354207C81E000C8315A /* AppDelegate.swift */; };
 		3F06B357207C81E000C8315A /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B356207C81E000C8315A /* GameVC.swift */; };
 		3F06B35A207C81E000C8315A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B358207C81E000C8315A /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		3F064873215D4167005461C7 /* MoveYUpIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYUpIterator.swift; sourceTree = "<group>"; };
 		3F064875215D4180005461C7 /* CellsIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsIterator.swift; sourceTree = "<group>"; };
 		3F06487721611AA6005461C7 /* MoveLeftIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLeftIterator.swift; sourceTree = "<group>"; };
+		3F0648792161343B005461C7 /* MoveRightIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRightIterator.swift; sourceTree = "<group>"; };
 		3F06B349207C81E000C8315A /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		3F06B34A207C81E000C8315A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		3F06B34B207C81E000C8315A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				3F064873215D4167005461C7 /* MoveYUpIterator.swift */,
 				3F064875215D4180005461C7 /* CellsIterator.swift */,
 				3F06487721611AA6005461C7 /* MoveLeftIterator.swift */,
+				3F0648792161343B005461C7 /* MoveRightIterator.swift */,
 			);
 			path = Iterators;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				3F064876215D4180005461C7 /* CellsIterator.swift in Sources */,
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
 				3FAC645720B5E3170083C56C /* GameCMD.swift in Sources */,
+				3F06487A2161343B005461C7 /* MoveRightIterator.swift in Sources */,
 				3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */,
 				3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */,
 				3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */,

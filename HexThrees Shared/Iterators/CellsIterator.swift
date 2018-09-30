@@ -23,7 +23,7 @@ class BaseCellsIterator {
     internal var w: Int { return self.gameModel.fieldWidth }
     internal var h: Int { return self.gameModel.fieldHeight }
     
-    init(gameModel: GameModel) {
+    init(_ gameModel: GameModel) {
         
         self.gameModel = gameModel
     }

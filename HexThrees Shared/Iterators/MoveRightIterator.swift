@@ -1,5 +1,5 @@
 //
-//  MoveLeftIterator.swift
+//  MoveRightIterator.swift
 //  HexThrees iOS
 //
 //  Created by Ilja Stepanow on 30.09.18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MoveLeftIterator : BaseCellsIterator, CellsIterator {
+class MoveRightIterator : BaseCellsIterator, CellsIterator {
     
     private var d: Int = 0; // diagonal counter
     
@@ -23,8 +23,7 @@ class MoveLeftIterator : BaseCellsIterator, CellsIterator {
             
             for _ in (d ..< len) {
                 
-                let temp = len - d - 1
-                let cell = getCell(x - temp, temp)
+                let cell = getCell(x - d, d)
                 d += 1
                 
                 if(cell.isBlocked) {
@@ -47,8 +46,7 @@ class MoveLeftIterator : BaseCellsIterator, CellsIterator {
             
             for _ in (d ..< len) {
                 
-                let temp = len - d - 1
-                let cell = getCell(w - temp - 1, y + temp)                
+                let cell = getCell(w - d - 1, y + d)
                 d += 1
                 
                 if(cell.isBlocked) {
@@ -66,5 +64,5 @@ class MoveLeftIterator : BaseCellsIterator, CellsIterator {
         
         return nil
     }
-
+    
 }
