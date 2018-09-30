@@ -10,9 +10,9 @@ import Foundation
 
 class MoveYDownIterator: BaseCellsIterator, CellsIterator {
     
-    func next() -> LineCellsContainer2? {
+    func next() -> LineCellsContainer? {
         
-        line.flush()
+        line.clear()
  
         if y >= h {
             y = 0

@@ -10,13 +10,13 @@ import Foundation
 
 protocol CellsIterator {
     
-    func next() -> LineCellsContainer2?
+    func next() -> LineCellsContainer?
 }
 
 class BaseCellsIterator {
     
     internal let gameModel : GameModel
-    internal var line = LineCellsContainer2()
+    internal var line = LineCellsContainer()
     
     internal var y: Int = 0
     internal var x: Int = 0

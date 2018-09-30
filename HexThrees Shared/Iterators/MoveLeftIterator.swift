@@ -12,9 +12,9 @@ class MoveLeftIterator : BaseCellsIterator, CellsIterator {
     
     private var d: Int = 0; // diagonal counter
     
-    func next() -> LineCellsContainer2? {
+    func next() -> LineCellsContainer? {
         
-        line.flush()
+        line.clear()
         
         // Move along X from bottom to middle
         for _ in x ..< w {

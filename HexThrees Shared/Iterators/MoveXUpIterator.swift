@@ -16,9 +16,9 @@ class MoveXUpIterator: BaseCellsIterator, CellsIterator {
         x = w - 1
     }
     
-    func next() -> LineCellsContainer2? {
+    func next() -> LineCellsContainer? {
         
-        line.flush()
+        line.clear()
         
         if x < 0 {
             x = w - 1

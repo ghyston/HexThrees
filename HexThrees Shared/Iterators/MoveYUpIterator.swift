@@ -16,9 +16,9 @@ class MoveYUpIterator: BaseCellsIterator, CellsIterator {
         y = h - 1
     }
     
-    func next() -> LineCellsContainer2? {
+    func next() -> LineCellsContainer? {
         
-        line.flush()
+        line.clear()
         
         if y < 0 {
             y = h - 1

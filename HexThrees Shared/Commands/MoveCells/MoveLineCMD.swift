@@ -13,9 +13,9 @@ import SpriteKit
 // Try to move/merge cells in one dimension array from end to 0
 class MoveLineCMD : GameCMD {
     
-    private var cells : LineCellsContainer2
+    private var cells : LineCellsContainer
     
-    init(_ gameModel: GameModel, cells: LineCellsContainer2) {
+    init(_ gameModel: GameModel, cells: LineCellsContainer) {
         
         self.cells = cells
         super.init(gameModel)
