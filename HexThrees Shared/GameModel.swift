@@ -29,7 +29,6 @@ class GameModel {
     var score : Int = 0
     var scoreBuffs = [ScoreBuff]()
     var scoreMultiplier : Int = 1
-    var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
     var turnsWithoutBonus : Int = 0
     
     func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {

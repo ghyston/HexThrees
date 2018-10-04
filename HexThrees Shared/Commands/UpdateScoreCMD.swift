@@ -14,13 +14,6 @@ class UpdateScoreCMD : GameCMD {
     
         self.gameModel.score += val
         NotificationCenter.default.post(name: .updateScore, object: nil)
-        
-        if(self.gameModel.score > self.gameModel.newUnblockCellScore) {
-            
-            UnlockRandomCellCMD(self.gameModel).run()
-            self.gameModel.newUnblockCellScore *= 10 //@todo: use some gamemechanics here
-        }
-        
     }
     
 }
