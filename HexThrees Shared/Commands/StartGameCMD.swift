@@ -29,7 +29,7 @@ class StartGameCMD : CMD {
     func run() {
         
     
-        let gameModel = GameModel(
+        let gameModel = GameModel(            
             screenWidth: view.frame.width,
             fieldSize: params.fieldSize,
             strategy: MerginStrategyFabric.createByName(params.strategy))

@@ -36,7 +36,7 @@ class GameVC: UIViewController {
             fieldSize: 4,
             randomElementsCount: 4,
             blockedCellsCount: 2,
-            strategy: .Fibonacci)
+            strategy: .PowerOfTwo)
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -130,6 +130,11 @@ extension GameVC: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
         DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
+        //@todo: do proper screen for game finish
+        if self.gameModel!.status == .Finished {
+            CleanGameCMD(self.gameModel!).run()
+            startGame()
+        }
     }
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions

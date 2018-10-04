@@ -32,6 +32,7 @@ class DoSwipeCMD : GameCMD {
         
         if gameModel.swipeStatus.somethingChangeed {
             
+            
             CheckGameEnd(gameModel).run() //@todo: unclear, where to show end screen?
             
             UpdateBonusesCounterCMD(gameModel).run()

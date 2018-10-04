@@ -9,12 +9,19 @@
 import Foundation
 import SpriteKit
 
+enum GameState {
+    
+    case InPlay
+    case Finished
+}
+
 class GameModel {
     
     var fieldWidth: Int
     var fieldHeight: Int
     var strategy: MergingStrategy
     var geometry: FieldGeometry
+    var status: GameState = .InPlay // @todo: read about gameKit state machines
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -58,5 +65,10 @@ class GameModel {
         self.strategy = strategy
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
+    }
+    
+    func finishGame() {
+        
+        self.status = .Finished
     }
 }

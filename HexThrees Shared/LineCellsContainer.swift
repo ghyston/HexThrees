@@ -44,8 +44,6 @@ class LineCellsContainer {
         assert(from > to, "MoveLineCMD: from >= to")
         assert(cells[from].gameCell != nil, "MoveLineCMD: \"from\" cell is empty")
     }
-
-    
     
     func clear() {
         
