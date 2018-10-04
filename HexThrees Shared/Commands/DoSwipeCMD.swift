@@ -30,18 +30,8 @@ class DoSwipeCMD : GameCMD {
             self.gameModel.swipeStatus.inProgress = false
         }
         
-        if gameModel.swipeStatus.somethingChangeed {
-            
-            
-            CheckGameEnd(gameModel).run() //@todo: unclear, where to show end screen?
-            
-            UpdateBonusesCounterCMD(gameModel).run()
-            AddRandomCellCMD(gameModel).run()
-            DropRandomBonusCMD(gameModel).run()
-        }
-        
-        gameModel.swipeStatus.delay = 0.0
-        gameModel.swipeStatus.inProgress = false
+        AfterSwipeCMD(self.gameModel)
+            .runWithDelay(delay: gameModel.swipeStatus.delay)
         
     }
     

@@ -14,6 +14,7 @@
 		3F06487A2161343B005461C7 /* MoveRightIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0648792161343B005461C7 /* MoveRightIterator.swift */; };
 		3F06487C21613827005461C7 /* MoveXUpIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06487B21613827005461C7 /* MoveXUpIterator.swift */; };
 		3F06487E21613891005461C7 /* MoveXDownIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06487D21613891005461C7 /* MoveXDownIterator.swift */; };
+		3F0648802166873D005461C7 /* AfterSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06487F2166873D005461C7 /* AfterSwipeCMD.swift */; };
 		3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B354207C81E000C8315A /* AppDelegate.swift */; };
 		3F06B357207C81E000C8315A /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B356207C81E000C8315A /* GameVC.swift */; };
 		3F06B35A207C81E000C8315A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B358207C81E000C8315A /* Main.storyboard */; };
@@ -87,6 +88,7 @@
 		3F0648792161343B005461C7 /* MoveRightIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveRightIterator.swift; sourceTree = "<group>"; };
 		3F06487B21613827005461C7 /* MoveXUpIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveXUpIterator.swift; sourceTree = "<group>"; };
 		3F06487D21613891005461C7 /* MoveXDownIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveXDownIterator.swift; sourceTree = "<group>"; };
+		3F06487F2166873D005461C7 /* AfterSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterSwipeCMD.swift; sourceTree = "<group>"; };
 		3F06B349207C81E000C8315A /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		3F06B34A207C81E000C8315A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		3F06B34B207C81E000C8315A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */,
 				3F432D852139174A00AF3DC0 /* ScoreBuff.swift */,
 				3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */,
+				3F06487F2166873D005461C7 /* AfterSwipeCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */,
 				3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
+				3F0648802166873D005461C7 /* AfterSwipeCMD.swift in Sources */,
 				3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
 				3F4FA81920E2DFCD00971892 /* StartGameCMD.swift in Sources */,
 				3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */,

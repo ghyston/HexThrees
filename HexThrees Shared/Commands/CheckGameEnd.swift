@@ -29,6 +29,7 @@ class CheckGameEnd : GameCMD {
             return
         }
         
+        // Check possible movement on all directions
         let iterators = [
             MoveLeftIterator(self.gameModel),
             MoveRightIterator(self.gameModel),
