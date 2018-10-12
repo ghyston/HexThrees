@@ -15,6 +15,12 @@ enum GameState {
     case Finished
 }
 
+protocol ICellsStatisticCalculator {
+    
+    func next(cell: BgCell)
+    func clean()
+}
+
 class GameModel {
     
     var fieldWidth: Int
@@ -31,6 +37,14 @@ class GameModel {
     var scoreMultiplier : Int = 1
     var turnsWithoutBonus : Int = 0
     
+    func getCell(_ x: Int, _ y: Int) -> BgCell {
+        
+        assert(x >= 0 && x < fieldWidth, "cell coordinate \(x) out of range")
+        assert(y >= 0 && y < fieldHeight, "cell coordinate \(y) out of range")
+        let index = y * fieldWidth + x
+        return bgHexes[index]
+    }
+    
     func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
         
         return self.bgHexes.filter(compare)
@@ -44,6 +58,30 @@ class GameModel {
     func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
         
         return self.bgHexes.filter(compare).count
+    }
+    
+    func calculateForSiblings(coord: AxialCoord, calc: inout ICellsStatisticCalculator) {
+        
+        calc.clean()
+        
+        let xMin = max(coord.c - 1, 0)
+        let xMax = min(coord.c + 1, fieldWidth - 1)
+        let yMin = max(coord.r - 1, 0)
+        let yMax = min(coord.r + 1, fieldHeight - 1)
+        
+        
+        for x in xMin...xMax  {
+            for y in yMin ... yMax {
+                
+                // here skipping self cell and corner cells (because of hex geometry)
+                if (x == coord.c && y == coord.r) || x == y {
+                    continue
+                }
+                
+                calc.next(cell: getCell(x, y))
+            }
+        }
+        
     }
     
     init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {

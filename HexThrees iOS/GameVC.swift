@@ -35,7 +35,7 @@ class GameVC: UIViewController {
         self.defaultGameParams = GameParams(
             fieldSize: 4,
             randomElementsCount: 4,
-            blockedCellsCount: 12,
+            blockedCellsCount: 2,
             strategy: .PowerOfTwo)
         
         let recognizer = HexSwipeGestureRecogniser(

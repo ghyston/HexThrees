@@ -14,14 +14,16 @@ class BgCell: HexCell {
     var gameCell: GameCell?
     var bonus: BonusNode?
     var isBlocked: Bool = false
+    let coord: AxialCoord
     
     //@todo: make it lazy static (to init once per game)
     var blockShader : SKShader
     
-    init(model: GameModel, blocked: Bool) {
+    init(model: GameModel, blocked: Bool, coord: AxialCoord) {
         
         self.isBlocked = blocked
         self.blockShader = SKShader.init(fileNamed: "gridDervative.fsh")
+        self.coord = coord
         super.init(
             model: model,
             text: "",

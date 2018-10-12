@@ -8,6 +8,32 @@
 
 import Foundation
 
+
+class EmptyCellDistributionCalculator: ICellsStatisticCalculator {
+    
+    var openCells: Int = 0
+    var gameCells: Int = 0
+    
+    func next(cell: BgCell) {
+        
+        if cell.isBlocked {
+           return
+        }
+        
+        openCells += 1
+        
+        if cell.gameCell != nil {
+            gameCells += 1
+        }
+    }
+    
+    func clean() {
+        
+        openCells = 0
+        gameCells = 0
+    }
+}
+
 class BlockRandomCellCMD : GameCMD {
     
     private func dontHaveGameCellAndBonuses (cell: BgCell) -> Bool {
@@ -31,7 +57,21 @@ class BlockRandomCellCMD : GameCMD {
             gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
             gameModel.getBgCells(compare: self.dontContainGameCell)
         
-        guard let randomCell = freeCells.randomElement() else {
+        var dice = ProbabilityArray<BgCell>()
+        var calc = EmptyCellDistributionCalculator()
+        var icalc : ICellsStatisticCalculator = calc
+        // for some reason I cannot do &(calc as ICellsStatisticCalculator)
+        
+        for freeCell in freeCells {
+            
+            gameModel.calculateForSiblings(coord: freeCell.coord, calc: &icalc)
+            
+            let probability : Float = Float(calc.gameCells) / Float(calc.openCells)
+            dice.add(freeCell, probability)
+        }
+        
+        
+        guard let randomCell = dice.getRandom() else {
             return
         }
         

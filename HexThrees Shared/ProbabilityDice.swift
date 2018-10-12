@@ -33,6 +33,10 @@ class ProbabilityArray<T> {
     
     func getRandom() -> T? {
         
+        if self.sum <= 0.0 {
+            return list.randomElement()?.obj
+        }
+        
         let random = Float.random(in: 0.0 ... self.sum)
         var i : Float = 0.0
         

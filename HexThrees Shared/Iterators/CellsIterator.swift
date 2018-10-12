@@ -30,7 +30,6 @@ class BaseCellsIterator {
     
     internal func getCell(_ x: Int, _ y: Int) -> BgCell {
         
-        let index = y * w + x
-        return self.gameModel.bgHexes[index]
+        return self.gameModel.getCell(x, y)
     }
 }
