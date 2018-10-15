@@ -14,7 +14,6 @@ class RemoveCellCMD : GameCMD {
         
         assert(cell.gameCell != nil, "RemoveCellCMD: BgCell is empty")
         
-        cell.zPosition = 2 //@todo: define them as constants
         cell.gameCell?.removeFromParentWithDelay(delay: delay)
         cell.gameCell = nil
     }

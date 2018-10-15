@@ -19,31 +19,42 @@ class DoSwipeCMD : GameCMD {
         self.gameModel.swipeStatus.inProgress = true
         self.gameModel.swipeStatus.somethingChangeed = false
         
+        ApplyScoreBuffCMD(self.gameModel).run()
+        
+        if let iterator = self.chooseIterator(direction) {
+            while let container = iterator.next() {
+                MoveLineCMD(self.gameModel, cells: container).run()
+            }
+        }
+        else {
+            self.gameModel.swipeStatus.inProgress = false
+        }
+        
+        AfterSwipeCMD(self.gameModel)
+            .runWithDelay(delay: gameModel.swipeStatus.delay)
+        
+    }
+    
+    private func chooseIterator(_ direction : SwipeDirection) -> CellsIterator? {
+        
         switch direction {
         case .Left:
-            MoveLeftCMD(self.gameModel).run()
+            return MoveLeftIterator(self.gameModel)
         case .Right:
-            MoveRightCMD(self.gameModel).run()
+            return MoveRightIterator(self.gameModel)
         case .XUp:
-            MoveXUpCMD(self.gameModel).run()
+            return MoveXUpIterator(self.gameModel)
         case .YUp:
-            MoveYUpCMD(self.gameModel).run()
+            return MoveYUpIterator(self.gameModel)
         case .XDown:
-            MoveXDownCMD(self.gameModel).run()
+            return MoveXDownIterator(self.gameModel)
         case .YDown:
-            MoveYDownCMD(self.gameModel).run()
+            return MoveYDownIterator(self.gameModel)
         case .Unknown:
-            self.gameModel.swipeStatus.inProgress = false
-            return
+            fallthrough
+        default:
+            return nil
         }
-        
-        if gameModel.swipeStatus.somethingChangeed {
-            
-            AddRandomCellCMD(gameModel).run()
-        }
-        
-        gameModel.swipeStatus.delay = 0.0
-        gameModel.swipeStatus.inProgress = false
         
     }
 }

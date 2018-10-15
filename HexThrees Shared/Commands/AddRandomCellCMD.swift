@@ -10,26 +10,26 @@ import Foundation
 
 class AddRandomCellCMD : GameCMD {
     
+    
+    private func isCellFree(cell: BgCell) -> Bool {
+        
+        return cell.gameCell == nil &&
+            cell.isBlocked == false
+    }
+    
     override func run() {
         
-        var freeCells = Array<BgCell>()
-        for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil && i.isBlocked == false) {
-                freeCells.append(i)
-            }
-        }
-        
-        guard freeCells.count > 0 else {
+        guard let bgCell = self.gameModel.getBgCells(compare: self.isCellFree).randomElement() else {
             return
         }
         
-        //@todo: wwdc game sessions about random!
-        let random = Int(arc4random()) % freeCells.count
-        
         let newElement = GameCell(
             model: self.gameModel,
-            val: self.gameModel.strategy.startValue)
-        freeCells[random].addGameCell(cell: newElement)
+            val: 0)
+        bgCell.addGameCell(cell: newElement)
         newElement.playAppearAnimation()
+        
+        bgCell.bonus?.command.run()
+        bgCell.removeBonusWithPickingAnimation(0.0)
     }
 }

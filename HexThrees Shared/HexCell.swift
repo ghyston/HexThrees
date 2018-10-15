@@ -9,6 +9,14 @@
 import Foundation
 import SpriteKit
 
+enum zPositions: CGFloat {
+    
+    case bonusZ = 5
+    case bgCellZ = 4
+    case labelZ = 3
+    case hexCellZ = 2
+}
+
 class HexCell : SKNode {
     
     //let sprite : SKSpriteNode
@@ -27,14 +35,14 @@ class HexCell : SKNode {
         self.label.fontName = "Chalkduster"
         self.label.position = CGPoint(x: 0, y: 0)
         self.label.fontColor = .white
-        self.label.zPosition = 2 //@todo: predefine all z-positions!
+        self.label.zPosition = zPositions.labelZ.rawValue
         
         super.init()
         
         self.addChild(self.hexShape)
         self.hexShape.addChild(self.label)
         
-        self.hexShape.zPosition = 1
+        self.hexShape.zPosition = zPositions.hexCellZ.rawValue
     }
     
     func updateText(text: String) {

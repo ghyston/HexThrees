@@ -12,11 +12,18 @@ import SpriteKit
 class BgCell: HexCell {
     
     var gameCell: GameCell?
+    var bonus: BonusNode?
     var isBlocked: Bool = false
+    let coord: AxialCoord
     
-    init(model: GameModel, blocked: Bool) {
+    //@todo: make it lazy static (to init once per game)
+    var blockShader : SKShader
+    
+    init(model: GameModel, blocked: Bool, coord: AxialCoord) {
         
         self.isBlocked = blocked
+        self.blockShader = SKShader.init(fileNamed: "gridDervative.fsh")
+        self.coord = coord
         super.init(
             model: model,
             text: "",
@@ -32,7 +39,7 @@ class BgCell: HexCell {
         
         self.gameCell = cell
         self.addChild(cell)
-        self.gameCell?.zPosition = 3
+        self.gameCell?.zPosition = zPositions.bgCellZ.rawValue
     }
     
     @objc func removeGameCell() {
@@ -42,21 +49,37 @@ class BgCell: HexCell {
     
     func block() {
         
-        self.hexShape.removeFromParent()
+        self.hexShape.fillShader = blockShader
         self.isBlocked = true
     }
     
     func unblock() {
         
-        addChild(self.hexShape)
+        self.hexShape.fillShader = nil
         self.isBlocked = false
     }
     
     func destination(to: BgCell) -> CGVector {
-        //@todo: add extensions to CGVector.init(points diff)
-        return CGVector(
-            dx: to.position.x - position.x,
-            dy: to.position.y - position.y)
+        return CGVector(from: position, to: to.position);
+    }
+    
+    func addBonus(_ bonusNode: BonusNode) {
+        
+        self.bonus = bonusNode
+        self.bonus?.zPosition = 10.0
+        addChild(self.bonus!)
+    }
+    
+    func removeBonusWithDisposeAnimation() {
+        
+        self.bonus?.playDisposeAnimationAndRemoveFromParent()
+        self.bonus = nil
+    }
+    
+    func removeBonusWithPickingAnimation(_ delay: Double) {
+        
+        self.bonus?.playPickingAnimationAndRemoveFromParent(delay: delay)
+        self.bonus = nil
     }
     
     required init?(coder aDecoder: NSCoder) {

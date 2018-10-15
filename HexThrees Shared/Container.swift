@@ -21,33 +21,30 @@ class Container {
     
     var instances = Dictionary<String, Any>()
     
-    //@todo: rename it with code convensions (camelCaseSmallFirst)
-    
-    func Register<T>(_ inst: T) {
+    func register<T>(_ inst: T) {
         
         let typeName = "\(T.self)"
         instances[typeName] = inst
     }
     
-    func Resolve<T>() -> T {
+    func resolve<T>() -> T {
         
         let typeName = "\(T.self)"
         let result = instances[typeName]
-        
-        //@todo: check type and throw exception, if not correct
+    
+        assert(result is T, "Container: failed to resolve \(typeName)")
         
         return result as! T
     }
     
-    func TryResolve<T>() -> Optional<T> {
+    func tryResolve<T>() -> Optional<T> {
         
         let typeName = "\(T.self)"
         let result = instances[typeName]
         return result as? T
     }
     
-    //@todo: call it on finish and ensure, that all d-tors are called!
-    func Clean() {
+    func clean() {
         instances.removeAll()
     }
     

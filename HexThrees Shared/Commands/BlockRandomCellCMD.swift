@@ -8,25 +8,79 @@
 
 import Foundation
 
+
+class EmptyCellDistributionCalculator: ICellsStatisticCalculator {
+    
+    var openCells: Int = 0
+    var gameCells: Int = 0
+    
+    func next(cell: BgCell) {
+        
+        if cell.isBlocked {
+           return
+        }
+        
+        openCells += 1
+        
+        if cell.gameCell != nil {
+            gameCells += 1
+        }
+    }
+    
+    func clean() {
+        
+        openCells = 0
+        gameCells = 0
+    }
+}
+
 class BlockRandomCellCMD : GameCMD {
+    
+    private func dontHaveGameCellAndBonuses (cell: BgCell) -> Bool {
+        
+        return
+            cell.gameCell == nil &&
+                !cell.isBlocked &&
+                cell.bonus == nil
+    }
+    
+    private func dontContainGameCell (cell: BgCell) -> Bool {
+        
+        return
+            cell.gameCell == nil &&
+            !cell.isBlocked
+    }
     
     override func run() {
         
-        var freeCells = [BgCell]()
-        for i in self.gameModel.bgHexes {
-            if(i.gameCell == nil && !i.isBlocked) {
-                freeCells.append(i)
-            }
+        let freeCells = gameModel.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
+            gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
+            gameModel.getBgCells(compare: self.dontContainGameCell)
+        
+        var dice = ProbabilityArray<BgCell>()
+        var calc = EmptyCellDistributionCalculator()
+        var icalc : ICellsStatisticCalculator = calc
+        // for some reason I cannot do &(calc as ICellsStatisticCalculator)
+        
+        for freeCell in freeCells {
+            
+            gameModel.calculateForSiblings(coord: freeCell.coord, calc: &icalc)
+            
+            let probability : Float = Float(calc.gameCells) / Float(calc.openCells)
+            dice.add(freeCell, probability)
         }
         
-        guard freeCells.count > 0 else {
+        
+        guard let randomCell = dice.getRandom() else {
             return
         }
         
-        //@todo: wwdc game sessions about random!
-        let random = Int(arc4random()) % freeCells.count
+        if randomCell.bonus != nil {
+            
+            randomCell.removeBonusWithDisposeAnimation()
+        }
         
-        freeCells[random].block()
+        randomCell.block()
     }
     
 }

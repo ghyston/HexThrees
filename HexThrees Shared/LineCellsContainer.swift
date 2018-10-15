@@ -11,32 +11,42 @@ import Foundation
 class LineCellsContainer {
     
     var cells = [BgCell]()
-    let gameModel : GameModel
     
-    init(_ gameModel: GameModel) {
+    var count : Int {
         
-        self.gameModel = gameModel
+        return cells.count
     }
     
-    func add(_ index: Int) {
+    func add(_ cell: BgCell) {
+        self.cells.append(cell)
+    }
+    
+    subscript (index: Int) -> BgCell {
         
-        let cell = self.gameModel.bgHexes[index]
+        return cells[index];
+    }
+    
+    func findNext(startIndex: Int, condition: (BgCell) -> Bool) -> (index: Int, cell: BgCell)? {
         
-        if cell.isBlocked {
-            
-            self.flush()
+        for (index, cell) in cells[startIndex...].enumerated() {
+            if condition(cell) {
+                return (startIndex + index, cell)
+            }
         }
-        else {
-            
-            self.cells.append(cell)
-        }
+        
+        return nil
     }
     
-    func flush() {
+    func cellsAvailableForMove(_ from: Int, _ to: Int) {
         
-        MoveLineCMD(self.gameModel).run(cells: cells)
-        
-        self.cells.removeAll()
+        assert(from < count, "MoveLineCMD: from >= count")
+        assert(to < count, "MoveLineCMD: to >= count")
+        assert(from > to, "MoveLineCMD: from >= to")
+        assert(cells[from].gameCell != nil, "MoveLineCMD: \"from\" cell is empty")
     }
     
+    func clear() {
+        
+        self.cells.removeAll(keepingCapacity: true)
+    }
 }

@@ -8,57 +8,84 @@
 
 import Foundation
 
+enum MergingStrategyName: Int {
+    
+    case Fibonacci = 0
+    case PowerOfTwo = 1
+}
+
+class MerginStrategyFabric {
+    
+    static func createByName(_ name: MergingStrategyName) -> MergingStrategy {
+        
+        switch name {
+        case .Fibonacci:
+            return FibonacciMergingStrategy()
+        case .PowerOfTwo:
+            return PowerOfTwoMergingStrategy()
+        }
+    }
+}
+
 protocol MergingStrategy {
     
-    var startValue: Int { get }
+    func prefilValues(maxIndex: Int)
+    func value(index: Int) -> Int //@todo: can we use subscribe at protocol?
     func isSiblings(_ one: Int, _ two: Int) -> Int?
 }
 
 class FibonacciMergingStrategy : MergingStrategy {
     
-    var startValue: Int = 1
+    var values = [Int]()
+    
+    func prefilValues(maxIndex: Int) {
+        
+        values.removeAll()
+        values.append(1)
+        values.append(2)
+        
+        for i in 2...maxIndex {
+            
+            let val = values[i-1] + values[i-2]
+            values.append(val)
+        }
+    }
+    
+    func value(index: Int) -> Int {
+        
+        assert(index < values.endIndex, "FibonacciMergingStrategy: index \(index) out of range")
+        return values[index]
+    }
     
     func isSiblings(_ one: Int, _ two: Int) -> Int? {
         
-        // Straightforward algorithm. @todo: Rewrite with some hash/cache
-        
-        if one == 1 && two == 1 {
-            return 2
-        }
-        
-        let minVal = min(one, two)
-        let maxVal = max(one, two)
-        
-        let first = 0
-        let second = 1
-        
-        var Nm1 = second    //N minus 1
-        var Nm2 = first     //N minus 2
-        var N = second + first
-        
-        while N < minVal {
-            
-            Nm2 = Nm1
-            Nm1 = N
-            N = Nm1 + Nm2
-        }
-        
-        if (N != minVal) || (maxVal != (N + Nm1)) {
-            return nil
-        }
-        
-        return one + two
+        return two == one - 1 || (one == two && one == 0) ? one + 1 : nil
     }
-    
 }
 
 class PowerOfTwoMergingStrategy : MergingStrategy {
     
-    var startValue: Int = 2
+    var values : [Int] = [Int]()
+    
+    func prefilValues(maxIndex: Int) {
+        
+        values.removeAll()
+        for i in 1...maxIndex {
+            
+            let val = Int(truncating: NSDecimalNumber(decimal: pow(2.0, i)))
+            values.append(val)
+        }
+    }
+    
+    func value(index: Int) -> Int {
+        
+        assert(index < values.endIndex, "PowerOfTwoMergingStrategy: index \(index) out of range")
+        return values[index]
+    }
     
     func isSiblings(_ one: Int, _ two: Int) -> Int? {
         
-        return one == two ? one + two : nil
+        return one == two ? two + 1 : nil
     }
 }
 

@@ -9,18 +9,80 @@
 import Foundation
 import SpriteKit
 
+enum GameState {
+    
+    case InPlay
+    case Finished
+}
+
+protocol ICellsStatisticCalculator {
+    
+    func next(cell: BgCell)
+    func clean()
+}
+
 class GameModel {
     
     var fieldWidth: Int
     var fieldHeight: Int
     var strategy: MergingStrategy
     var geometry: FieldGeometry
+    var status: GameState = .InPlay // @todo: read about gameKit state machines
     
     // Some common properties
-    var bgHexes : [BgCell] = [BgCell]()
+    var bgHexes = [BgCell]()
     var swipeStatus = SwipeStatus()
     var score : Int = 0
-    var newUnblockCellScore : Int = 20 //@todo: make proper calculation related to field size and strategy
+    var scoreBuffs = [ScoreBuff]()
+    var scoreMultiplier : Int = 1
+    var turnsWithoutBonus : Int = 0
+    
+    func getCell(_ x: Int, _ y: Int) -> BgCell {
+        
+        assert(x >= 0 && x < fieldWidth, "cell coordinate \(x) out of range")
+        assert(y >= 0 && y < fieldHeight, "cell coordinate \(y) out of range")
+        let index = y * fieldWidth + x
+        return bgHexes[index]
+    }
+    
+    func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
+        
+        return self.bgHexes.filter(compare)
+    }
+    
+    func hasBgCells(compare: (_: BgCell) -> Bool) -> Bool {
+        
+        return self.bgHexes.first(where: compare) != nil
+    }
+    
+    func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
+        
+        return self.bgHexes.filter(compare).count
+    }
+    
+    func calculateForSiblings(coord: AxialCoord, calc: inout ICellsStatisticCalculator) {
+        
+        calc.clean()
+        
+        let xMin = max(coord.c - 1, 0)
+        let xMax = min(coord.c + 1, fieldWidth - 1)
+        let yMin = max(coord.r - 1, 0)
+        let yMax = min(coord.r + 1, fieldHeight - 1)
+        
+        
+        for x in xMin...xMax  {
+            for y in yMin ... yMax {
+                
+                // here skipping self cell and corner cells (because of hex geometry)
+                if (x == coord.c && y == coord.r) || x == y {
+                    continue
+                }
+                
+                calc.next(cell: getCell(x, y))
+            }
+        }
+        
+    }
     
     init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
         
@@ -30,5 +92,20 @@ class GameModel {
         self.strategy = strategy
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
+    }
+    
+    func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
+        
+        self.geometry = FieldGeometry(
+            screenWidth: screenWidth,
+            fieldSize: fieldSize)
+        self.strategy = strategy
+        self.fieldWidth = fieldSize
+        self.fieldHeight = fieldSize
+    }
+    
+    func finishGame() {
+        
+        self.status = .Finished
     }
 }
