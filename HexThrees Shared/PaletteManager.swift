@@ -22,6 +22,10 @@ class PaletteManager {
         return .gray
     }
     
+    static func sceneBgColor() -> SKColor {
+        return .white
+    }
+    
     static func cellBlockedBgColor() -> SKColor {
         return .darkGray
     }

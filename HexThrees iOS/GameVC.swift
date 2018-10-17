@@ -96,6 +96,7 @@ class GameVC: UIViewController {
         cmd.run()
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.register(self.gameModel!)
+        self.scene?.backgroundColor = PaletteManager.sceneBgColor()
     }
     
     @objc func onGameReset(notification: Notification) {
