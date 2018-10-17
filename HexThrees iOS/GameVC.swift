@@ -89,7 +89,7 @@ class GameVC: UIViewController {
             tempAddRandomStaff: true)
         cmd.run()
         self.gameModel = cmd.gameModel
-        ContainerConfig.instance.register(self.gameModel)
+        ContainerConfig.instance.register(self.gameModel!)
     }
     
     @objc func onGameReset(notification: Notification) {
@@ -122,6 +122,18 @@ class GameVC: UIViewController {
     @IBAction func onSave(_ sender: Any) {
         
         SaveGameCMD(self.gameModel!).run()
+    }
+    
+    @IBAction func onEndGame(_ sender: Any) {
+        
+        let storyboardName = "Main"
+        let endGameVcName = "GameOverVC"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: endGameVcName)
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        self.present(vc, animated: false, completion: nil)
     }
 }
 

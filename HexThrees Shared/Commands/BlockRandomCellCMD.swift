@@ -57,6 +57,7 @@ class BlockRandomCellCMD : GameCMD {
             gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
             gameModel.getBgCells(compare: self.dontContainGameCell)
         
+        //@todo: fix it somehow
         var dice = ProbabilityArray<BgCell>()
         var calc = EmptyCellDistributionCalculator()
         var icalc : ICellsStatisticCalculator = calc
