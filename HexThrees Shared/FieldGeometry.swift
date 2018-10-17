@@ -31,7 +31,7 @@ class FieldGeometry {
         self.cellWidth = hexRad * 1.732
         self.cellHeight = hexRad * 2
         
-        let furthestCellCoord = ToScreenCoord(AxialCoord(fieldSize, fieldSize))
+        let furthestCellCoord = ToScreenCoord(AxialCoord(fieldSize - 1, fieldSize - 1))
         self.fieldHalfHeight = furthestCellCoord.y / 2.0
     }
     
