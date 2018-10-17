@@ -121,8 +121,9 @@ class GameVC: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: endGameVcName)
         
         vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
         
-        self.present(vc, animated: false, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func onLoad(_ sender: Any) {
