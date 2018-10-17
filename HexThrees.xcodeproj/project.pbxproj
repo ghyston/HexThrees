@@ -45,7 +45,7 @@
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C520E966D70052E1C6 /* SettingsVC.swift */; };
-		3F95A6C920EC955C0052E1C6 /* CheckGameEnd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEnd.swift */; };
+		3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */; };
 		3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */; };
 		3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */; };
 		3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */; };
@@ -122,7 +122,7 @@
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C520E966D70052E1C6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		3F95A6C820EC955C0052E1C6 /* CheckGameEnd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEnd.swift; sourceTree = "<group>"; };
+		3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEndCMD.swift; sourceTree = "<group>"; };
 		3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGame.swift; sourceTree = "<group>"; };
@@ -280,7 +280,7 @@
 				3FB703A520DA1FEC009718F3 /* UpdateScoreCMD.swift */,
 				3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */,
 				3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */,
-				3F95A6C820EC955C0052E1C6 /* CheckGameEnd.swift */,
+				3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */,
 				3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */,
 				3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */,
 				3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */,
@@ -459,7 +459,7 @@
 				3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */,
 				3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */,
 				3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */,
-				3F95A6C920EC955C0052E1C6 /* CheckGameEnd.swift in Sources */,
+				3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */,
 				3F06487E21613891005461C7 /* MoveXDownIterator.swift in Sources */,
 				3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */,
 				3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */,

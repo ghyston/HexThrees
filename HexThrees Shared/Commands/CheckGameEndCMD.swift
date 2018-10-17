@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CheckGameEnd : GameCMD {
+class CheckGameEndCMD : GameCMD {
     
     private func dontContainGameCell (cell: BgCell) -> Bool {
         
@@ -47,7 +47,7 @@ class CheckGameEnd : GameCMD {
         }
         
         //thisIsTheEnd = true //my only friend
-        self.gameModel.finishGame()
+        NotificationCenter.default.post(name: .gameOver, object: nil)
     }
     
     //@return true if line can be moved

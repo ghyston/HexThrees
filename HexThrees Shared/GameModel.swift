@@ -9,12 +9,6 @@
 import Foundation
 import SpriteKit
 
-enum GameState {
-    
-    case InPlay
-    case Finished
-}
-
 protocol ICellsStatisticCalculator {
     
     func next(cell: BgCell)
@@ -27,7 +21,6 @@ class GameModel {
     var fieldHeight: Int
     var strategy: MergingStrategy
     var geometry: FieldGeometry
-    var status: GameState = .InPlay // @todo: read about gameKit state machines
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -104,8 +97,4 @@ class GameModel {
         self.fieldHeight = fieldSize
     }
     
-    func finishGame() {
-        
-        self.status = .Finished
-    }
 }

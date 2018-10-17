@@ -35,7 +35,7 @@ class GameVC: UIViewController {
         self.defaultGameParams = GameParams(
             fieldSize: 4,
             randomElementsCount: 4,
-            blockedCellsCount: 2,
+            blockedCellsCount: 12,
             strategy: .PowerOfTwo)
         
         let recognizer = HexSwipeGestureRecogniser(
@@ -54,6 +54,12 @@ class GameVC: UIViewController {
             self,
             selector: #selector(onScoreUpdate),
             name: .updateScore,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onGameEnd),
+            name: .gameOver,
             object: nil)
         
         startGame()
@@ -103,6 +109,22 @@ class GameVC: UIViewController {
         scoreLabel.text = "\(self.gameModel!.score)"
     }
     
+    @objc func onGameEnd(notification: Notification) {
+        
+        showEndGameVC()
+    }
+    
+    private func showEndGameVC() {
+        let storyboardName = "Main"
+        let endGameVcName = "GameOverVC"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: endGameVcName)
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        
+        self.present(vc, animated: false, completion: nil)
+    }
+    
     @IBAction func onLoad(_ sender: Any) {
         
         CleanGameCMD(self.gameModel!).run()
@@ -126,14 +148,7 @@ class GameVC: UIViewController {
     
     @IBAction func onEndGame(_ sender: Any) {
         
-        let storyboardName = "Main"
-        let endGameVcName = "GameOverVC"
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: endGameVcName)
-        
-        vc.modalPresentationStyle = .overCurrentContext
-        
-        self.present(vc, animated: false, completion: nil)
+        showEndGameVC()
     }
 }
 
@@ -142,11 +157,6 @@ extension GameVC: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
         DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
-        //@todo: do proper screen for game finish
-        if self.gameModel!.status == .Finished {
-            CleanGameCMD(self.gameModel!).run()
-            startGame()
-        }
     }
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
