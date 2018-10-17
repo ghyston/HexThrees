@@ -69,7 +69,7 @@ class FieldGeometry {
         
         //@todo: there are a lot of conversations between float and double. Google difference, use only one mostly
         let w = Float(self.cellWidth + self.gap)
-        let h = Float(self.cellHeight + self.gap)
+        let h = Float(self.cellHeight + self.gap * 1.732)
         
         let x = Float(a.c - a.r) * 0.5 * w
         let y = Float(a.c + a.r) * (w * 0.5 + h / (2.0 * 1.732))
