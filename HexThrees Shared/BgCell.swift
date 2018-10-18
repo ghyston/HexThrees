@@ -38,7 +38,7 @@ class BgCell: HexCell {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onColorChange),
-            name: .swichPalette,
+            name: .switchPalette,
             object: nil)
     }
     

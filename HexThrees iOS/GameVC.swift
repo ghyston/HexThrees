@@ -68,7 +68,7 @@ class GameVC: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onColorChange),
-            name: .swichPalette,
+            name: .switchPalette,
             object: nil)
         
         startGame()
@@ -181,7 +181,7 @@ class GameVC: UIViewController {
     
     @IBAction func onColorChangeClick(_ sender: Any) {
         
-        SwichPaletteCMD(self.gameModel!).run()
+        SwitchPaletteCMD(self.gameModel!).run()
     }
 }
 

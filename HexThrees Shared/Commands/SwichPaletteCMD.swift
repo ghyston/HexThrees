@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SwichPaletteCMD : GameCMD {
+class SwitchPaletteCMD : GameCMD {
     
     override func run() {
         
