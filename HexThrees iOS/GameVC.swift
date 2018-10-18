@@ -22,6 +22,8 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadPalette()
+        
         self.scene = GameScene.newGameScene()
 
         // Present the scene
@@ -35,8 +37,9 @@ class GameVC: UIViewController {
         self.defaultGameParams = GameParams(
             fieldSize: 4,
             randomElementsCount: 4,
-            blockedCellsCount: 12,
-            strategy: .PowerOfTwo)
+            blockedCellsCount: 3,
+            strategy: .PowerOfTwo,
+            palette: .Dark)
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -60,6 +63,12 @@ class GameVC: UIViewController {
             self,
             selector: #selector(onGameEnd),
             name: .gameOver,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onColorChange),
+            name: .swichPalette,
             object: nil)
         
         startGame()
@@ -86,6 +95,12 @@ class GameVC: UIViewController {
         return true
     }
     
+    private func loadPalette() {
+        
+        let pal : IPaletteManager = PaletteManager()
+        ContainerConfig.instance.register(pal)
+    }
+    
     private func startGame() {
         
         let cmd = StartGameCMD(
@@ -96,7 +111,7 @@ class GameVC: UIViewController {
         cmd.run()
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.register(self.gameModel!)
-        self.scene?.backgroundColor = PaletteManager.sceneBgColor()
+        setSceneColor()
     }
     
     @objc func onGameReset(notification: Notification) {
@@ -113,6 +128,17 @@ class GameVC: UIViewController {
     @objc func onGameEnd(notification: Notification) {
         
         showEndGameVC()
+    }
+    
+    @objc func onColorChange(notification: Notification) {
+        
+        setSceneColor()
+    }
+    
+    private func setSceneColor() {
+        
+        let pal : IPaletteManager = ContainerConfig.instance.resolve()
+        self.scene?.backgroundColor = pal.sceneBgColor()
     }
     
     private func showEndGameVC() {
@@ -151,6 +177,11 @@ class GameVC: UIViewController {
     @IBAction func onEndGame(_ sender: Any) {
         
         showEndGameVC()
+    }
+    
+    @IBAction func onColorChangeClick(_ sender: Any) {
+        
+        SwichPaletteCMD(self.gameModel!).run()
     }
 }
 

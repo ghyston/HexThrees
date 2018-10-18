@@ -9,16 +9,35 @@
 import Foundation
 import SpriteKit
 
+
+
 class GameCell : HexCell {
     
     var value: Int
     var newParent : BgCell?
+    //#todo: move pal to HexCell? 
+    let pal : IPaletteManager = ContainerConfig.instance.resolve()
     
     init(model: GameModel, val: Int) {
         
         self.value = val
         let strategyValue = model.strategy.value(index: self.value)
-        super.init(model: model, text: "\(strategyValue)", color: PaletteManager.color(value: val))
+        super.init(model: model, text: "\(strategyValue)", color: pal.color(value: val))
+        
+        //@todo: do I need to remove observer in destructor?
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onColorChange),
+            name: .swichPalette,
+            object: nil)
+    }
+    
+    @objc func onColorChange(notification: Notification) {
+        updateColor()
+    }
+    
+    func updateColor() {
+        updateColor(fillColor: pal.color(value: value), strokeColor: .white, fontColor: .white)
     }
     
     func playAppearAnimation() {
@@ -53,7 +72,7 @@ class GameCell : HexCell {
         let strategyValue = strategy.value(index: self.value)
         self.updateText(text: "\(strategyValue)")
         self.playUpdateAnimation()
-        self.hexShape.fillColor = PaletteManager.color(value: value)
+        updateColor()
     }
     
     required init?(coder aDecoder: NSCoder) {

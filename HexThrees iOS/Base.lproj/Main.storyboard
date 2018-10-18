@@ -64,6 +64,14 @@
                                     <action selector="onEndGame:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Kym-Zc-yZd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yze-dW-3oe" userLabel="Color">
+                                <rect key="frame" x="221" y="632" width="64" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Color"/>
+                                <connections>
+                                    <action selector="onColorChangeClick:" destination="BV1-FR-VrT" eventType="touchUpInside" id="iuy-tK-bxq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

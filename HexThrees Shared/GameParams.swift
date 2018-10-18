@@ -14,4 +14,5 @@ struct GameParams {
     let randomElementsCount: Int
     let blockedCellsCount: Int
     let strategy: MergingStrategyName
+    let palette: ColorSchemaType
 }
