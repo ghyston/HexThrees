@@ -19,7 +19,7 @@ enum ColorSchemaType {
 
 struct ColorSchema {
     
-    var bgColor : SKColor
+    //var bgColor : SKColor
     var sceneBgColor : SKColor
     var cellBgColor : SKColor
     var cellBlockedBgColor : SKColor

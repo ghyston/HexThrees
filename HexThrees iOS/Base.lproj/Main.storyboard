@@ -18,14 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGh-UP-E6f">
-                                <rect key="frame" x="3" y="3" width="100" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="T3u-w3-4Yx"/>
-                                    <constraint firstAttribute="height" constant="70" id="wOX-hz-gkc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Menu"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGh-UP-E6f">
+                                <rect key="frame" x="0.0" y="0.0" width="146" height="253"/>
+                                <state key="normal" image="menu_btn"/>
                                 <connections>
                                     <segue destination="hfV-uc-Gim" kind="presentation" id="wQr-Rf-fr0"/>
                                 </connections>
@@ -75,9 +70,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" constant="3" id="67O-4l-4gE"/>
+                            <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" id="67O-4l-4gE"/>
+                            <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="70Y-dP-G4e"/>
                             <constraint firstItem="Llv-3h-4gE" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" constant="3" id="Lod-GK-pBN"/>
-                            <constraint firstItem="jGh-UP-E6f" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="3" id="MPH-9y-8gz"/>
+                            <constraint firstItem="jGh-UP-E6f" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="fg5-c7-fRI"/>
                             <constraint firstItem="bNo-s9-wk6" firstAttribute="trailing" secondItem="Llv-3h-4gE" secondAttribute="trailing" constant="3" id="kNT-p0-8qe"/>
                             <constraint firstItem="bNo-s9-wk6" firstAttribute="trailing" secondItem="Llv-3h-4gE" secondAttribute="trailing" constant="3" id="zIM-lh-rDe"/>
                         </constraints>
@@ -369,4 +365,7 @@
             <point key="canvasLocation" x="1080.8" y="-600.44977511244383"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu_btn" width="146" height="253"/>
+    </resources>
 </document>

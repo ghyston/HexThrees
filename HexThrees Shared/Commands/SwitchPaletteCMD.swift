@@ -14,6 +14,6 @@ class SwitchPaletteCMD : GameCMD {
         
         let pal : IPaletteManager = ContainerConfig.instance.resolve()
         pal.switchPalette(to: .Light)
-        NotificationCenter.default.post(name: .swichPalette, object: nil)
+        NotificationCenter.default.post(name: .switchPalette, object: nil)
     }
 }
