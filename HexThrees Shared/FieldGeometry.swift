@@ -15,7 +15,8 @@ class FieldGeometry {
     private var fieldHalfHeight : CGFloat = 0
     
     private let hexRad: Double
-    private let hexPath: CGPath
+    private let hexCellPath: CGPath
+    private let outlinePath: CGPath
     private let cellWidth: Double
     private let cellHeight: Double
     
@@ -26,7 +27,8 @@ class FieldGeometry {
             hexCount: fieldSize,
             gap: gap)
         
-        self.hexPath = FieldGeometry.createPath(rad: self.hexRad)
+        self.hexCellPath = FieldGeometry.createPath(rad: self.hexRad)
+        self.outlinePath = FieldGeometry.createPath(rad: self.hexRad + self.gap)
         
         self.cellWidth = hexRad * 1.732
         self.cellHeight = hexRad * 2
@@ -35,9 +37,20 @@ class FieldGeometry {
         self.fieldHalfHeight = furthestCellCoord.y / 2.0
     }
     
-    func createHexShape() -> SKShapeNode {
+    func createHexCellShape() -> SKShapeNode {
+        
+        return createShape (path: self.hexCellPath)
+    }
+    
+    func createOutlineShape() -> SKShapeNode {
+        
+        return createShape (path: self.outlinePath)
+    }
+    
+    private func createShape(path: CGPath) -> SKShapeNode {
+        
         let hexShape = SKShapeNode()
-        hexShape.path = self.hexPath
+        hexShape.path = path
         return hexShape
     }
     

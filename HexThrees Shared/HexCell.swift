@@ -25,9 +25,7 @@ class HexCell : SKNode {
     
     init(model: GameModel, text: String, color: SKColor) {
         
-        self.hexShape = model.geometry.createHexShape()
-        hexShape.strokeColor = SKColor.white
-        hexShape.lineWidth = 1
+        self.hexShape = model.geometry.createHexCellShape()
         hexShape.fillColor = color
         
         self.label = SKLabelNode(text: text)

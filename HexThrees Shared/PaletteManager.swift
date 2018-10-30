@@ -10,8 +10,8 @@ import Foundation
 import SpriteKit
 
 protocol IPaletteManager {
-    
-    //var type: ColorSchemaType { get }
+
+    func fieldOutlineColor() -> SKColor
     func cellBgColor() -> SKColor
     func sceneBgColor() -> SKColor
     func cellBlockedBgColor() -> SKColor
@@ -30,6 +30,7 @@ class PaletteManager : IPaletteManager {
     init() {
         
         let gray = ColorSchema(
+            fieldOutlineColor: .darkGray,
             sceneBgColor: .black,
             cellBgColor: .gray,
             cellBlockedBgColor: .darkGray,
@@ -52,6 +53,7 @@ class PaletteManager : IPaletteManager {
                       16: SKColor(rgb: 0x075E9B)])
         
         let light = ColorSchema(
+            fieldOutlineColor: .red,
             sceneBgColor: .white,
             cellBgColor: .gray,
             cellBlockedBgColor: .darkGray,
@@ -89,17 +91,18 @@ class PaletteManager : IPaletteManager {
     
     func cellBgColor() -> SKColor {
         return currentPalette.cellBgColor
-        // .gray
     }
     
     func sceneBgColor() -> SKColor {
         return currentPalette.sceneBgColor
-//        return .white
     }
     
     func cellBlockedBgColor() -> SKColor {
         return currentPalette.cellBlockedBgColor
-//        return .darkGray
+    }
+    
+    func fieldOutlineColor() -> SKColor {
+        return currentPalette.fieldOutlineColor
     }
     
     func switchPalette(to colorSchemaType: ColorSchemaType) {

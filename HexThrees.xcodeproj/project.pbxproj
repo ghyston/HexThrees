@@ -75,6 +75,7 @@
 		3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
 		3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203120D1B049009B7370 /* SwipeDirection.swift */; };
 		3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */; };
+		3FEA7AD0218776DC007F50D8 /* FieldOutline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */; };
 		3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12621346A5900D9FCBC /* BonusNode.swift */; };
 		3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */; };
 		3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12A21346D8200D9FCBC /* HexField.swift */; };
@@ -156,6 +157,7 @@
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
 		3FE9203120D1B049009B7370 /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = "HexThrees Shared/SwipeDirection.swift"; sourceTree = SOURCE_ROOT; };
 		3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPaletteCMD.swift; sourceTree = "<group>"; };
+		3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldOutline.swift; sourceTree = "<group>"; };
 		3FEBD12621346A5900D9FCBC /* BonusNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusNode.swift; sourceTree = "<group>"; };
 		3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusFabric.swift; sourceTree = "<group>"; };
 		3FEBD12A21346D8200D9FCBC /* HexField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				3FEBD12A21346D8200D9FCBC /* HexField.swift */,
 				3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */,
 				3FA3A50F21770F610005B37D /* ColorSchemas.swift */,
+				3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */,
 				3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */,
 				3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */,
+				3FEA7AD0218776DC007F50D8 /* FieldOutline.swift in Sources */,
 				3F06487E21613891005461C7 /* MoveXDownIterator.swift in Sources */,
 				3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */,
 				3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */,

@@ -139,6 +139,10 @@ class GameVC: UIViewController {
         
         let pal : IPaletteManager = ContainerConfig.instance.resolve()
         self.scene?.backgroundColor = pal.sceneBgColor()
+        
+        if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
+            fieldOutine.updateColor(color: pal.fieldOutlineColor())
+        }
     }
     
     private func showEndGameVC() {

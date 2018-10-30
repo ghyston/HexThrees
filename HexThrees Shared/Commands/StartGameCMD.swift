@@ -36,6 +36,11 @@ class StartGameCMD : CMD {
         
         gameModel.strategy.prefilValues(maxIndex: self.params.fieldSize * self.params.fieldSize)
         
+        let fieldBg = FieldOutline()
+        fieldBg.name = FieldOutline.defaultNodeName
+        fieldBg.recalculateFieldBg(model: gameModel)
+        scene.addChild(fieldBg)
+        
         for i2 in 0 ..< params.fieldSize {
             for i1 in 0 ..< params.fieldSize {
                 
