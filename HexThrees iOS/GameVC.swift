@@ -37,7 +37,7 @@ class GameVC: UIViewController {
         self.defaultGameParams = GameParams(
             fieldSize: 4,
             randomElementsCount: 4,
-            blockedCellsCount: 0,
+            blockedCellsCount: 2,
             strategy: .Hybrid,
             palette: .Dark)
         
@@ -72,6 +72,10 @@ class GameVC: UIViewController {
             object: nil)
         
         startGame()
+        
+        AddRandomElementsCMD(self.gameModel!).run(
+            cells: self.defaultGameParams!.randomElementsCount,
+            blocked: self.defaultGameParams!.blockedCellsCount)
     }
     
     override var shouldAutorotate: Bool {
@@ -106,10 +110,11 @@ class GameVC: UIViewController {
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!,
-            tempAddRandomStaff: true)
+            params: self.defaultGameParams!)
         cmd.run()
+        
         self.gameModel = cmd.gameModel
+        DebugPaletteCMD(self.gameModel!).run()
         ContainerConfig.instance.register(self.gameModel!)
         setSceneColor()
     }
@@ -118,6 +123,9 @@ class GameVC: UIViewController {
         
         CleanGameCMD(self.gameModel!).run()
         startGame()
+        AddRandomElementsCMD(self.gameModel!).run(
+            cells: self.defaultGameParams!.randomElementsCount,
+            blocked: self.defaultGameParams!.blockedCellsCount)
     }
     
     @objc func onScoreUpdate(notification: Notification) {
@@ -161,14 +169,14 @@ class GameVC: UIViewController {
         
         CleanGameCMD(self.gameModel!).run()
         
-        //@todo: this is hardcode and should be removed!!
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!,
-            tempAddRandomStaff: false)
+            params: self.defaultGameParams!)
         cmd.run()
         self.gameModel = cmd.gameModel
+        ContainerConfig.instance.register(self.gameModel!)
+        setSceneColor()
         
         LoadGameCMD(self.gameModel!).run()
     }

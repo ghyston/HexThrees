@@ -76,6 +76,7 @@
 		3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203120D1B049009B7370 /* SwipeDirection.swift */; };
 		3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */; };
 		3FEA7AD0218776DC007F50D8 /* FieldOutline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */; };
+		3FEA7AD22188385A007F50D8 /* AddRandomElementsCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */; };
 		3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12621346A5900D9FCBC /* BonusNode.swift */; };
 		3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */; };
 		3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12A21346D8200D9FCBC /* HexField.swift */; };
@@ -158,6 +159,7 @@
 		3FE9203120D1B049009B7370 /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = "HexThrees Shared/SwipeDirection.swift"; sourceTree = SOURCE_ROOT; };
 		3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPaletteCMD.swift; sourceTree = "<group>"; };
 		3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldOutline.swift; sourceTree = "<group>"; };
+		3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomElementsCMD.swift; sourceTree = "<group>"; };
 		3FEBD12621346A5900D9FCBC /* BonusNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusNode.swift; sourceTree = "<group>"; };
 		3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusFabric.swift; sourceTree = "<group>"; };
 		3FEBD12A21346D8200D9FCBC /* HexField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */,
 				3F06487F2166873D005461C7 /* AfterSwipeCMD.swift */,
 				3FA3A513217EF1D60005B37D /* SwitchPaletteCMD.swift */,
+				3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				3FA3A51021770F610005B37D /* ColorSchemas.swift in Sources */,
 				3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */,
 				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,
+				3FEA7AD22188385A007F50D8 /* AddRandomElementsCMD.swift in Sources */,
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
 				3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */,
 				3F21DF4F20C8F94500A979D5 /* AddBgCellCMD.swift in Sources */,

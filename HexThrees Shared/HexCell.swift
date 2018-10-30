@@ -27,6 +27,7 @@ class HexCell : SKNode {
         
         self.hexShape = model.geometry.createHexCellShape()
         hexShape.fillColor = color
+        hexShape.lineWidth = 0
         
         self.label = SKLabelNode(text: text)
         self.label.fontSize = 22.0
