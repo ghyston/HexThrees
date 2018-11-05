@@ -15,6 +15,7 @@ class BgCell: HexCell {
     var bonus: BonusNode?
     var isBlocked: Bool = false
     let coord: AxialCoord
+    let pal : IPaletteManager = ContainerConfig.instance.resolve()
     
     //@todo: make it lazy static (to init once per game)
     var blockShader : SKShader
@@ -24,13 +25,27 @@ class BgCell: HexCell {
         self.isBlocked = blocked
         self.blockShader = SKShader.init(fileNamed: "gridDervative.fsh")
         self.coord = coord
+        
         super.init(
             model: model,
             text: "",
-            color: PaletteManager.cellBgColor())
+            color: pal.cellBgColor())
         if blocked {
             block()
         }
+        
+        //@todo: do I need to remove observer in destructor?
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onColorChange),
+            name: .switchPalette,
+            object: nil)
+    }
+    
+    @objc func onColorChange(notification: Notification) {
+        
+        //@todo: update all colors!
+        updateColor(fillColor: pal.cellBgColor(), strokeColor: .white, fontColor: .white)
     }
     
     @objc func addGameCell(cell: GameCell) {

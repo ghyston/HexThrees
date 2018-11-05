@@ -25,10 +25,9 @@ class HexCell : SKNode {
     
     init(model: GameModel, text: String, color: SKColor) {
         
-        self.hexShape = model.geometry.createHexShape()
-        hexShape.strokeColor = SKColor.white
-        hexShape.lineWidth = 1
+        self.hexShape = model.geometry.createHexCellShape()
         hexShape.fillColor = color
+        hexShape.lineWidth = 0
         
         self.label = SKLabelNode(text: text)
         self.label.fontSize = 22.0
@@ -47,6 +46,17 @@ class HexCell : SKNode {
     
     func updateText(text: String) {
         self.label.text = text
+    }
+    
+    func updateColor(fillColor: SKColor, strokeColor: SKColor, fontColor: SKColor) {
+        
+        //this never worked
+        //let colorizeAction = SKAction.colorize(with: self.hexShape.fillColor, colorBlendFactor: 0.5, duration: 2.0)
+        
+        //self.hexShape.run(colorizeAction)
+        self.hexShape.strokeColor = strokeColor
+        self.hexShape.fillColor = fillColor
+        self.label.fontColor = fontColor
     }
     
     required init?(coder aDecoder: NSCoder) {

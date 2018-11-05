@@ -15,7 +15,8 @@ class FieldGeometry {
     private var fieldHalfHeight : CGFloat = 0
     
     private let hexRad: Double
-    private let hexPath: CGPath
+    private let hexCellPath: CGPath
+    private let outlinePath: CGPath
     private let cellWidth: Double
     private let cellHeight: Double
     
@@ -26,18 +27,30 @@ class FieldGeometry {
             hexCount: fieldSize,
             gap: gap)
         
-        self.hexPath = FieldGeometry.createPath(rad: self.hexRad)
+        self.hexCellPath = FieldGeometry.createPath(rad: self.hexRad)
+        self.outlinePath = FieldGeometry.createPath(rad: self.hexRad + self.gap)
         
         self.cellWidth = hexRad * 1.732
         self.cellHeight = hexRad * 2
         
-        let furthestCellCoord = ToScreenCoord(AxialCoord(fieldSize, fieldSize))
+        let furthestCellCoord = ToScreenCoord(AxialCoord(fieldSize - 1, fieldSize - 1))
         self.fieldHalfHeight = furthestCellCoord.y / 2.0
     }
     
-    func createHexShape() -> SKShapeNode {
+    func createHexCellShape() -> SKShapeNode {
+        
+        return createShape (path: self.hexCellPath)
+    }
+    
+    func createOutlineShape() -> SKShapeNode {
+        
+        return createShape (path: self.outlinePath)
+    }
+    
+    private func createShape(path: CGPath) -> SKShapeNode {
+        
         let hexShape = SKShapeNode()
-        hexShape.path = self.hexPath
+        hexShape.path = path
         return hexShape
     }
     
@@ -69,7 +82,7 @@ class FieldGeometry {
         
         //@todo: there are a lot of conversations between float and double. Google difference, use only one mostly
         let w = Float(self.cellWidth + self.gap)
-        let h = Float(self.cellHeight + self.gap)
+        let h = Float(self.cellHeight + self.gap * 1.732)
         
         let x = Float(a.c - a.r) * 0.5 * w
         let y = Float(a.c + a.r) * (w * 0.5 + h / (2.0 * 1.732))

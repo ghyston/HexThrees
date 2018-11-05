@@ -16,14 +16,11 @@ class StartGameCMD : CMD {
     let params : GameParams
     var gameModel : GameModel?
     
-    let tempAddRandomStaff : Bool
-    
-    init(scene: SKScene, view: SKView, params: GameParams, tempAddRandomStaff: Bool) {
+    init(scene: SKScene, view: SKView, params: GameParams) {
         
         self.scene = scene
         self.view = view
         self.params = params
-        self.tempAddRandomStaff = tempAddRandomStaff
     }
     
     func run() {
@@ -36,28 +33,17 @@ class StartGameCMD : CMD {
         
         gameModel.strategy.prefilValues(maxIndex: self.params.fieldSize * self.params.fieldSize)
         
+        let fieldBg = FieldOutline()
+        fieldBg.name = FieldOutline.defaultNodeName
+        fieldBg.recalculateFieldBg(model: gameModel)
+        scene.addChild(fieldBg)
+        
         for i2 in 0 ..< params.fieldSize {
             for i1 in 0 ..< params.fieldSize {
                 
                 AddBgCellCMD(gameModel).run(
                     scene: scene,
                     coord: AxialCoord(i2, i1))
-            }
-        }
-        
-        //DebugPaletteCMD(self.gameModel!).run()
-        
-        //@todo: remove that!!!
-        if(tempAddRandomStaff) {
-            
-            for _ in 0 ..< params.randomElementsCount {
-                
-                AddRandomCellCMD(gameModel).runWithDelay(delay: Double.random)
-            }
-            
-            for _ in 0 ..< params.blockedCellsCount {
-                
-                BlockRandomCellCMD(gameModel).run()
             }
         }
         

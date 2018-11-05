@@ -16,7 +16,7 @@ class AfterSwipeCMD : GameCMD {
             UpdateBonusesCounterCMD(gameModel).run()
             AddRandomCellCMD(gameModel).run()
             DropRandomBonusCMD(gameModel).run()
-            CheckGameEnd(gameModel).run()
+            CheckGameEndCMD(gameModel).run()
         }
         
         gameModel.swipeStatus.delay = 0.0

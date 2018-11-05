@@ -22,6 +22,8 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadPalette()
+        
         self.scene = GameScene.newGameScene()
 
         // Present the scene
@@ -36,7 +38,8 @@ class GameVC: UIViewController {
             fieldSize: 4,
             randomElementsCount: 4,
             blockedCellsCount: 2,
-            strategy: .PowerOfTwo)
+            strategy: .Hybrid,
+            palette: .Dark)
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -56,7 +59,23 @@ class GameVC: UIViewController {
             name: .updateScore,
             object: nil)
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onGameEnd),
+            name: .gameOver,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onColorChange),
+            name: .switchPalette,
+            object: nil)
+        
         startGame()
+        
+        AddRandomElementsCMD(self.gameModel!).run(
+            cells: self.defaultGameParams!.randomElementsCount,
+            blocked: self.defaultGameParams!.blockedCellsCount)
     }
     
     override var shouldAutorotate: Bool {
@@ -80,22 +99,33 @@ class GameVC: UIViewController {
         return true
     }
     
+    private func loadPalette() {
+        
+        let pal : IPaletteManager = PaletteManager()
+        ContainerConfig.instance.register(pal)
+    }
+    
     private func startGame() {
         
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!,
-            tempAddRandomStaff: true)
+            params: self.defaultGameParams!)
         cmd.run()
+        
         self.gameModel = cmd.gameModel
-        ContainerConfig.instance.register(self.gameModel)
+        DebugPaletteCMD(self.gameModel!).run()
+        ContainerConfig.instance.register(self.gameModel!)
+        setSceneColor()
     }
     
     @objc func onGameReset(notification: Notification) {
         
         CleanGameCMD(self.gameModel!).run()
         startGame()
+        AddRandomElementsCMD(self.gameModel!).run(
+            cells: self.defaultGameParams!.randomElementsCount,
+            blocked: self.defaultGameParams!.blockedCellsCount)
     }
     
     @objc func onScoreUpdate(notification: Notification) {
@@ -103,18 +133,50 @@ class GameVC: UIViewController {
         scoreLabel.text = "\(self.gameModel!.score)"
     }
     
+    @objc func onGameEnd(notification: Notification) {
+        
+        showEndGameVC()
+    }
+    
+    @objc func onColorChange(notification: Notification) {
+        
+        setSceneColor()
+    }
+    
+    private func setSceneColor() {
+        
+        let pal : IPaletteManager = ContainerConfig.instance.resolve()
+        self.scene?.backgroundColor = pal.sceneBgColor()
+        
+        if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
+            fieldOutine.updateColor(color: pal.fieldOutlineColor())
+        }
+    }
+    
+    private func showEndGameVC() {
+        let storyboardName = "Main"
+        let endGameVcName = "GameOverVC"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: endGameVcName)
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func onLoad(_ sender: Any) {
         
         CleanGameCMD(self.gameModel!).run()
         
-        //@todo: this is hardcode and should be removed!!
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!,
-            tempAddRandomStaff: false)
+            params: self.defaultGameParams!)
         cmd.run()
         self.gameModel = cmd.gameModel
+        ContainerConfig.instance.register(self.gameModel!)
+        setSceneColor()
         
         LoadGameCMD(self.gameModel!).run()
     }
@@ -123,6 +185,16 @@ class GameVC: UIViewController {
         
         SaveGameCMD(self.gameModel!).run()
     }
+    
+    @IBAction func onEndGame(_ sender: Any) {
+        
+        showEndGameVC()
+    }
+    
+    @IBAction func onColorChangeClick(_ sender: Any) {
+        
+        SwitchPaletteCMD(self.gameModel!).run()
+    }
 }
 
 extension GameVC: UIGestureRecognizerDelegate {
@@ -130,11 +202,6 @@ extension GameVC: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
         DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
-        //@todo: do proper screen for game finish
-        if self.gameModel!.status == .Finished {
-            CleanGameCMD(self.gameModel!).run()
-            startGame()
-        }
     }
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions

@@ -32,6 +32,15 @@ class EmptyCellDistributionCalculator: ICellsStatisticCalculator {
         openCells = 0
         gameCells = 0
     }
+    
+    func probability() -> Float {
+        
+        if openCells == 0 {
+            return 0.0
+        }
+        
+        return Float(gameCells) / Float(openCells)
+    }
 }
 
 class BlockRandomCellCMD : GameCMD {
@@ -57,6 +66,7 @@ class BlockRandomCellCMD : GameCMD {
             gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
             gameModel.getBgCells(compare: self.dontContainGameCell)
         
+        //@todo: fix it somehow
         var dice = ProbabilityArray<BgCell>()
         var calc = EmptyCellDistributionCalculator()
         var icalc : ICellsStatisticCalculator = calc
@@ -65,9 +75,7 @@ class BlockRandomCellCMD : GameCMD {
         for freeCell in freeCells {
             
             gameModel.calculateForSiblings(coord: freeCell.coord, calc: &icalc)
-            
-            let probability : Float = Float(calc.gameCells) / Float(calc.openCells)
-            dice.add(freeCell, probability)
+            dice.add(freeCell, calc.probability())
         }
         
         
