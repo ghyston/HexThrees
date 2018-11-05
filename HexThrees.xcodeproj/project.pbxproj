@@ -23,6 +23,7 @@
 		3F06B36F207C81E000C8315A /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34A207C81E000C8315A /* GameScene.sks */; };
 		3F06B371207C81E000C8315A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B34B207C81E000C8315A /* GameScene.swift */; };
 		3F06B373207C81E000C8315A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34C207C81E000C8315A /* Assets.xcassets */; };
+		3F11087D2190B591007743DF /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11087C2190B591007743DF /* FileHelper.swift */; };
 		3F1A626721181DE400CC6586 /* grid.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626621181DE400CC6586 /* grid.fsh */; };
 		3F1A62692118A74100CC6586 /* gridDervative.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A62682118A74100CC6586 /* gridDervative.fsh */; };
 		3F1A626B2118B38A00CC6586 /* simple.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626A2118B38A00CC6586 /* simple.fsh */; };
@@ -104,6 +105,7 @@
 		3F06B359207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F06B35C207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F06B35E207C81E000C8315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F11087C2190B591007743DF /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		3F1A626621181DE400CC6586 /* grid.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = grid.fsh; sourceTree = "<group>"; };
 		3F1A62682118A74100CC6586 /* gridDervative.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = gridDervative.fsh; sourceTree = "<group>"; };
 		3F1A626A2118B38A00CC6586 /* simple.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = simple.fsh; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */,
 				3FA3A50F21770F610005B37D /* ColorSchemas.swift */,
 				3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */,
+				3F11087C2190B591007743DF /* FileHelper.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
 				3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */,
 				3F21DF4F20C8F94500A979D5 /* AddBgCellCMD.swift in Sources */,
+				3F11087D2190B591007743DF /* FileHelper.swift in Sources */,
 				3F06487C21613827005461C7 /* MoveXUpIterator.swift in Sources */,
 				3F555CE6208E7AA5003C67A7 /* MergingStrategies.swift in Sources */,
 				3F06B357207C81E000C8315A /* GameVC.swift in Sources */,

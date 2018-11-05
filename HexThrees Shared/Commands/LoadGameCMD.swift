@@ -51,12 +51,9 @@ class LoadGameCMD: GameCMD {
         return nil
     }
     
-    //@todo: should it be a class FileManager?
     private func loadJsonFromFile() -> String? {
         
-        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-        let fileUrl = documentDirectoryUrl.appendingPathComponent("SavedGame.json") //@todo: use constant or config for that
-        
+        guard let fileUrl = FileHelper.SaveFileUrl() else { return nil }
         do {
             
             return try String(contentsOf: fileUrl, encoding: .utf8)
