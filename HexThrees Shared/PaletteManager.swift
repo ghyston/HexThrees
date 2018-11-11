@@ -29,7 +29,7 @@ class PaletteManager : IPaletteManager {
     
     init() {
         
-        let gray = ColorSchema(
+        let dark = ColorSchema(
             fieldOutlineColor: .darkGray,
             sceneBgColor: .black,
             cellBgColor: .gray,
@@ -51,6 +51,29 @@ class PaletteManager : IPaletteManager {
                       14: SKColor(rgb: 0x436279),
                       15: SKColor(rgb: 0x406C8B),
                       16: SKColor(rgb: 0x075E9B)])
+        
+        let gray = ColorSchema(
+            fieldOutlineColor: .red,
+            sceneBgColor: .white,
+            cellBgColor: .gray,
+            cellBlockedBgColor: .darkGray,
+            colors: [0: SKColor(rgb: 0x07BEB8),
+                     1: SKColor(rgb: 0x0568AE),
+                     2: SKColor(rgb: 0xE9E228),
+                     3: SKColor(rgb: 0xBDB962),
+                     4: SKColor(rgb: 0xD8D35C),
+                     5: SKColor(rgb: 0xE99528),
+                     6: SKColor(rgb: 0xBD9562),
+                     7: SKColor(rgb: 0xD8A25C),
+                     8: SKColor(rgb: 0xF18800),
+                     9: SKColor(rgb: 0xFF9000),
+                     10: SKColor(rgb: 0x9CEAEF),
+                     11: SKColor(rgb: 0x07BEB8),
+                     12: SKColor(rgb: 0x216596),
+                     13: SKColor(rgb: 0x436279),
+                     14: SKColor(rgb: 0x436279),
+                     15: SKColor(rgb: 0x406C8B),
+                     16: SKColor(rgb: 0x075E9B)])
         
         let light = ColorSchema(
             fieldOutlineColor: .red,
@@ -76,8 +99,9 @@ class PaletteManager : IPaletteManager {
                      16: SKColor(rgb: 0x075E9B)])
         
         allPalettes = [
-            .Dark: gray,
-            .Light: light]
+            .Dark: dark,
+            .Light: light,
+            .Gray: gray]
         
         currentPalette = allPalettes[.Dark]!
     }

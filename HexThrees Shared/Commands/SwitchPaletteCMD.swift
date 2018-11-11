@@ -10,10 +10,10 @@ import Foundation
 
 class SwitchPaletteCMD : GameCMD {
     
-    override func run() {
+    func run(_ palette: ColorSchemaType) {
         
         let pal : IPaletteManager = ContainerConfig.instance.resolve()
-        pal.switchPalette(to: .Light)
+        pal.switchPalette(to: palette)
         NotificationCenter.default.post(name: .switchPalette, object: nil)
     }
 }

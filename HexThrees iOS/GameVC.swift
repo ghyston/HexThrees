@@ -31,8 +31,8 @@ class GameVC: UIViewController {
         skView.presentScene(self.scene)
         
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+        skView.showsFPS = false //@todo: check, is this a debug mode?
+        skView.showsNodeCount = false
         
         self.defaultGameParams = GameParams(
             fieldSize: 4,
@@ -76,9 +76,10 @@ class GameVC: UIViewController {
         if FileHelper.SaveFileExist() {
             LoadGameCMD(self.gameModel!).run()
         } else {
-            AddRandomElementsCMD(self.gameModel!).run(
-                cells: self.defaultGameParams!.randomElementsCount,
-                blocked: self.defaultGameParams!.blockedCellsCount)
+            DebugPaletteCMD(self.gameModel!).run()
+//            AddRandomElementsCMD(self.gameModel!).run(
+//                cells: self.defaultGameParams!.randomElementsCount,
+//                blocked: self.defaultGameParams!.blockedCellsCount)
         }
     }
     
@@ -118,7 +119,6 @@ class GameVC: UIViewController {
         cmd.run()
         
         self.gameModel = cmd.gameModel
-        //DebugPaletteCMD(self.gameModel!).run()
         ContainerConfig.instance.register(self.gameModel!)
         setSceneColor()
     }
