@@ -30,8 +30,9 @@ class HexCell : SKNode {
         hexShape.lineWidth = 0
         
         self.label = SKLabelNode(text: text)
+        self.label.verticalAlignmentMode = .center
         self.label.fontSize = 22.0
-        self.label.fontName = "Chalkduster"
+        self.label.fontName = "Futura"
         self.label.position = CGPoint(x: 0, y: 0)
         self.label.fontColor = .white
         self.label.zPosition = zPositions.labelZ.rawValue

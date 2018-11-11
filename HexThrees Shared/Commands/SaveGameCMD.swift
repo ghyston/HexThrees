@@ -48,11 +48,10 @@ class SaveGameCMD : GameCMD {
             score: self.gameModel.score)
     }
     
-    //@todo: should it be a class FileManager?
-    private func saveJsonToFile(_ json: String) {
+    private func saveJsonToFile(_ json: String)
+    {
         
-        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = documentDirectoryUrl.appendingPathComponent("SavedGame.json") //@todo: use constant or config for that
+        guard let fileUrl = FileHelper.SaveFileUrl() else { return }
         
         do {
             try json.write(to: fileUrl, atomically: true, encoding: .utf8)
