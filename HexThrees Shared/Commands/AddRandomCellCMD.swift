@@ -11,15 +11,28 @@ import Foundation
 class AddRandomCellCMD : GameCMD {
     
     
-    private func isCellFree(cell: BgCell) -> Bool {
+    private func freeCellWithBonuses(cell: BgCell) -> Bool {
         
         return cell.gameCell == nil &&
             cell.isBlocked == false
     }
     
+    private func freeCellWoBonuses(cell: BgCell) -> Bool {
+        
+        return
+            cell.gameCell == nil &&
+                cell.isBlocked == false &&
+                cell.bonus == nil
+    }
+    
     override func run() {
         
-        guard let bgCell = self.gameModel.getBgCells(compare: self.isCellFree).randomElement() else {
+        var cells = self.gameModel.getBgCells(compare: self.freeCellWoBonuses)
+        if cells.count == 0 {
+            cells = self.gameModel.getBgCells(compare: self.freeCellWithBonuses)
+        }
+        
+        guard let bgCell = cells.randomElement() else {
             return
         }
         
