@@ -17,7 +17,7 @@ class MoveLeftIterator : BaseCellsIterator, CellsIterator {
         line.clear()
         
         // Move along X from bottom to middle
-        for _ in x ..< w {
+        for _ in x ..< w - 1 {
             
             let len = x >= h ? h : x + 1
             
