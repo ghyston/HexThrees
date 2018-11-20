@@ -38,5 +38,9 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
+        for node in self.children where node is GameCell
+        {
+            (node as! HexCell).updateMotionBlur()
+        }
     }
 }

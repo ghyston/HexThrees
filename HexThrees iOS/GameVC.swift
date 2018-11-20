@@ -76,10 +76,10 @@ class GameVC: UIViewController {
         if FileHelper.SaveFileExist() {
             LoadGameCMD(self.gameModel!).run()
         } else {
-            DebugPaletteCMD(self.gameModel!).run()
-//            AddRandomElementsCMD(self.gameModel!).run(
-//                cells: self.defaultGameParams!.randomElementsCount,
-//                blocked: self.defaultGameParams!.blockedCellsCount)
+            //DebugPaletteCMD(self.gameModel!).run()
+            AddRandomElementsCMD(self.gameModel!).run(
+                cells: self.defaultGameParams!.randomElementsCount,
+                blocked: self.defaultGameParams!.blockedCellsCount)
         }
     }
     

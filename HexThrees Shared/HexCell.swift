@@ -17,11 +17,12 @@ enum zPositions: CGFloat {
     case hexCellZ = 2
 }
 
-class HexCell : SKNode {
+class HexCell : SKEffectNode {
     
     //let sprite : SKSpriteNode
     let hexShape : SKShapeNode
     let label : SKLabelNode
+    let blur = CIFilter(name: "CIMotionBlur")!
     
     init(model: GameModel, text: String, color: SKColor) {
         
@@ -43,6 +44,15 @@ class HexCell : SKNode {
         self.hexShape.addChild(self.label)
         
         self.hexShape.zPosition = zPositions.hexCellZ.rawValue
+        
+        //@todo: this should be only to gameCell!
+        let physicsBody = SKPhysicsBody(polygonFrom: self.hexShape.path!)
+        //physicsBody.restitution = 0.0 // @todo: what does thi mean?
+        hexShape.physicsBody = physicsBody
+        filter = blur
+        
+        
+        //self.frame.width =
     }
     
     func updateText(text: String) {
@@ -58,6 +68,18 @@ class HexCell : SKNode {
         self.hexShape.strokeColor = strokeColor
         self.hexShape.fillColor = fillColor
         self.label.fontColor = fontColor
+    }
+    
+    func updateMotionBlur()
+    {
+        if let hexPhysicsBody = hexShape.physicsBody
+        {
+            let angle = 0.0//atan2(hexPhysicsBody.velocity.dy, hexPhysicsBody.velocity.dx)
+            let velocity = 0.0//sqrt(pow(hexPhysicsBody.velocity.dx, 2) + pow(hexPhysicsBody.velocity.dy, 2)) * 0.1
+            
+            blur.setValue(angle, forKey: kCIInputAngleKey)
+            blur.setValue(velocity, forKey: kCIInputRadiusKey)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
