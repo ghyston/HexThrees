@@ -75,6 +75,7 @@ class FieldGeometry {
         hexPath.addLine(to: CGPoint.init(x: -rad * xCoef, y: -rad * yCoef))
         hexPath.addLine(to: CGPoint.init(x: -rad * xCoef, y: rad * yCoef))
         hexPath.addLine(to: CGPoint.init(x: 0.0, y: rad))
+        
         return hexPath
     }
     
