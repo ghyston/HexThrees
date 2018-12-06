@@ -43,6 +43,10 @@
 		3F555CEC208FC30D003C67A7 /* Resourses in Resources */ = {isa = PBXBuildFile; fileRef = 3F555CEB208FC30D003C67A7 /* Resourses */; };
 		3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CEE2091AE49003C67A7 /* BgCell.swift */; };
 		3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F555CF12091AE66003C67A7 /* GameCell.swift */; };
+		3F60069221B6F7DC00BD4DCA /* HexNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069121B6F7DC00BD4DCA /* HexNode.swift */; };
+		3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069321B6F80300BD4DCA /* LabeledNode.swift */; };
+		3F60069621B6F82800BD4DCA /* BlockableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069521B6F82800BD4DCA /* BlockableNode.swift */; };
+		3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069721B6F85100BD4DCA /* BonusableNode.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C520E966D70052E1C6 /* SettingsVC.swift */; };
@@ -53,7 +57,7 @@
 		3FA3A50B2175A6E90005B37D /* GameOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A50A2175A6E90005B37D /* GameOverVC.swift */; };
 		3FA3A51021770F610005B37D /* ColorSchemas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A50F21770F610005B37D /* ColorSchemas.swift */; };
 		3FA3A514217EF1D60005B37D /* SwitchPaletteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A513217EF1D60005B37D /* SwitchPaletteCMD.swift */; };
-		3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* HexCell.swift */; };
+		3FAAC76B207F27E9006F5196 /* zPositions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAC76A207F27E9006F5196 /* zPositions.swift */; };
 		3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */; };
 		3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC644D20B5DE010083C56C /* GameModel.swift */; };
 		3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAC645020B5E1240083C56C /* MoveLineCMD.swift */; };
@@ -125,6 +129,10 @@
 		3F555CEB208FC30D003C67A7 /* Resourses */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resourses; sourceTree = "<group>"; };
 		3F555CEE2091AE49003C67A7 /* BgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BgCell.swift; sourceTree = "<group>"; };
 		3F555CF12091AE66003C67A7 /* GameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCell.swift; sourceTree = "<group>"; };
+		3F60069121B6F7DC00BD4DCA /* HexNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexNode.swift; sourceTree = "<group>"; };
+		3F60069321B6F80300BD4DCA /* LabeledNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledNode.swift; sourceTree = "<group>"; };
+		3F60069521B6F82800BD4DCA /* BlockableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockableNode.swift; sourceTree = "<group>"; };
+		3F60069721B6F85100BD4DCA /* BonusableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusableNode.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C520E966D70052E1C6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -135,7 +143,7 @@
 		3FA3A50A2175A6E90005B37D /* GameOverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverVC.swift; sourceTree = "<group>"; };
 		3FA3A50F21770F610005B37D /* ColorSchemas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemas.swift; sourceTree = "<group>"; };
 		3FA3A513217EF1D60005B37D /* SwitchPaletteCMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchPaletteCMD.swift; sourceTree = "<group>"; };
-		3FAAC76A207F27E9006F5196 /* HexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell.swift; sourceTree = "<group>"; };
+		3FAAC76A207F27E9006F5196 /* zPositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zPositions.swift; sourceTree = "<group>"; };
 		3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellCMD.swift; sourceTree = "<group>"; };
 		3FAC644D20B5DE010083C56C /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		3FAC645020B5E1240083C56C /* MoveLineCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveLineCMD.swift; sourceTree = "<group>"; };
@@ -207,16 +215,14 @@
 		3F06B348207C81E000C8315A /* HexThrees Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3F60069021B6F7C800BD4DCA /* Nodes */,
 				3F064872215D4150005461C7 /* Iterators */,
 				3F1A626521181DB500CC6586 /* Shaders */,
 				3FE9202920D03286009B7370 /* Common */,
 				3FAC646820B8791D0083C56C /* Assets */,
 				3FAC644920B5DD7E0083C56C /* Commands */,
-				3F555CEE2091AE49003C67A7 /* BgCell.swift */,
 				3F4FA82220E5FA2800971892 /* Container.swift */,
 				3F4FA82120E5FA2800971892 /* ContainerConfig.swift */,
-				3FAAC76A207F27E9006F5196 /* HexCell.swift */,
-				3F555CF12091AE66003C67A7 /* GameCell.swift */,
 				3F555CE5208E7AA5003C67A7 /* MergingStrategies.swift */,
 				3F06B34B207C81E000C8315A /* GameScene.swift */,
 				3FAC647220BCA52B0083C56C /* GameConstants.swift */,
@@ -229,12 +235,10 @@
 				3FB703AE20E16613009718F3 /* FieldGeometry.swift */,
 				3FB703B120E168EE009718F3 /* GameParams.swift */,
 				3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */,
-				3FEBD12621346A5900D9FCBC /* BonusNode.swift */,
 				3FEBD12821346BDD00D9FCBC /* BonusFabric.swift */,
 				3FEBD12A21346D8200D9FCBC /* HexField.swift */,
 				3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */,
 				3FA3A50F21770F610005B37D /* ColorSchemas.swift */,
-				3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */,
 				3F11087C2190B591007743DF /* FileHelper.swift */,
 			);
 			path = "HexThrees Shared";
@@ -274,6 +278,22 @@
 				3F1A626A2118B38A00CC6586 /* simple.fsh */,
 			);
 			path = Shaders;
+			sourceTree = "<group>";
+		};
+		3F60069021B6F7C800BD4DCA /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				3FAAC76A207F27E9006F5196 /* zPositions.swift */,
+				3F555CEE2091AE49003C67A7 /* BgCell.swift */,
+				3F555CF12091AE66003C67A7 /* GameCell.swift */,
+				3FEBD12621346A5900D9FCBC /* BonusNode.swift */,
+				3FEA7ACF218776DC007F50D8 /* FieldOutline.swift */,
+				3F60069121B6F7DC00BD4DCA /* HexNode.swift */,
+				3F60069321B6F80300BD4DCA /* LabeledNode.swift */,
+				3F60069521B6F82800BD4DCA /* BlockableNode.swift */,
+				3F60069721B6F85100BD4DCA /* BonusableNode.swift */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 		3FAC644920B5DD7E0083C56C /* Commands */ = {
@@ -430,8 +450,10 @@
 				3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */,
 				3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */,
 				3FA3A50B2175A6E90005B37D /* GameOverVC.swift in Sources */,
+				3F60069621B6F82800BD4DCA /* BlockableNode.swift in Sources */,
 				3FAC644B20B5DDAD0083C56C /* AddRandomCellCMD.swift in Sources */,
 				3F0648802166873D005461C7 /* AfterSwipeCMD.swift in Sources */,
+				3F60069221B6F7DC00BD4DCA /* HexNode.swift in Sources */,
 				3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
 				3F4FA81920E2DFCD00971892 /* StartGameCMD.swift in Sources */,
 				3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */,
@@ -441,10 +463,11 @@
 				3FAC647320BCA52B0083C56C /* GameConstants.swift in Sources */,
 				3FB703A020DA1B69009718F3 /* BlockRandomCellCMD.swift in Sources */,
 				3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */,
-				3FAAC76B207F27E9006F5196 /* HexCell.swift in Sources */,
+				3FAAC76B207F27E9006F5196 /* zPositions.swift in Sources */,
 				3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */,
 				3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */,
 				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
+				3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */,
 				3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */,
 				3F06487821611AA6005461C7 /* MoveLeftIterator.swift in Sources */,
 				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
@@ -461,6 +484,7 @@
 				3F06487A2161343B005461C7 /* MoveRightIterator.swift in Sources */,
 				3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */,
 				3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */,
+				3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */,
 				3FA3A51021770F610005B37D /* ColorSchemas.swift in Sources */,
 				3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */,
 				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,

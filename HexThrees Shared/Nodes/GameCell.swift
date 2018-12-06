@@ -11,7 +11,10 @@ import SpriteKit
 
 
 
-class GameCell : HexCell {
+class GameCell : SKNode, HexNode, LabeledNode {
+    
+    var hexShape : SKShapeNode
+    var label : SKLabelNode
     
     var value: Int
     var newParent : BgCell?
@@ -22,7 +25,17 @@ class GameCell : HexCell {
         
         self.value = val
         let strategyValue = model.strategy.value(index: self.value)
-        super.init(model: model, text: "\(strategyValue)", color: pal.color(value: val))
+        
+        // this is just to put placeholders
+        hexShape = SKShapeNode()
+        label = SKLabelNode()
+        
+        super.init()
+        
+        addShape(model: model)
+        addLabel(text: "\(strategyValue)")
+        
+        updateColor()
         
         //@todo: do I need to remove observer in destructor?
         NotificationCenter.default.addObserver(
@@ -37,7 +50,9 @@ class GameCell : HexCell {
     }
     
     func updateColor() {
-        updateColor(fillColor: pal.color(value: value), strokeColor: .white, fontColor: .white)
+        
+        updateColor(fontColor: .white)
+        updateColor(fillColor: pal.color(value: value), strokeColor: .white)
     }
     
     func playAppearAnimation() {
