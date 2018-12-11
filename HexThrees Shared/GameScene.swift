@@ -10,6 +10,8 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var prevInterval = TimeInterval()
+    
     class func newGameScene() -> GameScene {
         
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
@@ -38,9 +40,16 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        for node in self.children where node is GameCell
-        {
-            (node as! HexCell).updateMotionBlur()
+        
+        let delta = currentTime - prevInterval
+        prevInterval = currentTime
+        
+        //@todo: uglyuglyuglyuglyuglyuglyuglyuglyugly
+        //@todo: use runForAllSubnodes
+        for firstLevelChild in self.children {
+            for secondLevel in firstLevelChild.children where secondLevel is MotionBlurNode  {
+                (secondLevel as! MotionBlurNode).updateMotionBlur(delta)
+            }
         }
     }
 }

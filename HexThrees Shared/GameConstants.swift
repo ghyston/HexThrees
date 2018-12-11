@@ -8,7 +8,7 @@
 
 class GameConstants {
     
-    static let SecondsPerCell = 0.2
+    static let SecondsPerCell = 0.15
     
     static let BonusAnimationDuration = 0.5
     static let BonusTurnsLifetime = 2

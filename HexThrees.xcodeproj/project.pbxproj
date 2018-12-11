@@ -47,6 +47,8 @@
 		3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069321B6F80300BD4DCA /* LabeledNode.swift */; };
 		3F60069621B6F82800BD4DCA /* BlockableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069521B6F82800BD4DCA /* BlockableNode.swift */; };
 		3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069721B6F85100BD4DCA /* BonusableNode.swift */; };
+		3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */; };
+		3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C520E966D70052E1C6 /* SettingsVC.swift */; };
@@ -133,6 +135,8 @@
 		3F60069321B6F80300BD4DCA /* LabeledNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledNode.swift; sourceTree = "<group>"; };
 		3F60069521B6F82800BD4DCA /* BlockableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockableNode.swift; sourceTree = "<group>"; };
 		3F60069721B6F85100BD4DCA /* BonusableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusableNode.swift; sourceTree = "<group>"; };
+		3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurNode.swift; sourceTree = "<group>"; };
+		3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.extensions.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C520E966D70052E1C6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -292,6 +296,7 @@
 				3F60069321B6F80300BD4DCA /* LabeledNode.swift */,
 				3F60069521B6F82800BD4DCA /* BlockableNode.swift */,
 				3F60069721B6F85100BD4DCA /* BonusableNode.swift */,
+				3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				3F21DF4820C8F79600A979D5 /* SKColor.extensions.swift */,
 				3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */,
 				3FE9202620CEE646009B7370 /* CGVector.extensions.swift */,
+				3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -438,12 +444,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */,
 				3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
 				3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */,
 				3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */,
 				3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */,
 				3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */,
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,
+				3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */,
 				3FA3A514217EF1D60005B37D /* SwitchPaletteCMD.swift in Sources */,
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,

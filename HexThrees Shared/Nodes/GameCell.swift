@@ -11,10 +11,14 @@ import SpriteKit
 
 
 
-class GameCell : SKNode, HexNode, LabeledNode {
+class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
+    var prevPosition: CGPoint?
     
     var hexShape : SKShapeNode
     var label : SKLabelNode
+    
+    var effectNode : SKEffectNode
+    var blurFilter : CIFilter
     
     var value: Int
     var newParent : BgCell?
@@ -29,9 +33,13 @@ class GameCell : SKNode, HexNode, LabeledNode {
         // this is just to put placeholders
         hexShape = SKShapeNode()
         label = SKLabelNode()
+        effectNode = SKEffectNode()
+        blurFilter = CIFilter()
+        prevPosition = CGPoint()
         
         super.init()
         
+        addBlur()
         addShape(model: model)
         addLabel(text: "\(strategyValue)")
         
@@ -72,8 +80,18 @@ class GameCell : SKNode, HexNode, LabeledNode {
     func playMoveAnimation(diff: CGVector, duration: Double) {
         
         let moveAnimation = SKAction.move(by: diff, duration: duration)
-        moveAnimation.timingMode = SKActionTimingMode.easeInEaseOut
+        moveAnimation.timingMode = SKActionTimingMode.easeIn
         self.run(moveAnimation)
+        
+        //@todo: move this to MotionBlurNode ?
+        self.startBlur()
+        let delayStopBlur = SKAction.wait(forDuration: duration)
+        let delete = SKAction.perform(#selector(GameCell.stopBlurDelayed), onTarget: self)
+        self.run(SKAction.sequence([delayStopBlur, delete]))
+    }
+    
+    @objc func stopBlurDelayed() {
+        self.stopBlur()
     }
     
     func removeFromParentWithDelay(delay: Double) {
@@ -88,6 +106,17 @@ class GameCell : SKNode, HexNode, LabeledNode {
         self.updateText(text: "\(strategyValue)")
         self.playUpdateAnimation()
         updateColor()
+    }
+    
+    //@todo: this is a big dirty hack
+    override func addChild(_ node: SKNode) {
+        
+        if effectNode.parent != nil {
+            effectNode.addChild(node)
+        } else {
+            super.addChild(node)
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

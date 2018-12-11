@@ -36,8 +36,8 @@ class GameVC: UIViewController {
         
         self.defaultGameParams = GameParams(
             fieldSize: 4,
-            randomElementsCount: 4,
-            blockedCellsCount: 2,
+            randomElementsCount: 1,
+            blockedCellsCount: 0,
             strategy: .Hybrid,
             palette: .Dark)
         

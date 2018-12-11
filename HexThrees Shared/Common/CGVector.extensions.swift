@@ -16,6 +16,6 @@ extension CGVector {
     }
     
     func squareLen() -> CGFloat {
-        return self.dx * self.dx + self.dy * self.dy
+        return pow(self.dx, 2) + pow(self.dy, 2)
     }
 }
