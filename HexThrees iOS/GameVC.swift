@@ -17,7 +17,16 @@ class GameVC: UIViewController {
     
     var gameModel : GameModel?
     var scene : GameScene?
-    var defaultGameParams: GameParams?
+    var currentGameParams: GameParams?
+    
+    let defaultGameParams = GameParams(
+        fieldSize: FieldSize.Quaddro,
+        randomElementsCount: 4,
+        blockedCellsCount: 2,
+        strategy: .Hybrid,
+        palette: .Dark)
+    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +40,10 @@ class GameVC: UIViewController {
         skView.presentScene(self.scene)
         
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = false //@todo: check, is this a debug mode?
+        skView.showsFPS = true
         skView.showsNodeCount = false
         
-        self.defaultGameParams = GameParams(
-            fieldSize: 4,
-            randomElementsCount: 1,
-            blockedCellsCount: 0,
-            strategy: .Hybrid,
-            palette: .Dark)
+        loadSettings()
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -78,9 +82,22 @@ class GameVC: UIViewController {
         } else {
             //DebugPaletteCMD(self.gameModel!).run()
             AddRandomElementsCMD(self.gameModel!).run(
-                cells: self.defaultGameParams!.randomElementsCount,
-                blocked: self.defaultGameParams!.blockedCellsCount)
+                cells: self.currentGameParams!.randomElementsCount,
+                blocked: self.currentGameParams!.blockedCellsCount)
         }
+    }
+    
+    private func loadSettings() {
+        
+        let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
+        let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
+        
+        self.currentGameParams = GameParams(
+            fieldSize: prefFieldSize ?? self.defaultGameParams.fieldSize,
+            randomElementsCount: self.defaultGameParams.randomElementsCount,
+            blockedCellsCount: self.defaultGameParams.blockedCellsCount,
+            strategy: self.defaultGameParams.strategy,
+            palette: prefPalette ?? self.defaultGameParams.palette)
     }
     
     override var shouldAutorotate: Bool {
@@ -115,7 +132,7 @@ class GameVC: UIViewController {
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!)
+            params: self.currentGameParams!)
         cmd.run()
         
         self.gameModel = cmd.gameModel
@@ -126,10 +143,11 @@ class GameVC: UIViewController {
     @objc func onGameReset(notification: Notification) {
         
         CleanGameCMD(self.gameModel!).run()
+        loadSettings()
         startGame()
         AddRandomElementsCMD(self.gameModel!).run(
-            cells: self.defaultGameParams!.randomElementsCount,
-            blocked: self.defaultGameParams!.blockedCellsCount)
+            cells: self.currentGameParams!.randomElementsCount,
+            blocked: self.currentGameParams!.blockedCellsCount)
     }
     
     @objc func onScoreUpdate(notification: Notification) {
@@ -150,8 +168,13 @@ class GameVC: UIViewController {
     private func setSceneColor() {
         
         let pal : IPaletteManager = ContainerConfig.instance.resolve()
-        self.scene?.backgroundColor = pal.sceneBgColor()
         
+        //@todo: find, how it works, may be it would be possible to use to switch palette with animation
+        /*UIView.animate(withDuration: 1.0) {
+            
+        }*/
+        
+        self.scene?.backgroundColor = pal.sceneBgColor()
         if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
             fieldOutine.updateColor(color: pal.fieldOutlineColor())
         }

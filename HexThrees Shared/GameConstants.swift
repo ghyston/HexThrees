@@ -19,5 +19,11 @@ class GameConstants {
     static let UnlockBonusProbability: Float = 0.3
     static let X2BonusProbability: Float = 0.2
     static let X3BonusProbability: Float = 0.1
+}
+
+enum SettingsKey : String {
     
+    case FieldSize = "field_size"
+    case Palette = "palette"
+    case MotionBlur = "motion_blur"
 }

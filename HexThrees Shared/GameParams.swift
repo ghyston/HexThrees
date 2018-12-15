@@ -10,7 +10,7 @@ import Foundation
 
 struct GameParams {
     
-    let fieldSize: Int
+    let fieldSize: FieldSize
     let randomElementsCount: Int
     let blockedCellsCount: Int
     let strategy: MergingStrategyName

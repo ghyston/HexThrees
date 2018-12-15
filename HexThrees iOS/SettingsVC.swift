@@ -11,6 +11,7 @@ import Foundation
 class SettingsVC :  UIViewController {
     
     var gameModel : GameModel?
+    let defaults = UserDefaults.standard
     
     @IBOutlet weak var fieldSizeValueLabel: UILabel!
     @IBOutlet weak var settingsPopupView: UIView!
@@ -24,14 +25,13 @@ class SettingsVC :  UIViewController {
     
     @IBAction func onSave(_ sender: Any) {
         
-        //@todo
+        //@todo here?
     }
     
     @IBAction func onFieldSizeChanged(_ sender: Any) {
         
         fieldSizeValueLabel.text = String(fieldSizeStepper.value)
-        
-        //@todo: change settings here
+        defaults.set(Int(fieldSizeStepper.value), forKey: SettingsKey.FieldSize.rawValue)
     }
     
     @IBAction func onPaletteChanged(_ sender: Any) {
@@ -53,6 +53,7 @@ class SettingsVC :  UIViewController {
         }
         
         SwitchPaletteCMD(gm).run(newMode)
+        defaults.set(newMode.rawValue, forKey: SettingsKey.Palette.rawValue)
     }
     
     override func viewDidLoad() {
@@ -63,8 +64,8 @@ class SettingsVC :  UIViewController {
         
         settingsPopupView.layer.cornerRadius = 20
         
-        fieldSizeStepper.minimumValue = 2
-        fieldSizeStepper.maximumValue = 7
+        fieldSizeStepper.minimumValue = Double(FieldSize.Thriple.rawValue)
+        fieldSizeStepper.maximumValue = Double(FieldSize.Pento.rawValue)
         
         fieldSizeStepper.value = Double((gameModel?.fieldHeight)!)
         fieldSizeValueLabel.text = String(fieldSizeStepper.value)

@@ -29,6 +29,8 @@ class PaletteManager : IPaletteManager {
     
     init() {
         
+        //@todo: try for background 333240
+        
         let dark = ColorSchema(
             fieldOutlineColor: .darkGray,
             sceneBgColor: .black,
