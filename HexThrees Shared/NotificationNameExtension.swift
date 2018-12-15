@@ -9,8 +9,9 @@
 import Foundation
 
 extension NSNotification.Name {
-    static let resetGame = Notification.Name(rawValue: "resetGame")
-    static let updateScore = Notification.Name(rawValue: "updateScore")
+    static let resetGame = Notification.Name(rawValue: "reset_game")
+    static let updateScore = Notification.Name(rawValue: "update_score")
     static let gameOver = Notification.Name(rawValue: "gameOver")
-    static let switchPalette = Notification.Name(rawValue: "switchPalette")
+    static let switchPalette = Notification.Name(rawValue: "switch_palette")
+    static let switchMotionBlur = Notification.Name(rawValue: "switch_motion_blur")
 }

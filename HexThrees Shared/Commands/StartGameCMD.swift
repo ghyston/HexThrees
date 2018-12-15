@@ -28,7 +28,8 @@ class StartGameCMD : CMD {
         let gameModel = GameModel(            
             screenWidth: view.frame.width,
             fieldSize: params.fieldSize.rawValue,
-            strategy: MerginStrategyFabric.createByName(params.strategy))
+            strategy: MerginStrategyFabric.createByName(params.strategy),
+            motionBlur: params.motionBlur == MotionBlurStatus.Enabled)
         
         let fieldSize = self.params.fieldSize.rawValue
         

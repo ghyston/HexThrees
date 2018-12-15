@@ -39,6 +39,9 @@ class AddRandomCellCMD : GameCMD {
         let newElement = GameCell(
             model: self.gameModel,
             val: 0)
+        // @todo: overexposition self settings
+        newElement.motionBlurDisabled = !self.gameModel.motionBlurEnabled
+        
         bgCell.addGameCell(cell: newElement)
         newElement.playAppearAnimation()
         

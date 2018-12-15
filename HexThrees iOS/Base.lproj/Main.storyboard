@@ -160,99 +160,15 @@
         <scene sceneID="zYc-sA-mSm">
             <objects>
                 <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="NBg-LN-5S6" customClass="SettingsVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6CO-UM-fgK">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="6CO-UM-fgK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAJ-iY-ipv">
                                 <rect key="frame" x="27.5" y="128" width="320" height="512"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-GA-BM7">
-                                        <rect key="frame" x="5" y="453" width="310" height="51"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="st2-NY-bBa">
-                                                <rect key="frame" x="0.0" y="0.0" width="155" height="51"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                <state key="normal" title="Save">
-                                                    <color key="titleColor" red="0.94901960784313721" green="0.69803921568627447" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onSave:" destination="NBg-LN-5S6" eventType="touchUpInside" id="8j0-Gz-MFa"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTc-VO-JH8">
-                                                <rect key="frame" x="155" y="0.0" width="155" height="51"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" red="0.94901960784313721" green="0.69803921568627447" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onCancel:" destination="NBg-LN-5S6" eventType="touchUpInside" id="k83-aH-yBC"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillProportionally" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="f1p-j1-V8r">
-                                        <rect key="frame" x="25" y="61" width="269.5" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field size: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aX0-LU-E1n">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <color key="textColor" red="0.94901960784313721" green="0.69803921568627447" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="12" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-AN-XoU">
-                                                <rect key="frame" x="138" y="0.0" width="11.5" height="30"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" autorepeat="NO" value="3" minimumValue="3" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ti7-DF-Umr">
-                                                <rect key="frame" x="175.5" y="0.0" width="94" height="29"/>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <connections>
-                                                    <action selector="onFieldSizeChanged:" destination="NBg-LN-5S6" eventType="valueChanged" id="Ayh-2L-THe"/>
-                                                </connections>
-                                            </stepper>
-                                        </subviews>
-                                    </stackView>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WyI-ke-nBz">
-                                        <rect key="frame" x="43" y="261" width="234" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        <segments>
-                                            <segment title="Dark"/>
-                                            <segment title="Gray"/>
-                                            <segment title="Light"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="onPaletteChanged:" destination="NBg-LN-5S6" eventType="valueChanged" id="ceu-qo-vCe"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Changes will be applied in next game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBR-cY-R3v">
-                                        <rect key="frame" x="73" y="98" width="173" height="82"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.93431859127595063" blue="0.77537190936320755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OS-7n-f3c">
-                                        <rect key="frame" x="25" y="216" width="112" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="xtd-GA-BM7" secondAttribute="bottom" constant="8" id="0ks-YU-zxj"/>
                                     <constraint firstAttribute="height" constant="512" id="7He-OD-gpN"/>
-                                    <constraint firstItem="xtd-GA-BM7" firstAttribute="centerX" secondItem="RAJ-iY-ipv" secondAttribute="centerX" id="QfA-e6-wFR"/>
-                                    <constraint firstItem="xtd-GA-BM7" firstAttribute="leading" secondItem="RAJ-iY-ipv" secondAttribute="leading" constant="5" id="WSR-2c-Tzs"/>
-                                    <constraint firstAttribute="trailing" secondItem="xtd-GA-BM7" secondAttribute="trailing" constant="5" id="XRj-qW-3IS"/>
                                     <constraint firstAttribute="width" constant="320" id="Z3X-eQ-VGW"/>
                                 </constraints>
                             </view>
@@ -272,6 +188,110 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="FBl-RZ-L9i" userLabel="SettingsVerticalStackView">
+                                <rect key="frame" x="53" y="155" width="269.5" height="470"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="f1p-j1-V8r" userLabel="FieldSizeStackView">
+                                        <rect key="frame" x="0.0" y="0.0" width="269.5" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field size: " lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aX0-LU-E1n">
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="textColor" red="0.94901960784313721" green="0.69803921568627447" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="12" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-AN-XoU">
+                                                <rect key="frame" x="138" y="0.0" width="11.5" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" autorepeat="NO" value="3" minimumValue="3" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ti7-DF-Umr">
+                                                <rect key="frame" x="175.5" y="0.0" width="94" height="29"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <connections>
+                                                    <action selector="onFieldSizeChanged:" destination="NBg-LN-5S6" eventType="valueChanged" id="Ayh-2L-THe"/>
+                                                </connections>
+                                            </stepper>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Changes will be applied in next game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBR-cY-R3v">
+                                        <rect key="frame" x="0.0" y="68" width="269.5" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.93431859127595063" blue="0.77537190936320755" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5OS-7n-f3c">
+                                        <rect key="frame" x="0.0" y="147" width="269.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WyI-ke-nBz">
+                                        <rect key="frame" x="0.0" y="215" width="269.5" height="29"/>
+                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        <segments>
+                                            <segment title="Dark"/>
+                                            <segment title="Gray"/>
+                                            <segment title="Light"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="onPaletteChanged:" destination="NBg-LN-5S6" eventType="valueChanged" id="ceu-qo-vCe"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="98" translatesAutoresizingMaskIntoConstraints="NO" id="usH-gr-uDm" userLabel="HapticFeedbackStackView">
+                                        <rect key="frame" x="0.0" y="281" width="269.5" height="31"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eqg-Yd-Loy" userLabel="HapticFeedbackSwitch">
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="onHapticFeedbackChanged:" destination="NBg-LN-5S6" eventType="valueChanged" id="NDa-6m-HYz"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Haptic feedback" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cap-OM-eFS" userLabel="HapticFeedbackLabel">
+                                                <rect key="frame" x="147" y="0.0" width="122.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="98" translatesAutoresizingMaskIntoConstraints="NO" id="aC2-aN-dib" userLabel="MotionBlurStackView">
+                                        <rect key="frame" x="0.0" y="350" width="269.5" height="31"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26a-k9-0Nk" userLabel="MotionBlurSwitch">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="31"/>
+                                                <connections>
+                                                    <action selector="onMotionBlurChanged:" destination="NBg-LN-5S6" eventType="valueChanged" id="adO-Wo-6hy"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Motion Blur" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyS-jv-4A1" userLabel="MotionBlurLabel">
+                                                <rect key="frame" x="146" y="0.0" width="123.5" height="31"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-GA-BM7" userLabel="ButtonsStackView">
+                                        <rect key="frame" x="0.0" y="419" width="269.5" height="51"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTc-VO-JH8">
+                                                <rect key="frame" x="0.0" y="0.0" width="269.5" height="51"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <state key="normal" title="Back">
+                                                    <color key="titleColor" red="0.94901960784313721" green="0.69803921568627447" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onCancel:" destination="NBg-LN-5S6" eventType="touchUpInside" id="k83-aH-yBC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.19847601232394366" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -286,6 +306,7 @@
                     <connections>
                         <outlet property="fieldSizeStepper" destination="Ti7-DF-Umr" id="wi3-Z5-mZI"/>
                         <outlet property="fieldSizeValueLabel" destination="VuY-AN-XoU" id="Zae-59-gLn"/>
+                        <outlet property="motionBlurSwitch" destination="26a-k9-0Nk" id="7Fj-UW-rBr"/>
                         <outlet property="paletteChanger" destination="WyI-ke-nBz" id="7jB-3y-YHU"/>
                         <outlet property="settingsPopupView" destination="RAJ-iY-ipv" id="yO6-ue-x9u"/>
                     </connections>

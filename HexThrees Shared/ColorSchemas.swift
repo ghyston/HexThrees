@@ -26,6 +26,12 @@ struct ColorSchema {
     var colors: Dictionary<Int, SKColor>
 }
 
+enum MotionBlurStatus : Int {
+    
+    case Enabled = 1
+    case Disabled = 2
+}
+
 //@todo: move to another file ?
 enum FieldSize : Int {
     

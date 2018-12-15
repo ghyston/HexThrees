@@ -19,10 +19,13 @@ class GameVC: UIViewController {
     var scene : GameScene?
     var currentGameParams: GameParams?
     
+    //@todo: disable haptic and blur models olther than (?) 6s/SE
     let defaultGameParams = GameParams(
         fieldSize: FieldSize.Quaddro,
         randomElementsCount: 4,
         blockedCellsCount: 2,
+        motionBlur: MotionBlurStatus.Enabled,
+        hapticFeedback: false,
         strategy: .Hybrid,
         palette: .Dark)
     
@@ -91,11 +94,15 @@ class GameVC: UIViewController {
         
         let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
         let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
+        let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
+        let prefHapticFeedback = defaults.bool(forKey: SettingsKey.HapticFeedback.rawValue)
         
         self.currentGameParams = GameParams(
             fieldSize: prefFieldSize ?? self.defaultGameParams.fieldSize,
             randomElementsCount: self.defaultGameParams.randomElementsCount,
             blockedCellsCount: self.defaultGameParams.blockedCellsCount,
+            motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
+            hapticFeedback: prefHapticFeedback,
             strategy: self.defaultGameParams.strategy,
             palette: prefPalette ?? self.defaultGameParams.palette)
     }

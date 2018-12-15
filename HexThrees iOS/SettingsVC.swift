@@ -17,6 +17,25 @@ class SettingsVC :  UIViewController {
     @IBOutlet weak var settingsPopupView: UIView!
     @IBOutlet weak var fieldSizeStepper: UIStepper!
     @IBOutlet weak var paletteChanger: UISegmentedControl!
+    @IBOutlet weak var motionBlurSwitch: UISwitch!
+    
+    @IBAction func onHapticFeedbackChanged(_ sender: Any) {
+        
+        //@todo
+    }
+    
+    @IBAction func onMotionBlurChanged(_ sender: Any) {
+        
+        guard let gm = self.gameModel else {
+            return
+        }
+        
+        let motionBlurStatus = motionBlurSwitch.isOn ? MotionBlurStatus.Enabled :
+            MotionBlurStatus.Disabled
+        
+        defaults.set(motionBlurStatus.rawValue, forKey: SettingsKey.MotionBlur.rawValue)
+        SwitchMotionBlurCMD(gm).run(isOn: motionBlurSwitch.isOn)
+    }
     
     @IBAction func onCancel(_ sender: Any) {
         

@@ -14,6 +14,10 @@ protocol MotionBlurNode : class {
     var effectNode : SKEffectNode { get set }
     var blurFilter : CIFilter { get set }
     var prevPosition : CGPoint? { get set }
+    var motionBlurDisabled : Bool { get set }
+    
+    func disableBlur()
+    func enableBlur()
     
     func addBlur()
     func startBlur()
@@ -30,6 +34,11 @@ extension MotionBlurNode where Self: SKNode {
     }
     
     func startBlur() {
+        
+        if (motionBlurDisabled) {
+            return
+        }
+        
         effectNode.filter = blurFilter
         prevPosition = nil
     }
@@ -62,8 +71,13 @@ extension MotionBlurNode where Self: SKNode {
         blurFilter.setValue(velocity, forKey: kCIInputRadiusKey)
     }
     
-    /*func addChild(_ node: SKNode) {
-        effectNode.addChild(node)
-    }*/
+    func disableBlur() {
+        
+        motionBlurDisabled = true
+    }
     
+    func enableBlur() {
+        
+        motionBlurDisabled = false
+    }
 }

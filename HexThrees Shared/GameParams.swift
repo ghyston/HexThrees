@@ -13,6 +13,8 @@ struct GameParams {
     let fieldSize: FieldSize
     let randomElementsCount: Int
     let blockedCellsCount: Int
+    let motionBlur: MotionBlurStatus
+    let hapticFeedback: Bool
     let strategy: MergingStrategyName
     let palette: ColorSchemaType
 }

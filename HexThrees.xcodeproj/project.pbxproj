@@ -32,6 +32,7 @@
 		3F21DF4F20C8F94500A979D5 /* AddBgCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4E20C8F94500A979D5 /* AddBgCellCMD.swift */; };
 		3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5120C9989D00A979D5 /* PaletteManager.swift */; };
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
+		3F2D81EC21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */; };
 		3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */; };
 		3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D852139174A00AF3DC0 /* ScoreBuff.swift */; };
 		3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */; };
@@ -120,6 +121,7 @@
 		3F21DF4E20C8F94500A979D5 /* AddBgCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBgCellCMD.swift; sourceTree = "<group>"; };
 		3F21DF5120C9989D00A979D5 /* PaletteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteManager.swift; sourceTree = "<group>"; };
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
+		3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchMotionBlurCMD.swift; sourceTree = "<group>"; };
 		3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScoreBaffCMD.swift; sourceTree = "<group>"; };
 		3F432D852139174A00AF3DC0 /* ScoreBuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBuff.swift; sourceTree = "<group>"; };
 		3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyScoreBuffCMD.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				3F06487F2166873D005461C7 /* AfterSwipeCMD.swift */,
 				3FA3A513217EF1D60005B37D /* SwitchPaletteCMD.swift */,
 				3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */,
+				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				3FEA7AD22188385A007F50D8 /* AddRandomElementsCMD.swift in Sources */,
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
 				3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */,
+				3F2D81EC21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift in Sources */,
 				3F21DF4F20C8F94500A979D5 /* AddBgCellCMD.swift in Sources */,
 				3F11087D2190B591007743DF /* FileHelper.swift in Sources */,
 				3F06487C21613827005461C7 /* MoveXUpIterator.swift in Sources */,

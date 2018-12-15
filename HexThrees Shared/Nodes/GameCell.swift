@@ -19,6 +19,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
     
     var effectNode : SKEffectNode
     var blurFilter : CIFilter
+    var motionBlurDisabled : Bool = false //@todo: set it from settings!!
     
     var value: Int
     var newParent : BgCell?
@@ -51,10 +52,25 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
             selector: #selector(onColorChange),
             name: .switchPalette,
             object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onMotionBlurSettingsChange),
+            name: .switchMotionBlur,
+            object: nil)
     }
     
     @objc func onColorChange(notification: Notification) {
         updateColor()
+    }
+    
+    @objc func onMotionBlurSettingsChange(notification: Notification) {
+        
+        guard let isOn = notification.object as? Bool else {
+            return
+        }
+        
+        isOn ? enableBlur() : disableBlur()
     }
     
     func updateColor() {

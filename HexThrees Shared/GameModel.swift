@@ -21,6 +21,7 @@ class GameModel {
     var fieldHeight: Int
     var strategy: MergingStrategy
     var geometry: FieldGeometry
+    var motionBlurEnabled: Bool
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -77,7 +78,7 @@ class GameModel {
         
     }
     
-    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
+    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool) {
         
         self.geometry = FieldGeometry(
             screenWidth: screenWidth,
@@ -85,6 +86,7 @@ class GameModel {
         self.strategy = strategy
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
+        self.motionBlurEnabled = motionBlur
     }
     
     func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
