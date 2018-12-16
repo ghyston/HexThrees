@@ -40,7 +40,8 @@ class SettingsVC :  UIViewController {
             return
         }
         
-        let motionBlurStatus = motionBlurSwitch.isOn ? MotionBlurStatus.Enabled :
+        let motionBlurStatus = motionBlurSwitch.isOn ?
+            MotionBlurStatus.Enabled :
             MotionBlurStatus.Disabled
         
         defaults.set(motionBlurStatus.rawValue, forKey: SettingsKey.MotionBlur.rawValue)
