@@ -25,30 +25,43 @@
                                     <segue destination="hfV-uc-Gim" kind="presentation" id="wQr-Rf-fr0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llv-3h-4gE">
-                                <rect key="frame" x="272" y="23" width="100" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="3rM-5H-svr"/>
-                                    <constraint firstAttribute="width" constant="100" id="9e8-1T-p0C"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qg7-AX-LYf">
+                                <rect key="frame" x="265" y="10" width="100" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="012345" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llv-3h-4gE">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="9e8-1T-p0C"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <color key="textColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeq-Jn-JTL" userLabel="ScoreMultiplierLabel">
+                                        <rect key="frame" x="0.0" y="30" width="100" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="LL4-AY-YvI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                        <color key="textColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" id="67O-4l-4gE"/>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="70Y-dP-G4e"/>
-                            <constraint firstItem="Llv-3h-4gE" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" constant="3" id="Lod-GK-pBN"/>
+                            <constraint firstItem="qg7-AX-LYf" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" constant="10" id="NlD-sw-t37"/>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="fg5-c7-fRI"/>
-                            <constraint firstItem="bNo-s9-wk6" firstAttribute="trailing" secondItem="Llv-3h-4gE" secondAttribute="trailing" constant="3" id="kNT-p0-8qe"/>
-                            <constraint firstItem="bNo-s9-wk6" firstAttribute="trailing" secondItem="Llv-3h-4gE" secondAttribute="trailing" constant="3" id="zIM-lh-rDe"/>
+                            <constraint firstItem="qg7-AX-LYf" firstAttribute="trailing" secondItem="bNo-s9-wk6" secondAttribute="trailing" constant="-10" id="skS-oh-JNr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bNo-s9-wk6"/>
                     </view>
                     <connections>
                         <outlet property="scoreLabel" destination="Llv-3h-4gE" id="0Zr-3Y-Gun"/>
+                        <outlet property="scoreMultiplierLabel" destination="qeq-Jn-JTL" id="AFD-Jl-1R9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

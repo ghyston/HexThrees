@@ -15,4 +15,5 @@ extension NSNotification.Name {
     static let switchPalette = Notification.Name(rawValue: "switch_palette")
     static let switchMotionBlur = Notification.Name(rawValue: "switch_motion_blur")
     static let switchHapticFeedback = Notification.Name(rawValue: "switch_haptic_feedback")
+    static let scoreBuffUpdate = Notification.Name(rawValue: "score_buff_update")
 }

@@ -28,6 +28,10 @@ class ApplyScoreBuffCMD : GameCMD {
             scoreMultiplier *= buff.factor
         }
         
+        NotificationCenter.default.post(
+            name: .scoreBuffUpdate,
+            object: scoreMultiplier)
+        
         self.gameModel.scoreMultiplier = scoreMultiplier
         self.gameModel.scoreBuffs = buffs
     }

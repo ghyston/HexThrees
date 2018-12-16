@@ -14,6 +14,7 @@ import GameplayKit
 class GameVC: UIViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var scoreMultiplierLabel: UILabel!
     
     var gameModel : GameModel?
     var scene : GameScene?
@@ -76,6 +77,12 @@ class GameVC: UIViewController {
             self,
             selector: #selector(onColorChange),
             name: .switchPalette,
+            object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onScoreBuffUpdate),
+            name: .scoreBuffUpdate,
             object: nil)
         
         startGame()
@@ -184,6 +191,13 @@ class GameVC: UIViewController {
     @objc func onColorChange(notification: Notification) {
         
         setSceneColor()
+    }
+    
+    @objc func onScoreBuffUpdate(notification: Notification) {
+     
+        let multiplier = notification.object as? Int ?? 0
+        scoreMultiplierLabel.text = multiplier == 0 ?
+            "" : "X\(multiplier)"
     }
     
     private func setSceneColor() {

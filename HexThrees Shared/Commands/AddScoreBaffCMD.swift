@@ -24,7 +24,5 @@ class AddScoreBaffCMD: GameCMD {
             ScoreBuff(
                 turnsToApply: 3,
                 factor: self.factor))
-        
-        //todo: show something on UI
     }
 }
