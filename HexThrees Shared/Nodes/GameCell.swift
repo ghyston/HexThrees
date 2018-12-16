@@ -19,16 +19,16 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
     
     var effectNode : SKEffectNode
     var blurFilter : CIFilter
-    var motionBlurDisabled : Bool = false //@todo: set it from settings!!
+    var motionBlurDisabled : Bool
     
     var value: Int
     var newParent : BgCell?
-    //#todo: move pal to HexCell? 
     let pal : IPaletteManager = ContainerConfig.instance.resolve()
     
     init(model: GameModel, val: Int) {
         
         self.value = val
+        self.motionBlurDisabled = !model.motionBlurEnabled
         let strategyValue = model.strategy.value(index: self.value)
         
         // this is just to put placeholders

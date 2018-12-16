@@ -14,6 +14,7 @@ class GameConstants {
     static let BonusTurnsLifetime = 2
     static let BaseBonusDropProbability = 0.1
     static let MaxBonusesOnScreen = 3
+    static let GameOverScreenDelay = 1.2
     
     static let LockBonusProbability: Float = 0.5
     static let UnlockBonusProbability: Float = 0.3

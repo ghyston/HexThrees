@@ -80,6 +80,9 @@ class GameVC: UIViewController {
         
         startGame()
         
+        //uncomment to debug stuff
+        //DebugPaletteCMD(self.gameModel!).run(); return
+        
         if FileHelper.SaveFileExist() {
             LoadGameCMD(self.gameModel!).run()
         } else {
@@ -145,6 +148,7 @@ class GameVC: UIViewController {
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.register(self.gameModel!)
         setSceneColor()
+        updateScoreLabel()
     }
     
     @objc func onGameReset(notification: Notification) {
@@ -159,12 +163,22 @@ class GameVC: UIViewController {
     
     @objc func onScoreUpdate(notification: Notification) {
         
+        updateScoreLabel()
+    }
+    
+    private func updateScoreLabel() {
+        
         scoreLabel.text = "\(self.gameModel!.score)"
     }
     
     @objc func onGameEnd(notification: Notification) {
         
-        showEndGameVC()
+        Timer.scheduledTimer(
+            timeInterval: GameConstants.GameOverScreenDelay,
+            target: self,
+            selector: #selector(GameVC.showEndGameVC),
+            userInfo: nil,
+            repeats: false)
     }
     
     @objc func onColorChange(notification: Notification) {
@@ -187,7 +201,7 @@ class GameVC: UIViewController {
         }
     }
     
-    private func showEndGameVC() {
+    @objc private func showEndGameVC() {
         let storyboardName = "Main"
         let endGameVcName = "GameOverVC"
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
@@ -197,28 +211,6 @@ class GameVC: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         
         self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func onLoad(_ sender: Any) {
-        
-        CleanGameCMD(self.gameModel!).run()
-        startGame()
-        LoadGameCMD(self.gameModel!).run()
-    }
-    
-    @IBAction func onSave(_ sender: Any) {
-        
-        SaveGameCMD(self.gameModel!).run()
-    }
-    
-    @IBAction func onEndGame(_ sender: Any) {
-        
-        showEndGameVC()
-    }
-    
-    @IBAction func onColorChangeClick(_ sender: Any) {
-        
-        SwitchPaletteCMD(self.gameModel!).run()
     }
 }
 
