@@ -38,6 +38,7 @@
 		3F2D81F321C6C14100A48CD1 /* ColorSchemaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */; };
 		3F2D81F521C6C19100A48CD1 /* MergingStrategyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */; };
 		3F2D81F721C6C1D500A48CD1 /* HapticFeedbackStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F621C6C1D500A48CD1 /* HapticFeedbackStatus.swift */; };
+		3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */; };
 		3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */; };
 		3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D852139174A00AF3DC0 /* ScoreBuff.swift */; };
 		3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */; };
@@ -132,6 +133,7 @@
 		3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemaType.swift; sourceTree = "<group>"; };
 		3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergingStrategyName.swift; sourceTree = "<group>"; };
 		3F2D81F621C6C1D500A48CD1 /* HapticFeedbackStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackStatus.swift; sourceTree = "<group>"; };
+		3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchHapticFeedback.swift; sourceTree = "<group>"; };
 		3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScoreBaffCMD.swift; sourceTree = "<group>"; };
 		3F432D852139174A00AF3DC0 /* ScoreBuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBuff.swift; sourceTree = "<group>"; };
 		3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyScoreBuffCMD.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				3FA3A513217EF1D60005B37D /* SwitchPaletteCMD.swift */,
 				3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */,
 				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
+				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */,
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,
 				3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */,
+				3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */,
 				3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */,
 				3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */,
 				3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */,

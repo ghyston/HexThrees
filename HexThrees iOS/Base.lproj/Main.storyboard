@@ -306,6 +306,7 @@
                     <connections>
                         <outlet property="fieldSizeStepper" destination="Ti7-DF-Umr" id="wi3-Z5-mZI"/>
                         <outlet property="fieldSizeValueLabel" destination="VuY-AN-XoU" id="Zae-59-gLn"/>
+                        <outlet property="hapticFeedbackSwitch" destination="eqg-Yd-Loy" id="hIs-gN-IQ3"/>
                         <outlet property="motionBlurSwitch" destination="26a-k9-0Nk" id="7Fj-UW-rBr"/>
                         <outlet property="paletteChanger" destination="WyI-ke-nBz" id="7jB-3y-YHU"/>
                         <outlet property="settingsPopupView" destination="RAJ-iY-ipv" id="yO6-ue-x9u"/>

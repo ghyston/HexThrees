@@ -25,7 +25,7 @@ class GameVC: UIViewController {
         randomElementsCount: 4,
         blockedCellsCount: 2,
         motionBlur: MotionBlurStatus.Enabled,
-        hapticFeedback: false,
+        hapticFeedback: HapticFeedbackStatus.Enabled,
         strategy: .Hybrid,
         palette: .Dark)
     
@@ -95,14 +95,14 @@ class GameVC: UIViewController {
         let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
         let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
         let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
-        let prefHapticFeedback = defaults.bool(forKey: SettingsKey.HapticFeedback.rawValue)
+        let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
         
         self.currentGameParams = GameParams(
             fieldSize: prefFieldSize ?? self.defaultGameParams.fieldSize,
             randomElementsCount: self.defaultGameParams.randomElementsCount,
             blockedCellsCount: self.defaultGameParams.blockedCellsCount,
             motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
-            hapticFeedback: prefHapticFeedback,
+            hapticFeedback: prefHapticFeedback ?? self.defaultGameParams.hapticFeedback,
             strategy: self.defaultGameParams.strategy,
             palette: prefPalette ?? self.defaultGameParams.palette)
     }

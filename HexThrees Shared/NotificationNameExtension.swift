@@ -14,4 +14,5 @@ extension NSNotification.Name {
     static let gameOver = Notification.Name(rawValue: "gameOver")
     static let switchPalette = Notification.Name(rawValue: "switch_palette")
     static let switchMotionBlur = Notification.Name(rawValue: "switch_motion_blur")
+    static let switchHapticFeedback = Notification.Name(rawValue: "switch_haptic_feedback")
 }

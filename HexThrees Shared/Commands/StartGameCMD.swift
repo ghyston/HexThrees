@@ -29,7 +29,8 @@ class StartGameCMD : CMD {
             screenWidth: view.frame.width,
             fieldSize: params.fieldSize.rawValue,
             strategy: MerginStrategyFabric.createByName(params.strategy),
-            motionBlur: params.motionBlur == MotionBlurStatus.Enabled)
+            motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
+            hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled)
         
         let fieldSize = self.params.fieldSize.rawValue
         

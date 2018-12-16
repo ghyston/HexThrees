@@ -22,6 +22,7 @@ class GameModel {
     var strategy: MergingStrategy
     var geometry: FieldGeometry
     var motionBlurEnabled: Bool
+    var hapticFeedbackEnabled: Bool
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -78,7 +79,7 @@ class GameModel {
         
     }
     
-    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool) {
+    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool) {
         
         self.geometry = FieldGeometry(
             screenWidth: screenWidth,
@@ -87,6 +88,7 @@ class GameModel {
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
         self.motionBlurEnabled = motionBlur
+        self.hapticFeedbackEnabled = hapticFeedback
     }
     
     func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {

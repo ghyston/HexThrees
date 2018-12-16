@@ -18,10 +18,20 @@ class SettingsVC :  UIViewController {
     @IBOutlet weak var fieldSizeStepper: UIStepper!
     @IBOutlet weak var paletteChanger: UISegmentedControl!
     @IBOutlet weak var motionBlurSwitch: UISwitch!
+    @IBOutlet weak var hapticFeedbackSwitch: UISwitch!
     
     @IBAction func onHapticFeedbackChanged(_ sender: Any) {
         
-        //@todo
+        guard let gm = self.gameModel else {
+            return
+        }
+        
+        let hapticFeedbackStatus = hapticFeedbackSwitch.isOn ?
+            HapticFeedbackStatus.Enabled :
+            HapticFeedbackStatus.Disabled
+        
+        defaults.set(hapticFeedbackStatus.rawValue, forKey: SettingsKey.HapticFeedback.rawValue)
+        SwitchHapticFeedbackCMD(gm).run(isOn: hapticFeedbackSwitch.isOn)
     }
     
     @IBAction func onMotionBlurChanged(_ sender: Any) {
@@ -40,11 +50,6 @@ class SettingsVC :  UIViewController {
     @IBAction func onCancel(_ sender: Any) {
         
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func onSave(_ sender: Any) {
-        
-        //@todo here?
     }
     
     @IBAction func onFieldSizeChanged(_ sender: Any) {
@@ -88,5 +93,8 @@ class SettingsVC :  UIViewController {
         
         fieldSizeStepper.value = Double((gameModel?.fieldHeight)!)
         fieldSizeValueLabel.text = String(fieldSizeStepper.value)
+        
+        motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
+        hapticFeedbackSwitch.isOn = gameModel?.hapticFeedbackEnabled ?? false
     }
 }
