@@ -8,13 +8,6 @@
 
 import Foundation
 
-enum MergingStrategyName: Int {
-    
-    case Fibonacci = 0
-    case PowerOfTwo = 1
-    case Hybrid = 2
-}
-
 class MerginStrategyFabric {
     
     static func createByName(_ name: MergingStrategyName) -> MergingStrategy {

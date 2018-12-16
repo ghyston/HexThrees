@@ -10,13 +10,6 @@ import Foundation
 import SpriteKit
 import UIKit
 
-enum ColorSchemaType : Int {
-    case Dark = 1
-    case Gray = 2
-    case Light = 3
-    case Blue = 4
-}
-
 struct ColorSchema {
     
     var fieldOutlineColor : SKColor
@@ -26,20 +19,3 @@ struct ColorSchema {
     var colors: Dictionary<Int, SKColor>
 }
 
-enum MotionBlurStatus : Int {
-    
-    case Enabled = 1
-    case Disabled = 2
-}
-
-//@todo: move to another file ?
-enum FieldSize : Int {
-    
-    //case Min = Thriple
-    case Thriple = 3
-    case Quaddro = 4
-    case Pento = 5
-    //case Max = Pento
-    
-    //let min = { return .Thriple}
-}
