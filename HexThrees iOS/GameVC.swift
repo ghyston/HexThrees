@@ -194,9 +194,9 @@ class GameVC: UIViewController {
     }
     
     @objc func onScoreBuffUpdate(notification: Notification) {
-     
-        let multiplier = notification.object as? Int ?? 0
-        scoreMultiplierLabel.text = multiplier == 0 ?
+        
+        let multiplier = notification.object as? Int ?? 1
+        scoreMultiplierLabel.text = multiplier == 1 ?
             "" : "X\(multiplier)"
     }
     

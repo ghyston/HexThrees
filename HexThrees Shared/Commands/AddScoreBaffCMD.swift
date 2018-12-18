@@ -24,5 +24,11 @@ class AddScoreBaffCMD: GameCMD {
             ScoreBuff(
                 turnsToApply: 3,
                 factor: self.factor))
+        
+        self.gameModel.recalculateScoreBaff()
+        
+        NotificationCenter.default.post(
+            name: .scoreBuffUpdate,
+            object: self.gameModel.scoreMultiplier)
     }
 }

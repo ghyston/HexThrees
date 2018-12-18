@@ -76,7 +76,14 @@ class GameModel {
                 calc.next(cell: getCell(x, y))
             }
         }
+    }
+    
+    func recalculateScoreBaff(){
         
+        self.scoreMultiplier = 1
+        for buff in scoreBuffs {
+            self.scoreMultiplier *= buff.factor
+        }
     }
     
     init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool) {
