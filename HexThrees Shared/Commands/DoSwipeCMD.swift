@@ -19,8 +19,6 @@ class DoSwipeCMD : GameCMD {
         self.gameModel.swipeStatus.inProgress = true
         self.gameModel.swipeStatus.somethingChangeed = false
         
-        ApplyScoreBuffCMD(self.gameModel).run()
-        
         if let iterator = self.chooseIterator(direction) {
             while let container = iterator.next() {
                 MoveLineCMD(self.gameModel, cells: container).run()
@@ -30,6 +28,7 @@ class DoSwipeCMD : GameCMD {
             self.gameModel.swipeStatus.inProgress = false
         }
         
+        ApplyScoreBuffCMD(self.gameModel).run()
         AfterSwipeCMD(self.gameModel)
             .runWithDelay(delay: gameModel.swipeStatus.delay)
         

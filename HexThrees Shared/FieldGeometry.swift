@@ -67,14 +67,80 @@ class FieldGeometry {
         
         let xCoef = 1.732 * 0.5
         let yCoef = 0.5
+        let curveCoef = 0.85
         
-        hexPath.move(to: CGPoint.init(x: 0.0, y: rad))
-        hexPath.addLine(to: CGPoint.init(x: rad * xCoef, y: rad * yCoef))
-        hexPath.addLine(to: CGPoint.init(x: rad * xCoef, y: -rad * yCoef))
-        hexPath.addLine(to: CGPoint.init(x: 0.0, y: -rad))
-        hexPath.addLine(to: CGPoint.init(x: -rad * xCoef, y: -rad * yCoef))
-        hexPath.addLine(to: CGPoint.init(x: -rad * xCoef, y: rad * yCoef))
-        hexPath.addLine(to: CGPoint.init(x: 0.0, y: rad))
+        let p0 = CGPoint.init(x: 0.0, y: rad)
+        let p1 = CGPoint.init(x: rad * xCoef, y: rad * yCoef)
+        let p2 = CGPoint.init(x: rad * xCoef, y: -rad * yCoef)
+        let p3 = CGPoint.init(x: 0.0, y: -rad)
+        let p4 = CGPoint.init(x: -rad * xCoef, y: -rad * yCoef)
+        let p5 = CGPoint.init(x: -rad * xCoef, y: rad * yCoef)
+        
+        let p0dy = CGFloat( (rad - rad * yCoef) * (1 - curveCoef))
+        let p1dy = CGFloat( rad * yCoef * (1 - curveCoef))
+        let dx = CGFloat( rad * xCoef * (1 - curveCoef))
+        
+        
+        let p0l = CGPoint(x: p0.x - dx, y: p0.y - p0dy)
+        let p0r = CGPoint(x: p0.x + dx, y: p0.y - p0dy)
+        
+        let p1l = CGPoint(x: p1.x - dx, y: p1.y + p1dy)
+        let p1r = CGPoint(x: p1.x, y: p1.y - p1dy)
+        
+        let p2l = CGPoint(x: p2.x, y: p2.y + p1dy)
+        let p2r = CGPoint(x: p2.x - dx, y: p2.y - p1dy)
+        
+        let p3l = CGPoint(x: p3.x + dx, y: p3.y + p0dy)
+        let p3r = CGPoint(x: p3.x - dx, y: p3.y + p0dy)
+        
+        let p4l = CGPoint(x: p4.x + dx, y: p4.y - p1dy)
+        let p4r = CGPoint(x: p4.x, y: p4.y + p0dy)
+        
+        let p5l = CGPoint(x: p5.x, y: p5.y - p1dy)
+        let p5r = CGPoint(x: p5.x + dx, y: p5.y + p0dy)
+        
+        hexPath.move(to: p0l)
+        hexPath.addQuadCurve(to: p0r, control: p0)
+        hexPath.addLine(to: p1l)
+        hexPath.addQuadCurve(to: p1r, control: p1)
+        hexPath.addLine(to: p2l)
+        hexPath.addQuadCurve(to: p2r, control: p2)
+        hexPath.addLine(to: p3l)
+        
+        hexPath.addQuadCurve(to: p3r, control: p3)
+        hexPath.addLine(to: p4l)
+        
+        hexPath.addQuadCurve(to: p4r, control: p4)
+        hexPath.addLine(to: p5l)
+        
+        hexPath.addQuadCurve(to: p5r, control: p5)
+        hexPath.addLine(to: p0l)
+        
+        return hexPath
+    }
+    
+    class func createPathWOCurving(rad: Double) -> CGPath {
+        
+        let hexPath = CGMutablePath.init()
+        
+        let xCoef = 1.732 * 0.5
+        let yCoef = 0.5
+        
+        let p0 = CGPoint.init(x: 0.0, y: rad)
+        let p1 = CGPoint.init(x: rad * xCoef, y: rad * yCoef)
+        let p2 = CGPoint.init(x: rad * xCoef, y: -rad * yCoef)
+        let p3 = CGPoint.init(x: 0.0, y: -rad)
+        let p4 = CGPoint.init(x: -rad * xCoef, y: -rad * yCoef)
+        let p5 = CGPoint.init(x: -rad * xCoef, y: rad * yCoef)
+        
+        hexPath.move(to: p0)
+        hexPath.addLine(to: p1)
+        hexPath.addLine(to: p2)
+        hexPath.addLine(to: p3)
+        hexPath.addLine(to: p4)
+        hexPath.addLine(to: p5)
+        hexPath.addLine(to: p0)
+        
         return hexPath
     }
     

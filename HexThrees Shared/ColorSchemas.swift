@@ -10,13 +10,6 @@ import Foundation
 import SpriteKit
 import UIKit
 
-enum ColorSchemaType {
-    case Dark
-    case Gray
-    case Light
-    case Blue
-}
-
 struct ColorSchema {
     
     var fieldOutlineColor : SKColor
@@ -25,3 +18,4 @@ struct ColorSchema {
     var cellBlockedBgColor : SKColor
     var colors: Dictionary<Int, SKColor>
 }
+

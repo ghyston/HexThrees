@@ -21,6 +21,8 @@ class GameModel {
     var fieldHeight: Int
     var strategy: MergingStrategy
     var geometry: FieldGeometry
+    var motionBlurEnabled: Bool
+    var hapticFeedbackEnabled: Bool
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -74,10 +76,17 @@ class GameModel {
                 calc.next(cell: getCell(x, y))
             }
         }
-        
     }
     
-    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
+    func recalculateScoreBaff(){
+        
+        self.scoreMultiplier = 1
+        for buff in scoreBuffs {
+            self.scoreMultiplier *= buff.factor
+        }
+    }
+    
+    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool) {
         
         self.geometry = FieldGeometry(
             screenWidth: screenWidth,
@@ -85,6 +94,8 @@ class GameModel {
         self.strategy = strategy
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
+        self.motionBlurEnabled = motionBlur
+        self.hapticFeedbackEnabled = hapticFeedback
     }
     
     func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {

@@ -24,22 +24,31 @@ class StartGameCMD : CMD {
     }
     
     func run() {
-        
     
         let gameModel = GameModel(            
             screenWidth: view.frame.width,
-            fieldSize: params.fieldSize,
-            strategy: MerginStrategyFabric.createByName(params.strategy))
+            fieldSize: params.fieldSize.rawValue,
+            strategy: MerginStrategyFabric.createByName(params.strategy),
+            motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
+            hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled)
         
-        gameModel.strategy.prefilValues(maxIndex: self.params.fieldSize * self.params.fieldSize)
+        let fieldSize = self.params.fieldSize.rawValue
         
-        let fieldBg = FieldOutline()
+        gameModel.strategy.prefilValues(maxIndex:
+            fieldSize * fieldSize)
+        
+        //@todo: logic here sucs!
+        let existingBg = scene.childNode(withName: FieldOutline.defaultNodeName)
+        let fieldBg = existingBg as? FieldOutline ?? FieldOutline()
+        if existingBg == nil {
+            scene.addChild(fieldBg)
+        }
+        
         fieldBg.name = FieldOutline.defaultNodeName
         fieldBg.recalculateFieldBg(model: gameModel)
-        scene.addChild(fieldBg)
         
-        for i2 in 0 ..< params.fieldSize {
-            for i1 in 0 ..< params.fieldSize {
+        for i2 in 0 ..< fieldSize {
+            for i1 in 0 ..< fieldSize {
                 
                 AddBgCellCMD(gameModel).run(
                     scene: scene,

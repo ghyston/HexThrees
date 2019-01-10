@@ -11,18 +11,40 @@ import SpriteKit
 
 
 
-class GameCell : HexCell {
+class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
+    var prevPosition: CGPoint?
+    
+    var hexShape : SKShapeNode
+    var label : SKLabelNode
+    
+    var effectNode : SKEffectNode
+    var blurFilter : CIFilter
+    var motionBlurDisabled : Bool
     
     var value: Int
     var newParent : BgCell?
-    //#todo: move pal to HexCell? 
     let pal : IPaletteManager = ContainerConfig.instance.resolve()
     
     init(model: GameModel, val: Int) {
         
         self.value = val
+        self.motionBlurDisabled = !model.motionBlurEnabled
         let strategyValue = model.strategy.value(index: self.value)
-        super.init(model: model, text: "\(strategyValue)", color: pal.color(value: val))
+        
+        // this is just to put placeholders
+        hexShape = SKShapeNode()
+        label = SKLabelNode()
+        effectNode = SKEffectNode()
+        blurFilter = CIFilter()
+        prevPosition = CGPoint()
+        
+        super.init()
+        
+        addBlur()
+        addShape(model: model)
+        addLabel(text: "\(strategyValue)")
+        
+        updateColor()
         
         //@todo: do I need to remove observer in destructor?
         NotificationCenter.default.addObserver(
@@ -30,14 +52,31 @@ class GameCell : HexCell {
             selector: #selector(onColorChange),
             name: .switchPalette,
             object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onMotionBlurSettingsChange),
+            name: .switchMotionBlur,
+            object: nil)
     }
     
     @objc func onColorChange(notification: Notification) {
         updateColor()
     }
     
+    @objc func onMotionBlurSettingsChange(notification: Notification) {
+        
+        guard let isOn = notification.object as? Bool else {
+            return
+        }
+        
+        isOn ? enableBlur() : disableBlur()
+    }
+    
     func updateColor() {
-        updateColor(fillColor: pal.color(value: value), strokeColor: .white, fontColor: .white)
+        
+        updateColor(fontColor: .white)
+        updateColor(fillColor: pal.color(value: value), strokeColor: .white)
     }
     
     func playAppearAnimation() {
@@ -57,8 +96,18 @@ class GameCell : HexCell {
     func playMoveAnimation(diff: CGVector, duration: Double) {
         
         let moveAnimation = SKAction.move(by: diff, duration: duration)
-        moveAnimation.timingMode = SKActionTimingMode.easeInEaseOut
+        moveAnimation.timingMode = SKActionTimingMode.easeIn
         self.run(moveAnimation)
+        
+        //@todo: move this to MotionBlurNode ?
+        self.startBlur()
+        let delayStopBlur = SKAction.wait(forDuration: duration)
+        let delete = SKAction.perform(#selector(GameCell.stopBlurDelayed), onTarget: self)
+        self.run(SKAction.sequence([delayStopBlur, delete]))
+    }
+    
+    @objc func stopBlurDelayed() {
+        self.stopBlur()
     }
     
     func removeFromParentWithDelay(delay: Double) {
@@ -73,6 +122,17 @@ class GameCell : HexCell {
         self.updateText(text: "\(strategyValue)")
         self.playUpdateAnimation()
         updateColor()
+    }
+    
+    //@todo: this is a big dirty hack
+    override func addChild(_ node: SKNode) {
+        
+        if effectNode.parent != nil {
+            effectNode.addChild(node)
+        } else {
+            super.addChild(node)
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

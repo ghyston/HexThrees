@@ -14,10 +14,23 @@ import GameplayKit
 class GameVC: UIViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var scoreMultiplierLabel: UILabel!
     
     var gameModel : GameModel?
     var scene : GameScene?
-    var defaultGameParams: GameParams?
+    var currentGameParams: GameParams?
+    
+    //@todo: disable haptic and blur models olther than (?) 6s/SE
+    let defaultGameParams = GameParams(
+        fieldSize: FieldSize.Quaddro,
+        randomElementsCount: 4,
+        blockedCellsCount: 2,
+        motionBlur: MotionBlurStatus.Enabled,
+        hapticFeedback: HapticFeedbackStatus.Enabled,
+        strategy: .Hybrid,
+        palette: .Dark)
+    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,15 +44,10 @@ class GameVC: UIViewController {
         skView.presentScene(self.scene)
         
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = false //@todo: check, is this a debug mode?
+        skView.showsFPS = true
         skView.showsNodeCount = false
         
-        self.defaultGameParams = GameParams(
-            fieldSize: 4,
-            randomElementsCount: 4,
-            blockedCellsCount: 2,
-            strategy: .Hybrid,
-            palette: .Dark)
+        loadSettings()
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -71,16 +79,42 @@ class GameVC: UIViewController {
             name: .switchPalette,
             object: nil)
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onScoreBuffUpdate),
+            name: .scoreBuffUpdate,
+            object: nil)
+        
         startGame()
+        
+        //uncomment to debug stuff
+        //DebugPaletteCMD(self.gameModel!).run(); return
         
         if FileHelper.SaveFileExist() {
             LoadGameCMD(self.gameModel!).run()
         } else {
-            DebugPaletteCMD(self.gameModel!).run()
-//            AddRandomElementsCMD(self.gameModel!).run(
-//                cells: self.defaultGameParams!.randomElementsCount,
-//                blocked: self.defaultGameParams!.blockedCellsCount)
+            //DebugPaletteCMD(self.gameModel!).run()
+            AddRandomElementsCMD(self.gameModel!).run(
+                cells: self.currentGameParams!.randomElementsCount,
+                blocked: self.currentGameParams!.blockedCellsCount)
         }
+    }
+    
+    private func loadSettings() {
+        
+        let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
+        let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
+        let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
+        let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
+        
+        self.currentGameParams = GameParams(
+            fieldSize: prefFieldSize ?? self.defaultGameParams.fieldSize,
+            randomElementsCount: self.defaultGameParams.randomElementsCount,
+            blockedCellsCount: self.defaultGameParams.blockedCellsCount,
+            motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
+            hapticFeedback: prefHapticFeedback ?? self.defaultGameParams.hapticFeedback,
+            strategy: self.defaultGameParams.strategy,
+            palette: prefPalette ?? self.defaultGameParams.palette)
     }
     
     override var shouldAutorotate: Bool {
@@ -115,31 +149,43 @@ class GameVC: UIViewController {
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.defaultGameParams!)
+            params: self.currentGameParams!)
         cmd.run()
         
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.register(self.gameModel!)
         setSceneColor()
+        updateScoreLabel()
     }
     
     @objc func onGameReset(notification: Notification) {
         
         CleanGameCMD(self.gameModel!).run()
+        loadSettings()
         startGame()
         AddRandomElementsCMD(self.gameModel!).run(
-            cells: self.defaultGameParams!.randomElementsCount,
-            blocked: self.defaultGameParams!.blockedCellsCount)
+            cells: self.currentGameParams!.randomElementsCount,
+            blocked: self.currentGameParams!.blockedCellsCount)
     }
     
     @objc func onScoreUpdate(notification: Notification) {
+        
+        updateScoreLabel()
+    }
+    
+    private func updateScoreLabel() {
         
         scoreLabel.text = "\(self.gameModel!.score)"
     }
     
     @objc func onGameEnd(notification: Notification) {
         
-        showEndGameVC()
+        Timer.scheduledTimer(
+            timeInterval: GameConstants.GameOverScreenDelay,
+            target: self,
+            selector: #selector(GameVC.showEndGameVC),
+            userInfo: nil,
+            repeats: false)
     }
     
     @objc func onColorChange(notification: Notification) {
@@ -147,17 +193,29 @@ class GameVC: UIViewController {
         setSceneColor()
     }
     
+    @objc func onScoreBuffUpdate(notification: Notification) {
+        
+        let multiplier = notification.object as? Int ?? 1
+        scoreMultiplierLabel.text = multiplier == 1 ?
+            "" : "X\(multiplier)"
+    }
+    
     private func setSceneColor() {
         
         let pal : IPaletteManager = ContainerConfig.instance.resolve()
-        self.scene?.backgroundColor = pal.sceneBgColor()
         
+        //@todo: find, how it works, may be it would be possible to use to switch palette with animation
+        /*UIView.animate(withDuration: 1.0) {
+            
+        }*/
+        
+        self.scene?.backgroundColor = pal.sceneBgColor()
         if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
             fieldOutine.updateColor(color: pal.fieldOutlineColor())
         }
     }
     
-    private func showEndGameVC() {
+    @objc private func showEndGameVC() {
         let storyboardName = "Main"
         let endGameVcName = "GameOverVC"
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
@@ -167,28 +225,6 @@ class GameVC: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         
         self.present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func onLoad(_ sender: Any) {
-        
-        CleanGameCMD(self.gameModel!).run()
-        startGame()
-        LoadGameCMD(self.gameModel!).run()
-    }
-    
-    @IBAction func onSave(_ sender: Any) {
-        
-        SaveGameCMD(self.gameModel!).run()
-    }
-    
-    @IBAction func onEndGame(_ sender: Any) {
-        
-        showEndGameVC()
-    }
-    
-    @IBAction func onColorChangeClick(_ sender: Any) {
-        
-        SwitchPaletteCMD(self.gameModel!).run()
     }
 }
 

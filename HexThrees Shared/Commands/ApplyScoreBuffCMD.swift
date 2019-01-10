@@ -15,20 +15,24 @@ class ApplyScoreBuffCMD : GameCMD {
         return buff.turnsToApply > 0
     }
     
-    //@todo: this is not tested, because Dammtor is next
+    
     override func run() {
                 
-        let buffs =
-         self.gameModel.scoreBuffs.filter(self.buffStillAlive)
+        var buffs = self.gameModel.scoreBuffs.filter(self.buffStillAlive)
         
-        var scoreMultiplier = 1
-        for var buff in buffs {
-            
-            buff.turnsToApply -= 1
-            scoreMultiplier *= buff.factor
+        let oldScore = self.gameModel.scoreMultiplier
+        self.gameModel.recalculateScoreBaff()
+        let newScore = self.gameModel.scoreMultiplier
+        
+        if oldScore != newScore {
+            NotificationCenter.default.post(
+                name: .scoreBuffUpdate,
+                object: newScore)
         }
         
-        self.gameModel.scoreMultiplier = scoreMultiplier
+        for (index, _) in buffs.enumerated() {
+            buffs[index].turnsToApply -= 1
+        }
         self.gameModel.scoreBuffs = buffs
     }
 }
