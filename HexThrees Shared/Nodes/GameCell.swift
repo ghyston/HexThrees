@@ -13,6 +13,7 @@ import SpriteKit
 
 class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
     var prevPosition: CGPoint?
+    var prevDelta: Double?
     
     var hexShape : SKShapeNode
     var label : SKLabelNode
