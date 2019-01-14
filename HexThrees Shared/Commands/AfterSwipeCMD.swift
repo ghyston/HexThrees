@@ -19,7 +19,7 @@ class AfterSwipeCMD : GameCMD {
             CheckGameEndCMD(gameModel).run()
         }
         
-        gameModel.shutDownHapticGenerator()
+        gameModel.hapticManager.shutDown()
         gameModel.swipeStatus.delay = 0.0
         gameModel.swipeStatus.inProgress = false
     }

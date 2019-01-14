@@ -96,6 +96,6 @@ class SettingsVC :  UIViewController {
         fieldSizeValueLabel.text = String(fieldSizeStepper.value)
         
         motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
-        hapticFeedbackSwitch.isOn = gameModel?.hapticFeedbackEnabled ?? false
+        hapticFeedbackSwitch.isOn = gameModel?.hapticManager.isEnabled ?? false
     }
 }

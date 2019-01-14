@@ -3,8 +3,7 @@ import SpriteKit
 
 class ImpactHapticFeedbackCMD : GameCMD {
     
-    func run(){
-        
-        gameModel.intactHapticGenerator()
+    override func run(){
+        gameModel.hapticManager.impact()
     }
 }

@@ -18,8 +18,7 @@ class DoSwipeCMD : GameCMD {
         
         self.gameModel.swipeStatus.inProgress = true
         self.gameModel.swipeStatus.somethingChangeed = false
-        
-        self.gameModel.warmupHapticGenerator()
+        self.gameModel.hapticManager.warmup()
 
         if let iterator = self.chooseIterator(direction) {
             while let container = iterator.next() {

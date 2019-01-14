@@ -21,10 +21,8 @@ class GameModel {
     var fieldHeight: Int
     var strategy: MergingStrategy
     var geometry: FieldGeometry
+    var hapticManager: IHapticManager
     var motionBlurEnabled: Bool
-    var hapticFeedbackEnabled: Bool
-
-    var hapticGenerator: UIImpactFeedbackGenerator? = nil
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -97,7 +95,7 @@ class GameModel {
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
         self.motionBlurEnabled = motionBlur
-        self.hapticFeedbackEnabled = hapticFeedback
+        self.hapticManager = HapticManager(enabled: hapticFeedback)
     }
     
     func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
@@ -109,22 +107,4 @@ class GameModel {
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
     }
-
-    //@todo: move to separate protocol? 
-    func warmupHapticGenerator() {
-        
-        self.hapticGenerator = UIImpactFeedbackGenerator()
-        self.hapticGenerator?.prepare()
-    }
-
-    func shutDownHapticGenerator() {
-
-        self.hapticGenerator = nil
-    }
-
-    func intactHapticGenerator() {
-
-        self.hapticGenerator?.impactOccurred()
-    }
-    
 }

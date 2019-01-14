@@ -115,7 +115,13 @@ class MoveLineCMD : GameCMD {
             cell: toCell.gameCell!,
             diff: diff,
             duration: duration)
-        ImpactHapticFeedbackCMD(self.gameModel).runWithDelay(delay : duration)
+        runSelectHaptic(times: from - to)
+    }
+    
+    private func runSelectHaptic(times: Int) {
+        for i in 0 ..< times {
+            SelectHapticFeedbackCMD(self.gameModel).runWithDelay(delay : Double(1 + i) * GameConstants.SecondsPerCell)
+        }
     }
     
     private func moveCellAndDelete(from: Int, to: Int) -> Double {
@@ -145,6 +151,7 @@ class MoveLineCMD : GameCMD {
             duration: duration)
         
         RemoveCellCMD(self.gameModel).run(cell: fromCell, delay: duration)
+        runSelectHaptic(times: from - to - 1)
         ImpactHapticFeedbackCMD(self.gameModel).runWithDelay(delay : duration)
         
         return duration
