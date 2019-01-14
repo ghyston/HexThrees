@@ -115,6 +115,7 @@ class MoveLineCMD : GameCMD {
             cell: toCell.gameCell!,
             diff: diff,
             duration: duration)
+        ImpactHapticFeedbackCMD(self.gameModel).runWithDelay(delay : duration)
     }
     
     private func moveCellAndDelete(from: Int, to: Int) -> Double {
@@ -144,6 +145,7 @@ class MoveLineCMD : GameCMD {
             duration: duration)
         
         RemoveCellCMD(self.gameModel).run(cell: fromCell, delay: duration)
+        ImpactHapticFeedbackCMD(self.gameModel).runWithDelay(delay : duration)
         
         return duration
     }

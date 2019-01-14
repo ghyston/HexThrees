@@ -19,6 +19,8 @@ class DoSwipeCMD : GameCMD {
         self.gameModel.swipeStatus.inProgress = true
         self.gameModel.swipeStatus.somethingChangeed = false
         
+        self.gameModel.warmupHapticGenerator()
+
         if let iterator = self.chooseIterator(direction) {
             while let container = iterator.next() {
                 MoveLineCMD(self.gameModel, cells: container).run()

@@ -23,6 +23,8 @@ class GameModel {
     var geometry: FieldGeometry
     var motionBlurEnabled: Bool
     var hapticFeedbackEnabled: Bool
+
+    var hapticGenerator: UIImpactFeedbackGenerator? = nil
     
     // Some common properties
     var bgHexes = [BgCell]()
@@ -106,6 +108,23 @@ class GameModel {
         self.strategy = strategy
         self.fieldWidth = fieldSize
         self.fieldHeight = fieldSize
+    }
+
+    //@todo: move to separate protocol? 
+    func warmupHapticGenerator() {
+        
+        self.hapticGenerator = UIImpactFeedbackGenerator()
+        self.hapticGenerator?.prepare()
+    }
+
+    func shutDownHapticGenerator() {
+
+        self.hapticGenerator = nil
+    }
+
+    func intactHapticGenerator() {
+
+        self.hapticGenerator?.impactOccurred()
     }
     
 }
