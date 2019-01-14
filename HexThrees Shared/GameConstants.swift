@@ -12,14 +12,14 @@ class GameConstants {
     
     static let BonusAnimationDuration = 0.5
     static let BonusTurnsLifetime = 2
-    static let BaseBonusDropProbability = 0.5//0.1
+    static let BaseBonusDropProbability = 0.1
     static let MaxBonusesOnScreen = 3
     static let GameOverScreenDelay = 1.2
     
-    static let LockBonusProbability: Float = 0.0//0.5
+    static let LockBonusProbability: Float = 0.5
     static let UnlockBonusProbability: Float = 0.3
-    static let X2BonusProbability: Float = 0.9//0.2
-    static let X3BonusProbability: Float = 0.5//0.1
+    static let X2BonusProbability: Float = 0.2
+    static let X3BonusProbability: Float = 0.1
 }
 
 enum SettingsKey : String {
