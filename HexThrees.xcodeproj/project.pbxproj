@@ -58,7 +58,6 @@
 		3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
-		3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C520E966D70052E1C6 /* SettingsVC.swift */; };
 		3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */; };
 		3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */; };
 		3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */; };
@@ -156,7 +155,6 @@
 		3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.extensions.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
-		3F95A6C520E966D70052E1C6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEndCMD.swift; sourceTree = "<group>"; };
 		3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameCMD.swift; sourceTree = "<group>"; };
@@ -284,7 +282,6 @@
 				3F06B354207C81E000C8315A /* AppDelegate.swift */,
 				3F06B356207C81E000C8315A /* GameVC.swift */,
 				3F4FA81B20E57F3100971892 /* PauseVC.swift */,
-				3F95A6C520E966D70052E1C6 /* SettingsVC.swift */,
 				3FA3A50A2175A6E90005B37D /* GameOverVC.swift */,
 				3F06B358207C81E000C8315A /* Main.storyboard */,
 				3F06B35B207C81E000C8315A /* LaunchScreen.storyboard */,
@@ -559,7 +556,6 @@
 				3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */,
 				3FEA7AD0218776DC007F50D8 /* FieldOutline.swift in Sources */,
 				3F06487E21613891005461C7 /* MoveXDownIterator.swift in Sources */,
-				3F95A6C620E966D70052E1C6 /* SettingsVC.swift in Sources */,
 				3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */,
 				3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */,
 				3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */,
