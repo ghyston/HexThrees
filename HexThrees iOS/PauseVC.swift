@@ -21,6 +21,9 @@ class PauseVC : UIViewController {
     @IBOutlet weak var motionBlurSwitch: UISwitch!
     @IBOutlet weak var hapticFeedbackSwitch: UISwitch!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var warningLabel: UILabel!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -29,12 +32,49 @@ class PauseVC : UIViewController {
         
         fieldSizeStepper.minimumValue = Double(FieldSize.Thriple.rawValue)
         fieldSizeStepper.maximumValue = Double(FieldSize.Pento.rawValue)
-        
         fieldSizeStepper.value = Double((gameModel?.fieldHeight)!)
-        fieldSizeValueLabel.text = String(fieldSizeStepper.value)
+        updateStepperValueLabel()
         
         motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
         hapticFeedbackSwitch.isOn = gameModel?.hapticManager.isEnabled ?? false
+        
+        updateWarningLabel()
+        setupSegmentedControlDesign()
+    }
+    
+    @IBAction func onSwipeRight(_ sender: UISwipeGestureRecognizer) {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func setupSegmentedControlDesign() {
+        
+        paletteChanger.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont(name: "Futura", size: 22)!,
+            NSAttributedStringKey.foregroundColor: UIColor.darkGray
+            ], for: .normal)
+        
+        paletteChanger.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont(name: "Futura", size: 20)!,
+            NSAttributedStringKey.foregroundColor: UIColor.white
+            ], for: .selected)
+        
+        //@todo: load palette info here
+    }
+        
+    private func updateStepperValueLabel() {
+        
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 0
+        fieldSizeValueLabel.text = formatter.string(from: fieldSizeStepper.value as NSNumber)
+    }
+    
+    private func updateWarningLabel() {
+        
+        let alpha = CGFloat(Int(fieldSizeStepper.value) == gameModel?.fieldWidth ? 0.1 : 0.9)
+        let color = warningLabel.textColor.withAlphaComponent(alpha)
+        
+        warningLabel.textColor = color
     }
     
     @IBAction func onHapticFeedbackChanged(_ sender: Any) {
@@ -72,7 +112,8 @@ class PauseVC : UIViewController {
     
     @IBAction func onFieldSizeChanged(_ sender: Any) {
         
-        fieldSizeValueLabel.text = String(fieldSizeStepper.value)
+        updateWarningLabel()
+        updateStepperValueLabel()
         defaults.set(Int(fieldSizeStepper.value), forKey: SettingsKey.FieldSize.rawValue)
     }
     

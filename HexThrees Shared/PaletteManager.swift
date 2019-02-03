@@ -17,6 +17,7 @@ protocol IPaletteManager {
     func cellBlockedBgColor() -> SKColor
     func color(value: Int) -> SKColor
     func switchPalette(to: ColorSchemaType)
+    func statusBarStyle() -> UIStatusBarStyle
     
     //@todo: add cells stroke color, font color
     
@@ -36,7 +37,7 @@ class PaletteManager : IPaletteManager {
             sceneBgColor: .black,
             cellBgColor: .gray,
             cellBlockedBgColor: .darkGray,
-            
+            statusBarStyle: .lightContent,
             colors: [ 0: SKColor(rgb: 0xE0D688),
                       1: SKColor(rgb: 0xDFB138),
                       2: SKColor(rgb: 0xDE6C4C),
@@ -60,6 +61,7 @@ class PaletteManager : IPaletteManager {
             sceneBgColor: .white,
             cellBgColor: .gray,
             cellBlockedBgColor: .darkGray,
+            statusBarStyle: .lightContent,
             colors: [0: SKColor(rgb: 0x07BEB8),
                      1: SKColor(rgb: 0x0568AE),
                      2: SKColor(rgb: 0xE9E228),
@@ -83,6 +85,7 @@ class PaletteManager : IPaletteManager {
             sceneBgColor: .white,
             cellBgColor: .gray,
             cellBlockedBgColor: .darkGray,
+            statusBarStyle: .`default`,
             colors: [0: SKColor(rgb: 0x07BEB8),
                      1: SKColor(rgb: 0x0568AE),
                      2: SKColor(rgb: 0xE9E228),
@@ -130,6 +133,10 @@ class PaletteManager : IPaletteManager {
     
     func fieldOutlineColor() -> SKColor {
         return currentPalette.fieldOutlineColor
+    }
+    
+    func statusBarStyle() -> UIStatusBarStyle {
+        return currentPalette.statusBarStyle
     }
     
     func switchPalette(to colorSchemaType: ColorSchemaType) {

@@ -104,13 +104,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees iOS/GameVC.swift"
-            timestampString = "569065160.263513"
+            timestampString = "570895922.2347291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "loadSettings()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -120,13 +120,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees iOS/GameVC.swift"
-            timestampString = "569065160.263563"
+            timestampString = "570895922.2354029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "loadSettings()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,6 +238,22 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "run()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HexThrees iOS/PauseVC.swift"
+            timestampString = "570895922.235981"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "onHapticFeedbackChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

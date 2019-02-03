@@ -133,9 +133,11 @@ class GameVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        
+        let pal : IPaletteManager? = ContainerConfig.instance.tryResolve()
+        return pal?.statusBarStyle() ?? .`default`
     }
     
     private func loadPalette() {
@@ -208,6 +210,8 @@ class GameVC: UIViewController {
         /*UIView.animate(withDuration: 1.0) {
             
         }*/
+        
+        setNeedsStatusBarAppearanceUpdate()
         
         self.scene?.backgroundColor = pal.sceneBgColor()
         if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
