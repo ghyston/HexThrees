@@ -35,6 +35,7 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadSettings()
         loadPalette()
         
         self.scene = GameScene.newGameScene()
@@ -46,8 +47,6 @@ class GameVC: UIViewController {
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = false
-        
-        loadSettings()
         
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
@@ -142,7 +141,7 @@ class GameVC: UIViewController {
     
     private func loadPalette() {
         
-        let pal : IPaletteManager = PaletteManager()
+        let pal : IPaletteManager = PaletteManager(self.currentGameParams!.palette)
         ContainerConfig.instance.register(pal)
     }
     

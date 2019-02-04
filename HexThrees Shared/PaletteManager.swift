@@ -28,7 +28,7 @@ class PaletteManager : IPaletteManager {
     private var currentPalette : ColorSchema
     private let allPalettes : Dictionary<ColorSchemaType, ColorSchema>
     
-    init() {
+    init(_ currentShema: ColorSchemaType) {
         
         //@todo: try for background 333240
         
@@ -109,7 +109,7 @@ class PaletteManager : IPaletteManager {
             .Light: light,
             .Gray: gray]
         
-        currentPalette = allPalettes[.Dark]!
+        currentPalette = allPalettes[currentShema]!
     }
     
     func color(value: Int) -> SKColor {

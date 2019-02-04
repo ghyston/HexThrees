@@ -59,7 +59,19 @@ class PauseVC : UIViewController {
             NSAttributedStringKey.foregroundColor: UIColor.white
             ], for: .selected)
         
-        //@todo: load palette info here
+        let oldPlette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
+        
+        switch oldPlette {
+        case .Gray?:
+            paletteChanger.selectedSegmentIndex = 1
+        case .Light?:
+            paletteChanger.selectedSegmentIndex = 2
+        case .Dark?:
+            paletteChanger.selectedSegmentIndex = 0
+        default:
+            paletteChanger.selectedSegmentIndex = 0
+            return
+        }
     }
         
     private func updateStepperValueLabel() {
