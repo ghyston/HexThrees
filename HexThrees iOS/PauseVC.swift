@@ -50,13 +50,13 @@ class PauseVC : UIViewController {
     private func setupSegmentedControlDesign() {
         
         paletteChanger.setTitleTextAttributes([
-            NSAttributedStringKey.font : UIFont(name: "Futura", size: 22)!,
-            NSAttributedStringKey.foregroundColor: UIColor.darkGray
+            NSAttributedString.Key.font : UIFont(name: "Futura", size: 22)!,
+            NSAttributedString.Key.foregroundColor: UIColor.darkGray
             ], for: .normal)
         
         paletteChanger.setTitleTextAttributes([
-            NSAttributedStringKey.font : UIFont(name: "Futura", size: 20)!,
-            NSAttributedStringKey.foregroundColor: UIColor.white
+            NSAttributedString.Key.font : UIFont(name: "Futura", size: 20)!,
+            NSAttributedString.Key.foregroundColor: UIColor.white
             ], for: .selected)
         
         let oldPlette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
