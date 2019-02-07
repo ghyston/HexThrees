@@ -18,7 +18,6 @@ class GameVC: UIViewController {
     
     var gameModel : GameModel?
     var scene : GameScene?
-    var currentGameParams: GameParams?
     
     //@todo: disable haptic and blur models olther than (?) 6s/SE
     let defaultGameParams = GameParams(
@@ -35,10 +34,8 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSettings()
-        loadPalette()
-        
         self.scene = GameScene.newGameScene()
+        
 
         // Present the scene
         let skView = self.view as! SKView
@@ -84,30 +81,19 @@ class GameVC: UIViewController {
             name: .scoreBuffUpdate,
             object: nil)
         
-        startGame()
         
-        //uncomment to debug stuff
-        //DebugPaletteCMD(self.gameModel!).run(); return
-        
-        if FileHelper.SaveFileExist() {
-            LoadGameCMD(self.gameModel!).run()
-        } else {
-            //DebugPaletteCMD(self.gameModel!).run()
-            AddRandomElementsCMD(self.gameModel!).run(
-                cells: self.currentGameParams!.randomElementsCount,
-                blocked: self.currentGameParams!.blockedCellsCount)
-        }
+        startGame(restart: false)
     }
     
-    private func loadSettings() {
+    private func loadSettings(fieldSizeFromSave : FieldSize?) -> GameParams{
         
         let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
         let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
         let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
         let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
         
-        self.currentGameParams = GameParams(
-            fieldSize: prefFieldSize ?? self.defaultGameParams.fieldSize,
+        return GameParams(
+            fieldSize: (fieldSizeFromSave ?? prefFieldSize) ?? self.defaultGameParams.fieldSize,
             randomElementsCount: self.defaultGameParams.randomElementsCount,
             blockedCellsCount: self.defaultGameParams.blockedCellsCount,
             motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
@@ -139,34 +125,46 @@ class GameVC: UIViewController {
         return pal?.statusBarStyle() ?? .`default`
     }
     
-    private func loadPalette() {
+    private func loadPalette(_ palette: ColorSchemaType) {
         
-        let pal : IPaletteManager = PaletteManager(self.currentGameParams!.palette)
+        let pal : IPaletteManager = PaletteManager(palette)
         ContainerConfig.instance.register(pal)
     }
     
-    private func startGame() {
+    private func startGame(restart: Bool) {
+        
+        if restart && self.gameModel != nil {
+            CleanGameCMD(self.gameModel!).run()
+        }
+        
+        let save = restart ? nil : FileHelper.loadSave() //@todo: use FileHelper by interface ?
+        let settings = loadSettings(fieldSizeFromSave: save?.fieldSize)
+        loadPalette(settings.palette)
         
         let cmd = StartGameCMD(
             scene: self.scene!,
             view: self.view as! SKView,
-            params: self.currentGameParams!)
+            params: settings)
         cmd.run()
         
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.register(self.gameModel!)
         setSceneColor()
         updateScoreLabel()
+        
+        if save != nil && !restart {
+            LoadGameCMD(self.gameModel!).run(save!)
+        }
+        else {
+            AddRandomElementsCMD(self.gameModel!).run(
+                cells: settings.randomElementsCount,
+                blocked: settings.blockedCellsCount)
+        }
     }
     
     @objc func onGameReset(notification: Notification) {
         
-        CleanGameCMD(self.gameModel!).run()
-        loadSettings()
-        startGame()
-        AddRandomElementsCMD(self.gameModel!).run(
-            cells: self.currentGameParams!.randomElementsCount,
-            blocked: self.currentGameParams!.blockedCellsCount)
+        startGame(restart: true)
     }
     
     @objc func onScoreUpdate(notification: Notification) {

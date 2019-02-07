@@ -18,4 +18,5 @@ struct SavedGame : Codable{
     
     let cells: [SavedCell]
     let score: Int
+    let fieldSize: FieldSize //@todo: save and check for validation on load!
 }

@@ -45,13 +45,14 @@ class SaveGameCMD : GameCMD {
             
         return SavedGame(
             cells: cells,
-            score: self.gameModel.score)
+            score: self.gameModel.score,
+            fieldSize: FieldSize(rawValue: self.gameModel.fieldWidth)!)
     }
     
     private func saveJsonToFile(_ json: String)
     {
         
-        guard let fileUrl = FileHelper.SaveFileUrl() else { return }
+        guard let fileUrl = FileHelper.saveFileUrl() else { return }
         
         do {
             try json.write(to: fileUrl, atomically: true, encoding: .utf8)

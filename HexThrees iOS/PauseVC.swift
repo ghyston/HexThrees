@@ -29,10 +29,11 @@ class PauseVC : UIViewController {
         super.viewDidLoad()
         
         self.gameModel = ContainerConfig.instance.resolve() as GameModel
+        let settingsFieldSize = defaults.integer(forKey: SettingsKey.FieldSize.rawValue)
         
         fieldSizeStepper.minimumValue = Double(FieldSize.Thriple.rawValue)
         fieldSizeStepper.maximumValue = Double(FieldSize.Pento.rawValue)
-        fieldSizeStepper.value = Double((gameModel?.fieldHeight)!)
+        fieldSizeStepper.value = Double(settingsFieldSize > 0 ? settingsFieldSize : (gameModel?.fieldHeight)!)
         updateStepperValueLabel()
         
         motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false

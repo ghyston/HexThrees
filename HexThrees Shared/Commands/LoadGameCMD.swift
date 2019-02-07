@@ -10,18 +10,9 @@ import Foundation
 
 class LoadGameCMD: GameCMD {
     
-    override func run() {
-        
-        guard let jsonString = loadJsonFromFile() else { return }
-        guard let gameSave = decodeJsonToGameState(jsonString) else { return }
-        
+    func run(_ gameSave : SavedGame) {
         //@todo: remove assets from final build, make soft loading,
         assert(gameModel.bgHexes.count == gameSave.cells.count, "on load game configs are different")
-        
-        applySaveToModel(gameSave)
-    }
-    
-    private func applySaveToModel(_ gameSave: SavedGame) {
         
         for i in 0..<gameSave.cells.count {
             
@@ -41,26 +32,4 @@ class LoadGameCMD: GameCMD {
         gameModel.score = gameSave.score
     }
     
-    private func decodeJsonToGameState(_ json : String) -> SavedGame? {
-        
-        do {
-            
-            let savedGame = try JSONDecoder().decode(SavedGame.self, from: json.data(using: .utf8)!)
-            return savedGame
-        } catch { print(error) }
-        return nil
-    }
-    
-    private func loadJsonFromFile() -> String? {
-        
-        guard let fileUrl = FileHelper.SaveFileUrl() else { return nil }
-        do {
-            
-            return try String(contentsOf: fileUrl, encoding: .utf8)
-        } catch {
-            
-            print(error)
-        }
-        return nil
-    }
 }

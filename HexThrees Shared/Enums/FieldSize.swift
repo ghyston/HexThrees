@@ -8,7 +8,7 @@
 
 
 //@todo: move to another file ?
-enum FieldSize : Int {
+enum FieldSize : Int, Codable {
     
     //case Min = Thriple
     case Thriple = 3
