@@ -11,11 +11,15 @@ import SpriteKit
 
 class BonusNode : SKNode {
     
-    let sprite : SKSpriteNode
-    let circle : SKShapeNode
-    let countLabel : SKLabelNode
+    private let sprite : SKSpriteNode
+    private let circle : SKShapeNode
+    private let countLabel : SKLabelNode
     let command : GameCMD
-    var turnsCount : Int
+    var turnsCount : Int {
+        didSet {
+            updateLabelCount()
+        }
+    }
     let type: BonusType
     
     init(type: BonusType, spriteName: String, turnsToDispose: Int, onPick: GameCMD) {

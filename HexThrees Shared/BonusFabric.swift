@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum BonusType {
+enum BonusType : Int, Codable {
     
     case UNLOCK_CELL
     case BLOCK_CELL

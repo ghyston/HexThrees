@@ -14,6 +14,8 @@ struct SavedGame : Codable{
         
         let val : Int?
         let blocked: Bool
+        let bonusType: BonusType?
+        let bonusTurns: Int?
     }
     
     let cells: [SavedCell]

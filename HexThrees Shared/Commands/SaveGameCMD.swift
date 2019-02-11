@@ -40,7 +40,9 @@ class SaveGameCMD : GameCMD {
                 
             cells.append(SavedGame.SavedCell(
                 val: bgCell.gameCell?.value,
-                blocked: bgCell.isBlocked))
+                blocked: bgCell.isBlocked,
+                bonusType: bgCell.bonus?.type,
+                bonusTurns: bgCell.bonus?.turnsCount))
         }
             
         return SavedGame(

@@ -109,8 +109,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
             endingLineNumber = "109"
-            landmarkName = "loadSettings(fieldSizeFromSave:)"
-            landmarkType = "7">
+            landmarkName = "supportedInterfaceOrientations"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -125,8 +125,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "loadSettings(fieldSizeFromSave:)"
-            landmarkType = "7">
+            landmarkName = "supportedInterfaceOrientations"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -254,6 +254,22 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "onHapticFeedbackChanged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HexThrees Shared/Commands/SaveGameCMD.swift"
+            timestampString = "571601912.773223"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "retrieveSaveFromModel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

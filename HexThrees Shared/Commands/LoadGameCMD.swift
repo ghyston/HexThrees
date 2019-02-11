@@ -16,17 +16,29 @@ class LoadGameCMD: GameCMD {
         
         for i in 0..<gameSave.cells.count {
             
-            if gameSave.cells[i].blocked {
+            let loadedCell = gameSave.cells[i]
+            
+            if loadedCell.blocked {
                 
                 gameModel.bgHexes[i].block()
             }
-            else if gameSave.cells[i].val != nil {
+            else if let val = loadedCell.val {
                 
                 let newElement = GameCell(
                     model: self.gameModel,
-                    val: gameSave.cells[i].val!)
+                    val: val)
                 gameModel.bgHexes[i].addGameCell(cell: newElement)
                 newElement.playAppearAnimation()
+            }
+            else if let bonusType = loadedCell.bonusType {
+                
+                let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: self.gameModel)
+                
+                if let bonusTurns = loadedCell.bonusTurns {
+                    bonusNode.turnsCount = bonusTurns
+                }
+                
+                gameModel.bgHexes[i].addBonus(bonusNode)
             }
         }
         gameModel.score = gameSave.score
