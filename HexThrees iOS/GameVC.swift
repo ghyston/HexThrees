@@ -160,6 +160,9 @@ class GameVC: UIViewController {
                 cells: settings.randomElementsCount,
                 blocked: settings.blockedCellsCount)
         }
+        
+        // Delay one second because random cells appers with random delay
+        CheckGameEndCMD(self.gameModel!).runWithDelay(delay: 1.0)
     }
     
     @objc func onGameReset(notification: Notification) {
