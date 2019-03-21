@@ -24,6 +24,7 @@
 		3F06B371207C81E000C8315A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B34B207C81E000C8315A /* GameScene.swift */; };
 		3F06B373207C81E000C8315A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34C207C81E000C8315A /* Assets.xcassets */; };
 		3F11087D2190B591007743DF /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11087C2190B591007743DF /* FileHelper.swift */; };
+		3F13AF8D221D3F260086194E /* ScoreNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F13AF8C221D3F260086194E /* ScoreNode.swift */; };
 		3F1A626721181DE400CC6586 /* grid.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626621181DE400CC6586 /* grid.fsh */; };
 		3F1A62692118A74100CC6586 /* gridDervative.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A62682118A74100CC6586 /* gridDervative.fsh */; };
 		3F1A626B2118B38A00CC6586 /* simple.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626A2118B38A00CC6586 /* simple.fsh */; };
@@ -121,6 +122,7 @@
 		3F06B35C207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F06B35E207C81E000C8315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F11087C2190B591007743DF /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		3F13AF8C221D3F260086194E /* ScoreNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNode.swift; sourceTree = "<group>"; };
 		3F1A626621181DE400CC6586 /* grid.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = grid.fsh; sourceTree = "<group>"; };
 		3F1A62682118A74100CC6586 /* gridDervative.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = gridDervative.fsh; sourceTree = "<group>"; };
 		3F1A626A2118B38A00CC6586 /* simple.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = simple.fsh; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				3F60069521B6F82800BD4DCA /* BlockableNode.swift */,
 				3F60069721B6F85100BD4DCA /* BonusableNode.swift */,
 				3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */,
+				3F13AF8C221D3F260086194E /* ScoreNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				3F06487A2161343B005461C7 /* MoveRightIterator.swift in Sources */,
 				3FEBD12B21346D8200D9FCBC /* HexField.swift in Sources */,
 				3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */,
+				3F13AF8D221D3F260086194E /* ScoreNode.swift in Sources */,
 				3F2D81F521C6C19100A48CD1 /* MergingStrategyName.swift in Sources */,
 				3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */,
 				3FA3A51021770F610005B37D /* ColorSchemas.swift in Sources */,

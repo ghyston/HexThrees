@@ -59,12 +59,6 @@ class GameVC: UIViewController {
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(onScoreUpdate),
-            name: .updateScore,
-            object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
             selector: #selector(onGameEnd),
             name: .gameOver,
             object: nil)
@@ -150,8 +144,8 @@ class GameVC: UIViewController {
         self.gameModel = cmd.gameModel
         ContainerConfig.instance.register(self.gameModel!)
         setSceneColor()
-        updateScoreLabel()
         
+        //DebugPaletteCMD(self.gameModel!).run()
         if save != nil && !restart {
             LoadGameCMD(self.gameModel!).run(save!)
         }
@@ -168,16 +162,6 @@ class GameVC: UIViewController {
     @objc func onGameReset(notification: Notification) {
         
         startGame(restart: true)
-    }
-    
-    @objc func onScoreUpdate(notification: Notification) {
-        
-        updateScoreLabel()
-    }
-    
-    private func updateScoreLabel() {
-        
-        scoreLabel.text = "\(self.gameModel!.score)"
     }
     
     @objc func onGameEnd(notification: Notification) {

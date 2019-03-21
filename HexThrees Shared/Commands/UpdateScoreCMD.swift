@@ -13,7 +13,9 @@ class UpdateScoreCMD : GameCMD {
     func run(_ val : Int) {
     
         self.gameModel.score += val
-        NotificationCenter.default.post(name: .updateScore, object: nil)
+        NotificationCenter.default.post(
+            name: .updateScore,
+            object: self.gameModel.score)
     }
     
 }
