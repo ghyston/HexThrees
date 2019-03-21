@@ -11,22 +11,33 @@ import SpriteKit
 
 class ScoreLabel : UILabel {
     
-    var previousValue : Int
-    var currentValue : Int
-    var animationDuration: Double
+    enum UpdateSpeed: Int {
+        
+        case regular = 1
+        case fast = 3
+    }
+    
+    var previousValue : Int = 0
+    var nextValue : Int = 0
+    var currentValue : Int = 0 {
+        didSet {
+            self.text = formatter.string(from: NSNumber(value: currentValue))
+        }
+    }
+    
     var formatter = NumberFormatter()
     
-    var newText : String = ""
-    
     required init(coder aDecoder: NSCoder) {
-        
-        self.currentValue = 0
-        self.previousValue = 0
-        self.animationDuration = 0
         
         super.init(coder: aDecoder)!
         
         formatter.minimumIntegerDigits = 3
+        
+        if let gameModel = ContainerConfig.instance.tryResolve() as GameModel? {
+            self.nextValue = gameModel.score
+            scheduleNext(.fast)
+        }
+        
         
         NotificationCenter.default.addObserver(
             self,
@@ -35,35 +46,28 @@ class ScoreLabel : UILabel {
             object: nil)
     }
     
-    func animate(characterDelay: TimeInterval) {
+    @objc func onScoreLabelUpdate(notification: Notification) {
         
-        //@todo: check, what is OperationQueue and can it be used here?
-        //let queue = DispatchQueue.init(label: "scoreUpdate")
+        //@todo: not thread safety!! Use custome queue with .async(flags: .barrier) if there would be issues
+        let isFinished = self.nextValue == self.currentValue
+        self.nextValue = notification.object as? Int ?? 0
         
-        DispatchQueue.main.async {
-            
-            let count = min(10, self.currentValue - self.previousValue)
-            for i in 1...count {
-                
-                let part : Double = 1 / Double(pow(2.7, Double(count - i)))
-                DispatchQueue.main.asyncAfter(deadline: .now() + characterDelay * part ) {
-                    let tempValue = self.previousValue + (i + 1) * (self.currentValue - self.previousValue) / count
-                    self.updateText(value: tempValue)
-                }
-            }
+        if isFinished {
+            scheduleNext(.fast)
         }
     }
     
-    @objc func onScoreLabelUpdate(notification: Notification) {
+    func scheduleNext(_ speed: UpdateSpeed) {
         
-        self.previousValue = self.currentValue
-        self.currentValue = notification.object as? Int ?? 0
+        if self.currentValue == self.nextValue {
+            return
+        }
         
-        animate(characterDelay: 0.3)
-    }
-    
-    private func updateText(value: Int) {
+        self.currentValue = min(self.currentValue + speed.rawValue, self.nextValue)
         
-        self.text = formatter.string(from: NSNumber(value: value))
+        let period : Double = 0.2 / Double(self.nextValue - self.currentValue)
+        DispatchQueue.main.asyncAfter(deadline: .now() + period ) {
+            self.scheduleNext(speed)
+        }
     }
 }

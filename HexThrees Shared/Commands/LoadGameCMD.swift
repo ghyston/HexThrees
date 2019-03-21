@@ -42,6 +42,9 @@ class LoadGameCMD: GameCMD {
             }
         }
         gameModel.score = gameSave.score
+        NotificationCenter.default.post(
+            name: .updateScore,
+            object: self.gameModel.score)
     }
     
 }

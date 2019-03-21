@@ -164,7 +164,8 @@ class MoveLineCMD : GameCMD {
                 cell: cells[index].gameCell!,
                 value: newVal)
             .runWithDelay(delay: timeDelay)
-        UpdateScoreCMD(self.gameModel).run(newVal * self.gameModel.scoreMultiplier)
+        let deltaScore = gameModel.strategy.value(index: newVal - 1) * self.gameModel.scoreMultiplier
+        UpdateScoreCMD(self.gameModel).run(deltaScore)
     }
     
     private func pickUpBonuses(_ from: Int, _ to: Int) {
