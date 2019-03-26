@@ -88,6 +88,7 @@
 		3FB703A920DAE7A6009718F3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB703A820DAE7A6009718F3 /* View.xib */; };
 		3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703AE20E16613009718F3 /* FieldGeometry.swift */; };
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
+		3FD5BC0F2247B1EC00317D0C /* TutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD5BC0E2247B1EC00317D0C /* TutorialVC.swift */; };
 		3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 		3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
 		3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203120D1B049009B7370 /* SwipeDirection.swift */; };
@@ -187,6 +188,7 @@
 		3FB703A820DAE7A6009718F3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		3FB703AE20E16613009718F3 /* FieldGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldGeometry.swift; sourceTree = "<group>"; };
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
+		3FD5BC0E2247B1EC00317D0C /* TutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialVC.swift; sourceTree = "<group>"; };
 		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
 		3FE9203120D1B049009B7370 /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = "HexThrees Shared/Enums/SwipeDirection.swift"; sourceTree = SOURCE_ROOT; };
@@ -285,6 +287,7 @@
 				3F06B356207C81E000C8315A /* GameVC.swift */,
 				3F4FA81B20E57F3100971892 /* PauseVC.swift */,
 				3FA3A50A2175A6E90005B37D /* GameOverVC.swift */,
+				3FD5BC0E2247B1EC00317D0C /* TutorialVC.swift */,
 				3F06B358207C81E000C8315A /* Main.storyboard */,
 				3F06B35B207C81E000C8315A /* LaunchScreen.storyboard */,
 				3F06B35E207C81E000C8315A /* Info.plist */,
@@ -482,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD5BC0F2247B1EC00317D0C /* TutorialVC.swift in Sources */,
 				3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */,
 				3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
 				3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */,
