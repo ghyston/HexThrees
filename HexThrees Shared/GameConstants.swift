@@ -21,6 +21,8 @@ class GameConstants {
     static let LastBlockedUnlockBonusProbability: Float = 0.05
     static let X2BonusProbability: Float = 0.2
     static let X3BonusProbability: Float = 0.1
+    
+    static let TutorialAnimationDelay = 1.0
 }
 
 enum SettingsKey : String {

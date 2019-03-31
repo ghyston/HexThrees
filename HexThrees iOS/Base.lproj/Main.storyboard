@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,15 +43,14 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGh-UP-E6f">
-                                <rect key="frame" x="0.0" y="44" width="180" height="131"/>
+                                <rect key="frame" x="0.0" y="44" width="60" height="43.666666666666657"/>
                                 <state key="normal" image="menu_btn"/>
                                 <connections>
                                     <segue destination="hfV-uc-Gim" kind="presentation" id="wQr-Rf-fr0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQr-gB-yno">
-                                <rect key="frame" x="8" y="748" width="63" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQr-gB-yno">
+                                <rect key="frame" x="97" y="413" width="63" height="335"/>
                                 <state key="normal" title="HELP ME"/>
                                 <connections>
                                     <segue destination="yrJ-Zq-0UE" kind="popoverPresentation" popoverAnchorView="FQr-gB-yno" id="sRu-Qh-X6e">
@@ -62,10 +61,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="FQr-gB-yno" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" constant="369" id="5Ci-My-0C8"/>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" id="67O-4l-4gE"/>
+                            <constraint firstItem="FQr-gB-yno" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" constant="97" id="F1o-HN-SoJ"/>
                             <constraint firstItem="qg7-AX-LYf" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" constant="8" id="NlD-sw-t37"/>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" id="fg5-c7-fRI"/>
                             <constraint firstItem="qg7-AX-LYf" firstAttribute="trailing" secondItem="bNo-s9-wk6" secondAttribute="trailing" constant="-8" id="skS-oh-JNr"/>
+                            <constraint firstItem="bNo-s9-wk6" firstAttribute="bottom" secondItem="FQr-gB-yno" secondAttribute="bottom" constant="30" id="wid-Yj-4tZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bNo-s9-wk6"/>
                     </view>
@@ -317,7 +319,7 @@
         <scene sceneID="ZJW-2r-pOx">
             <objects>
                 <viewController id="yrJ-Zq-0UE" customClass="TutorialVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vjy-nN-b3P" customClass="tuto">
+                    <view key="view" contentMode="scaleToFill" id="vjy-nN-b3P" userLabel="SomeView" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -433,7 +435,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="menu_btn" width="180" height="131"/>
+        <image name="menu_btn" width="60" height="43.666667938232422"/>
     </resources>
     <color key="tintColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

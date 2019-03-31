@@ -117,11 +117,13 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         self.run(SKAction.sequence([delay, delete]))
     }
     
-    func updateValue(value: Int, strategy: MergingStrategy) {
+    func updateValue(value: Int, strategy: MergingStrategy, animate: Bool = true) {
         self.value = value
         let strategyValue = strategy.value(index: self.value)
         self.updateText(text: "\(strategyValue)")
-        self.playUpdateAnimation()
+        if animate {
+            self.playUpdateAnimation()
+        }
         updateColor()
     }
     

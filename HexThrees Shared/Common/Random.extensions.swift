@@ -12,7 +12,7 @@ import CoreGraphics
 public extension Double {
     
     /// Returns a random floating point number between 0.0 and 1.0, inclusive.
-    public static var random: Double {
+    static var random: Double {
         return Double.random(in: 0 ... 1)
     }
 }
@@ -20,7 +20,7 @@ public extension Double {
 public extension Float {
     
     /// Returns a random floating point number between 0.0 and 1.0, inclusive.
-    public static var random: Float {
+    static var random: Float {
         return Float.random(in: 0 ... 1)
     }
 }
@@ -28,12 +28,12 @@ public extension Float {
 public extension CGFloat {
     
     /// Randomly returns either 1.0 or -1.0.
-    public static var randomSign: CGFloat {
+    static var randomSign: CGFloat {
         return (arc4random_uniform(2) == 0) ? 1.0 : -1.0
     }
     
     /// Returns a random floating point number between 0.0 and 1.0, inclusive.
-    public static var random: CGFloat {
+    static var random: CGFloat {
         return CGFloat.random(in: 0 ... 1)
     }
     

@@ -57,6 +57,8 @@
 		3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069721B6F85100BD4DCA /* BonusableNode.swift */; };
 		3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */; };
 		3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */; };
+		3F81F5E7224AA1DD0008593C /* TutorialMergingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81F5E6224AA1DD0008593C /* TutorialMergingNode.swift */; };
+		3F81F5E9224AA9A20008593C /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81F5E8224AA9A20008593C /* TutorialScene.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */; };
@@ -156,6 +158,8 @@
 		3F60069721B6F85100BD4DCA /* BonusableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusableNode.swift; sourceTree = "<group>"; };
 		3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurNode.swift; sourceTree = "<group>"; };
 		3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.extensions.swift; sourceTree = "<group>"; };
+		3F81F5E6224AA1DD0008593C /* TutorialMergingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMergingNode.swift; sourceTree = "<group>"; };
+		3F81F5E8224AA9A20008593C /* TutorialScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEndCMD.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				3FA3A50F21770F610005B37D /* ColorSchemas.swift */,
 				3F11087C2190B591007743DF /* FileHelper.swift */,
 				3FA3A21321ED288D00111471 /* HapticManager.swift */,
+				3F81F5E8224AA9A20008593C /* TutorialScene.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				3F60069721B6F85100BD4DCA /* BonusableNode.swift */,
 				3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */,
 				3F13AF8C221D3F260086194E /* ScoreNode.swift */,
+				3F81F5E6224AA1DD0008593C /* TutorialMergingNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -531,6 +537,7 @@
 				3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
+				3F81F5E9224AA9A20008593C /* TutorialScene.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
 				3F064876215D4180005461C7 /* CellsIterator.swift in Sources */,
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
@@ -566,6 +573,7 @@
 				3F06487E21613891005461C7 /* MoveXDownIterator.swift in Sources */,
 				3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */,
 				3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */,
+				3F81F5E7224AA1DD0008593C /* TutorialMergingNode.swift in Sources */,
 				3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */,
 				3FA3A21421ED288D00111471 /* HapticManager.swift in Sources */,
 				3FB7039D20D967AF009718F3 /* LineCellsContainer.swift in Sources */,

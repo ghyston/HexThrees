@@ -6,11 +6,27 @@
 //  Copyright © 2019 Ilja Stepanow. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import SpriteKit
 
 class TutorialVC : UIViewController {
     
+    var scene : TutorialScene? = nil
+    
     override func viewDidLoad() {
-        //@todo
+        
+        super.viewDidLoad()
+        
+        let skView = self.view as! SKView
+        
+        self.scene = TutorialScene.create(frameSize: skView.frame.size)
+        
+        skView.presentScene(self.scene)
+        
+        skView.ignoresSiblingOrder = true
+        skView.showsFPS = true
+        skView.showsNodeCount = false
     }
+    
+    
 }
