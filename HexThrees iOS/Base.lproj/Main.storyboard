@@ -50,20 +50,18 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQr-gB-yno">
-                                <rect key="frame" x="97" y="413" width="63" height="335"/>
+                                <rect key="frame" x="0.0" y="748" width="63" height="30"/>
                                 <state key="normal" title="HELP ME"/>
                                 <connections>
-                                    <segue destination="yrJ-Zq-0UE" kind="popoverPresentation" popoverAnchorView="FQr-gB-yno" id="sRu-Qh-X6e">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="CF0-Yj-3UE" kind="presentation" id="Jdl-Lr-9uC"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FQr-gB-yno" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" constant="369" id="5Ci-My-0C8"/>
+                            <constraint firstItem="FQr-gB-yno" firstAttribute="bottom" secondItem="bNo-s9-wk6" secondAttribute="bottom" id="5Ci-My-0C8"/>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" id="67O-4l-4gE"/>
-                            <constraint firstItem="FQr-gB-yno" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" constant="97" id="F1o-HN-SoJ"/>
+                            <constraint firstItem="FQr-gB-yno" firstAttribute="leading" secondItem="bNo-s9-wk6" secondAttribute="leading" id="F1o-HN-SoJ"/>
                             <constraint firstItem="qg7-AX-LYf" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" constant="8" id="NlD-sw-t37"/>
                             <constraint firstItem="jGh-UP-E6f" firstAttribute="top" secondItem="bNo-s9-wk6" secondAttribute="top" id="fg5-c7-fRI"/>
                             <constraint firstItem="qg7-AX-LYf" firstAttribute="trailing" secondItem="bNo-s9-wk6" secondAttribute="trailing" constant="-8" id="skS-oh-JNr"/>
@@ -315,27 +313,52 @@
             </objects>
             <point key="canvasLocation" x="1080.8" y="96.7016491754123"/>
         </scene>
-        <!--TutorialVC-->
+        <!--Tutorial PagesVC-->
+        <scene sceneID="c9Y-yh-hce">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CF0-Yj-3UE" customClass="TutorialPagesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B4Q-Ew-Dap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="254" y="969"/>
+        </scene>
+        <!--TutorialMergeRulesVC-->
         <scene sceneID="ZJW-2r-pOx">
             <objects>
-                <viewController id="yrJ-Zq-0UE" customClass="TutorialVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TutorialMergeRulesVC" id="yrJ-Zq-0UE" userLabel="TutorialMergeRulesVC" customClass="TutorialMergeRulesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vjy-nN-b3P" userLabel="SomeView" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpO-f4-RAM">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpO-f4-RAM">
                                 <rect key="frame" x="170" y="748" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="BpO-f4-RAM" firstAttribute="bottom" secondItem="r6l-vV-hEJ" secondAttribute="bottom" id="Mmd-Sn-yfd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="r6l-vV-hEJ"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hUa-Nd-hKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1081" y="848"/>
+            <point key="canvasLocation" x="-292" y="1697"/>
+        </scene>
+        <!--Tutorial Swipe RulesVC-->
+        <scene sceneID="MYJ-JZ-Zg3">
+            <objects>
+                <viewController storyboardIdentifier="TutorialSwipeRulesVC" id="ubc-2f-tlr" customClass="TutorialSwipeRulesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ned-Q4-9uP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cYM-w1-DN0"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JgQ-Hj-GIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="654" y="1697"/>
         </scene>
         <!--GameOverVC-->
         <scene sceneID="B39-4d-8Jp">

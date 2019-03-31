@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class TutorialVC : UIViewController {
+class TutorialMergeRulesVC : UIViewController {
     
     var scene : TutorialScene? = nil
     
