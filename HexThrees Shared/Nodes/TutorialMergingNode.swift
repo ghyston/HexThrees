@@ -34,17 +34,7 @@ class TutorialMergingNode : SKNode {
         
         self.resetPosition()
         
-        let randomDelay = Double.random / 2
-        
-        let startDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay * (randomDelay + 0.5) )
-        let animation = SKAction.perform(#selector(TutorialMergingNode.moveAnimation), onTarget: self)
-        let updatedelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay)
-        let updateRight = SKAction.perform(#selector(TutorialMergingNode.updateRight), onTarget: self)
-        let resetDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay * (1.5 - randomDelay))
-        let reset = SKAction.perform(#selector(TutorialMergingNode.resetNodes), onTarget: self)
-        let sequence = SKAction.sequence([startDelay, animation, updatedelay, updateRight, resetDelay, reset])
-        let forever = SKAction.repeatForever(sequence)
-        self.run(forever)
+        startAgain()
     }
     
     private func resetPosition() {
@@ -77,6 +67,22 @@ class TutorialMergingNode : SKNode {
             cell: self.leftNode,
             diff: CGVector(dx: self.xPos * 2, dy: 0),
             duration: GameConstants.TutorialAnimationDelay)
+    }
+    
+    @objc private func startAgain() {
+        
+        let randomDelay = Double.random / 2
+        
+        let startDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay * (randomDelay + 0.5) )
+        let animation = SKAction.perform(#selector(TutorialMergingNode.moveAnimation), onTarget: self)
+        let updatedelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay)
+        let updateRight = SKAction.perform(#selector(TutorialMergingNode.updateRight), onTarget: self)
+        let resetDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay * (1.5 - randomDelay))
+        let reset = SKAction.perform(#selector(TutorialMergingNode.resetNodes), onTarget: self)
+        let startAgain = SKAction.perform(#selector(TutorialMergingNode.startAgain), onTarget: self)
+        let sequence = SKAction.sequence([startDelay, animation, updatedelay, updateRight, resetDelay, reset, startAgain])
+        
+        self.run(sequence)
     }
     
     required init?(coder aDecoder: NSCoder) {
