@@ -8,12 +8,32 @@
 
 import Foundation
 
-enum SwipeDirection {
-    case Unknown
-    case XUp
-    case XDown
-    case YUp
-    case YDown
-    case Left
-    case Right
+enum SwipeDirection: CaseIterable {
+    case
+        Unknown,
+        XUp,
+        XDown,
+        YUp,
+        YDown,
+        Left,
+        Right
+    
+    func inverse() -> SwipeDirection {
+    switch self {
+        case .XUp:
+            return .XDown
+        case .XDown:
+            return .XUp
+        case .YUp:
+            return .YDown
+        case .YDown:
+            return .YUp
+        case .Left:
+            return .Right
+        case .Right:
+            return .Left
+        default:
+        return .Unknown
+        }
+    }
 }

@@ -10,6 +10,7 @@ import Foundation
 
 class AddRandomCellCMD : GameCMD {
     
+    internal var isTutorial : Bool = false
     
     private func freeCellWithBonuses(cell: BgCell) -> Bool {
         
@@ -41,6 +42,9 @@ class AddRandomCellCMD : GameCMD {
             val: 0)
         // @todo: overexposition self settings
         newElement.motionBlurDisabled = !self.gameModel.motionBlurEnabled
+        if isTutorial {
+            newElement.updateColorForTutorial()
+        }
         
         bgCell.addGameCell(cell: newElement)
         newElement.playAppearAnimation()

@@ -20,7 +20,7 @@ class DoSwipeCMD : GameCMD {
         self.gameModel.swipeStatus.somethingChangeed = false
         self.gameModel.hapticManager.warmup()
 
-        if let iterator = self.chooseIterator(direction) {
+        if let iterator = IteratorFabric.create(self.gameModel, direction) {
             while let container = iterator.next() {
                 MoveLineCMD(self.gameModel, cells: container).run()
             }
@@ -29,32 +29,18 @@ class DoSwipeCMD : GameCMD {
             self.gameModel.swipeStatus.inProgress = false
         }
         
-        ApplyScoreBuffCMD(self.gameModel).run()
-        AfterSwipeCMD(self.gameModel)
-            .runWithDelay(delay: gameModel.swipeStatus.delay)
-        
+        Timer.scheduledTimer(
+            timeInterval: gameModel.swipeStatus.delay,
+            target: self,
+            selector: #selector(DoSwipeCMD.finishSwype),
+            userInfo: nil,
+            repeats: false)
     }
     
-    private func chooseIterator(_ direction : SwipeDirection) -> CellsIterator? {
-        
-        switch direction {
-        case .Left:
-            return MoveLeftIterator(self.gameModel)
-        case .Right:
-            return MoveRightIterator(self.gameModel)
-        case .XUp:
-            return MoveXUpIterator(self.gameModel)
-        case .YUp:
-            return MoveYUpIterator(self.gameModel)
-        case .XDown:
-            return MoveXDownIterator(self.gameModel)
-        case .YDown:
-            return MoveYDownIterator(self.gameModel)
-        case .Unknown:
-            fallthrough
-        default:
-            return nil
-        }
-        
+    @objc private func finishSwype() {
+     
+        gameModel.hapticManager.shutDown()
+        gameModel.swipeStatus.delay = 0.0
+        gameModel.swipeStatus.inProgress = false
     }
 }

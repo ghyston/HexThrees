@@ -48,12 +48,12 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         self.dataSource = self
         
-        if let firstVC = viewControllersList.first {
+        if let firstVC = viewControllersList.last {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         
         //@todo: check why this is not working
-        var appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
+        let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
         appearance.pageIndicatorTintColor = UIColor.red
         appearance.currentPageIndicatorTintColor = UIColor.red
     }

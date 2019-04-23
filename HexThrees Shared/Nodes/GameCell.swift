@@ -80,6 +80,12 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         updateColor(fillColor: pal.color(value: value), strokeColor: .white)
     }
     
+    func updateColorForTutorial() {
+        
+        updateColor(fontColor: .white)
+        updateColor(fillColor: pal.cellTutorialColor(), strokeColor: .white)
+    }
+    
     func playAppearAnimation() {
         self.setScale(0.01)
         self.run(SKAction.scale(to: 1.0, duration: 0.5))

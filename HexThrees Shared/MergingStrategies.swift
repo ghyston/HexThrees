@@ -19,6 +19,8 @@ class MerginStrategyFabric {
             return PowerOfTwoMergingStrategy()
         case .Hybrid:
             return HybridMergingStrategy()
+        case .Tutorial:
+            return TutorialMergingStrategy()
         }
     }
 }
@@ -133,4 +135,23 @@ class HybridMergingStrategy : MergingStrategy {
         return index > limitValue ? pot : fib
     }
 }
+
+class TutorialMergingStrategy : MergingStrategy {
+    
+    var name : MergingStrategyName = .Tutorial
+    
+    func prefilValues(maxIndex: Int) {
+        
+    }
+    
+    func value(index: Int) -> Int{
+        return index
+    }
+    
+    func isSiblings(_ one: Int, _ two: Int) -> Int? {
+        return nil
+    }
+}
+
+
 

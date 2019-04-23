@@ -7,8 +7,23 @@
 //
 
 import Foundation
+import SpriteKit
 
+
+//@todo: use template and merge with TutorialMergeRulesVC
 class TutorialSwipeRulesVC : UIViewController {
     
-    //@todo: do something meaningfull here
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        let skView = self.view as! SKView
+        
+        let scene = TutorialSwipeScene(frameSize: skView.frame.size)
+        
+        skView.presentScene(scene)
+        skView.ignoresSiblingOrder = true
+        skView.showsFPS = true
+        skView.showsNodeCount = false
+    }
 }

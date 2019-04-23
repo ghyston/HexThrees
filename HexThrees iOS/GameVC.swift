@@ -221,6 +221,9 @@ extension GameVC: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
         DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
+        ApplyScoreBuffCMD(self.gameModel!).run()
+        AfterSwipeCMD(self.gameModel!)
+            .runWithDelay(delay: gameModel!.swipeStatus.delay)
     }
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions

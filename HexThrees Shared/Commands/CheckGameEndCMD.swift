@@ -17,11 +17,6 @@ class CheckGameEndCMD : GameCMD {
                 !cell.isBlocked
     }
     
-    private func notEmpty (cell: BgCell) -> Bool {
-        
-        return cell.gameCell != nil
-    }
-    
     override func run() {
         
         //First, check is there any free space
@@ -40,7 +35,7 @@ class CheckGameEndCMD : GameCMD {
         
         for iterator in iterators {
             while let line = (iterator as! CellsIterator).next() {
-                if(check(line: line)) {
+                if(line.check(strategy: gameModel.strategy)) {
                     return
                 }
             }
@@ -49,36 +44,4 @@ class CheckGameEndCMD : GameCMD {
         //thisIsTheEnd = true //my only friend
         NotificationCenter.default.post(name: .gameOver, object: nil)
     }
-    
-    //@return true if line can be moved
-    func check(line: LineCellsContainer, from : Int = 0) -> Bool {
-     
-        guard let first = line.findNext(startIndex: from, condition: notEmpty) else {
-            return false
-        }
-        
-        // if it was last cell in line
-        if first.index == line.count - 1 {
-            return false
-        }
-        
-        let nextCell = line[first.index + 1]
-        
-        // If next cell is empty, line can be moved
-        if !self.notEmpty(cell: nextCell) {
-            return true
-        }
-        else {
-         
-            // If first and next cell can be merged, we are fine
-            if (gameModel.strategy.isSiblings(first.cell.gameCell!.value, nextCell.gameCell!.value) != nil) {
-                return true
-            }
-            // If not may be next and next after next can be merged?
-            else {
-                return check(line: line, from: from + 1)
-            }
-        }
-    }
-    
 }

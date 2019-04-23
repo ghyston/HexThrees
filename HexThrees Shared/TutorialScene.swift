@@ -9,13 +9,12 @@
 import Foundation
 import SpriteKit
 
-class TutorialScene : SKScene {
+class TutorialMergingScene : SKScene {
  
-    class func create(frameSize : CGSize) -> TutorialScene {
+    class func create(frameSize : CGSize) -> TutorialMergingScene {
         
-        let scene = TutorialScene(size: CGSize(width: 1200, height: 1200))
+        let scene = TutorialMergingScene(size: CGSize(width: 1200, height: 1200))
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
         scene.scaleMode = .resizeFill
         
         let hybridStartegy = MerginStrategyFabric.createByName(.Hybrid)

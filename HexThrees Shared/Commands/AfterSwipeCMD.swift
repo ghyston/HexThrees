@@ -11,16 +11,13 @@ import Foundation
 class AfterSwipeCMD : GameCMD {
     
     override func run() {
-        if gameModel.swipeStatus.somethingChangeed {
-            
-            UpdateBonusesCounterCMD(gameModel).run()
-            AddRandomCellCMD(gameModel).run()
-            DropRandomBonusCMD(gameModel).run()
-            CheckGameEndCMD(gameModel).run()
+        if !gameModel.swipeStatus.somethingChangeed {
+            return
         }
         
-        gameModel.hapticManager.shutDown()
-        gameModel.swipeStatus.delay = 0.0
-        gameModel.swipeStatus.inProgress = false
+        UpdateBonusesCounterCMD(gameModel).run()
+        AddRandomCellCMD(gameModel).run()
+        DropRandomBonusCMD(gameModel).run()
+        CheckGameEndCMD(gameModel).run()
     }
 }
