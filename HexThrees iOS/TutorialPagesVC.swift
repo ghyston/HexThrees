@@ -8,7 +8,39 @@
 
 import Foundation
 
-class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource {
+class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+    
+    var pageControl = UIPageControl()
+    
+    func configurePageControll() {
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
+        pageControl.numberOfPages = viewControllersList.count
+        pageControl.currentPage = 0
+        pageControl.tintColor = .black
+        pageControl.pageIndicatorTintColor = .white
+        pageControl.currentPageIndicatorTintColor = .black
+        self.view.addSubview(pageControl)
+    }
+    
+    func configureBackButton() {
+        let btn = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: 60, height: 50))
+        
+        btn.setTitleColor(.white, for: .normal)
+        btn.setTitle("Back", for: .normal)
+        btn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        self.view.addSubview(btn)
+    }
+    
+    @objc func goBack() {
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0]
+        let currentPageIndex = viewControllersList.index(of: pageContentViewController)!
+        self.pageControl.currentPage = currentPageIndex
+    }
     
     lazy var viewControllersList:[UIViewController] = {
     
@@ -22,7 +54,7 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     
-        //@todo: review this, used from https://www.youtube.com/watch?v=jVBtDH6jjl8
+        //this is from https://www.youtube.com/watch?v=jVBtDH6jjl8
         guard let vcIndex = viewControllersList.index(of: viewController) else { return nil }
         let previousIndex = vcIndex - 1
         
@@ -48,13 +80,12 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource {
         super.viewDidLoad()
         self.dataSource = self
         
-        if let firstVC = viewControllersList.last {
+        if let firstVC = viewControllersList.first {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         
-        //@todo: check why this is not working
-        let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
-        appearance.pageIndicatorTintColor = UIColor.red
-        appearance.currentPageIndicatorTintColor = UIColor.red
+        configurePageControll()
+        configureBackButton()
+        self.delegate = self
     }
 }

@@ -328,16 +328,7 @@
                     <view key="view" contentMode="scaleToFill" id="vjy-nN-b3P" userLabel="SomeView" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BpO-f4-RAM">
-                                <rect key="frame" x="170" y="748" width="34" height="30"/>
-                                <state key="normal" title="Back"/>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="BpO-f4-RAM" firstAttribute="bottom" secondItem="r6l-vV-hEJ" secondAttribute="bottom" id="Mmd-Sn-yfd"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="r6l-vV-hEJ"/>
                     </view>
                 </viewController>
