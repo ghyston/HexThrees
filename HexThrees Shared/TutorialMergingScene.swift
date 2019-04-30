@@ -11,17 +11,20 @@ import SpriteKit
 
 class TutorialMergingScene : SKScene {
  
-    class func create(frameSize : CGSize) -> TutorialMergingScene {
+    var swipeGestureNode : SwipeGestureNode?
+    
+    init(frameSize : CGSize)  {
         
-        let scene = TutorialMergingScene(size: CGSize(width: 1200, height: 1200))
-        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        scene.scaleMode = .resizeFill
+        super.init(size: CGSize(width: 1200, height: 1200))
+        
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        scaleMode = .resizeFill
         
         let hybridStartegy = MerginStrategyFabric.createByName(.Hybrid)
         hybridStartegy.prefilValues(maxIndex: 5)
         
         let model = GameModel(
-            screenWidth: frameSize.width * 0.9,
+            screenWidth: frameSize.width * 0.8,
             fieldSize: FieldSize.Quaddro.rawValue,
             strategy: hybridStartegy,
             motionBlur: false,
@@ -33,14 +36,14 @@ class TutorialMergingScene : SKScene {
         
         var pointsToPath = [CGPoint]()
         
-        scene.addMergingNodes(
+        addMergingNodes(
             values: mergingNodesFiboValues,
             frameW: frameSize.width,
             model: model,
             path: &pointsToPath,
             posY: &posY)
         
-        scene.addLine(
+        addLine(
             up: pointsToPath.first!,
             down: pointsToPath.last!,
             isArrow: false,
@@ -48,20 +51,35 @@ class TutorialMergingScene : SKScene {
         
         posY -= 20
         
-        scene.addMergingNodes(
+        addMergingNodes(
             values: mergingNodesPow2Values,
             frameW: frameSize.width,
             model: model,
             path: &pointsToPath,
             posY: &posY)
         
-        scene.addLine(
+        addLine(
             up: pointsToPath.first!,
             down: pointsToPath.last!,
             isArrow: true,
             text: "Power of 2")
         
-        return scene
+        posY = pointsToPath.last!.y
+        posY -= 30
+        
+        self.swipeGestureNode = SwipeGestureNode(
+            from: CGPoint(x: -frameSize.width/4, y: posY),
+            to: CGPoint(x: frameSize.width/4, y: posY))
+        self.swipeGestureNode?.repeatIndefinitely(
+            startDelay: GameConstants.TutorialAnimationDelay * 0.5,
+            duration: GameConstants.TutorialAnimationDelay,
+            pause: GameConstants.TutorialAnimationDelay * 1.5)
+        
+        addChild(self.swipeGestureNode!)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func addMergingNodes(values: [(Int, Int)], frameW: CGFloat, model: GameModel, path: inout [CGPoint], posY: inout CGFloat) {
@@ -114,5 +132,10 @@ class TutorialMergingScene : SKScene {
         label.zRotation = 3.14 / 2
         label.position = CGPoint(x: (up.x + down.x) / CGFloat(2.0) - fassetW, y:(up.y + down.y) / CGFloat(2.0))
         addChild(label)
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        
+        self.swipeGestureNode?.update()
     }
 }

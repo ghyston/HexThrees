@@ -62,6 +62,7 @@
 		3F7E694F226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */; };
 		3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */; };
 		3F81F5E7224AA1DD0008593C /* TutorialMergingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81F5E6224AA1DD0008593C /* TutorialMergingNode.swift */; };
+		3F8D11492270CDBB0034BC6D /* SwipeGestureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11482270CDBB0034BC6D /* SwipeGestureNode.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */; };
@@ -170,6 +171,7 @@
 		3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellForTutorialCMD.swift; sourceTree = "<group>"; };
 		3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.extensions.swift; sourceTree = "<group>"; };
 		3F81F5E6224AA1DD0008593C /* TutorialMergingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialMergingNode.swift; sourceTree = "<group>"; };
+		3F8D11482270CDBB0034BC6D /* SwipeGestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGestureNode.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEndCMD.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				3F13AF8C221D3F260086194E /* ScoreNode.swift */,
 				3F81F5E6224AA1DD0008593C /* TutorialMergingNode.swift */,
 				3FE1E4202256661700BE4C1E /* TutorialSwypeNode.swift */,
+				3F8D11482270CDBB0034BC6D /* SwipeGestureNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				3FE1E41D2250DA9F00BE4C1E /* TutorialSwipeRulesVC.swift in Sources */,
 				3F7E694D226F024700E1D570 /* IteratorFabric.swift in Sources */,
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,
+				3F8D11492270CDBB0034BC6D /* SwipeGestureNode.swift in Sources */,
 				3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */,
 				3FA3A514217EF1D60005B37D /* SwitchPaletteCMD.swift in Sources */,
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,

@@ -17,7 +17,7 @@ class TutorialMergeRulesVC : UIViewController {
         
         let skView = self.view as! SKView
         
-        let scene = TutorialMergingScene.create(frameSize: skView.frame.size)
+        let scene = TutorialMergingScene(frameSize: skView.frame.size)
         
         skView.presentScene(scene)
         
