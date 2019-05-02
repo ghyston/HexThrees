@@ -30,6 +30,8 @@ class SwipeGestureNode : SKNode {
         //shape.lineJoin
         //shape.lineJoin
         shape.lineWidth = 2 //@todo: what is length then?
+        shape.glowWidth = 2
+        shape.lineCap = .round
         
         self.node1 = SKNode()
         self.node2 = SKNode()
@@ -44,7 +46,9 @@ class SwipeGestureNode : SKNode {
     func playOnce(startDelay: TimeInterval, duration: TimeInterval) {
         let startDelayAction = SKAction.wait(forDuration: startDelay)
         let animationAction = SKAction.run( { self.startAnimation(duration: duration) } )
-        self.run(SKAction.sequence([startDelayAction, animationAction, pauseAction])
+        let pauseDelayAction = SKAction.wait(forDuration: duration)
+        let removeAction = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: self)
+        self.run(SKAction.sequence([startDelayAction, animationAction, pauseDelayAction, removeAction]))
     }
     
     func repeatIndefinitely(startDelay: TimeInterval, duration: TimeInterval, pause: TimeInterval) {

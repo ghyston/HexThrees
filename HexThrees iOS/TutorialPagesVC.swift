@@ -80,7 +80,7 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UI
         super.viewDidLoad()
         self.dataSource = self
         
-        if let firstVC = viewControllersList.first {
+        if let firstVC = viewControllersList.last {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         

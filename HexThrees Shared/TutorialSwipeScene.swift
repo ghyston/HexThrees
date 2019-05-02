@@ -12,6 +12,8 @@ import SpriteKit
 class TutorialSwipeScene : SKScene {
     
     let model : GameModel
+    weak var swipeGestureNode : SwipeGestureNode?
+    var swipeNodeBoundaries = CGRect(x: 0, y: 0, width: 0, height: 0)
     
     init(frameSize : CGSize) {
         
@@ -27,7 +29,12 @@ class TutorialSwipeScene : SKScene {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         scaleMode = .resizeFill
         
-        addChild(TutorialSwipeNode(model: self.model, width: frameSize.width, scene: self))
+        let node = TutorialSwipeNode(
+            model: self.model,
+            width: frameSize.width,
+            scene: self)
+        swipeNodeBoundaries = node.calculateAccumulatedFrame()
+        addChild(node)
         
         startAnimation()
     }
@@ -54,10 +61,93 @@ class TutorialSwipeScene : SKScene {
             while let line = iterator.next() {
                 if(line.check(strategy: self.model.strategy)) {
                     DoSwipeCMD(self.model).run(direction: direction.inverse())
+                    showSwipeGestureNode(direction.inverse())
                     return
                 }
             }
         }
+    }
+    
+    private func showSwipeGestureNode(_ direction: SwipeDirection) {
+        
+        let swipeLen : Double = 200
+        let offset : CGFloat  = 25
+        
+        var dir : CGPoint //direction
+        var pos: CGPoint //position
+        let rnd = Bool.random()
+        
+        switch direction {
+        case .Left:
+            dir = CGPoint(x: -swipeLen * 1.4, y: 0)
+            pos = CGPoint(
+                x: swipeNodeBoundaries.maxX,
+                y: rnd ?
+                    swipeNodeBoundaries.minY - offset :
+                    swipeNodeBoundaries.maxY + offset
+            )
+        case .Right:
+            dir = CGPoint(x: swipeLen * 1.4, y: 0)
+            pos = CGPoint(
+                x: swipeNodeBoundaries.minX,
+                y: rnd ?
+                    swipeNodeBoundaries.maxY + offset :
+                    swipeNodeBoundaries.minY - offset)
+        case .XUp:
+            dir = CGPoint(x: swipeLen, y: swipeLen * 1.732)
+            pos = CGPoint(
+                x: rnd ?
+                    offset * 2 :
+                    swipeNodeBoundaries.minX - offset,
+                y: rnd ?
+                    swipeNodeBoundaries.minY :
+                    0
+            )
+        case .XDown:
+            dir = CGPoint(x: -swipeLen, y: -swipeLen * 1.732)
+            pos = CGPoint(
+                x: rnd ?
+                    swipeNodeBoundaries.maxX + offset :
+                    0,
+                y: rnd ?
+                    0 :
+                    swipeNodeBoundaries.maxY + offset * 2)
+        case .YUp:
+            dir = CGPoint(x: -swipeLen, y: swipeLen * 1.732)
+            pos = CGPoint(
+                x: rnd ?
+                    -offset * 2 : 
+                    swipeNodeBoundaries.maxX + offset,
+                y: rnd ?
+                swipeNodeBoundaries.minY - offset :
+                0)
+        case .YDown:
+            dir = CGPoint(x: swipeLen, y: -swipeLen * 1.732)
+            pos = CGPoint(
+                x: rnd ?
+                    swipeNodeBoundaries.minX - offset :
+                    offset,
+                y: rnd ?
+                    0 :
+                    swipeNodeBoundaries.maxY + offset
+            )
+        default:
+            dir = CGPoint(x: 0, y: 0)
+            pos = CGPoint(x: 0, y: 0)
+        }
+        
+        let node = SwipeGestureNode(from: CGPoint(x: 0, y: 0), to:  dir)
+        node.position = pos
+        addChild(node)
+        node.zPosition = 1000 //@todo
+        node.playOnce(
+            startDelay: 0,
+            duration: GameConstants.SecondsPerCell * 4)
+        self.swipeGestureNode = node
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        self.swipeGestureNode?.update()
     }
     
     required init?(coder aDecoder: NSCoder) {

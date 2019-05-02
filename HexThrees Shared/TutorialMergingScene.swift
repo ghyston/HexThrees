@@ -135,7 +135,6 @@ class TutorialMergingScene : SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
         self.swipeGestureNode?.update()
     }
 }
