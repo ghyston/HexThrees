@@ -328,7 +328,31 @@
                     <view key="view" contentMode="scaleToFill" id="vjy-nN-b3P" userLabel="SomeView" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-SI-SNB" userLabel="Merging">
+                                <rect key="frame" x="167.66666666666663" y="49" width="207.33333333333337" height="65"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Ccp-5x-bYz"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Merging">
+                                        <attributes>
+                                            <color key="NSColor" red="0.9257081151008606" green="0.69756627082824707" blue="0.20557099580764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="48" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j9H-SI-SNB" firstAttribute="top" secondItem="r6l-vV-hEJ" secondAttribute="top" constant="5" id="9mv-0n-Pej"/>
+                            <constraint firstItem="j9H-SI-SNB" firstAttribute="leading" secondItem="r6l-vV-hEJ" secondAttribute="centerX" constant="-20" id="IPM-7J-t8A"/>
+                            <constraint firstItem="j9H-SI-SNB" firstAttribute="trailing" secondItem="r6l-vV-hEJ" secondAttribute="trailing" id="nfC-ML-HOa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="r6l-vV-hEJ"/>
                     </view>
                 </viewController>
@@ -343,7 +367,31 @@
                     <view key="view" contentMode="scaleToFill" id="ned-Q4-9uP" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-99-4GO">
+                                <rect key="frame" x="167.66666666666663" y="49" width="199.33333333333337" height="65"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Hgn-R7-sEl"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Swiping">
+                                        <attributes>
+                                            <color key="NSColor" red="0.9257081151008606" green="0.69756627082824707" blue="0.20557099580764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="48" name="Futura-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HnH-99-4GO" firstAttribute="top" secondItem="cYM-w1-DN0" secondAttribute="top" constant="5" id="Jbs-wZ-moJ"/>
+                            <constraint firstItem="HnH-99-4GO" firstAttribute="trailing" secondItem="cYM-w1-DN0" secondAttribute="trailing" constant="-8" id="KVl-ku-2wO"/>
+                            <constraint firstItem="HnH-99-4GO" firstAttribute="leading" secondItem="cYM-w1-DN0" secondAttribute="centerX" constant="-20" id="d0V-gH-Gje"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cYM-w1-DN0"/>
                     </view>
                 </viewController>

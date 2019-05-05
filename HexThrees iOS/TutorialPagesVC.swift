@@ -22,13 +22,48 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UI
         self.view.addSubview(pageControl)
     }
     
-    func configureBackButton() {
-        let btn = UIButton(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: 60, height: 50))
+    override func viewDidLayoutSubviews() {
         
+        super.viewDidLayoutSubviews()
+        configureBackButton() //this is called here because before safe insects are unknown
+        configureRulesLabel()
+    }
+    
+    func configureBackButton() {
+        
+        let cornerRadius : CGFloat = 20
+        let btnHeight = UIScreen.main.bounds.height * 0.075 +
+            view.safeAreaInsets.bottom * 0.5 + cornerRadius
+        let btnWidth = UIScreen.main.bounds.width * 0.3 + cornerRadius
+        
+        let btn = UIButton(frame: CGRect(
+            x: -cornerRadius,
+            y:  UIScreen.main.bounds.maxY - btnHeight + cornerRadius,
+            width: btnWidth,
+            height: btnHeight))
+        
+        btn.layer.cornerRadius = cornerRadius
         btn.setTitleColor(.white, for: .normal)
         btn.setTitle("Back", for: .normal)
+        btn.titleEdgeInsets.bottom = cornerRadius
+        btn.backgroundColor = .gray
         btn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         self.view.addSubview(btn)
+    }
+    
+    func configureRulesLabel() {
+        
+        let lbl = UILabel.init(frame: CGRect(
+            x: 0,
+            //y: view.safeAreaLayoutGuide.layoutFrame.height / 2 - 5,
+            y: view.safeAreaInsets.top + 5,
+            width: UIScreen.main.bounds.width / 2 - 35,
+            height: 65))
+        lbl.text = "rules: "
+        lbl.textColor = UIColor.init(red: 151, green: 38, blue: 53) //#todo: move to palette?
+        lbl.font = UIFont.init(name: "Futura-Medium", size: 48)
+        lbl.textAlignment = .right
+        self.view.addSubview(lbl)
     }
     
     @objc func goBack() {
@@ -80,12 +115,11 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UI
         super.viewDidLoad()
         self.dataSource = self
         
-        if let firstVC = viewControllersList.last {
+        if let firstVC = viewControllersList.first {
             self.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         
         configurePageControll()
-        configureBackButton()
         self.delegate = self
     }
 }
