@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class HelpPagesVC : UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var pageControl = UIPageControl()
     
@@ -82,8 +82,8 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UI
     
         let sb = UIStoryboard(name: "Main", bundle: nil)
         
-        let mergeVC = sb.instantiateViewController(withIdentifier: "TutorialMergeRulesVC")
-        let swipeVC = sb.instantiateViewController(withIdentifier: "TutorialSwipeRulesVC")
+        let mergeVC = sb.instantiateViewController(withIdentifier: "HelpMergeRulesVC")
+        let swipeVC = sb.instantiateViewController(withIdentifier: "HelpSwipeRulesVC")
         
         return [mergeVC, swipeVC]
     }()

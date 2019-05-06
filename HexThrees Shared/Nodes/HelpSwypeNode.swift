@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class TutorialSwipeNode : SKNode {
+class HelpSwipeNode : SKNode {
     
     var fieldOutline : FieldOutline
     

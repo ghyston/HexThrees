@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class TutorialMergingScene : SKScene, TutorialScene {
+class HelpMergingScene : SKScene, HelpScene {
  
     var swipeGestureNode : SwipeGestureNode?
     
@@ -72,9 +72,9 @@ class TutorialMergingScene : SKScene, TutorialScene {
             from: CGPoint(x: -frameSize.width/4, y: posY),
             to: CGPoint(x: frameSize.width/4, y: posY))
         self.swipeGestureNode?.repeatIndefinitely(
-            startDelay: GameConstants.TutorialAnimationDelay * 0.5,
-            duration: GameConstants.TutorialAnimationDelay,
-            pause: GameConstants.TutorialAnimationDelay * 1.5)
+            startDelay: GameConstants.HelpVCAnimationDelay * 0.5,
+            duration: GameConstants.HelpVCAnimationDelay,
+            pause: GameConstants.HelpVCAnimationDelay * 1.5)
         
         addChild(self.swipeGestureNode!)
         
@@ -98,7 +98,7 @@ class TutorialMergingScene : SKScene, TutorialScene {
         path.removeAll()
         for valuePair in values {
             
-            let mergeNode = TutorialMergingNode(
+            let mergeNode = HelpMergingNode(
                 model: model,
                 width: frameW * 0.7,
                 valueLeft: valuePair.0,

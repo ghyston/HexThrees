@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class TutorialMergingNode : SKNode {
+class HelpMergingNode : SKNode {
     
     var leftNode: GameCell
     var rightNode: GameCell
@@ -66,20 +66,20 @@ class TutorialMergingNode : SKNode {
         MoveCellSpriteCMD(self.model).run(
             cell: self.leftNode,
             diff: CGVector(dx: self.xPos * 2, dy: 0),
-            duration: GameConstants.TutorialAnimationDelay)
+            duration: GameConstants.HelpVCAnimationDelay)
     }
     
     @objc private func startAgain() {
         
         let randomDelay = Double.random / 2
         
-        let startDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay * (randomDelay + 0.5) )
-        let animation = SKAction.perform(#selector(TutorialMergingNode.moveAnimation), onTarget: self)
-        let updatedelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay)
-        let updateRight = SKAction.perform(#selector(TutorialMergingNode.updateRight), onTarget: self)
-        let resetDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay * (1.5 - randomDelay))
-        let reset = SKAction.perform(#selector(TutorialMergingNode.resetNodes), onTarget: self)
-        let startAgain = SKAction.perform(#selector(TutorialMergingNode.startAgain), onTarget: self)
+        let startDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (randomDelay + 0.5) )
+        let animation = SKAction.perform(#selector(HelpMergingNode.moveAnimation), onTarget: self)
+        let updatedelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay)
+        let updateRight = SKAction.perform(#selector(HelpMergingNode.updateRight), onTarget: self)
+        let resetDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (1.5 - randomDelay))
+        let reset = SKAction.perform(#selector(HelpMergingNode.resetNodes), onTarget: self)
+        let startAgain = SKAction.perform(#selector(HelpMergingNode.startAgain), onTarget: self)
         let sequence = SKAction.sequence([startDelay, animation, updatedelay, updateRight, resetDelay, reset, startAgain])
         
         self.run(sequence)

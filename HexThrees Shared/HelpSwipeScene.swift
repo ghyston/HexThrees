@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class TutorialSwipeScene : SKScene, TutorialScene {
+class HelpSwipeScene : SKScene, HelpScene {
     
     let model : GameModel
     weak var swipeGestureNode : SwipeGestureNode?
@@ -29,7 +29,7 @@ class TutorialSwipeScene : SKScene, TutorialScene {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         scaleMode = .resizeFill
         
-        let node = TutorialSwipeNode(
+        let node = HelpSwipeNode(
             model: self.model,
             width: frameSize.width,
             scene: self)
@@ -41,8 +41,8 @@ class TutorialSwipeScene : SKScene, TutorialScene {
     
     private func startAnimation() {
         
-        let startDelay = SKAction.wait(forDuration: GameConstants.TutorialAnimationDelay)
-        let animation = SKAction.perform(#selector(TutorialSwipeScene.doRandomSwipe), onTarget: self)
+        let startDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay)
+        let animation = SKAction.perform(#selector(HelpSwipeScene.doRandomSwipe), onTarget: self)
         let sequence = SKAction.sequence([startDelay, animation])
         let repeatAction = SKAction.repeatForever(sequence)
         self.run(repeatAction)

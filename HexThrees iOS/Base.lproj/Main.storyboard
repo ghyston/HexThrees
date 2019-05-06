@@ -313,10 +313,10 @@
             </objects>
             <point key="canvasLocation" x="1080.8" y="96.7016491754123"/>
         </scene>
-        <!--Tutorial PagesVC-->
+        <!--Help PagesVC-->
         <scene sceneID="c9Y-yh-hce">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CF0-Yj-3UE" customClass="TutorialPagesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CF0-Yj-3UE" customClass="HelpPagesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B4Q-Ew-Dap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="254" y="969"/>
@@ -324,7 +324,7 @@
         <!--TutorialMergeRulesVC-->
         <scene sceneID="ZJW-2r-pOx">
             <objects>
-                <viewController storyboardIdentifier="TutorialMergeRulesVC" id="yrJ-Zq-0UE" userLabel="TutorialMergeRulesVC" customClass="TutorialMergeRulesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HelpMergeRulesVC" id="yrJ-Zq-0UE" userLabel="TutorialMergeRulesVC" customClass="HelpMergeRulesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vjy-nN-b3P" userLabel="SomeView" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -360,10 +360,10 @@
             </objects>
             <point key="canvasLocation" x="-292" y="1697"/>
         </scene>
-        <!--Tutorial Swipe RulesVC-->
+        <!--Help Swipe RulesVC-->
         <scene sceneID="MYJ-JZ-Zg3">
             <objects>
-                <viewController storyboardIdentifier="TutorialSwipeRulesVC" id="ubc-2f-tlr" customClass="TutorialSwipeRulesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HelpSwipeRulesVC" id="ubc-2f-tlr" customClass="HelpSwipeRulesVC" customModule="HexThrees" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ned-Q4-9uP" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

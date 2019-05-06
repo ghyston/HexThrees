@@ -9,11 +9,11 @@
 import Foundation
 import SpriteKit
 
-protocol TutorialScene : SKScene {
+protocol HelpScene : SKScene {
     init(frameSize : CGSize)
 }
 
-class TutorialRulesVC<SceneClass : TutorialScene> : UIViewController {
+class HelpRulesVC<SceneClass : HelpScene> : UIViewController {
     
     override func viewDidLoad() {
         
@@ -30,8 +30,8 @@ class TutorialRulesVC<SceneClass : TutorialScene> : UIViewController {
     }
 }
 
-class TutorialSwipeRulesVC : TutorialRulesVC<TutorialSwipeScene> {
+class HelpSwipeRulesVC : HelpRulesVC<HelpSwipeScene> {
 }
 
-class TutorialMergeRulesVC : TutorialRulesVC<TutorialMergingScene> {
+class HelpMergeRulesVC : HelpRulesVC<HelpMergingScene> {
 }
