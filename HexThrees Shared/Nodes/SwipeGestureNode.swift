@@ -40,24 +40,27 @@ class SwipeGestureNode : SKNode {
         
         addChild(node1)
         addChild(node2)
-        addChild(shape)
     }
     
     func playOnce(startDelay: TimeInterval, duration: TimeInterval) {
         let startDelayAction = SKAction.wait(forDuration: startDelay)
+        let addChildAction = SKAction.run( { self.addChild(self.shape) } )
         let animationAction = SKAction.run( { self.startAnimation(duration: duration) } )
         let pauseDelayAction = SKAction.wait(forDuration: duration)
         let removeAction = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: self)
-        self.run(SKAction.sequence([startDelayAction, animationAction, pauseDelayAction, removeAction]))
+        self.run(SKAction.sequence([startDelayAction, addChildAction, animationAction, pauseDelayAction, removeAction]))
     }
     
     func repeatIndefinitely(startDelay: TimeInterval, duration: TimeInterval, pause: TimeInterval) {
         
         let startDelayAction = SKAction.wait(forDuration: startDelay)
+        let addChildAction = SKAction.run( { self.addChild(self.shape) } )
         let animationAction = SKAction.run( { self.startAnimation(duration: duration) } )
-        let pauseAction = SKAction.wait(forDuration: duration + pause)
+        let waitAnimationFinishAction = SKAction.wait(forDuration: duration)
+        let removeAction = SKAction.run({ self.shape.removeFromParent() })
+        let pauseAction = SKAction.wait(forDuration: pause)
         
-        let sequence = SKAction.sequence([startDelayAction, animationAction, pauseAction])
+        let sequence = SKAction.sequence([startDelayAction, animationAction, addChildAction, waitAnimationFinishAction, removeAction, pauseAction])
         self.run(SKAction.repeatForever(sequence))
     }
     
