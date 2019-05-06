@@ -9,13 +9,13 @@
 import Foundation
 import SpriteKit
 
-class TutorialSwipeScene : SKScene {
+class TutorialSwipeScene : SKScene, TutorialScene {
     
     let model : GameModel
     weak var swipeGestureNode : SwipeGestureNode?
     var swipeNodeBoundaries = CGRect(x: 0, y: 0, width: 0, height: 0)
     
-    init(frameSize : CGSize) {
+    required init(frameSize : CGSize) {
         
         self.model = GameModel(
             screenWidth: frameSize.width * 0.9,
@@ -116,7 +116,7 @@ class TutorialSwipeScene : SKScene {
             dir = CGPoint(x: -swipeLen, y: swipeLen * 1.732)
             pos = CGPoint(
                 x: rnd ?
-                    -offset * 2 : 
+                    -offset * 2 :
                     swipeNodeBoundaries.maxX + offset,
                 y: rnd ?
                 swipeNodeBoundaries.minY - offset :

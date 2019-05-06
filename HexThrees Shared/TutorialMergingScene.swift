@@ -9,13 +9,13 @@
 import Foundation
 import SpriteKit
 
-class TutorialMergingScene : SKScene {
+class TutorialMergingScene : SKScene, TutorialScene {
  
     var swipeGestureNode : SwipeGestureNode?
     
-    init(frameSize : CGSize)  {
+    required init(frameSize : CGSize)  {
         
-        super.init(size: CGSize(width: 1200, height: 1200))
+        super.init(size: frameSize)
         
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         scaleMode = .resizeFill
@@ -31,6 +31,7 @@ class TutorialMergingScene : SKScene {
             hapticFeedback: false)
         
         var posY : CGFloat = frameSize.height / 2.0
+        let startY = posY
         let mergingNodesFiboValues = [(0, 0), (0, 1), (1, 2), (2, 3)]
         let mergingNodesPow2Values = [(4, 4), (5, 5)]
         
@@ -76,6 +77,16 @@ class TutorialMergingScene : SKScene {
             pause: GameConstants.TutorialAnimationDelay * 1.5)
         
         addChild(self.swipeGestureNode!)
+        
+        adjustHeight(frameH: frameSize.height, sceneH: startY - posY)
+    }
+    
+    private func adjustHeight(frameH : CGFloat, sceneH : CGFloat) {
+        
+        let offset = (frameH - sceneH ) / 2
+        for child in children {
+            child.position.y -= offset
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

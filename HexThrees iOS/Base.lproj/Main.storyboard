@@ -329,8 +329,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-SI-SNB" userLabel="Merging">
-                                <rect key="frame" x="167.66666666666663" y="49" width="207.33333333333337" height="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-SI-SNB" userLabel="Merging">
+                                <rect key="frame" x="162.66666666666663" y="49" width="212.33333333333337" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="Ccp-5x-bYz"/>
@@ -350,7 +350,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="j9H-SI-SNB" firstAttribute="top" secondItem="r6l-vV-hEJ" secondAttribute="top" constant="5" id="9mv-0n-Pej"/>
-                            <constraint firstItem="j9H-SI-SNB" firstAttribute="leading" secondItem="r6l-vV-hEJ" secondAttribute="centerX" constant="-20" id="IPM-7J-t8A"/>
+                            <constraint firstItem="j9H-SI-SNB" firstAttribute="leading" secondItem="r6l-vV-hEJ" secondAttribute="centerX" constant="-25" id="IPM-7J-t8A"/>
                             <constraint firstItem="j9H-SI-SNB" firstAttribute="trailing" secondItem="r6l-vV-hEJ" secondAttribute="trailing" id="nfC-ML-HOa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r6l-vV-hEJ"/>
@@ -368,8 +368,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-99-4GO">
-                                <rect key="frame" x="167.66666666666663" y="49" width="199.33333333333337" height="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-99-4GO">
+                                <rect key="frame" x="162.66666666666663" y="49" width="204.33333333333337" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="Hgn-R7-sEl"/>
@@ -390,7 +390,7 @@
                         <constraints>
                             <constraint firstItem="HnH-99-4GO" firstAttribute="top" secondItem="cYM-w1-DN0" secondAttribute="top" constant="5" id="Jbs-wZ-moJ"/>
                             <constraint firstItem="HnH-99-4GO" firstAttribute="trailing" secondItem="cYM-w1-DN0" secondAttribute="trailing" constant="-8" id="KVl-ku-2wO"/>
-                            <constraint firstItem="HnH-99-4GO" firstAttribute="leading" secondItem="cYM-w1-DN0" secondAttribute="centerX" constant="-20" id="d0V-gH-Gje"/>
+                            <constraint firstItem="HnH-99-4GO" firstAttribute="leading" secondItem="cYM-w1-DN0" secondAttribute="centerX" constant="-25" id="d0V-gH-Gje"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cYM-w1-DN0"/>
                     </view>

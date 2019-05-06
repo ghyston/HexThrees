@@ -9,9 +9,11 @@
 import Foundation
 import SpriteKit
 
+protocol TutorialScene : SKScene {
+    init(frameSize : CGSize)
+}
 
-//@todo: use template and merge with TutorialMergeRulesVC
-class TutorialSwipeRulesVC : UIViewController {
+class TutorialRulesVC<SceneClass : TutorialScene> : UIViewController {
     
     override func viewDidLoad() {
         
@@ -19,11 +21,17 @@ class TutorialSwipeRulesVC : UIViewController {
         
         let skView = self.view as! SKView
         
-        let scene = TutorialSwipeScene(frameSize: skView.frame.size)
+        let scene = SceneClass(frameSize: skView.frame.size)
         
         skView.presentScene(scene)
         skView.ignoresSiblingOrder = true
-        skView.showsFPS = true
+        skView.showsFPS = false
         skView.showsNodeCount = false
     }
+}
+
+class TutorialSwipeRulesVC : TutorialRulesVC<TutorialSwipeScene> {
+}
+
+class TutorialMergeRulesVC : TutorialRulesVC<TutorialMergingScene> {
 }

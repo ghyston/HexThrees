@@ -45,6 +45,7 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UI
         btn.layer.cornerRadius = cornerRadius
         btn.setTitleColor(.white, for: .normal)
         btn.setTitle("Back", for: .normal)
+        btn.titleLabel?.font = UIFont.init(name: "Futura-Medium", size: 24)
         btn.titleEdgeInsets.bottom = cornerRadius
         btn.backgroundColor = .gray
         btn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
@@ -57,7 +58,7 @@ class TutorialPagesVC : UIPageViewController, UIPageViewControllerDataSource, UI
             x: 0,
             //y: view.safeAreaLayoutGuide.layoutFrame.height / 2 - 5,
             y: view.safeAreaInsets.top + 5,
-            width: UIScreen.main.bounds.width / 2 - 35,
+            width: UIScreen.main.bounds.width / 2 - 40,
             height: 65))
         lbl.text = "rules: "
         lbl.textColor = UIColor.init(red: 151, green: 38, blue: 53) //#todo: move to palette?
