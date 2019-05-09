@@ -24,6 +24,9 @@ class GameModel {
     var hapticManager: IHapticManager
     var motionBlurEnabled: Bool
     
+    var stressTimerEnabled: Bool
+    var stressTimer : Timer? //when this timer is fired, new cell appeared on field
+    
     // Some common properties
     var bgHexes = [BgCell]()
     var swipeStatus = SwipeStatus()
@@ -86,7 +89,7 @@ class GameModel {
         }
     }
     
-    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool) {
+    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, stressTimer: Bool) {
         
         self.geometry = FieldGeometry(
             screenWidth: screenWidth,
@@ -96,6 +99,7 @@ class GameModel {
         self.fieldHeight = fieldSize
         self.motionBlurEnabled = motionBlur
         self.hapticManager = HapticManager(enabled: hapticFeedback)
+        self.stressTimerEnabled = stressTimer
     }
     
     func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {

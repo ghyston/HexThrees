@@ -30,7 +30,8 @@ class StartGameCMD : CMD {
             fieldSize: params.fieldSize.rawValue,
             strategy: MerginStrategyFabric.createByName(params.strategy),
             motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
-            hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled)
+            hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
+            stressTimer: params.stressTimer == StressTimerStatus.Enabled)
         
         let fieldSize = self.params.fieldSize.rawValue
         

@@ -15,6 +15,7 @@ class GameConstants {
     static let BaseBonusDropProbability = 0.1
     static let MaxBonusesOnScreen = 3
     static let GameOverScreenDelay = 1.2
+    static let StressTimerInterval = 3.0
     
     static let LockBonusProbability: Float = 0.5
     static let UnlockBonusProbability: Float = 0.3
@@ -31,4 +32,5 @@ enum SettingsKey : String {
     case Palette = "palette"
     case MotionBlur = "motion_blur"
     case HapticFeedback = "haptic_feedback"
+    case StressTimer = "stress_timer"
 }

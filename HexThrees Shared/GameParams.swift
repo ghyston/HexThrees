@@ -17,4 +17,5 @@ struct GameParams {
     let hapticFeedback: HapticFeedbackStatus
     let strategy: MergingStrategyName
     let palette: ColorSchemaType
+    let stressTimer: StressTimerStatus
 }

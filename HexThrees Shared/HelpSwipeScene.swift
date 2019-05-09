@@ -22,7 +22,8 @@ class HelpSwipeScene : SKScene, HelpScene {
             fieldSize: FieldSize.Quaddro.rawValue,
             strategy: MerginStrategyFabric.createByName(.Tutorial),
             motionBlur: false,
-            hapticFeedback: false)
+            hapticFeedback: false,
+            stressTimer: false)
         
         super.init(size: CGSize(width: 1200, height: 1200))
         

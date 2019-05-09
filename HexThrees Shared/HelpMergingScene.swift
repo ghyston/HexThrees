@@ -28,7 +28,8 @@ class HelpMergingScene : SKScene, HelpScene {
             fieldSize: FieldSize.Quaddro.rawValue,
             strategy: hybridStartegy,
             motionBlur: false,
-            hapticFeedback: false)
+            hapticFeedback: false,
+            stressTimer: false)
         
         var posY : CGFloat = frameSize.height / 2.0
         let startY = posY

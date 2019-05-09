@@ -67,6 +67,8 @@
 		3F8D11532280A9410034BC6D /* HelpMergingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11512280A9400034BC6D /* HelpMergingNode.swift */; };
 		3F8D11562280A9AE0034BC6D /* HelpMergingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11542280A9AE0034BC6D /* HelpMergingScene.swift */; };
 		3F8D11572280A9AE0034BC6D /* HelpSwipeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */; };
+		3F8D115D2284948E0034BC6D /* StartTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */; };
+		3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */; };
@@ -175,6 +177,8 @@
 		3F8D11512280A9400034BC6D /* HelpMergingNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpMergingNode.swift; sourceTree = "<group>"; };
 		3F8D11542280A9AE0034BC6D /* HelpMergingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpMergingScene.swift; sourceTree = "<group>"; };
 		3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpSwipeScene.swift; sourceTree = "<group>"; };
+		3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerCMD.swift; sourceTree = "<group>"; };
+		3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTimerStatus.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEndCMD.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 				3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */,
 				3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */,
 				3F2D81F621C6C1D500A48CD1 /* HapticFeedbackStatus.swift */,
+				3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -395,6 +400,7 @@
 				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
 				3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */,
+				3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -560,8 +566,10 @@
 				3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */,
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
 				3F8D114F2280A8C40034BC6D /* HelpRulesVC.swift in Sources */,
+				3F8D115D2284948E0034BC6D /* StartTimerCMD.swift in Sources */,
 				3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
+				3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
 				3F8D11532280A9410034BC6D /* HelpMergingNode.swift in Sources */,

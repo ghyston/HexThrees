@@ -16,7 +16,12 @@ class AfterSwipeCMD : GameCMD {
         }
         
         UpdateBonusesCounterCMD(gameModel).run()
-        AddRandomCellCMD(gameModel).run()
+        
+        let nextCellCMD : GameCMD = gameModel.stressTimerEnabled ? 
+            StartStressTimerCMD(gameModel) :
+            AddRandomCellCMD(gameModel)
+        nextCellCMD.run()
+        
         DropRandomBonusCMD(gameModel).run()
         CheckGameEndCMD(gameModel).run()
     }

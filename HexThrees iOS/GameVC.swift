@@ -27,7 +27,8 @@ class GameVC: UIViewController {
         motionBlur: MotionBlurStatus.Enabled,
         hapticFeedback: HapticFeedbackStatus.Enabled,
         strategy: .Hybrid,
-        palette: .Dark)
+        palette: .Dark,
+        stressTimer: StressTimerStatus.Enabled)
     
     let defaults = UserDefaults.standard
     
@@ -85,6 +86,7 @@ class GameVC: UIViewController {
         let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
         let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
         let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
+        let prefStress = StressTimerStatus(rawValue: defaults.integer(forKey: SettingsKey.StressTimer.rawValue))
         
         return GameParams(
             fieldSize: (fieldSizeFromSave ?? prefFieldSize) ?? self.defaultGameParams.fieldSize,
@@ -93,7 +95,8 @@ class GameVC: UIViewController {
             motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
             hapticFeedback: prefHapticFeedback ?? self.defaultGameParams.hapticFeedback,
             strategy: self.defaultGameParams.strategy,
-            palette: prefPalette ?? self.defaultGameParams.palette)
+            palette: prefPalette ?? self.defaultGameParams.palette,
+            stressTimer: prefStress ?? self.defaultGameParams.stressTimer)
     }
     
     override var shouldAutorotate: Bool {
