@@ -18,6 +18,11 @@ class StartStressTimerCMD : GameCMD {
         
         self.gameModel.stressTimer?.invalidate()
         self.gameModel.stressTimer =
-        AddRandomCellCMD(self.gameModel).runWithDelay(delay: GameConstants.StressTimerInterval)
+        AddRandomCellCMD(self.gameModel)
+            .runWithDelay(delay: GameConstants.StressTimerInterval)
+        
+        NotificationCenter.default.post(
+            name: .startTimer,
+            object: nil)
     }
 }

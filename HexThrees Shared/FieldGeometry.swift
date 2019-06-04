@@ -16,7 +16,7 @@ class FieldGeometry {
     
     private let hexRad: Double
     private let hexCellPath: CGPath
-    private let outlinePath: CGPath
+    public let outlinePath: CGPath //@todo: make it private and put all functionaity inside
     private let cellWidth: Double
     private let cellHeight: Double
     

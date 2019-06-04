@@ -23,7 +23,7 @@ extension BonusableNode where Self : SKNode {
     func addBonus(_ bonusNode: BonusNode) {
         
         self.bonus = bonusNode
-        self.bonus?.zPosition = 10.0
+        self.bonus?.zPosition = zPositions.bonusZ.rawValue
         addChild(self.bonus!)
     }
     

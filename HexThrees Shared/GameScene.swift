@@ -10,38 +10,42 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var prevInterval = TimeInterval()
+    var prevInterval : TimeInterval?
+    var timerNode: TimerNode
     
-    class func newGameScene() -> GameScene {
+    override init(size: CGSize) {
         
-        guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks")
-            abort()
-        }
+        self.timerNode = TimerNode(
+            period: 3,
+            width: size.width)
         
-        scene.scaleMode = .resizeFill
+        super.init(size: size)
         
-        /*let fShader = SKShader.init(fileNamed: "gridDervative.fsh")
-        let circle = SKShapeNode.init(circleOfRadius: 150)
-        let hexTexture = SKTexture.init(imageNamed: "hex")
+        self.anchorPoint.x = 0.5
+        self.anchorPoint.y = 0.5
+        self.scaleMode = .resizeFill
         
-        //circle.fillTexture = hexTexture
-        circle.fillShader = fShader
-        circle.zPosition = 20
-        circle.position.y = 200
-        scene.addChild(circle)*/
+        timerNode.zPosition = zPositions.timerBar.rawValue
         
-        return scene
+        timerNode.position.y = -size.height / 2 + 7
+        addChild(timerNode)
     }
     
     override func didMove(to view: SKView) {
         
     }
     
+    public func updateSafeArea(bounds: CGRect, insects: UIEdgeInsets) {
+        timerNode.position.y = -bounds.height / 2 + insects.bottom / 2 + 7
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         
+        if prevInterval == nil {
+            prevInterval = currentTime
+        }
         
-        let delta = currentTime - prevInterval
+        let delta = currentTime - prevInterval!
         prevInterval = currentTime
         
         //@todo: uglyuglyuglyuglyuglyuglyuglyuglyugly
@@ -51,5 +55,11 @@ class GameScene: SKScene {
                 (secondLevel as! MotionBlurNode).updateMotionBlur(delta)
             }
         }
+        
+        timerNode.update(delta)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

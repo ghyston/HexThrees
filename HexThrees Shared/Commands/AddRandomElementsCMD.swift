@@ -14,7 +14,9 @@ class AddRandomElementsCMD : GameCMD {
         
         for _ in 0 ..< cells {
             
-            AddRandomCellCMD(gameModel).runWithDelay(delay: Double.random)
+            AddRandomCellCMD(gameModel)
+                .skipRepeat()
+                .runWithDelay(delay: Double.random)
         }
         
         for _ in 0 ..< blocked {

@@ -15,4 +15,10 @@ extension AddRandomCellCMD {
         isTutorial = true
         return self
     }
+    
+    func skipRepeat() -> AddRandomCellCMD {
+        
+        autoRepeat = false
+        return self
+    }
 }

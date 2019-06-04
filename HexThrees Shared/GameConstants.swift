@@ -16,6 +16,9 @@ class GameConstants {
     static let MaxBonusesOnScreen = 3
     static let GameOverScreenDelay = 1.2
     static let StressTimerInterval = 3.0
+    static let StressTimerRollbackInterval = 1.0
+    
+    static let RandomCellIsValue2Probability: Float = 0.3
     
     static let LockBonusProbability: Float = 0.5
     static let UnlockBonusProbability: Float = 0.3

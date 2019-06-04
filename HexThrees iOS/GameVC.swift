@@ -35,7 +35,7 @@ class GameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.scene = GameScene.newGameScene()
+        self.scene = GameScene(size: self.view.frame.size)
         
 
         // Present the scene
@@ -78,6 +78,13 @@ class GameVC: UIViewController {
         
         
         startGame(restart: false)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scene?.updateSafeArea(
+            bounds: UIScreen.main.bounds,
+            insects: view.safeAreaInsets)
     }
     
     private func loadSettings(fieldSizeFromSave : FieldSize?) -> GameParams{
@@ -157,6 +164,8 @@ class GameVC: UIViewController {
                 cells: settings.randomElementsCount,
                 blocked: settings.blockedCellsCount)
         }
+        
+        StartStressTimerCMD(self.gameModel!).run()
         
         // Delay one second because random cells appers with random delay
         CheckGameEndCMD(self.gameModel!).runWithDelay(delay: 1.0)

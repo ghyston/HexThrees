@@ -11,6 +11,7 @@ import Foundation
 class AddRandomCellCMD : GameCMD {
     
     internal var isTutorial : Bool = false
+    internal var autoRepeat : Bool = true
     
     private func freeCellWithBonuses(cell: BgCell) -> Bool {
         
@@ -39,7 +40,7 @@ class AddRandomCellCMD : GameCMD {
         
         let newElement = GameCell(
             model: self.gameModel,
-            val: 0)
+            val: Float.random < GameConstants.RandomCellIsValue2Probability ? 1 : 0)
         // @todo: overexposition self settings
         newElement.motionBlurDisabled = !self.gameModel.motionBlurEnabled
         if isTutorial {
@@ -52,7 +53,7 @@ class AddRandomCellCMD : GameCMD {
         bgCell.bonus?.command.run()
         bgCell.removeBonusWithPickingAnimation(0.0)
         
-        if self.gameModel.stressTimerEnabled {
+        if self.gameModel.stressTimerEnabled && autoRepeat{
             StartStressTimerCMD(self.gameModel).run()
         }
     }

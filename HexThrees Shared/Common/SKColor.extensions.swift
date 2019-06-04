@@ -26,4 +26,13 @@ extension SKColor {
             blue: rgb & 0xFF
         )
     }
+    
+    func toVector() -> vector_float3 {
+        
+        //@todo: check, is it even works?
+        return vector_float3(
+            Float(cgColor.components?[0] ?? 0),
+            Float(cgColor.components?[1] ?? 0),
+            Float(cgColor.components?[2] ?? 0))
+    }
 }

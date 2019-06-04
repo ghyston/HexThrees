@@ -140,7 +140,7 @@ class HelpSwipeScene : SKScene, HelpScene {
         let node = SwipeGestureNode(from: CGPoint(x: 0, y: 0), to:  dir)
         node.position = pos
         addChild(node)
-        node.zPosition = 1000 //@todo
+        node.zPosition = zPositions.helpGesture.rawValue
         node.playOnce(
             startDelay: 0,
             duration: GameConstants.SecondsPerCell * 4)

@@ -38,7 +38,6 @@ class ScoreLabel : UILabel {
             scheduleNext(.fast)
         }
         
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(onScoreLabelUpdate),

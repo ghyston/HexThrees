@@ -14,4 +14,6 @@ enum zPositions: CGFloat {
     case bgCellZ = 4
     case labelZ = 3
     case hexCellZ = 2
+    case timerBar = 6
+    case helpGesture = 100
 }
