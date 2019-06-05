@@ -68,7 +68,7 @@ class TimerNode : SKNode {
     
     @objc private func rollback() {
         
-        //print("rollback from state \(status)")
+        print("rollback from state \(status)")
         
         if status != .regular {
             return
@@ -100,9 +100,12 @@ class TimerNode : SKNode {
         
         print("startOver from state \(status)")
         
-        //@todo: fix exception here!!
+        //@todo: make cyclic int, that will repeat on increase?
         if (status == .rollback) {
             currentColorValue -= 1
+            if currentColorValue < 0 {
+                currentColorValue = 8
+            }
         }
         
         status = .regular
@@ -125,6 +128,7 @@ class TimerNode : SKNode {
         // 8 is min posible strategy max defined value
         // (better to call gameModel.fieldSize ^ 2)
         if currentColorValue > 8 {
+            print("startOver reset currentColorValue")
             currentColorValue = 0
         }
         
