@@ -23,12 +23,12 @@ extension LabeledNode where Self: SKNode {
     func addLabel(text: String) {
         
         label = SKLabelNode()
-        label.text = text
         label.verticalAlignmentMode = .center
-        label.fontSize = 22.0
         label.fontName = "Futura"
         label.position = CGPoint(x: 0, y: 0)
         label.zPosition = zPositions.labelZ.rawValue
+        
+        updateText(text: text)
         
         addChild(label)
     }
@@ -36,6 +36,21 @@ extension LabeledNode where Self: SKNode {
     func updateText(text: String) {
         
         label.text = text
+        
+        switch text.count {
+        case 1:
+            label.fontSize = 24
+        case 1..<5:
+            label.fontSize = 22
+        case 5:
+            label.fontSize = 20
+        case 6:
+            label.fontSize = 16
+        case 7:
+            label.fontSize = 14
+        default:
+            label.fontSize = 10
+        }
     }
     
     func updateColor(fontColor: SKColor) {

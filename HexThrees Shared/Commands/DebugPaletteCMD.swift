@@ -14,7 +14,7 @@ class DebugPaletteCMD : GameCMD {
         
         for i in 0 ..< self.gameModel.fieldHeight * self.gameModel.fieldWidth {
                 
-            let newElement = GameCell(model: self.gameModel, val: 5)
+            let newElement = GameCell(model: self.gameModel, val: i)
             self.gameModel.bgHexes[i].addGameCell(cell: newElement)
             newElement.playAppearAnimation()
         }
