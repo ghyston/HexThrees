@@ -29,7 +29,7 @@ class HelpMergingScene : SKScene, HelpScene {
             strategy: hybridStartegy,
             motionBlur: false,
             hapticFeedback: false,
-            stressTimer: false)
+            timerEnabled: false)
         
         var posY : CGFloat = frameSize.height / 2.0
         let startY = posY

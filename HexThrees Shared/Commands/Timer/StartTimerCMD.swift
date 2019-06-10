@@ -12,14 +12,13 @@ class StartStressTimerCMD : GameCMD {
     
     override func run() {
         
-        guard gameModel.stressTimerEnabled else {
+        guard gameModel.stressTimer.isEnabled() else {
             return
         }
         
-        self.gameModel.stressTimer?.invalidate()
-        self.gameModel.stressTimer =
+        self.gameModel.stressTimer.startNew(timer:
         AddRandomCellCMD(self.gameModel)
-            .runWithDelay(delay: GameConstants.StressTimerInterval)
+            .runWithDelay(delay: GameConstants.StressTimerInterval))
         
         NotificationCenter.default.post(
             name: .startTimer,

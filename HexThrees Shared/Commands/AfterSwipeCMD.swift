@@ -18,7 +18,7 @@ class AfterSwipeCMD : GameCMD {
         UpdateBonusesCounterCMD(gameModel).run()
         
         //@todo: startTimer only if there are available cells
-        if gameModel.stressTimerEnabled {
+        if gameModel.stressTimer.isEnabled() {
             
             RollbackTimerCMD(gameModel).run()
             StartStressTimerCMD(gameModel).runWithDelay(delay: GameConstants.StressTimerRollbackInterval)

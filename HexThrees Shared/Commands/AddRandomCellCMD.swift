@@ -53,7 +53,7 @@ class AddRandomCellCMD : GameCMD {
         bgCell.bonus?.command.run()
         bgCell.removeBonusWithPickingAnimation(0.0)
         
-        if self.gameModel.stressTimerEnabled && autoRepeat{
+        if self.gameModel.stressTimer.isEnabled() && autoRepeat{
             StartStressTimerCMD(self.gameModel).run()
         }
     }

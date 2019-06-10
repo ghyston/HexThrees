@@ -12,11 +12,11 @@ class RollbackTimerCMD : GameCMD {
     
     override func run() {
         
-        guard gameModel.stressTimerEnabled else {
+        guard gameModel.stressTimer.isEnabled() else {
             return
         }
         
-        self.gameModel.stressTimer?.invalidate()
+        self.gameModel.stressTimer.stop()
         
         NotificationCenter.default.post(
             name: .rollbackTimer,

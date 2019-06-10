@@ -73,6 +73,7 @@
 		3F8D115D2284948E0034BC6D /* StartTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */; };
 		3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */; };
 		3F8D11632289CD740034BC6D /* timer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D11622289CD740034BC6D /* timer.fsh */; };
+		3F92C7D322AA347400B477A3 /* StressTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C7D222AA347400B477A3 /* StressTimer.swift */; };
 		3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */; };
 		3F95A6C320E8F1610052E1C6 /* CleanGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */; };
 		3F95A6C920EC955C0052E1C6 /* CheckGameEndCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */; };
@@ -187,6 +188,7 @@
 		3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerCMD.swift; sourceTree = "<group>"; };
 		3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTimerStatus.swift; sourceTree = "<group>"; };
 		3F8D11622289CD740034BC6D /* timer.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = timer.fsh; sourceTree = "<group>"; };
+		3F92C7D222AA347400B477A3 /* StressTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTimer.swift; sourceTree = "<group>"; };
 		3F95A6BC20E8E4E90052E1C6 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckGameEndCMD.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				3F11087C2190B591007743DF /* FileHelper.swift */,
 				3FA3A21321ED288D00111471 /* HapticManager.swift */,
 				3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */,
+				3F92C7D222AA347400B477A3 /* StressTimer.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */,
 				3F06487821611AA6005461C7 /* MoveLeftIterator.swift in Sources */,
 				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
+				3F92C7D322AA347400B477A3 /* StressTimer.swift in Sources */,
 				3F8D11572280A9AE0034BC6D /* HelpSwipeScene.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */,
