@@ -105,6 +105,7 @@
 		3FB703A920DAE7A6009718F3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB703A820DAE7A6009718F3 /* View.xib */; };
 		3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703AE20E16613009718F3 /* FieldGeometry.swift */; };
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
+		3FDEF72A22B4C5BC00579A4B /* AnimatedShaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */; };
 		3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 		3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
 		3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9203120D1B049009B7370 /* SwipeDirection.swift */; };
@@ -221,6 +222,7 @@
 		3FB703A820DAE7A6009718F3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		3FB703AE20E16613009718F3 /* FieldGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldGeometry.swift; sourceTree = "<group>"; };
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
+		3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShaderNode.swift; sourceTree = "<group>"; };
 		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
 		3FE9203120D1B049009B7370 /* SwipeDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwipeDirection.swift; path = "HexThrees Shared/Enums/SwipeDirection.swift"; sourceTree = SOURCE_ROOT; };
@@ -380,6 +382,7 @@
 				3F8D11502280A9400034BC6D /* HelpSwypeNode.swift */,
 				3F8D11582281F0280034BC6D /* UserBlockedCell.swift */,
 				3F8D115A228494260034BC6D /* TimerNode.swift */,
+				3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				3F2D81F321C6C14100A48CD1 /* ColorSchemaType.swift in Sources */,
 				3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */,
 				3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */,
+				3FDEF72A22B4C5BC00579A4B /* AnimatedShaderNode.swift in Sources */,
 				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
 				3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */,
 				3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */,
