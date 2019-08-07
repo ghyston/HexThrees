@@ -20,6 +20,7 @@ class TimerNode : SKNode {
     private var currentColorValue: Int = 0
     private let bar : SKShapeNode
     private var shader : AnimatedShaderNode
+    private var playback = Playback()
     private var leftToRight: Bool = true
     private var status: Status = .regular
     
@@ -29,7 +30,7 @@ class TimerNode : SKNode {
         let offset : CGFloat = 20
         let hW = width / 2
         let hH = height / 2
-        let barSizeRatio = Float(height / width)
+        let halfBarSizeRatio = Float(height / width) / 2
         
         let path = CGMutablePath.init()
         
@@ -41,7 +42,7 @@ class TimerNode : SKNode {
         
         bar.lineCap = .round
         self.shader = AnimatedShaderNode.init(fileNamed: "timer")
-        self.shader.setScale(1.0 + barSizeRatio)
+        self.playback.setRange(from: -halfBarSizeRatio, to: 1.0 + halfBarSizeRatio)
         
         shader.addUniform(
             name: "uClrLeft",
@@ -72,7 +73,6 @@ class TimerNode : SKNode {
         
         print("rollback from state \(status)")
         
-        self.shader.reverse()
         if status != .regular {
             return
         }
@@ -80,7 +80,7 @@ class TimerNode : SKNode {
         status = .rollback
         leftToRight = !leftToRight
         
-        self.shader.rollback(duration: GameConstants.StressTimerRollbackInterval)
+        self.playback.rollback(duration: GameConstants.StressTimerRollbackInterval)
     }
     
     @objc private func startOver() {
@@ -122,14 +122,13 @@ class TimerNode : SKNode {
         }
         
         leftToRight = !leftToRight
-        self.shader.reverse()
-        
-        self.shader.start(duration: GameConstants.StressTimerInterval)
+        self.playback.reverse()
+        self.playback.start(duration: GameConstants.StressTimerInterval)
     }
     
     func update(_ delta: TimeInterval) {
-        
-        self.shader.update(delta)
+        let playbackValue = self.playback.update(delta: delta)
+        self.shader.update(playbackValue)
     }
     
     //@todo: why do we need all these coders?

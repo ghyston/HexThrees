@@ -57,6 +57,7 @@
 		3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069721B6F85100BD4DCA /* BonusableNode.swift */; };
 		3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */; };
 		3F643DDB229ABBC000446DBC /* RollbackTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */; };
+		3F75B3C822FAA982001EED4E /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75B3C722FAA982001EED4E /* Playback.swift */; };
 		3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */; };
 		3F7E694D226F024700E1D570 /* IteratorFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694C226F024700E1D570 /* IteratorFabric.swift */; };
 		3F7E694F226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */; };
@@ -173,6 +174,7 @@
 		3F60069721B6F85100BD4DCA /* BonusableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusableNode.swift; sourceTree = "<group>"; };
 		3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurNode.swift; sourceTree = "<group>"; };
 		3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollbackTimerCMD.swift; sourceTree = "<group>"; };
+		3F75B3C722FAA982001EED4E /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCellsContainerChecker.swift; sourceTree = "<group>"; };
 		3F7E694C226F024700E1D570 /* IteratorFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorFabric.swift; sourceTree = "<group>"; };
 		3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellForTutorialCMD.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				3FA3A21321ED288D00111471 /* HapticManager.swift */,
 				3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */,
 				3F92C7D222AA347400B477A3 /* StressTimer.swift */,
+				3F75B3C722FAA982001EED4E /* Playback.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */,
 				3F2D81EF21C6C0C500A48CD1 /* FieldSize.swift in Sources */,
 				3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */,
+				3F75B3C822FAA982001EED4E /* Playback.swift in Sources */,
 				3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */,
 				3F06487821611AA6005461C7 /* MoveLeftIterator.swift in Sources */,
 				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,

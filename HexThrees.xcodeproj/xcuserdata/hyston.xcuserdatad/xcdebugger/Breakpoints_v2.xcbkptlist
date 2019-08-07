@@ -728,11 +728,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/Nodes/TimerNode.swift"
-            timestampString = "586809625.22425"
+            timestampString = "586854804.468076"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "init(coder:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -744,11 +744,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/Nodes/TimerNode.swift"
-            timestampString = "586809625.224749"
+            timestampString = "586854804.4681571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "TimerNode"
             landmarkType = "3">
          </BreakpointContent>
@@ -776,11 +776,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/Nodes/TimerNode.swift"
-            timestampString = "586809625.225121"
+            timestampString = "586854804.468228"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "startOver()"
             landmarkType = "7">
          </BreakpointContent>
@@ -872,11 +872,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/Nodes/AnimatedShaderNode.swift"
-            timestampString = "586809625.227137"
+            timestampString = "586854804.468331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "init(fileNamed:)"
             landmarkType = "7">
          </BreakpointContent>
