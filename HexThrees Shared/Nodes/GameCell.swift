@@ -30,7 +30,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         
         self.value = val
         self.motionBlurDisabled = !model.motionBlurEnabled
-        let strategyValue = model.strategy.value(index: self.value)
+        let strategyValue = model.strategy[self.value]
         
         // this is just to put placeholders
         hexShape = SKShapeNode()
@@ -125,7 +125,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
     
     func updateValue(value: Int, strategy: MergingStrategy, animate: Bool = true) {
         self.value = value
-        let strategyValue = strategy.value(index: self.value)
+        let strategyValue = strategy[self.value]
         self.updateText(text: "\(strategyValue)")
         if animate {
             self.playUpdateAnimation()

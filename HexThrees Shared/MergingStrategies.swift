@@ -29,14 +29,19 @@ protocol MergingStrategy {
     
     var name : MergingStrategyName { get }
     func prefilValues(maxIndex: Int)
-    func value(index: Int) -> Int //@todo: can we use subscribe at protocol?
     func isSiblings(_ one: Int, _ two: Int) -> Int?
+    subscript(index: Int) -> Int { get }
 }
 
 class FibonacciMergingStrategy : MergingStrategy {
     
     var values = [Int]()
     var name : MergingStrategyName = .Fibonacci
+    
+    subscript(index: Int) -> Int {
+        assert(index < values.endIndex, "FibonacciMergingStrategy: index \(index) out of range")
+        return values[index]
+    }
     
     func prefilValues(maxIndex: Int) {
         
@@ -51,12 +56,6 @@ class FibonacciMergingStrategy : MergingStrategy {
         }
     }
     
-    func value(index: Int) -> Int {
-        
-        assert(index < values.endIndex, "FibonacciMergingStrategy: index \(index) out of range")
-        return values[index]
-    }
-    
     func isSiblings(_ one: Int, _ two: Int) -> Int? {
         
         return two == one - 1 || (one == two && one == 0) ? one + 1 : nil
@@ -65,8 +64,13 @@ class FibonacciMergingStrategy : MergingStrategy {
 
 class PowerOfTwoMergingStrategy : MergingStrategy {
     
-    var values : [Int] = [Int]()
+    var values = [Int]()
     var name : MergingStrategyName = .PowerOfTwo
+    
+    subscript(index: Int) -> Int {
+        assert(index < values.endIndex, "PowerOfTwoMergingStrategy: index \(index) out of range")
+        return values[index]
+    }
     
     func prefilValues(maxIndex: Int) {
         
@@ -76,12 +80,6 @@ class PowerOfTwoMergingStrategy : MergingStrategy {
             let val = Int(truncating: NSDecimalNumber(decimal: pow(2.0, i)))
             values.append(val)
         }
-    }
-    
-    func value(index: Int) -> Int {
-        
-        assert(index < values.endIndex, "PowerOfTwoMergingStrategy: index \(index) out of range")
-        return values[index]
     }
     
     func isSiblings(_ one: Int, _ two: Int) -> Int? {
@@ -105,18 +103,17 @@ class HybridMergingStrategy : MergingStrategy {
     4 8 32
      */
     
+    subscript(index: Int) -> Int {
+        let strategy = takeStrategy(index)
+        // 8 has index 5 in Fibo, but index 3 in 2048
+        let takeIndex = strategy.name == .Fibonacci ? index : index - 2
+        return strategy[takeIndex]
+    }
+    
     func prefilValues(maxIndex: Int) {
         
         fib.prefilValues(maxIndex: maxIndex)
         pot.prefilValues(maxIndex: maxIndex)
-    }
-    
-    func value(index: Int) -> Int {
-        
-        let strategy = takeStrategy(index)
-        // 8 has index 5 in Fibo, but index 3 in 2048
-        let takeIndex = strategy.name == .Fibonacci ? index : index - 2
-        return strategy.value(index: takeIndex)
     }
     
     func isSiblings(_ one: Int, _ two: Int) -> Int? {
@@ -144,7 +141,7 @@ class TutorialMergingStrategy : MergingStrategy {
         
     }
     
-    func value(index: Int) -> Int{
+    subscript(index: Int) -> Int {
         return index
     }
     
