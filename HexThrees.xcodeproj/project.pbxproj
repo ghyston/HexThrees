@@ -106,6 +106,7 @@
 		3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703AE20E16613009718F3 /* FieldGeometry.swift */; };
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
 		3FD9C6972314548800137319 /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6962314548800137319 /* HexField.swift */; };
+		3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C69A23158F7000137319 /* StrategiesTests.swift */; };
 		3FDEF72A22B4C5BC00579A4B /* AnimatedShaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */; };
 		3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 		3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
@@ -119,6 +120,16 @@
 		3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */; };
 		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3FD9C6A523158FB000137319 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F06B344207C81E000C8315A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F06B350207C81E000C8315A;
+			remoteInfo = "HexThrees iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3F064870215B9070005461C7 /* MoveYDownIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveYDownIterator.swift; sourceTree = "<group>"; };
@@ -223,6 +234,9 @@
 		3FB703AE20E16613009718F3 /* FieldGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldGeometry.swift; sourceTree = "<group>"; };
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
 		3FD9C6962314548800137319 /* HexField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
+		3FD9C69A23158F7000137319 /* StrategiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StrategiesTests.swift; path = "../New Group/StrategiesTests.swift"; sourceTree = "<group>"; };
+		3FD9C6A023158FB000137319 /* HexThreesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexThreesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD9C6A423158FB000137319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShaderNode.swift; sourceTree = "<group>"; };
 		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
@@ -239,6 +253,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		3F06B34E207C81E000C8315A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FD9C69D23158FAF00137319 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,6 +290,7 @@
 				3F555CEB208FC30D003C67A7 /* Resourses */,
 				3F06B348207C81E000C8315A /* HexThrees Shared */,
 				3F06B353207C81E000C8315A /* HexThrees iOS */,
+				3FD9C6A123158FB000137319 /* HexThreesTests */,
 				3F06B352207C81E000C8315A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -316,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				3F06B351207C81E000C8315A /* HexThrees.app */,
+				3FD9C6A023158FB000137319 /* HexThreesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,6 +476,15 @@
 			path = MoveCells;
 			sourceTree = "<group>";
 		};
+		3FD9C6A123158FB000137319 /* HexThreesTests */ = {
+			isa = PBXGroup;
+			children = (
+				3FD9C69A23158F7000137319 /* StrategiesTests.swift */,
+				3FD9C6A423158FB000137319 /* Info.plist */,
+			);
+			path = HexThreesTests;
+			sourceTree = "<group>";
+		};
 		3FE9202920D03286009B7370 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,13 +516,31 @@
 			productReference = 3F06B351207C81E000C8315A /* HexThrees.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3FD9C69F23158FAF00137319 /* HexThreesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FD9C6A723158FB000137319 /* Build configuration list for PBXNativeTarget "HexThreesTests" */;
+			buildPhases = (
+				3FD9C69C23158FAF00137319 /* Sources */,
+				3FD9C69D23158FAF00137319 /* Frameworks */,
+				3FD9C69E23158FAF00137319 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FD9C6A623158FB000137319 /* PBXTargetDependency */,
+			);
+			name = HexThreesTests;
+			productName = HexThreesTests;
+			productReference = 3FD9C6A023158FB000137319 /* HexThreesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3F06B344207C81E000C8315A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Ilja Stepanow";
 				TargetAttributes = {
@@ -498,6 +548,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
+					};
+					3FD9C69F23158FAF00137319 = {
+						CreatedOnToolsVersion = 10.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3F06B350207C81E000C8315A;
 					};
 				};
 			};
@@ -515,6 +570,7 @@
 			projectRoot = "";
 			targets = (
 				3F06B350207C81E000C8315A /* HexThrees iOS */,
+				3FD9C69F23158FAF00137319 /* HexThreesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -535,6 +591,13 @@
 				3F06B36D207C81E000C8315A /* Actions.sks in Resources */,
 				3F06B35D207C81E000C8315A /* LaunchScreen.storyboard in Resources */,
 				3F06B373207C81E000C8315A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FD9C69E23158FAF00137319 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +711,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3FD9C69C23158FAF00137319 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3FD9C6A623158FB000137319 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F06B350207C81E000C8315A /* HexThrees iOS */;
+			targetProxy = 3FD9C6A523158FB000137319 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3F06B358207C81E000C8315A /* Main.storyboard */ = {
@@ -816,6 +895,54 @@
 			};
 			name = Release;
 		};
+		3FD9C6A823158FB000137319 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AU77L4BHS3;
+				INFOPLIST_FILE = HexThreesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.examples.HexThreesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HexThrees.app/HexThrees";
+			};
+			name = Debug;
+		};
+		3FD9C6A923158FB000137319 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AU77L4BHS3;
+				INFOPLIST_FILE = HexThreesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.examples.HexThreesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HexThrees.app/HexThrees";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -833,6 +960,15 @@
 			buildConfigurations = (
 				3F06B378207C81E000C8315A /* Debug */,
 				3F06B379207C81E000C8315A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FD9C6A723158FB000137319 /* Build configuration list for PBXNativeTarget "HexThreesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FD9C6A823158FB000137319 /* Debug */,
+				3FD9C6A923158FB000137319 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

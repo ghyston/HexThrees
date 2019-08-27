@@ -106,7 +106,7 @@ class HybridMergingStrategy : MergingStrategy {
     subscript(index: Int) -> Int {
         let strategy = takeStrategy(index)
         // 8 has index 5 in Fibo, but index 3 in 2048
-        let takeIndex = strategy.name == .Fibonacci ? index : index - 2
+        let takeIndex = strategy.name == .Fibonacci ? index : index - (limitValue - 1)
         return strategy[takeIndex]
     }
     
