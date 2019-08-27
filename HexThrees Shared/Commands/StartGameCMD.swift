@@ -48,7 +48,7 @@ class StartGameCMD : CMD {
         fieldBg.name = FieldOutline.defaultNodeName
         fieldBg.recalculateFieldBg(model: gameModel)
         
-        gameModel.field.addToScene(scene: scene, geometry: gameModel.geometry)
+        gameModel.field.addToScene(scene: scene)
         
         self.gameModel = gameModel
     }

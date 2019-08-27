@@ -15,10 +15,35 @@ class HexField {
     var width: Int //@todo: readonly
     var height: Int //@todo: readonly
     
-    init(width: Int, height: Int) {
+    init(width: Int, height: Int, geometry: FieldGeometry) {
         self.width = width
         self.height = height
-        //@todo: init all at load?
+        
+        for i2 in 0 ..< width {
+            for i1 in 0 ..< height {
+                let coord = AxialCoord(i2, i1)
+                let hexCell = BgCell(
+                    hexShape: geometry.createHexCellShape(),
+                    blocked: false,
+                    coord: coord)
+                hexCell.position = geometry.ToScreenCoord(coord)
+                bgHexes.append(hexCell)
+            }
+        }
+    }
+    
+    func clean() {
+        for i in 0 ..< bgHexes.count {
+            self[i].removeFromParent()
+        }
+        bgHexes.removeAll()
+    }
+    
+    //@todo: how to create lambda with prdefined first argument?
+    func addToScene(scene: SKScene) {
+        for i in 0 ..< bgHexes.count {
+            scene.addChild(self[i])
+        }
     }
     
     subscript (index: Int) -> BgCell {
@@ -56,30 +81,9 @@ class HexField {
     }
     
     func executeForAll(lambda: (_:BgCell) -> Void) {
-        for i in 0 ..< height * width {
+        for i in 0 ..< bgHexes.count {
             lambda(self[i])
         }
-    }
-    
-    //@todo: move this to init
-    func addToScene(scene: SKScene, geometry: FieldGeometry) {
-        for i2 in 0 ..< width {
-            for i1 in 0 ..< height {
-                let coord = AxialCoord(i2, i1)
-                let hexCell = BgCell(
-                    hexShape: geometry.createHexCellShape(),
-                    blocked: false,
-                    coord: coord)
-                hexCell.position = geometry.ToScreenCoord(coord)
-                bgHexes.append(hexCell)
-                scene.addChild(hexCell)
-            }
-        }
-    }
-    
-    //@todo: move this to deinit
-    func clean() {
-        bgHexes.removeAll()
     }
     
 //    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {

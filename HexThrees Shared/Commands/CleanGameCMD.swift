@@ -11,13 +11,15 @@ import SpriteKit
 
 class CleanGameCMD : GameCMD {
     
-    private func removeCellFromField(cell: BgCell) {
+    /*private func removeCellFromField(cell: BgCell) {
         cell.removeFromParent()
-    }
+    }*/
     
     override func run() {
-        self.gameModel.field.executeForAll(lambda: self.removeCellFromField)
+        //self.gameModel.field.executeForAll(lambda: self.removeCellFromField)
         self.gameModel.field.clean()
+        //self.gameModel.field = nil
+        //@todo: check, do we need to reset score, if we create model afterwards anyway?
         self.gameModel.score = 0
     }
 }

@@ -46,7 +46,10 @@ class GameModel {
             screenWidth: screenWidth,
             fieldSize: fieldSize)
         self.strategy = strategy
-        self.field = HexField(width: fieldSize, height: fieldSize)
+        self.field = HexField(
+            width: fieldSize,
+            height: fieldSize,
+            geometry: self.geometry)
         self.motionBlurEnabled = motionBlur
         self.hapticManager = HapticManager(enabled: hapticFeedback)
         
@@ -62,6 +65,9 @@ class GameModel {
             screenWidth: screenWidth,
             fieldSize: fieldSize)
         self.strategy = strategy
-        self.field = HexField(width: fieldSize, height: fieldSize)
+        self.field = HexField(
+            width: fieldSize,
+            height: fieldSize,
+            geometry: self.geometry)
     }
 }
