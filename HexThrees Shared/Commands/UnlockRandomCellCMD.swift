@@ -10,16 +10,15 @@ import Foundation
 
 class UnlockRandomCellCMD : GameCMD {
     
+    // @todo: is it possible to make it inline AND/OR lambda?
+    private func isBlocked(cell: BgCell) -> Bool {
+        return cell.isBlocked
+    }
+    
     override func run() {
-        
-        var blockedCells = [BgCell]()
-        for i in self.gameModel.bgHexes {
-            if(i.isBlocked) {
-                blockedCells.append(i)
-            }
-        }
-        
-        blockedCells.randomElement()?.unblock()
+        self.gameModel.field
+            .getBgCells(compare: self.isBlocked)
+            .randomElement()?.unblock()
     }
     
 }

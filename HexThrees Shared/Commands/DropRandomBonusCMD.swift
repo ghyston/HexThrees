@@ -30,7 +30,7 @@ class DropRandomBonusCMD : GameCMD {
     
     override func run() {
         
-        guard let randomFreeCell = self.gameModel.getBgCells(compare: self.freeCell).randomElement() else {
+        guard let randomFreeCell = self.gameModel.field.getBgCells(compare: self.freeCell).randomElement() else {
             return
         }
         
@@ -48,7 +48,7 @@ class DropRandomBonusCMD : GameCMD {
         
         let maxBonusesOnField = GameConstants.MaxBonusesOnScreen
         
-        let bonusesOnField = self.gameModel.countBgCells(compare: self.cellHasBonus)
+        let bonusesOnField = self.gameModel.field.countBgCells(compare: self.cellHasBonus)
         if bonusesOnField > maxBonusesOnField {
             return
         }
@@ -57,7 +57,7 @@ class DropRandomBonusCMD : GameCMD {
         bonusTypes.add(.X2_POINTS, GameConstants.X2BonusProbability)
         bonusTypes.add(.X3_POINTS, GameConstants.X3BonusProbability)
         
-        let blockedCellsCount = self.gameModel.countBgCells(compare: self.cellIsBlocked)
+        let blockedCellsCount = self.gameModel.field.countBgCells(compare: self.cellIsBlocked)
         if blockedCellsCount > 1 {
             bonusTypes.add(.UNLOCK_CELL, GameConstants.UnlockBonusProbability)
         }
@@ -65,7 +65,7 @@ class DropRandomBonusCMD : GameCMD {
             bonusTypes.add(.UNLOCK_CELL, GameConstants.LastBlockedUnlockBonusProbability)
         }
         
-        if self.gameModel.countBgCells(compare: self.freeCell) > 2 {
+        if self.gameModel.field.countBgCells(compare: self.freeCell) > 2 {
             
             bonusTypes.add(.BLOCK_CELL, GameConstants.LockBonusProbability)
         }

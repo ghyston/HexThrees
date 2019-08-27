@@ -33,7 +33,7 @@ class PauseVC : UIViewController {
         
         fieldSizeStepper.minimumValue = Double(FieldSize.Thriple.rawValue)
         fieldSizeStepper.maximumValue = Double(FieldSize.Pento.rawValue)
-        fieldSizeStepper.value = Double(settingsFieldSize > 0 ? settingsFieldSize : (gameModel?.fieldHeight)!)
+	        fieldSizeStepper.value = Double(settingsFieldSize > 0 ? settingsFieldSize : (gameModel?.field.height)!)
         updateStepperValueLabel()
         
         motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
@@ -84,7 +84,7 @@ class PauseVC : UIViewController {
     
     private func updateWarningLabel() {
         
-        let alpha = CGFloat(Int(fieldSizeStepper.value) == gameModel?.fieldWidth ? 0.1 : 0.9)
+        let alpha = CGFloat(Int(fieldSizeStepper.value) == gameModel?.field.width ? 0.1 : 0.9)
         let color = warningLabel.textColor.withAlphaComponent(alpha)
         
         warningLabel.textColor = color

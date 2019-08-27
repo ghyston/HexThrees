@@ -10,16 +10,15 @@ import Foundation
 
 class UpdateBonusesCounterCMD : GameCMD {
     
-    override func run() {
-        
-        for i in self.gameModel.bgHexes {
-            if let bonus = i.bonus{
-                
-                if bonus.decCount() {
-                    
-                    i.removeBonusWithDisposeAnimation()
-                }
+    private func updateBonusCounter(cell: BgCell) {
+        if let bonus = cell.bonus {
+            if bonus.decCount() {
+                cell.removeBonusWithDisposeAnimation()
             }
         }
+    }
+    
+    override func run() {
+        self.gameModel.field.executeForAll(lambda: self.updateBonusCounter)
     }
 }

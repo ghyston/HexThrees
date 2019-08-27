@@ -13,15 +13,15 @@ protocol HexNode : class {
     
     var hexShape : SKShapeNode { get set }
     
-    func addShape(model: GameModel)
+    func addShape(shape: SKShapeNode)
     func updateColor(fillColor: SKColor, strokeColor: SKColor)
 }
 
 extension HexNode where Self: SKNode {
     
-    func addShape(model: GameModel) {
+    func addShape(shape: SKShapeNode) {
         
-        hexShape = model.geometry.createHexCellShape()
+        hexShape = shape
         hexShape.fillColor = .white
         hexShape.strokeColor = .white
         hexShape.lineWidth = 0

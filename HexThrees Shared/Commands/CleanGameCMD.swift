@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import SpriteKit
 
 class CleanGameCMD : GameCMD {
     
+    private func removeCellFromField(cell: BgCell) {
+        cell.removeFromParent()
+    }
+    
     override func run() {
-        
-        for bgCell in self.gameModel.bgHexes {
-            
-            bgCell.removeFromParent()
-        }
-        self.gameModel.bgHexes.removeAll()
+        self.gameModel.field.executeForAll(lambda: self.removeCellFromField)
+        self.gameModel.field.clean()
         self.gameModel.score = 0
     }
 }

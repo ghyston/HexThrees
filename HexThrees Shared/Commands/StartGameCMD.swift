@@ -48,14 +48,7 @@ class StartGameCMD : CMD {
         fieldBg.name = FieldOutline.defaultNodeName
         fieldBg.recalculateFieldBg(model: gameModel)
         
-        for i2 in 0 ..< fieldSize {
-            for i1 in 0 ..< fieldSize {
-                
-                AddBgCellCMD(gameModel).run(
-                    scene: scene,
-                    coord: AxialCoord(i2, i1))
-            }
-        }
+        gameModel.field.addToScene(scene: scene, geometry: gameModel.geometry)
         
         self.gameModel = gameModel
     }

@@ -18,9 +18,8 @@ class FieldOutline : SKNode {
         
         self.removeAllChildren()
         
-        for i2 in 0 ..< model.fieldHeight {
-            for i1 in 0 ..< model.fieldHeight {
-                
+        for i2 in 0 ..< model.field.width {
+            for i1 in 0 ..< model.field.height {                
                 let hexShape = model.geometry.createOutlineShape()
                 hexShape.fillColor = .darkGray
                 hexShape.lineWidth = 0

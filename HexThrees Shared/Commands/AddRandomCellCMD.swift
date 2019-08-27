@@ -29,9 +29,9 @@ class AddRandomCellCMD : GameCMD {
     
     override func run() {
         
-        var cells = self.gameModel.getBgCells(compare: self.freeCellWoBonuses)
+        var cells = self.gameModel.field.getBgCells(compare: self.freeCellWoBonuses)
         if cells.count == 0 {
-            cells = self.gameModel.getBgCells(compare: self.freeCellWithBonuses)
+            cells = self.gameModel.field.getBgCells(compare: self.freeCellWithBonuses)
         }
         
         guard let bgCell = cells.randomElement() else {

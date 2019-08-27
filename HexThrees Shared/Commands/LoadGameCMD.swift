@@ -12,7 +12,7 @@ class LoadGameCMD: GameCMD {
     
     func run(_ gameSave : SavedGame) {
         //@todo: remove assets from final build, make soft loading,
-        assert(gameModel.bgHexes.count == gameSave.cells.count, "on load game configs are different")
+        assert(gameModel.field.width * gameModel.field.height == gameSave.cells.count, "on load game configs are different")
         
         for i in 0..<gameSave.cells.count {
             
@@ -20,14 +20,14 @@ class LoadGameCMD: GameCMD {
             
             if loadedCell.blocked {
                 
-                gameModel.bgHexes[i].block()
+                gameModel.field[i].block()
             }
             else if let val = loadedCell.val {
                 
                 let newElement = GameCell(
                     model: self.gameModel,
                     val: val)
-                gameModel.bgHexes[i].addGameCell(cell: newElement)
+                gameModel.field[i].addGameCell(cell: newElement)
                 newElement.playAppearAnimation()
             }
             else if let bonusType = loadedCell.bonusType {
@@ -38,7 +38,7 @@ class LoadGameCMD: GameCMD {
                     bonusNode.turnsCount = bonusTurns
                 }
                 
-                gameModel.bgHexes[i].addBonus(bonusNode)
+                gameModel.field[i].addBonus(bonusNode)
             }
         }
         gameModel.score = gameSave.score

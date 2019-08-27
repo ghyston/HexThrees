@@ -20,7 +20,7 @@ class CheckGameEndCMD : GameCMD {
     override func run() {
         
         //First, check is there any free space
-        if gameModel.hasBgCells(compare: self.dontContainGameCell) {
+        if gameModel.field.hasBgCells(compare: self.dontContainGameCell) {
             return
         }
         

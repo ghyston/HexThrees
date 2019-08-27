@@ -20,8 +20,8 @@ class BaseCellsIterator {
     
     internal var y: Int = 0
     internal var x: Int = 0
-    internal var w: Int { return self.gameModel.fieldWidth }
-    internal var h: Int { return self.gameModel.fieldHeight }
+    internal var w: Int { return self.gameModel.field.width }
+    internal var h: Int { return self.gameModel.field.height }
     
     init(_ gameModel: GameModel) {
         
@@ -30,6 +30,6 @@ class BaseCellsIterator {
     
     internal func getCell(_ x: Int, _ y: Int) -> BgCell {
         
-        return self.gameModel.getCell(x, y)
+        return self.gameModel.field[x, y]
     }
 }

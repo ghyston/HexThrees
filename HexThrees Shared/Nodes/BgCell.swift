@@ -22,18 +22,18 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
     let coord: AxialCoord
     let pal : IPaletteManager = ContainerConfig.instance.resolve()
     
-    init(model: GameModel, blocked: Bool, coord: AxialCoord) {
+    init(hexShape: SKShapeNode, blocked: Bool, coord: AxialCoord) {
         
         self.isBlocked = blocked
         self.coord = coord
         
         //we need to set them to something in order to call super init
-        hexShape = SKShapeNode()
+        self.hexShape = SKShapeNode()
         self.blockShader = SKShader()
         
         super.init()
         
-        self.addShape(model: model)
+        self.addShape(shape: hexShape)
         self.loadShader(shape: hexShape)
         
         if blocked {

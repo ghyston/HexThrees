@@ -22,14 +22,7 @@ class HelpSwipeNode : SKNode {
         
         addChild(self.fieldOutline)
         
-        for i2 in 0 ..< model.fieldWidth {
-            for i1 in 0 ..< model.fieldHeight {
-                
-                AddBgCellCMD(model).run(
-                    scene: scene,
-                    coord: AxialCoord(i2, i1))
-            }
-        }
+        model.field.addToScene(scene: scene, geometry: model.geometry)
         
         for _ in 0 ... 4 {
             AddRandomCellCMD(model)

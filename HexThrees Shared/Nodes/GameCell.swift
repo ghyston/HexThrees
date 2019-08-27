@@ -33,7 +33,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         let strategyValue = model.strategy[self.value]
         
         // this is just to put placeholders
-        hexShape = SKShapeNode()
+        hexShape = model.geometry.createHexCellShape()
         label = SKLabelNode()
         effectNode = SKEffectNode()
         blurFilter = CIFilter()
@@ -42,7 +42,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         super.init()
         
         addBlur()
-        addShape(model: model)
+        addShape(shape: hexShape)
         addLabel(text: "\(strategyValue)")
         
         updateColor()

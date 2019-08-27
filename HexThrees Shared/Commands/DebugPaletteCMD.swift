@@ -11,11 +11,9 @@ import Foundation
 class DebugPaletteCMD : GameCMD {
 
     override func run() {
-        
-        for i in 0 ..< self.gameModel.fieldHeight * self.gameModel.fieldWidth {
-                
+        for i in 0 ..< self.gameModel.field.height * self.gameModel.field.width {
             let newElement = GameCell(model: self.gameModel, val: i)
-            self.gameModel.bgHexes[i].addGameCell(cell: newElement)
+            self.gameModel.field[i].addGameCell(cell: newElement)
             newElement.playAppearAnimation()
         }
     }

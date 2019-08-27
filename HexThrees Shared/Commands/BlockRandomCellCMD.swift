@@ -62,9 +62,9 @@ class BlockRandomCellCMD : GameCMD {
     
     override func run() {
         
-        let freeCells = gameModel.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
-            gameModel.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
-            gameModel.getBgCells(compare: self.dontContainGameCell)
+        let freeCells = gameModel.field.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
+            gameModel.field.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
+            gameModel.field.getBgCells(compare: self.dontContainGameCell)
         
         //@todo: fix it somehow
         var dice = ProbabilityArray<BgCell>()
@@ -74,7 +74,7 @@ class BlockRandomCellCMD : GameCMD {
         
         for freeCell in freeCells {
             
-            gameModel.calculateForSiblings(coord: freeCell.coord, calc: &icalc)
+            gameModel.field.calculateForSiblings(coord: freeCell.coord, calc: &icalc)
             dice.add(freeCell, calc.probability())
         }
         

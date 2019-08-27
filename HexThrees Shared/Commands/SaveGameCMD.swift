@@ -10,6 +10,8 @@ import Foundation
 
 class SaveGameCMD : GameCMD {
     
+    var cells: [SavedGame.SavedCell]?
+    
     override func run() {
         
         guard let jsonString : String = encodeGameStateToJson() else {
@@ -33,22 +35,22 @@ class SaveGameCMD : GameCMD {
         return nil
     }
     
+    private func saveCell(cell: BgCell) {
+        cells?.append(SavedGame.SavedCell(
+            val: cell.gameCell?.value,
+            blocked: cell.isBlocked,
+            bonusType: cell.bonus?.type,
+            bonusTurns: cell.bonus?.turnsCount))
+    }
+    
     private func retrieveSaveFromModel() -> SavedGame {
-            
-        var cells = [SavedGame.SavedCell]()
-        for bgCell in self.gameModel.bgHexes {
-                
-            cells.append(SavedGame.SavedCell(
-                val: bgCell.gameCell?.value,
-                blocked: bgCell.isBlocked,
-                bonusType: bgCell.bonus?.type,
-                bonusTurns: bgCell.bonus?.turnsCount))
-        }
-            
+        self.cells = [SavedGame.SavedCell]()
+        self.gameModel.field.executeForAll(lambda: self.saveCell)
+        
         return SavedGame(
-            cells: cells,
+            cells: self.cells!,
             score: self.gameModel.score,
-            fieldSize: FieldSize(rawValue: self.gameModel.fieldWidth)!)
+            fieldSize: FieldSize(rawValue: self.gameModel.field.width)!)
     }
     
     private func saveJsonToFile(_ json: String)
