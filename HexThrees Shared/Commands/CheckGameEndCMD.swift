@@ -10,17 +10,10 @@ import Foundation
 
 class CheckGameEndCMD : GameCMD {
     
-    private func dontContainGameCell (cell: BgCell) -> Bool {
-        
-        return
-            cell.gameCell == nil &&
-                !cell.isBlocked
-    }
-    
     override func run() {
         
         //First, check is there any free space
-        if gameModel.field.hasBgCells(compare: self.dontContainGameCell) {
+        if gameModel.field.hasBgCells(compare: HexField.freeCell) {
             return
         }
         

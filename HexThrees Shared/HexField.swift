@@ -66,17 +66,14 @@ class HexField {
     }
     
     func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
-        
         return self.bgHexes.filter(compare)
     }
     
     func hasBgCells(compare: (_: BgCell) -> Bool) -> Bool {
-        
         return self.bgHexes.first(where: compare) != nil
     }
     
     func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
-        
         return self.bgHexes.filter(compare).count
     }
     
@@ -84,6 +81,16 @@ class HexField {
         for i in 0 ..< bgHexes.count {
             lambda(self[i])
         }
+    }
+    
+    class func freeCell(cell: BgCell) -> Bool {
+        return cell.gameCell == nil && !cell.isBlocked
+    }
+    
+    class func freeCellWoBonuses(cell: BgCell) -> Bool {
+        return cell.gameCell == nil &&
+            !cell.isBlocked &&
+            cell.bonus == nil
     }
     
 //    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {

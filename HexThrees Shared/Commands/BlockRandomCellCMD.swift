@@ -45,26 +45,12 @@ class EmptyCellDistributionCalculator: ICellsStatisticCalculator {
 
 class BlockRandomCellCMD : GameCMD {
     
-    private func dontHaveGameCellAndBonuses (cell: BgCell) -> Bool {
-        
-        return
-            cell.gameCell == nil &&
-                !cell.isBlocked &&
-                cell.bonus == nil
-    }
-    
-    private func dontContainGameCell (cell: BgCell) -> Bool {
-        
-        return
-            cell.gameCell == nil &&
-            !cell.isBlocked
-    }
-    
     override func run() {
         
-        let freeCells = gameModel.field.hasBgCells(compare: self.dontHaveGameCellAndBonuses) ?
-            gameModel.field.getBgCells(compare: self.dontHaveGameCellAndBonuses) :
-            gameModel.field.getBgCells(compare: self.dontContainGameCell)
+        let freeCells =
+            gameModel.field.hasBgCells(compare: HexField.freeCellWoBonuses) ?
+            gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses) :
+            gameModel.field.getBgCells(compare: HexField.freeCell)
         
         //@todo: fix it somehow
         var dice = ProbabilityArray<BgCell>()

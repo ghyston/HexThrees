@@ -13,25 +13,11 @@ class AddRandomCellCMD : GameCMD {
     internal var isTutorial : Bool = false
     internal var autoRepeat : Bool = true
     
-    private func freeCellWithBonuses(cell: BgCell) -> Bool {
-        
-        return cell.gameCell == nil &&
-            cell.isBlocked == false
-    }
-    
-    private func freeCellWoBonuses(cell: BgCell) -> Bool {
-        
-        return
-            cell.gameCell == nil &&
-                cell.isBlocked == false &&
-                cell.bonus == nil
-    }
-    
     override func run() {
         
-        var cells = self.gameModel.field.getBgCells(compare: self.freeCellWoBonuses)
+        var cells = self.gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses)
         if cells.count == 0 {
-            cells = self.gameModel.field.getBgCells(compare: self.freeCellWithBonuses)
+            cells = self.gameModel.field.getBgCells(compare: HexField.freeCell)
         }
         
         guard let bgCell = cells.randomElement() else {
