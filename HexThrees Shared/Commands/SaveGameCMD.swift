@@ -10,8 +10,6 @@ import Foundation
 
 class SaveGameCMD : GameCMD {
     
-    var cells: [SavedGame.SavedCell]?
-    
     override func run() {
         
         guard let jsonString : String = encodeGameStateToJson() else {
@@ -35,20 +33,22 @@ class SaveGameCMD : GameCMD {
         return nil
     }
     
-    private func saveCell(cell: BgCell) {
-        cells?.append(SavedGame.SavedCell(
-            val: cell.gameCell?.value,
-            blocked: cell.isBlocked,
-            bonusType: cell.bonus?.type,
-            bonusTurns: cell.bonus?.turnsCount))
-    }
-    
     private func retrieveSaveFromModel() -> SavedGame {
-        self.cells = [SavedGame.SavedCell]()
-        self.gameModel.field.executeForAll(lambda: self.saveCell)
+        
+        var cells = [SavedGame.SavedCell]()
+        
+        let saveCell : (_:BgCell) -> Void = {
+            cells.append(SavedGame.SavedCell(
+                val: $0.gameCell?.value,
+                blocked: $0.isBlocked,
+                bonusType: $0.bonus?.type,
+                bonusTurns: $0.bonus?.turnsCount))
+        }
+        
+        self.gameModel.field.executeForAll(lambda: saveCell)
         
         return SavedGame(
-            cells: self.cells!,
+            cells: cells,
             score: self.gameModel.score,
             fieldSize: FieldSize(rawValue: self.gameModel.field.width)!)
     }
