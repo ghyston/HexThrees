@@ -12,8 +12,8 @@ import SpriteKit
 class HexField {
     
     private var bgHexes = [BgCell]()
-    var width: Int //@todo: readonly
-    var height: Int //@todo: readonly
+    let width: Int
+    let height: Int
     
     init(width: Int, height: Int, geometry: FieldGeometry) {
         self.width = width
