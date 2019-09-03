@@ -10,11 +10,12 @@ import Foundation
 import SpriteKit
 
 class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
-
-    var hexShape : SKShapeNode
     
+    var playback: IPlayback?
+    var hexShape : SKShapeNode
     var isBlocked: Bool = false
     var blockShader : SKShader //@todo: make it lazy static (to init once per game)
+    var blockedAnimationShader : AnimatedShaderNode //@todo: same?
     var shape : SKShapeNode?
     
     var gameCell: GameCell?
@@ -30,11 +31,14 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
         //we need to set them to something in order to call super init
         self.hexShape = SKShapeNode()
         self.blockShader = SKShader()
+        self.blockedAnimationShader = AnimatedShaderNode()
         
         super.init()
         
         self.addShape(shape: hexShape)
-        self.loadShader(shape: hexShape)
+        self.loadShader(
+            shape: hexShape,
+            palette: pal)
         
         if blocked {
             block()

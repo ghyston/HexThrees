@@ -48,16 +48,16 @@ class GameScene: SKScene {
         let delta = currentTime - prevInterval!
         prevInterval = currentTime
         
-        //@todo: uglyuglyuglyuglyuglyuglyuglyuglyugly
-        //@todo: use runForAllSubnodes
-        for firstLevelChild in self.children {
-            for secondLevel in firstLevelChild.children where secondLevel is MotionBlurNode  {
-                (secondLevel as! MotionBlurNode).updateMotionBlur(delta)
-            }
+        let updateNode : (_: SKNode) -> Void = {
+            ($0 as? MotionBlurNode)?.updateMotionBlur(delta)
+            ($0 as? BlockableNode)?.updateAnimation(delta)
         }
+        
+        runForAllSubnodes(lambda: updateNode)
         
         timerNode.update(delta)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

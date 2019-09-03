@@ -36,8 +36,8 @@ class PaletteManager : IPaletteManager {
         let dark = ColorSchema(
             fieldOutlineColor: UIColor(rgb: 0x333333),
             sceneBgColor: .black,
-            cellBgColor: .gray,
-            cellBlockedBgColor: .darkGray,
+            cellBgColor: SKColor(rgb: 0x808080),
+            cellBlockedBgColor: SKColor(rgb: 0x555555),
             cellTutorialColor:.white,
             statusBarStyle: .lightContent,
             colors: [ 0: SKColor(rgb: 0xE0D688),

@@ -107,6 +107,8 @@
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
 		3FD9C6972314548800137319 /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6962314548800137319 /* HexField.swift */; };
 		3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C69A23158F7000137319 /* StrategiesTests.swift */; };
+		3FD9C6AF2318FF7400137319 /* blockTimer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9C6AE2318FF7400137319 /* blockTimer.fsh */; };
+		3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */; };
 		3FDEF72A22B4C5BC00579A4B /* AnimatedShaderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */; };
 		3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202620CEE646009B7370 /* CGVector.extensions.swift */; };
 		3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */; };
@@ -237,6 +239,8 @@
 		3FD9C69A23158F7000137319 /* StrategiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StrategiesTests.swift; path = "../New Group/StrategiesTests.swift"; sourceTree = "<group>"; };
 		3FD9C6A023158FB000137319 /* HexThreesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexThreesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD9C6A423158FB000137319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FD9C6AE2318FF7400137319 /* blockTimer.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockTimer.fsh; sourceTree = "<group>"; };
+		3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackTests.swift; sourceTree = "<group>"; };
 		3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShaderNode.swift; sourceTree = "<group>"; };
 		3FE9202620CEE646009B7370 /* CGVector.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGVector.extensions.swift; sourceTree = "<group>"; };
 		3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoSwipeCMD.swift; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 				3F1A62682118A74100CC6586 /* gridDervative.fsh */,
 				3F1A626A2118B38A00CC6586 /* simple.fsh */,
 				3F8D11622289CD740034BC6D /* timer.fsh */,
+				3FD9C6AE2318FF7400137319 /* blockTimer.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 			children = (
 				3FD9C69A23158F7000137319 /* StrategiesTests.swift */,
 				3FD9C6A423158FB000137319 /* Info.plist */,
+				3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */,
 			);
 			path = HexThreesTests;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FB703A920DAE7A6009718F3 /* View.xib in Resources */,
+				3FD9C6AF2318FF7400137319 /* blockTimer.fsh in Resources */,
 				3F06B36F207C81E000C8315A /* GameScene.sks in Resources */,
 				3F1A62692118A74100CC6586 /* gridDervative.fsh in Resources */,
 				3F1A626B2118B38A00CC6586 /* simple.fsh in Resources */,
@@ -715,6 +722,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */,
 				3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
