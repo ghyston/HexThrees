@@ -12,6 +12,7 @@ class GameScene: SKScene {
     
     var prevInterval : TimeInterval?
     var timerNode: TimerNode
+    var testingNode: BgCell?
     
     override init(size: CGSize) {
         
@@ -26,9 +27,19 @@ class GameScene: SKScene {
         self.scaleMode = .resizeFill
         
         timerNode.zPosition = zPositions.timerBar.rawValue
-        
         timerNode.position.y = -size.height / 2 + 7
         addChild(timerNode)
+    }
+    
+    //@note: run it after everything is initialised
+    func addTestNode() {
+        let shape = SKShapeNode.init(rectOf: CGSize(width: 200, height: 100))
+        
+        self.testingNode = BgCell(hexShape: shape, blocked: false, coord: AxialCoord(0,0))
+        self.testingNode!.position.y = -size.height / 4
+        self.testingNode!.zPosition = zPositions.testShadersNode.rawValue
+        addChild(self.testingNode!)
+        self.testingNode!.animatePrepareToBlock()
     }
     
     override func didMove(to view: SKView) {
