@@ -14,9 +14,13 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
     var playback: IPlayback?
     var hexShape : SKShapeNode
     var isBlocked: Bool = false
-    var blockShader : SKShader //@todo: make it lazy static (to init once per game)
-    var blockedAnimationShader : AnimatedShaderNode //@todo: same?
+    var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)
+    var circleTimerAnimatedShader : AnimatedShaderNode //@todo: same?
+    var blockingAnimatedShader : AnimatedShaderNode
     var shape : SKShapeNode?
+    var normalBgColor: vector_float3
+    var blockedBgColor: vector_float3
+    var blockLinesColor: vector_float3
     
     var gameCell: GameCell?
     var bonus: BonusNode?
@@ -29,9 +33,14 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
         self.coord = coord
         
         //we need to set them to something in order to call super init
+        //@todo: crap, just find a way to refactor this!!
         self.hexShape = SKShapeNode()
-        self.blockShader = SKShader()
-        self.blockedAnimationShader = AnimatedShaderNode()
+        self.blockedStaticShader = SKShader()
+        self.circleTimerAnimatedShader = AnimatedShaderNode()
+        self.blockingAnimatedShader = AnimatedShaderNode()
+        self.normalBgColor = vector_float3()
+        self.blockedBgColor = vector_float3()
+        self.blockLinesColor = vector_float3()
         
         super.init()
         

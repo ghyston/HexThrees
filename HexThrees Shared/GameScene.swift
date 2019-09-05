@@ -33,13 +33,13 @@ class GameScene: SKScene {
     
     //@note: run it after everything is initialised
     func addTestNode() {
-        let shape = SKShapeNode.init(rectOf: CGSize(width: 200, height: 100))
+        let shape = SKShapeNode.init(rectOf: CGSize(width: 200, height: 200))
         
         self.testingNode = BgCell(hexShape: shape, blocked: false, coord: AxialCoord(0,0))
         self.testingNode!.position.y = -size.height / 4
         self.testingNode!.zPosition = zPositions.testShadersNode.rawValue
         addChild(self.testingNode!)
-        self.testingNode!.animatePrepareToBlock()
+        self.testingNode!.block()
     }
     
     override func didMove(to view: SKView) {

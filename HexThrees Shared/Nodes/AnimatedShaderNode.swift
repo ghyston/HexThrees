@@ -9,6 +9,24 @@
 import Foundation
 import SpriteKit
 
+extension SKShader {
+    func addUniform(name: String, value: Float) {
+        addUniform(SKUniform(name: name, float: value))
+    }
+    
+    func addUniform(name: String, value: vector_float3) {
+        addUniform(SKUniform(name: name, vectorFloat3: value))
+    }
+    
+    func updateUniform(name: String, value: Float) {
+        uniformNamed(name)?.floatValue = value
+    }
+    
+    func updateUniform(name: String, value: vector_float3) {
+        uniformNamed(name)?.vectorFloat3Value = value
+    }
+}
+
 //@todo: rename
 class AnimatedShaderNode: SKShader {
     
@@ -33,25 +51,13 @@ class AnimatedShaderNode: SKShader {
         
         self.init() //@todo: this is for error case. Control flow in this function needs to be reviewed
     }
-    
-    func addUniform(name: String, value: Float) {
-        addUniform(SKUniform(name: name, float: value))
-    }
-    
-    func addUniform(name: String, value: vector_float3) {
-        addUniform(SKUniform(name: name, vectorFloat3: value))
-    }
-    
-    func updateUniform(name: String, value: Float) {
-        uniformNamed(name)?.floatValue = value
-    }
-    
-    func updateUniform(name: String, value: vector_float3) {
-        uniformNamed(name)?.vectorFloat3Value = value
-    }
 
     func update(_ floatUPos: Float) {
         let uPos = uniformNamed("uPos")
         uPos?.floatValue = floatUPos
+    }
+    
+    func update(_ doubleUPos: Double) {
+        update(Float(doubleUPos))
     }
 }

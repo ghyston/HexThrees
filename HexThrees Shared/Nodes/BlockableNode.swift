@@ -12,10 +12,15 @@ import SpriteKit
 protocol BlockableNode : class {
     
     var isBlocked: Bool { get set }
-    var blockShader : SKShader { get set }
-    var blockedAnimationShader : AnimatedShaderNode { get set }
+    var blockedStaticShader : SKShader { get set }
+    var blockingAnimatedShader : AnimatedShaderNode { get set }
+    var circleTimerAnimatedShader : AnimatedShaderNode { get set }
     var playback : IPlayback? { get set }
     var shape : SKShapeNode? { get set }
+    
+    var normalBgColor: vector_float3 { get set }
+    var blockedBgColor: vector_float3 { get set }
+    var blockLinesColor: vector_float3 { get set }
     
     func updateAnimation(_ delta: TimeInterval)
     func loadShader(shape: SKShapeNode, palette: IPaletteManager)
@@ -28,51 +33,105 @@ extension BlockableNode where Self : SKNode {
     //@todo: when we change palette, all shaders should be reloaded or color changed
     func loadShader(shape: SKShapeNode, palette: IPaletteManager) {
         self.shape = shape
-        self.blockShader = SKShader.init(fileNamed: "gridDervative")
-        self.blockedAnimationShader =
+        self.blockedStaticShader = SKShader.init(fileNamed: "blockStatic")
+        self.circleTimerAnimatedShader =
             AnimatedShaderNode.init(fileNamed: "blockTimer")
+        self.blockingAnimatedShader = AnimatedShaderNode.init(fileNamed: "blockAnimated")
         
-        let bgColor = palette.cellBgColor().toVector()
-        let blockedColor = palette.cellBlockedBgColor().toVector()
+        self.normalBgColor = palette.cellBgColor().toVector()
+        self.blockedBgColor = palette.cellBlockedBgColor().toVector()
+        self.blockLinesColor = palette.cellBlockingLinesColor().toVector()
         
-        blockedAnimationShader.addUniform(
+        circleTimerAnimatedShader.addUniform(
             name: "uBgColor",
-            value: bgColor)
+            value: self.normalBgColor)
             
-        blockedAnimationShader.addUniform(
+        circleTimerAnimatedShader.addUniform(
             name: "uBlockedColor",
-            value: blockedColor)
+            value: self.blockedBgColor)
+        
+        blockingAnimatedShader.addUniform(
+            name: "uBgColor",
+            value: self.normalBgColor)
+        
+        blockingAnimatedShader.addUniform(
+            name: "uBlockedColor",
+            value: self.blockedBgColor)
+        
+        blockingAnimatedShader.addUniform(
+            name: "uBlockedLineColor",
+            value: self.blockLinesColor)
+        
+        blockedStaticShader.addUniform(
+            name: "uBlockedColor",
+            value: self.blockedBgColor)
+        
+        blockedStaticShader.addUniform(
+            name: "uBlockedLineColor",
+            value: self.blockLinesColor)
     }
     
-    func animatePrepareToBlock() {
+    func startCircleAnimation() {
         self.playback = Playback()
         //@todo: use 2PI, find constant
         self.playback?.setRange(from: 0, to: 6.28)
         self.playback!.start(
             duration: GameConstants.StressTimerInterval,
             reversed: false,
-            repeated: false)
-        self.shape?.fillShader = self.blockedAnimationShader
+            repeated: true,
+            onFinish: self.swapColorsJustForTest)
+        self.shape?.fillShader = self.circleTimerAnimatedShader
     }
     
-    //@todo: awful names
-    func animateReversePrepareToBlock() {
-        //@todo
+    private func swapColorsJustForTest() {
+        self.circleTimerAnimatedShader.updateUniform(
+            name: "uBgColor",
+            value: self.blockedBgColor)
+        
+        self.circleTimerAnimatedShader.updateUniform(
+            name: "uBlockedColor",
+            value: self.normalBgColor)
     }
     
     func updateAnimation(_ delta: TimeInterval) {
         if let playbackValue = self.playback?.update(delta: delta) {
-            self.blockedAnimationShader.update(playbackValue)
+            if let shader = self.shape?.fillShader as? AnimatedShaderNode {
+                shader.update(playbackValue)
+            }
         }
     }
     
     func block() {
-        self.shape?.fillShader = blockShader
+        self.playback = Playback()
+        self.playback!.start(
+            duration: GameConstants.BlockAnimationDuration,
+            reversed: false,
+            repeated: false,
+            onFinish: self.setStaticBlockShader)
+        self.shape?.fillShader = self.blockingAnimatedShader
+        
         self.isBlocked = true
     }
     
+    private func setStaticBlockShader() {
+        self.shape?.fillShader = self.blockedStaticShader
+        self.playback = nil
+    }
+    
     func unblock() {
-        self.shape?.fillShader = nil
+        self.playback = Playback()
+        self.playback!.start(
+            duration: GameConstants.BlockAnimationDuration,
+            reversed: true,
+            repeated: false,
+            onFinish: self.removeShader)
+        self.shape?.fillShader = self.blockingAnimatedShader
+        
         self.isBlocked = false
+    }
+    
+    private func removeShader() {
+        self.shape?.fillShader = nil
+        self.playback = nil
     }
 }

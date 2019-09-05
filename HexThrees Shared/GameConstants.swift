@@ -8,25 +8,26 @@
 
 class GameConstants {
     
-    static let SecondsPerCell = 0.15
-    
-    static let BonusAnimationDuration = 0.5
     static let BonusTurnsLifetime = 2
-    static let BaseBonusDropProbability = 0.1
     static let MaxBonusesOnScreen = 3
+    
+    // Animations
+    static let SecondsPerCell = 0.15
+    static let BonusAnimationDuration = 0.5
     static let GameOverScreenDelay = 1.2
     static let StressTimerInterval = 3.0
     static let StressTimerRollbackInterval = 1.0
+    static let HelpVCAnimationDelay = 1.0
+    static let BlockAnimationDuration = 1.0
     
+    // Probabilities
     static let RandomCellIsValue2Probability: Float = 0.3
-    
+    static let BaseBonusDropProbability = 0.1
     static let LockBonusProbability: Float = 0.5
     static let UnlockBonusProbability: Float = 0.3
     static let LastBlockedUnlockBonusProbability: Float = 0.05
     static let X2BonusProbability: Float = 0.2
     static let X3BonusProbability: Float = 0.1
-    
-    static let HelpVCAnimationDelay = 1.0
 }
 
 enum SettingsKey : String {
