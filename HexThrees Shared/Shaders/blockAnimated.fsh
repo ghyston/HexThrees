@@ -1,4 +1,3 @@
-
 void main()
 {
     float steps = 7.0;
@@ -12,7 +11,13 @@ void main()
     float hcolor = 1.0 - min(hline, 1.0);
     float vcolor = 1.0 - min(vline, 1.0);
     
-    float c = clamp(hcolor+vcolor, 0.3, 1.0);
+    //@todo: test playback reversed
+    vec3 bgClr = uBgColor + (uBlockedColor - uBgColor) * uPos;
+    float coef = (2.0 * (1.0 - uPos));
     
-    gl_FragColor = vec4(vec3(c), 1.0);
+    bool isLine =
+        (vcolor > 0.0 && (v_tex_coord.x + v_tex_coord.y) > coef) ||
+        (hcolor > 0.0 && ((1.0 - v_tex_coord.x) + v_tex_coord.y) > coef);
+    
+    gl_FragColor = vec4(isLine ? uBlockedLineColor : bgClr, 1.0);
 }

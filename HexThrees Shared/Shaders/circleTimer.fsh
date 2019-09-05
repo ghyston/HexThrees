@@ -4,6 +4,7 @@ void main()
     vec2 dekartPos = v_tex_coord - vec2(0.5, 0.5);
     float r = sqrt(dekartPos.y * dekartPos.y + dekartPos.x * dekartPos.x);
     
+    //@todo: interpolate between start and end color (probably, not in shader)
     float angle = acos(dekartPos.y / r);
     if(dekartPos.x < 0.0)
         angle = 6.28 - angle;
