@@ -9,6 +9,12 @@
 import XCTest
 @testable import HexThrees
 
+//@todo:
+// Add test cases:
+// pause
+// update delta much more than duration
+// callback is called on edge cases
+
 class PlaybackRegularTests: XCTestCase {
 
     var playback : Playback!
@@ -39,4 +45,49 @@ class PlaybackRegularTests: XCTestCase {
         XCTAssertEqual(playback.update(delta: 3.0), 0.0)
         XCTAssertEqual(playback.update(delta: 1.0), 0.0)
     }
+}
+
+class PlaybackCallbackTests : XCTestCase {
+    
+    var playback : Playback!
+    var counter : Int = 0
+    
+    override func setUp() {
+        //Given
+        self.playback = Playback()
+        self.counter = 1
+    }
+    
+    private func incCounter() {
+        self.counter += 1
+    }
+    
+    func testCallbackIsCalledOnce() {
+        
+        //When
+        playback.start(
+            duration: 1.0,
+            reversed: false,
+            repeated: false,
+            onFinish: self.incCounter)
+        _ = playback.update(delta: 1.2)
+        
+        // Then
+        XCTAssertEqual(counter, 2)
+    }
+    
+    func testCallbackWasCalledTwiceInOneUpdate() {
+        
+        //When
+        playback.start(
+            duration: 1.0,
+            reversed: false,
+            repeated: false,
+            onFinish: self.incCounter)
+        _ = playback.update(delta: 2.2)
+        
+        // Then
+        XCTAssertEqual(counter, 3) //@todo: fix that!
+    }
+    
 }
