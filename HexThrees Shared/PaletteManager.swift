@@ -71,8 +71,8 @@ class PaletteManager : IPaletteManager {
         let gray = ColorSchema(
             fieldOutlineColor: .darkGray,
             sceneBgColor: .white,
-            cellBgColor: .gray,
-            cellBlockedBgColor: .darkGray,
+            cellBgColor: SKColor(rgb: 0x808080),
+            cellBlockedBgColor: SKColor(rgb: 0x555555),
             cellBlockingLinesColor: SKColor(rgb: 0xa0a0a0),
             cellTutorialColor:.white,
             statusBarStyle: .lightContent,
@@ -105,8 +105,8 @@ class PaletteManager : IPaletteManager {
         let light = ColorSchema(
             fieldOutlineColor: .gray,
             sceneBgColor: .white,
-            cellBgColor: .lightGray,
-            cellBlockedBgColor: .darkGray,
+            cellBgColor: SKColor(rgb: 0x101010),
+            cellBlockedBgColor: SKColor(rgb: 0x555555),
             cellBlockingLinesColor: SKColor(rgb: 0xa0a0a0),
             cellTutorialColor: .white,
             statusBarStyle: .`default`,
