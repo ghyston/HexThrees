@@ -88,7 +88,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
     
     func playAppearAnimation() {
         self.setScale(0.01)
-        self.run(SKAction.scale(to: 1.0, duration: 0.5))
+        self.run(SKAction.scale(to: 1.0, duration: GameConstants.CellAppearAnimationDuration))
     }
     
     func playUpdateAnimation() {

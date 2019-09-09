@@ -19,6 +19,7 @@ class GameConstants {
     static let StressTimerRollbackInterval = 1.0
     static let HelpVCAnimationDelay = 1.0
     static let BlockAnimationDuration = 1.0
+    static let CellAppearAnimationDuration = 0.5
     
     // Probabilities
     static let RandomCellIsValue2Probability: Float = 0.3

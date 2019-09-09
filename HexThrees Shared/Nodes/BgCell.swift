@@ -82,6 +82,10 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
         self.gameCell = nil
     }
     
+    @objc func removeShader() {
+        self.shape?.fillShader = nil
+        self.playback = nil
+    }
     
     func destination(to: BgCell) -> CGVector {
         return CGVector(from: position, to: to.position);

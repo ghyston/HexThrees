@@ -24,6 +24,7 @@ protocol BlockableNode : class {
     
     func updateAnimation(_ delta: TimeInterval)
     func loadShader(shape: SKShapeNode, palette: IPaletteManager)
+    func removeShader()
     func block()
     func unblock()
 }
@@ -79,24 +80,20 @@ extension BlockableNode where Self : SKNode {
             duration: GameConstants.StressTimerInterval,
             reversed: false,
             repeated: false,
-            onFinish: self.removeShader)
+            onFinish: self.removeShaderWithDelay)
         self.shape?.fillShader = self.circleTimerAnimatedShader
     }
     
     func rollbackCircleAnimation() {
         self.playback?.rollback(
             duration: GameConstants.StressTimerRollbackInterval,
-            onFinish: self.removeShader)
+            onFinish: self.removeShaderWithDelay)
     }
     
-    private func swapColorsJustForTest() {
-        self.circleTimerAnimatedShader.updateUniform(
-            name: "uBgColor",
-            value: self.blockedBgColor)
-        
-        self.circleTimerAnimatedShader.updateUniform(
-            name: "uBlockedColor",
-            value: self.normalBgColor)
+    func removeShaderWithDelay() {
+        let delayHide = SKAction.wait(forDuration: GameConstants.CellAppearAnimationDuration)
+        let removeShader = SKAction.perform(#selector(BgCell.removeShader), onTarget: self)
+        self.run(SKAction.sequence([delayHide, removeShader]))
     }
     
     func updateAnimation(_ delta: TimeInterval) {
@@ -134,10 +131,5 @@ extension BlockableNode where Self : SKNode {
         self.shape?.fillShader = self.blockingAnimatedShader
         
         self.isBlocked = false
-    }
-    
-    private func removeShader() {
-        self.shape?.fillShader = nil
-        self.playback = nil
     }
 }
