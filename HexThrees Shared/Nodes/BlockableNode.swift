@@ -34,9 +34,9 @@ extension BlockableNode where Self : SKNode {
     func loadShader(shape: SKShapeNode, palette: IPaletteManager) {
         self.shape = shape
         self.blockedStaticShader = SKShader.init(fileNamed: "blockStatic")
-        self.circleTimerAnimatedShader =
-            AnimatedShaderNode.init(fileNamed: "blockTimer")
         self.blockingAnimatedShader = AnimatedShaderNode.init(fileNamed: "blockAnimated")
+        self.circleTimerAnimatedShader =
+            AnimatedShaderNode.init(fileNamed: "circleTimer")
         
         self.normalBgColor = palette.cellBgColor().toVector()
         self.blockedBgColor = palette.cellBlockedBgColor().toVector()
@@ -78,9 +78,15 @@ extension BlockableNode where Self : SKNode {
         self.playback!.start(
             duration: GameConstants.StressTimerInterval,
             reversed: false,
-            repeated: true,
-            onFinish: self.swapColorsJustForTest)
+            repeated: false,
+            onFinish: self.removeShader)
         self.shape?.fillShader = self.circleTimerAnimatedShader
+    }
+    
+    func rollbackCircleAnimation() {
+        self.playback?.rollback(
+            duration: GameConstants.StressTimerRollbackInterval,
+            onFinish: self.removeShader)
     }
     
     private func swapColorsJustForTest() {

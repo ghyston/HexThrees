@@ -24,23 +24,12 @@ class AddRandomCellCMD : GameCMD {
             return
         }
         
-        let newElement = GameCell(
-            model: self.gameModel,
-            val: Float.random < GameConstants.RandomCellIsValue2Probability ? 1 : 0)
-        // @todo: overexposition self settings
-        newElement.motionBlurDisabled = !self.gameModel.motionBlurEnabled
-        if isTutorial {
-            newElement.updateColorForTutorial()
-        }
+        AddGameCellCMD(self.gameModel)
+            .setup(addTo: bgCell)
+            .run()
         
-        bgCell.addGameCell(cell: newElement)
-        newElement.playAppearAnimation()
-        
-        bgCell.bonus?.command.run()
-        bgCell.removeBonusWithPickingAnimation(0.0)
-        
-        if self.gameModel.stressTimer.isEnabled() && autoRepeat{
+        /*if self.gameModel.stressTimer.isEnabled() && autoRepeat{
             StartStressTimerCMD(self.gameModel).run()
-        }
+        }*/
     }
 }

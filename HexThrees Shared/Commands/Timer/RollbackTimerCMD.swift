@@ -16,10 +16,12 @@ class RollbackTimerCMD : GameCMD {
             return
         }
         
+        self.gameModel.stressTimer.getCell()?.rollbackCircleAnimation()
         self.gameModel.stressTimer.stop()
         
-        NotificationCenter.default.post(
+        //@todo: remove this type of notification
+        /*NotificationCenter.default.post(
             name: .rollbackTimer,
-            object: nil)
+            object: nil)*/
     }
 }

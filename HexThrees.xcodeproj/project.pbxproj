@@ -56,6 +56,8 @@
 		3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069721B6F85100BD4DCA /* BonusableNode.swift */; };
 		3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */; };
 		3F643DDB229ABBC000446DBC /* RollbackTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */; };
+		3F708D9D2326259F008B95F1 /* AddCellByTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708D9C2326259F008B95F1 /* AddCellByTimerCMD.swift */; };
+		3F708D9F23262882008B95F1 /* AddGameCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708D9E23262882008B95F1 /* AddGameCellCMD.swift */; };
 		3F75B3C822FAA982001EED4E /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75B3C722FAA982001EED4E /* Playback.swift */; };
 		3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */; };
 		3F7E694D226F024700E1D570 /* IteratorFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694C226F024700E1D570 /* IteratorFabric.swift */; };
@@ -70,7 +72,7 @@
 		3F8D11572280A9AE0034BC6D /* HelpSwipeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */; };
 		3F8D11592281F0280034BC6D /* UserBlockedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11582281F0280034BC6D /* UserBlockedCell.swift */; };
 		3F8D115B228494260034BC6D /* TimerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115A228494260034BC6D /* TimerNode.swift */; };
-		3F8D115D2284948E0034BC6D /* StartTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */; };
+		3F8D115D2284948E0034BC6D /* StartStressTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115C2284948E0034BC6D /* StartStressTimerCMD.swift */; };
 		3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */; };
 		3F8D11632289CD740034BC6D /* timer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D11622289CD740034BC6D /* timer.fsh */; };
 		3F92C7D322AA347400B477A3 /* StressTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92C7D222AA347400B477A3 /* StressTimer.swift */; };
@@ -186,6 +188,8 @@
 		3F60069721B6F85100BD4DCA /* BonusableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusableNode.swift; sourceTree = "<group>"; };
 		3F60069921B8F4CD00BD4DCA /* MotionBlurNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurNode.swift; sourceTree = "<group>"; };
 		3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollbackTimerCMD.swift; sourceTree = "<group>"; };
+		3F708D9C2326259F008B95F1 /* AddCellByTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCellByTimerCMD.swift; sourceTree = "<group>"; };
+		3F708D9E23262882008B95F1 /* AddGameCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameCellCMD.swift; sourceTree = "<group>"; };
 		3F75B3C722FAA982001EED4E /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCellsContainerChecker.swift; sourceTree = "<group>"; };
 		3F7E694C226F024700E1D570 /* IteratorFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorFabric.swift; sourceTree = "<group>"; };
@@ -200,7 +204,7 @@
 		3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpSwipeScene.swift; sourceTree = "<group>"; };
 		3F8D11582281F0280034BC6D /* UserBlockedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlockedCell.swift; sourceTree = "<group>"; };
 		3F8D115A228494260034BC6D /* TimerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNode.swift; sourceTree = "<group>"; };
-		3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTimerCMD.swift; sourceTree = "<group>"; };
+		3F8D115C2284948E0034BC6D /* StartStressTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStressTimerCMD.swift; sourceTree = "<group>"; };
 		3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTimerStatus.swift; sourceTree = "<group>"; };
 		3F8D11622289CD740034BC6D /* timer.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = timer.fsh; sourceTree = "<group>"; };
 		3F92C7D222AA347400B477A3 /* StressTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTimer.swift; sourceTree = "<group>"; };
@@ -422,7 +426,7 @@
 		3F643DD9229ABBA600446DBC /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				3F8D115C2284948E0034BC6D /* StartTimerCMD.swift */,
+				3F8D115C2284948E0034BC6D /* StartStressTimerCMD.swift */,
 				3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */,
 			);
 			path = Timer;
@@ -435,6 +439,9 @@
 				3FB703AA20E16004009718F3 /* MoveCells */,
 				3FAC645620B5E3170083C56C /* GameCMD.swift */,
 				3FAC644A20B5DDAD0083C56C /* AddRandomCellCMD.swift */,
+				3F708D9C2326259F008B95F1 /* AddCellByTimerCMD.swift */,
+				3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */,
+				3F708D9E23262882008B95F1 /* AddGameCellCMD.swift */,
 				3FB7039F20DA1B69009718F3 /* BlockRandomCellCMD.swift */,
 				3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */,
 				3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */,
@@ -457,7 +464,6 @@
 				3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */,
 				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
-				3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -619,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F708D9F23262882008B95F1 /* AddGameCellCMD.swift in Sources */,
 				3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */,
 				3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
 				3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */,
@@ -673,7 +680,7 @@
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
 				3F643DDB229ABBC000446DBC /* RollbackTimerCMD.swift in Sources */,
 				3F8D114F2280A8C40034BC6D /* HelpRulesVC.swift in Sources */,
-				3F8D115D2284948E0034BC6D /* StartTimerCMD.swift in Sources */,
+				3F8D115D2284948E0034BC6D /* StartStressTimerCMD.swift in Sources */,
 				3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
 				3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */,
@@ -703,6 +710,7 @@
 				3F11087D2190B591007743DF /* FileHelper.swift in Sources */,
 				3F06487C21613827005461C7 /* MoveXUpIterator.swift in Sources */,
 				3F555CE6208E7AA5003C67A7 /* MergingStrategies.swift in Sources */,
+				3F708D9D2326259F008B95F1 /* AddCellByTimerCMD.swift in Sources */,
 				3F06B357207C81E000C8315A /* GameVC.swift in Sources */,
 				3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */,
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,

@@ -14,13 +14,16 @@ protocol ITimerModel {
     func disable()
     func isEnabled() -> Bool //@todo: this functionality better somehow move inside timer
     func stop()
-    func startNew(timer: Timer)
+    func startNew(timer: Timer, cell: BgCell)
+    func getCell() -> BgCell?
 }
 
 class TimerModel : ITimerModel {
     
     private var enabled: Bool = false
     private var stressTimer : Timer? //when this timer is fired, new cell appeared on field
+    private var cell: BgCell?
+    
     
     func enable() {
         enabled = true
@@ -37,14 +40,18 @@ class TimerModel : ITimerModel {
     
     func stop() {
         stressTimer?.invalidate()
+        self.cell = nil
     }
     
-    func startNew(timer: Timer) {
-        
-        
-        
+    //@todo: clear afterwards
+    func getCell() -> BgCell? {
+        return cell
+    }
+    
+    func startNew(timer: Timer, cell: BgCell) {
         stop()
         stressTimer = timer
+        self.cell = cell
     }
     
 }

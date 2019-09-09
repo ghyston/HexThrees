@@ -29,7 +29,7 @@ class StartStressTimerCMD : GameCMD {
         
         
         self.gameModel.stressTimer.startNew(
-            timer:  AddRandomCellCMD(self.gameModel)
+            timer: AddCellByTimerCMD(self.gameModel)
                 .runWithDelay(delay: GameConstants.StressTimerInterval),
             cell: bgCell)
         

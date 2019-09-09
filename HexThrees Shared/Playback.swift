@@ -14,7 +14,7 @@ protocol IPlayback {
     func setRange(from: Double, to: Double)
     func setRange(from: Float, to: Float)
     func start(duration: TimeInterval, reversed: Bool?, repeated: Bool?, onFinish: (() -> Void)?)
-    func rollback(duration: TimeInterval/*, onFinish: ()?*/)
+    func rollback(duration: TimeInterval, onFinish: (() -> Void)?)
     func update(delta: TimeInterval) -> Double
     func reverse(reversed: Bool?)
     //func pause() //@todo
@@ -47,12 +47,14 @@ class Playback : IPlayback {
         self.finishCallback = onFinish
     }
     
-    func rollback(duration: TimeInterval/*, onFinish: ()? = nil*/) {
+    //@todo: test this
+    func rollback(duration: TimeInterval, onFinish: (() -> Void)? = nil) {
         let percent = normalize(
             value: self.started,
             duration: self.duration)
         let newPercent = 1.0 - percent
         self.reverse()
+        self.finishCallback = onFinish
         
         self.started = Double(newPercent) * duration
         self.duration = duration
