@@ -90,6 +90,7 @@ extension BlockableNode where Self : SKNode {
             onFinish: self.removeShaderWithDelay)
     }
     
+    // After stress timer do not remove shader immidiately, wait until new cell is apeared.
     func removeShaderWithDelay() {
         let delayHide = SKAction.wait(forDuration: GameConstants.CellAppearAnimationDuration)
         let removeShader = SKAction.perform(#selector(BgCell.removeShader), onTarget: self)
