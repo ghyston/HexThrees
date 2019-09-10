@@ -47,10 +47,9 @@ class BlockRandomCellCMD : GameCMD {
     
     override func run() {
         
-        let freeCells =
-            gameModel.field.hasBgCells(compare: HexField.freeCellWoBonuses) ?
-            gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses) :
-            gameModel.field.getBgCells(compare: HexField.freeCell)
+        let cells = self.gameModel.field.getBgCellsWithPriority(
+            required: HexField.freeCell,
+            priority: HexField.cellWoBonuses)
         
         //@todo: fix it somehow
         var dice = ProbabilityArray<BgCell>()
@@ -58,23 +57,19 @@ class BlockRandomCellCMD : GameCMD {
         var icalc : ICellsStatisticCalculator = calc
         // for some reason I cannot do &(calc as ICellsStatisticCalculator)
         
-        for freeCell in freeCells {
-            
+        for freeCell in cells {
             gameModel.field.calculateForSiblings(coord: freeCell.coord, calc: &icalc)
             dice.add(freeCell, calc.probability())
         }
-        
         
         guard let randomCell = dice.getRandom() else {
             return
         }
         
         if randomCell.bonus != nil {
-            
             randomCell.removeBonusWithDisposeAnimation()
         }
         
         randomCell.block()
     }
-    
 }

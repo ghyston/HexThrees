@@ -9,12 +9,6 @@
 import Foundation
 import SpriteKit
 
-protocol ICellsStatisticCalculator {
-    
-    func next(cell: BgCell)
-    func clean()
-}
-
 class GameModel {
     
     var strategy: MergingStrategy

@@ -58,6 +58,7 @@
 		3F643DDB229ABBC000446DBC /* RollbackTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */; };
 		3F708D9D2326259F008B95F1 /* AddCellByTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708D9C2326259F008B95F1 /* AddCellByTimerCMD.swift */; };
 		3F708D9F23262882008B95F1 /* AddGameCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708D9E23262882008B95F1 /* AddGameCellCMD.swift */; };
+		3F708DA1232810DF008B95F1 /* HexFieldSelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708DA0232810DF008B95F1 /* HexFieldSelectorTest.swift */; };
 		3F75B3C822FAA982001EED4E /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75B3C722FAA982001EED4E /* Playback.swift */; };
 		3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */; };
 		3F7E694D226F024700E1D570 /* IteratorFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694C226F024700E1D570 /* IteratorFabric.swift */; };
@@ -189,6 +190,7 @@
 		3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollbackTimerCMD.swift; sourceTree = "<group>"; };
 		3F708D9C2326259F008B95F1 /* AddCellByTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCellByTimerCMD.swift; sourceTree = "<group>"; };
 		3F708D9E23262882008B95F1 /* AddGameCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameCellCMD.swift; sourceTree = "<group>"; };
+		3F708DA0232810DF008B95F1 /* HexFieldSelectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexFieldSelectorTest.swift; sourceTree = "<group>"; };
 		3F75B3C722FAA982001EED4E /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCellsContainerChecker.swift; sourceTree = "<group>"; };
 		3F7E694C226F024700E1D570 /* IteratorFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorFabric.swift; sourceTree = "<group>"; };
@@ -490,9 +492,10 @@
 		3FD9C6A123158FB000137319 /* HexThreesTests */ = {
 			isa = PBXGroup;
 			children = (
-				3FD9C69A23158F7000137319 /* StrategiesTests.swift */,
 				3FD9C6A423158FB000137319 /* Info.plist */,
+				3FD9C69A23158F7000137319 /* StrategiesTests.swift */,
 				3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */,
+				3F708DA0232810DF008B95F1 /* HexFieldSelectorTest.swift */,
 			);
 			path = HexThreesTests;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */,
+				3F708DA1232810DF008B95F1 /* HexFieldSelectorTest.swift in Sources */,
 				3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

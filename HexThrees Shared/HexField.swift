@@ -9,6 +9,12 @@
 import Foundation
 import SpriteKit
 
+protocol ICellsStatisticCalculator {
+    
+    func next(cell: BgCell)
+    func clean()
+}
+
 class HexField {
     
     private var bgHexes = [BgCell]()
@@ -73,6 +79,17 @@ class HexField {
         return self.bgHexes.first(where: compare) != nil
     }
     
+    func getBgCellsWithPriority(
+        required: (_: BgCell) -> Bool,
+        priority: (_: BgCell) -> Bool...) -> [BgCell] {
+        let cells = getBgCells(compare: required)
+        var preferedCells = cells
+        for preferFilter in priority {
+            preferedCells = preferedCells.filter(preferFilter)
+        }
+        return preferedCells.count > 0 ? preferedCells : cells
+    }
+    
     func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
         return self.bgHexes.filter(compare).count
     }
@@ -88,9 +105,16 @@ class HexField {
     }
     
     class func freeCellWoBonuses(cell: BgCell) -> Bool {
-        return cell.gameCell == nil &&
-            !cell.isBlocked &&
+        return cell.gameCell == nil && !cell.isBlocked &&
             cell.bonus == nil
+    }
+    
+    class func cellWoBonuses(cell: BgCell) -> Bool {
+        return cell.bonus == nil
+    }
+    
+    class func cellWoShader(cell: BgCell) -> Bool {
+        return cell.shape?.fillShader == nil
     }
     
 //    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {
