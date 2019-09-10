@@ -32,11 +32,5 @@ class StartStressTimerCMD : GameCMD {
             timer: AddCellByTimerCMD(self.gameModel)
                 .runWithDelay(delay: GameConstants.StressTimerInterval),
             cell: bgCell)
-        
-        
-        //@todo: remove this notification type
-        /*NotificationCenter.default.post(
-            name: .startTimer,
-            object: nil)*/
     }
 }

@@ -11,12 +11,6 @@ import Foundation
 class AddCellByTimerCMD : GameCMD {
     
     override func run() {
-        
-        var cells = self.gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses)
-        if cells.count == 0 {
-            cells = self.gameModel.field.getBgCells(compare: HexField.freeCell)
-        }
-        
         guard let bgCell = self.gameModel.stressTimer.getCell() else {
             return
         }

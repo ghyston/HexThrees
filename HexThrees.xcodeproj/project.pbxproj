@@ -71,7 +71,6 @@
 		3F8D11562280A9AE0034BC6D /* HelpMergingScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11542280A9AE0034BC6D /* HelpMergingScene.swift */; };
 		3F8D11572280A9AE0034BC6D /* HelpSwipeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */; };
 		3F8D11592281F0280034BC6D /* UserBlockedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11582281F0280034BC6D /* UserBlockedCell.swift */; };
-		3F8D115B228494260034BC6D /* TimerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115A228494260034BC6D /* TimerNode.swift */; };
 		3F8D115D2284948E0034BC6D /* StartStressTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115C2284948E0034BC6D /* StartStressTimerCMD.swift */; };
 		3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */; };
 		3F8D11632289CD740034BC6D /* timer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F8D11622289CD740034BC6D /* timer.fsh */; };
@@ -203,7 +202,6 @@
 		3F8D11542280A9AE0034BC6D /* HelpMergingScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpMergingScene.swift; sourceTree = "<group>"; };
 		3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpSwipeScene.swift; sourceTree = "<group>"; };
 		3F8D11582281F0280034BC6D /* UserBlockedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlockedCell.swift; sourceTree = "<group>"; };
-		3F8D115A228494260034BC6D /* TimerNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNode.swift; sourceTree = "<group>"; };
 		3F8D115C2284948E0034BC6D /* StartStressTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartStressTimerCMD.swift; sourceTree = "<group>"; };
 		3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StressTimerStatus.swift; sourceTree = "<group>"; };
 		3F8D11622289CD740034BC6D /* timer.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = timer.fsh; sourceTree = "<group>"; };
@@ -417,7 +415,6 @@
 				3F8D11512280A9400034BC6D /* HelpMergingNode.swift */,
 				3F8D11502280A9400034BC6D /* HelpSwypeNode.swift */,
 				3F8D11582281F0280034BC6D /* UserBlockedCell.swift */,
-				3F8D115A228494260034BC6D /* TimerNode.swift */,
 				3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */,
 			);
 			path = Nodes;
@@ -676,7 +673,6 @@
 				3F8D11572280A9AE0034BC6D /* HelpSwipeScene.swift in Sources */,
 				3F06B371207C81E000C8315A /* GameScene.swift in Sources */,
 				3F95A6CD20EFFF900052E1C6 /* LoadGameCMD.swift in Sources */,
-				3F8D115B228494260034BC6D /* TimerNode.swift in Sources */,
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
 				3F643DDB229ABBC000446DBC /* RollbackTimerCMD.swift in Sources */,
 				3F8D114F2280A8C40034BC6D /* HelpRulesVC.swift in Sources */,
