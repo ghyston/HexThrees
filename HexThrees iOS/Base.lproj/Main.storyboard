@@ -111,7 +111,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="FBl-RZ-L9i" userLabel="SettingsVerticalStackView">
-                                <rect key="frame" x="36" y="66" width="248.5" height="436"/>
+                                <rect key="frame" x="36" y="33" width="248.5" height="502"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="caE-a7-REa" userLabel="FieldSizeVerticalStackView">
                                         <rect key="frame" x="0.0" y="0.0" width="248.5" height="51"/>
@@ -215,8 +215,26 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5e8-M5-Kpj" userLabel="TimerStackView">
+                                        <rect key="frame" x="0.0" y="321" width="248.5" height="31"/>
+                                        <subviews>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2j-JZ-QWi" userLabel="TimerSwitch">
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
+                                                <color key="onTintColor" red="0.92549019610000005" green="0.69803921570000005" blue="0.20784313730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="onTimerChanged:" destination="hfV-uc-Gim" eventType="valueChanged" id="qMG-gs-zip"/>
+                                                </connections>
+                                            </switch>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3e-PE-2OL" userLabel="TimerLabel">
+                                                <rect key="frame" x="57" y="0.0" width="191.5" height="31"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
+                                                <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-sN-sor" userLabel="ResumeResetStack">
-                                        <rect key="frame" x="0.0" y="321" width="248.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="387" width="248.5" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQl-nf-Mde" userLabel="ResumeBtn">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
@@ -243,7 +261,7 @@
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsf-3G-7nc" userLabel="HelpBtn">
-                                        <rect key="frame" x="0.0" y="396" width="248.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="462" width="248.5" height="40"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
                                         <state key="normal" title="Rules">
                                             <color key="titleColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -301,6 +319,7 @@
                         <outlet property="hapticFeedbackSwitch" destination="eqg-Yd-Loy" id="Sgo-EA-QBt"/>
                         <outlet property="motionBlurSwitch" destination="26a-k9-0Nk" id="3nq-ri-MXr"/>
                         <outlet property="paletteChanger" destination="WyI-ke-nBz" id="P8O-pK-cfi"/>
+                        <outlet property="timerSwitch" destination="v2j-JZ-QWi" id="r2H-Hz-a4h"/>
                         <outlet property="titleLabel" destination="dKK-fx-a3b" id="IEb-Hg-MI5"/>
                         <outlet property="warningLabel" destination="HBR-cY-R3v" id="cyC-t2-9dx"/>
                     </connections>

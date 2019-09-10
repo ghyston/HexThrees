@@ -20,6 +20,7 @@ class PauseVC : UIViewController {
     @IBOutlet weak var paletteChanger: UISegmentedControl!
     @IBOutlet weak var motionBlurSwitch: UISwitch!
     @IBOutlet weak var hapticFeedbackSwitch: UISwitch!
+    @IBOutlet weak var timerSwitch: UISwitch!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var warningLabel: UILabel!
@@ -38,6 +39,7 @@ class PauseVC : UIViewController {
         
         motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
         hapticFeedbackSwitch.isOn = gameModel?.hapticManager.isEnabled ?? false
+        timerSwitch.isOn = gameModel?.stressTimer.isEnabled() ?? false
         
         updateWarningLabel()
         setupSegmentedControlDesign()
@@ -116,6 +118,24 @@ class PauseVC : UIViewController {
         
         defaults.set(motionBlurStatus.rawValue, forKey: SettingsKey.MotionBlur.rawValue)
         SwitchMotionBlurCMD(gm).run(isOn: motionBlurSwitch.isOn)
+    }
+    
+    @IBAction func onTimerChanged(_ sender: Any) {
+        let timerStatus = timerSwitch.isOn ?
+            StressTimerStatus.Enabled :
+            StressTimerStatus.Disabled
+        
+        defaults.set(timerStatus.rawValue, forKey: SettingsKey.StressTimer.rawValue)
+        guard let timer = self.gameModel?.stressTimer else {
+            return
+        }
+        
+        if timerStatus == StressTimerStatus.Enabled && !timer.isEnabled() {
+            timer.enable()
+        }
+        else if timerStatus == StressTimerStatus.Disabled && timer.isEnabled() {
+            timer.disable()
+        }
     }
     
     @IBAction func onCancel(_ sender: Any) {
