@@ -72,7 +72,8 @@ extension BlockableNode where Self : SKNode {
             value: self.blockLinesColor)
     }
     
-    func startCircleAnimation() {
+    func playCircleAnimation() {
+        self.removeRollbackDelayedAction()
         self.playback = Playback()
         //@todo: use 2PI, find constant
         self.playback?.setRange(from: 0, to: 6.28)
@@ -84,17 +85,10 @@ extension BlockableNode where Self : SKNode {
         self.shape?.fillShader = self.circleTimerAnimatedShader
     }
     
-    func rollbackCircleAnimation() {
+    func playRollbackCircleAnimation() {
         self.playback?.rollback(
             duration: GameConstants.StressTimerRollbackInterval,
             onFinish: self.removeShaderWithDelay)
-    }
-    
-    // After stress timer do not remove shader immidiately, wait until new cell is apeared.
-    func removeShaderWithDelay() {
-        let delayHide = SKAction.wait(forDuration: GameConstants.CellAppearAnimationDuration)
-        let removeShader = SKAction.perform(#selector(BgCell.removeShader), onTarget: self)
-        self.run(SKAction.sequence([delayHide, removeShader]))
     }
     
     func updateAnimation(_ delta: TimeInterval) {
@@ -106,6 +100,8 @@ extension BlockableNode where Self : SKNode {
     }
     
     func block() {
+        self.removeRollbackDelayedAction()
+        
         self.playback = Playback()
         self.playback!.start(
             duration: GameConstants.BlockAnimationDuration,
@@ -115,11 +111,6 @@ extension BlockableNode where Self : SKNode {
         self.shape?.fillShader = self.blockingAnimatedShader
         
         self.isBlocked = true
-    }
-    
-    private func setStaticBlockShader() {
-        self.shape?.fillShader = self.blockedStaticShader
-        self.playback = nil
     }
     
     func unblock() {
@@ -132,5 +123,27 @@ extension BlockableNode where Self : SKNode {
         self.shape?.fillShader = self.blockingAnimatedShader
         
         self.isBlocked = false
+    }
+    
+    // After stress timer do not remove shader immidiately, wait until new cell is apeared.
+    private func removeShaderWithDelay() {
+        let delayHide = SKAction.wait(forDuration: GameConstants.CellAppearAnimationDuration)
+        let removeShader = SKAction.perform(#selector(BgCell.removeShader), onTarget: self)
+        self.run(SKAction.sequence([delayHide, removeShader]), withKey: RollbackActionKey())
+    }
+    
+    private func setStaticBlockShader() {
+        self.shape?.fillShader = self.blockedStaticShader
+        self.playback = nil
+    }
+    
+    // @todo: any way to declare it in one line?
+    private func removeRollbackDelayedAction() {
+        self.removeAction(forKey: RollbackActionKey())
+    }
+    
+    // @todo: any way to declare it in one line?
+    private func RollbackActionKey() -> String {
+        return "rollback_action"
     }
 }

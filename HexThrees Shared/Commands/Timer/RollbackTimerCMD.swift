@@ -16,7 +16,7 @@ class RollbackTimerCMD : GameCMD {
             return
         }
         
-        self.gameModel.stressTimer.getCell()?.rollbackCircleAnimation()
+        self.gameModel.stressTimer.getCell()?.playRollbackCircleAnimation()
         self.gameModel.stressTimer.stop()
     }
 }

@@ -24,7 +24,7 @@ class StartStressTimerCMD : GameCMD {
             return
         }
         
-        bgCell.startCircleAnimation()
+        bgCell.playCircleAnimation()
         
         
         self.gameModel.stressTimer.startNew(

@@ -49,7 +49,7 @@ class BlockRandomCellCMD : GameCMD {
         
         let cells = self.gameModel.field.getBgCellsWithPriority(
             required: HexField.freeCell,
-            priority: HexField.cellWoBonuses)
+            priority: HexField.cellWoBonuses, HexField.cellWoShader)
         
         //@todo: fix it somehow
         var dice = ProbabilityArray<BgCell>()
