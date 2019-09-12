@@ -43,6 +43,8 @@
 		3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D852139174A00AF3DC0 /* ScoreBuff.swift */; };
 		3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */; };
 		3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */; };
+		3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F45A13A232AB20A00157EDB /* blockStatic2.fsh */; };
+		3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F45A13C232AB82500157EDB /* blockAnimated2.fsh */; };
 		3F4FA81920E2DFCD00971892 /* StartGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */; };
 		3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81B20E57F3100971892 /* PauseVC.swift */; };
 		3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA82120E5FA2800971892 /* ContainerConfig.swift */; };
@@ -176,6 +178,8 @@
 		3F432D852139174A00AF3DC0 /* ScoreBuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBuff.swift; sourceTree = "<group>"; };
 		3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyScoreBuffCMD.swift; sourceTree = "<group>"; };
 		3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerCMD.swift; sourceTree = "<group>"; };
+		3F45A13A232AB20A00157EDB /* blockStatic2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockStatic2.fsh; sourceTree = "<group>"; };
+		3F45A13C232AB82500157EDB /* blockAnimated2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockAnimated2.fsh; sourceTree = "<group>"; };
 		3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameCMD.swift; sourceTree = "<group>"; };
 		3F4FA81B20E57F3100971892 /* PauseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseVC.swift; sourceTree = "<group>"; };
 		3F4FA82120E5FA2800971892 /* ContainerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerConfig.swift; sourceTree = "<group>"; };
@@ -383,6 +387,8 @@
 				3F1A626A2118B38A00CC6586 /* simple.fsh */,
 				3F8D11622289CD740034BC6D /* timer.fsh */,
 				3FD9C6AE2318FF7400137319 /* circleTimer.fsh */,
+				3F45A13A232AB20A00157EDB /* blockStatic2.fsh */,
+				3F45A13C232AB82500157EDB /* blockAnimated2.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -598,8 +604,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */,
 				3FB703A920DAE7A6009718F3 /* View.xib in Resources */,
 				3FD9C6B3231ECA2600137319 /* blockAnimated.fsh in Resources */,
+				3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */,
 				3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */,
 				3F06B36F207C81E000C8315A /* GameScene.sks in Resources */,
 				3F1A62692118A74100CC6586 /* blockStatic.fsh in Resources */,

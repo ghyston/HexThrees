@@ -34,8 +34,8 @@ extension BlockableNode where Self : SKNode {
     //@todo: when we change palette, all shaders should be reloaded or color changed
     func loadShader(shape: SKShapeNode, palette: IPaletteManager) {
         self.shape = shape
-        self.blockedStaticShader = SKShader.init(fileNamed: "blockStatic")
-        self.blockingAnimatedShader = AnimatedShaderNode.init(fileNamed: "blockAnimated")
+        self.blockedStaticShader = SKShader.init(fileNamed: "blockStatic2")
+        self.blockingAnimatedShader = AnimatedShaderNode.init(fileNamed: "blockAnimated2")
         self.circleTimerAnimatedShader =
             AnimatedShaderNode.init(fileNamed: "circleTimer")
         
