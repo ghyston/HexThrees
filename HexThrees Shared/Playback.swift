@@ -27,8 +27,17 @@ class Playback : IPlayback {
     private var duration = TimeInterval()
     private var reversed = false
     private var repeated = false
+    private var paused = false
     private var scale : Double = 1.0
     private var finishCallback : (() -> Void)? = nil
+    
+    init() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setPauseFlag),
+            name: .pauseTimers,
+            object: nil)
+    }
     
     func setRange(from: Double, to: Double) {
         scale = (to - from); //@todo: recheck, it __IS__ wrong
@@ -61,7 +70,13 @@ class Playback : IPlayback {
     }
     
     func update(delta: TimeInterval) -> Double {
-        self.started += delta
+        
+        // If playback was paused, it starts again automatically
+        if(self.paused) {
+            self.paused = false
+        } else {
+            self.started += delta
+        }
         
         //@todo: testcase: what if update delta is more than one duration?
         if self.started >= self.duration {
@@ -90,6 +105,10 @@ class Playback : IPlayback {
     
     func reverse(reversed : Bool? = nil) {
         self.reversed = reversed ?? !self.reversed
+    }
+    
+    @objc private func setPauseFlag() {
+        paused = true
     }
     
     //@todo: this is also usefull, but need more desciption and middle point parameter

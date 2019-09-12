@@ -14,6 +14,7 @@ protocol ITimerModel {
     func disable()
     func isEnabled() -> Bool //@todo: this functionality better somehow move inside timer
     func stop()
+    func fire()
     func startNew(timer: Timer, cell: BgCell)
     func getCell() -> BgCell?
 }
@@ -41,6 +42,11 @@ class TimerModel : ITimerModel {
     func stop() {
         stressTimer?.invalidate()
         self.cell = nil
+    }
+    
+    func fire() {
+        stressTimer?.fire()
+        stop()
     }
     
     //@todo: clear afterwards

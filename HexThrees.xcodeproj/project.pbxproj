@@ -42,6 +42,7 @@
 		3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */; };
 		3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D852139174A00AF3DC0 /* ScoreBuff.swift */; };
 		3F432D882139180E00AF3DC0 /* ApplyScoreBuffCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */; };
+		3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */; };
 		3F4FA81920E2DFCD00971892 /* StartGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */; };
 		3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81B20E57F3100971892 /* PauseVC.swift */; };
 		3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA82120E5FA2800971892 /* ContainerConfig.swift */; };
@@ -174,6 +175,7 @@
 		3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScoreBaffCMD.swift; sourceTree = "<group>"; };
 		3F432D852139174A00AF3DC0 /* ScoreBuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBuff.swift; sourceTree = "<group>"; };
 		3F432D872139180E00AF3DC0 /* ApplyScoreBuffCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyScoreBuffCMD.swift; sourceTree = "<group>"; };
+		3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerCMD.swift; sourceTree = "<group>"; };
 		3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameCMD.swift; sourceTree = "<group>"; };
 		3F4FA81B20E57F3100971892 /* PauseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseVC.swift; sourceTree = "<group>"; };
 		3F4FA82120E5FA2800971892 /* ContainerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerConfig.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				3F8D115C2284948E0034BC6D /* StartStressTimerCMD.swift */,
 				3F643DDA229ABBC000446DBC /* RollbackTimerCMD.swift */,
+				3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -686,6 +689,7 @@
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
 				3F8D11532280A9410034BC6D /* HelpMergingNode.swift in Sources */,
+				3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */,
 				3F064876215D4180005461C7 /* CellsIterator.swift in Sources */,
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
 				3F7E694F226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift in Sources */,
