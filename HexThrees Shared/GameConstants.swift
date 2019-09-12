@@ -16,7 +16,7 @@ class GameConstants {
     static let BonusAnimationDuration = 0.5
     static let GameOverScreenDelay = 1.2
     static let StressTimerInterval = 3.0
-    static let StressTimerRollbackInterval = 1.0
+    static let StressTimerRollbackInterval = 0.5
     static let HelpVCAnimationDelay = 1.0
     static let BlockAnimationDuration = 1.0
     static let CellAppearAnimationDuration = 0.5

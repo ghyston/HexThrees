@@ -165,7 +165,8 @@ class GameVC: UIViewController {
                 blocked: settings.blockedCellsCount)
         }
         
-        StartStressTimerCMD(self.gameModel!).run()
+        // do not start timer after starting from fresh
+        //StartStressTimerCMD(self.gameModel!).run()
         
         // Delay one second because random cells appers with random delay
         CheckGameEndCMD(self.gameModel!).runWithDelay(delay: 1.0)

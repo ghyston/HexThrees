@@ -40,6 +40,7 @@ class HexField {
     
     func clean() {
         for i in 0 ..< bgHexes.count {
+            self[i].removeAllActions()
             self[i].removeFromParent()
         }
         bgHexes.removeAll()
