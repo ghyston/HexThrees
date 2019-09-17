@@ -17,4 +17,5 @@ extension NSNotification.Name {
     static let switchHapticFeedback = Notification.Name(rawValue: "switch_haptic_feedback")
     static let scoreBuffUpdate = Notification.Name(rawValue: "score_buff_update")
     static let pauseTimers = Notification.Name(rawValue: "pause_timers")
+    static let updateCollectables = Notification.Name(rawValue: "update_collectables")
 }

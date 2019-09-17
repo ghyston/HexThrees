@@ -14,6 +14,21 @@ enum BonusType : Int, Codable {
     case BLOCK_CELL
     case X2_POINTS
     case X3_POINTS
+    case COLLECTABLE_TYPE_1 //@todo: find real name
+}
+
+struct CollectableBonusModel {
+    var currentValue : Int = 0
+    let maxValue : Int
+    mutating func inc() {
+        currentValue = min(currentValue + 1, maxValue)
+    }
+    
+    var isFull: Bool {
+        get {
+            return currentValue >= maxValue
+        }
+    }
 }
 
 class BonusFabric {
@@ -29,6 +44,32 @@ class BonusFabric {
             return createX2Bonus(gameModel: gameModel)
         case .X3_POINTS:
             return createX3Bonus(gameModel: gameModel)
+        case .COLLECTABLE_TYPE_1:
+            return createCollectableType1Bonus(gameModel: gameModel)
+        }
+    }
+    
+    class func collectableAction(bonus type: BonusType, gameModel: GameModel) -> GameCMD? {
+        switch type {
+        case .COLLECTABLE_TYPE_1:
+            return UnlockRandomCellCMD(gameModel) //@todo: use actual gameplay command
+        default:
+            return nil
+        }
+    }
+    
+    class func spriteName(bonus type: BonusType) -> String {
+        switch type {
+        case .UNLOCK_CELL:
+            return "bonus_unlock"
+        case .BLOCK_CELL:
+            return "bonus_lock"
+        case .X2_POINTS:
+            return  "bonus_x2"
+        case .X3_POINTS:
+            return  "bonus_x2"
+        case .COLLECTABLE_TYPE_1:
+            return  "bonus_collectable"
         }
     }
     
@@ -36,7 +77,7 @@ class BonusFabric {
         
         return BonusNode(
             type: .UNLOCK_CELL,
-            spriteName: "bonus_unlock",
+            spriteName: spriteName(bonus: .UNLOCK_CELL),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
             onPick: UnlockRandomCellCMD(gameModel))
     }
@@ -45,7 +86,7 @@ class BonusFabric {
         
         return BonusNode(
             type: .BLOCK_CELL,
-            spriteName: "bonus_lock",
+            spriteName: spriteName(bonus: .BLOCK_CELL),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
             onPick: BlockRandomCellCMD(gameModel))
     }
@@ -53,8 +94,8 @@ class BonusFabric {
     class func createX2Bonus(gameModel: GameModel) -> BonusNode {
         
         return BonusNode(
-            type: .BLOCK_CELL,
-            spriteName: "bonus_x2",
+            type: .X2_POINTS,
+            spriteName: spriteName(bonus: .X2_POINTS),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
             onPick: AddScoreBaffCMD(gameModel, factor: 2))
     }
@@ -62,10 +103,19 @@ class BonusFabric {
     class func createX3Bonus(gameModel: GameModel) -> BonusNode {
         
         return BonusNode(
-            type: .BLOCK_CELL,
-            spriteName: "bonus_x2",
+            type: .X3_POINTS,
+            spriteName: spriteName(bonus: .X3_POINTS),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
             onPick: AddScoreBaffCMD(gameModel, factor: 3))
+    }
+    
+    class func createCollectableType1Bonus(gameModel: GameModel) -> BonusNode {
+        
+        return BonusNode(
+            type: .COLLECTABLE_TYPE_1,
+            spriteName: spriteName(bonus: .COLLECTABLE_TYPE_1),
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: IncCollectableBonusCMD(gameModel, type: .COLLECTABLE_TYPE_1))
     }
     
 }

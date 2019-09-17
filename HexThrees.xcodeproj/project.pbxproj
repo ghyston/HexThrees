@@ -32,6 +32,8 @@
 		3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */; };
 		3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5120C9989D00A979D5 /* PaletteManager.swift */; };
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
+		3F29E294232F5DAA00091D0B /* IncCollectableBonusCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */; };
+		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
 		3F2D81EC21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */; };
 		3F2D81EF21C6C0C500A48CD1 /* FieldSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */; };
 		3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */; };
@@ -167,6 +169,8 @@
 		3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTypes.swift; sourceTree = "<group>"; };
 		3F21DF5120C9989D00A979D5 /* PaletteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteManager.swift; sourceTree = "<group>"; };
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
+		3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncCollectableBonusCMD.swift; sourceTree = "<group>"; };
+		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
 		3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchMotionBlurCMD.swift; sourceTree = "<group>"; };
 		3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSize.swift; sourceTree = "<group>"; };
 		3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurStatus.swift; sourceTree = "<group>"; };
@@ -426,6 +430,7 @@
 				3F8D11502280A9400034BC6D /* HelpSwypeNode.swift */,
 				3F8D11582281F0280034BC6D /* UserBlockedCell.swift */,
 				3FDEF72922B4C5BC00579A4B /* AnimatedShaderNode.swift */,
+				3F29E295232F5EBC00091D0B /* CollectableBtn.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 				3FEA7AD12188385A007F50D8 /* AddRandomElementsCMD.swift */,
 				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
+				3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
 				3F21DF4920C8F79600A979D5 /* SKColor.extensions.swift in Sources */,
 				3FAC647020BC89530083C56C /* RemoveCellCMD.swift in Sources */,
+				3F29E294232F5DAA00091D0B /* IncCollectableBonusCMD.swift in Sources */,
 				3FAC647320BCA52B0083C56C /* GameConstants.swift in Sources */,
 				3FB703A020DA1B69009718F3 /* BlockRandomCellCMD.swift in Sources */,
 				3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */,
@@ -672,6 +679,7 @@
 				3F2D81F321C6C14100A48CD1 /* ColorSchemaType.swift in Sources */,
 				3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */,
 				3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */,
+				3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */,
 				3FDEF72A22B4C5BC00579A4B /* AnimatedShaderNode.swift in Sources */,
 				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
 				3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */,

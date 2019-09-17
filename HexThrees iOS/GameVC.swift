@@ -243,6 +243,18 @@ extension GameVC: UIGestureRecognizerDelegate {
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        
+        //@todo: check performance here. May be compare with existing button instead of casting?
+        if let scene = self.scene {
+            let nodes = scene.nodes(at: touch.location(in: scene ))
+            for node in nodes {
+                if let button = node as? CollectableBtn {
+                    button.onClick()
+                    return false
+                }
+            }
+        }
+        
         if (touch.view is UIButton) {
             return false
         }

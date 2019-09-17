@@ -26,6 +26,8 @@ class GameModel {
     var scoreMultiplier : Int = 1
     var turnsWithoutBonus : Int = 0
     
+    var collectableBonuses = [BonusType: CollectableBonusModel]()
+    
     func recalculateScoreBaff(){
         
         self.scoreMultiplier = 1
@@ -51,6 +53,7 @@ class GameModel {
         if (timerEnabled) {
             self.stressTimer.enable()
         }
+        self.resetCollectables()
     }
     
     func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
@@ -63,5 +66,13 @@ class GameModel {
             width: fieldSize,
             height: fieldSize,
             geometry: self.geometry)
+        self.resetCollectables()
+    }
+    
+    private func resetCollectables() {
+        self.collectableBonuses.removeAll()
+        self.collectableBonuses[.COLLECTABLE_TYPE_1] = CollectableBonusModel(
+            currentValue: 0,
+            maxValue: 3)
     }
 }

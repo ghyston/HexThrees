@@ -51,6 +51,12 @@ class DropRandomBonusCMD : GameCMD {
             
             bonusTypes.add(.BLOCK_CELL, GameConstants.LockBonusProbability)
         }
+        
+        for collectable in self.gameModel.collectableBonuses {
+            if !collectable.value.isFull {
+                bonusTypes.add(collectable.key, 1.0) //@todo: choose probability by type
+            }
+        }
        
         guard let bonusType = bonusTypes.getRandom() else {
             return
