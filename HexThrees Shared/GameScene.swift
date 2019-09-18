@@ -61,7 +61,7 @@ class GameScene: SKScene {
         
         let updateNode : (_: SKNode) -> Void = {
             ($0 as? MotionBlurNode)?.updateMotionBlur(delta)
-            ($0 as? BlockableNode)?.updateAnimation(delta)
+            ($0 as? AnimatedNode)?.updateAnimation(delta)
         }
         
         runForAllSubnodes(lambda: updateNode)

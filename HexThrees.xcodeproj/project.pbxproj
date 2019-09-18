@@ -34,6 +34,7 @@
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
 		3F29E294232F5DAA00091D0B /* IncCollectableBonusCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */; };
 		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
+		3F29E298233126F100091D0B /* collectableButton.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F29E297233126F100091D0B /* collectableButton.fsh */; };
 		3F2D81EC21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */; };
 		3F2D81EF21C6C0C500A48CD1 /* FieldSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */; };
 		3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */; };
@@ -171,6 +172,7 @@
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
 		3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncCollectableBonusCMD.swift; sourceTree = "<group>"; };
 		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
+		3F29E297233126F100091D0B /* collectableButton.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectableButton.fsh; sourceTree = "<group>"; };
 		3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchMotionBlurCMD.swift; sourceTree = "<group>"; };
 		3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSize.swift; sourceTree = "<group>"; };
 		3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurStatus.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				3FD9C6AE2318FF7400137319 /* circleTimer.fsh */,
 				3F45A13A232AB20A00157EDB /* blockStatic2.fsh */,
 				3F45A13C232AB82500157EDB /* blockAnimated2.fsh */,
+				3F29E297233126F100091D0B /* collectableButton.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				3F1A626B2118B38A00CC6586 /* simple.fsh in Resources */,
 				3F8D11632289CD740034BC6D /* timer.fsh in Resources */,
 				3F06B35A207C81E000C8315A /* Main.storyboard in Resources */,
+				3F29E298233126F100091D0B /* collectableButton.fsh in Resources */,
 				3F1A626721181DE400CC6586 /* grid.fsh in Resources */,
 				3F555CEC208FC30D003C67A7 /* Resourses in Resources */,
 				3F06B36D207C81E000C8315A /* Actions.sks in Resources */,

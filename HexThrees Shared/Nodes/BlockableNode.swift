@@ -9,7 +9,11 @@
 import Foundation
 import SpriteKit
 
-protocol BlockableNode : class {
+protocol AnimatedNode {
+    func updateAnimation(_ delta: TimeInterval)
+}
+
+protocol BlockableNode : class, AnimatedNode {
     
     var isBlocked: Bool { get set }
     var blockedStaticShader : SKShader { get set }

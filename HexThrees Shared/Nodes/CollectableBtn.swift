@@ -9,7 +9,10 @@
 import Foundation
 import SpriteKit
 
-class CollectableBtn : SKNode {
+class CollectableBtn : SKNode, AnimatedNode {
+    
+    private let shader : AnimatedShaderNode
+    private var playback: IPlayback?
     
     let sprite : SKSpriteNode
     let type: BonusType
@@ -19,6 +22,8 @@ class CollectableBtn : SKNode {
         self.type = type
         let spriteName = BonusFabric.spriteName(bonus: type)
         self.sprite = SKSpriteNode.init(imageNamed: spriteName)
+        self.shader = AnimatedShaderNode(fileNamed: "collectableButton")
+        self.sprite.shader = self.shader
         super.init()
         addChild(self.sprite)
         
@@ -29,12 +34,37 @@ class CollectableBtn : SKNode {
             object: nil)
     }
     
+    func updateAnimation(_ delta: TimeInterval) {
+        if let playbackValue = self.playback?.update(delta: delta) {
+            self.shader.update(playbackValue)
+        }
+    }
+    
     @objc func onCollectableUpdate(notification: Notification) {
         if notification.object as? BonusType != self.type {
             return
         }
         
-        //@todo: play animation
+        guard let collectable = self.gameModel.collectableBonuses[self.type] else {
+            return
+        }
+        
+        let step = 1.0 / Double(collectable.maxValue)
+        let start = Double(collectable.currentValue - 1) * step
+        
+        self.playback = Playback()
+        self.playback?.setRange(
+            from: start,
+            to: start + step)
+        self.playback?.start(
+            duration: 1.0,
+            reversed: false,
+            repeated: false,
+            onFinish: self.removeAnimation)
+    }
+    
+    @objc private func removeAnimation() {
+        self.playback = nil
     }
     
     func onClick() {
