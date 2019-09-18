@@ -29,6 +29,7 @@ class Playback : IPlayback {
     private var repeated = false
     private var paused = false
     private var scale : Double = 1.0
+    private var start : Double = 0.0
     private var finishCallback : (() -> Void)? = nil
     
     init() {
@@ -40,11 +41,12 @@ class Playback : IPlayback {
     }
     
     func setRange(from: Double, to: Double) {
-        scale = (to - from); //@todo: recheck, it __IS__ wrong
+        scale = (to - from);
+        start = from
     }
     
     func setRange(from: Float, to: Float) {
-        scale = Double(to - from) //@todo: recheck, it __IS__ wrong
+        setRange(from: Double(from), to: Double(from))
     }
     
     func start(duration: TimeInterval, reversed: Bool? = nil, repeated: Bool? = false, onFinish: (() -> Void)? = nil) {
@@ -98,9 +100,7 @@ class Playback : IPlayback {
            percent = 1.0 - percent
         }
         
-        return percent * self.scale; /*scale(
-            value: percent,
-            by: (self.scale))*/
+        return scale(value: percent)
     }
     
     func reverse(reversed : Bool? = nil) {
@@ -111,11 +111,8 @@ class Playback : IPlayback {
         paused = true
     }
     
-    //@todo: this is also usefull, but need more desciption and middle point parameter
-    // Scale value that is [0.0, 1.0] to [0, by] and switch scale center to 0.5
-    // So, in example, 0.3 scaled to 2.0 would be 0.6 in range [-0.5, 1.5] => 0.1
-    private func scale(value: Float, by: Float) -> Float {
-        return value * by - (by - 1.0) * 0.5;
+    private func scale(value: Double) -> Double {
+        return self.start + value * self.scale;
     }
     
     private func normalize(value: TimeInterval, duration: TimeInterval) -> Double {
