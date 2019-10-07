@@ -235,7 +235,8 @@ extension GameVC: UIGestureRecognizerDelegate {
     
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         
-        DoSwipeCMD(self.gameModel!).run(direction: recognizer.direction)
+        DoSwipeCMD(self.gameModel!)
+            .run(direction: recognizer.direction)
         ApplyScoreBuffCMD(self.gameModel!).run()
         AfterSwipeCMD(self.gameModel!)
             .runWithDelay(delay: gameModel!.swipeStatus.delay)
@@ -243,7 +244,7 @@ extension GameVC: UIGestureRecognizerDelegate {
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        
+                
         //@todo: check performance here. May be compare with existing button instead of casting?
         if let scene = self.scene {
             let nodes = scene.nodes(at: touch.location(in: scene ))
@@ -254,10 +255,17 @@ extension GameVC: UIGestureRecognizerDelegate {
                 }
             }
         }
-        
+
         if (touch.view is UIButton) {
             return false
         }
+        
+        if let swipeStatus = self.gameModel?.swipeStatus {
+            if swipeStatus.isInProgressOrLocked(){
+                return false
+            }
+        }
+        
         return true
     }
 }

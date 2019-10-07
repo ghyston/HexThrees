@@ -8,14 +8,41 @@
 
 import Foundation
 
-//@todo: this should be struct, GameModel too, !!BUT!! gameModel logic should be class (to use by ref)
 class SwipeStatus {
-    var inProgress : Bool = false
-    var somethingChangeed : Bool = false
-    var delay : Double = 0.0
-
+    private var inProgress : Bool = false
+    private var locked : Bool = false
+    
+    private (set) var isSomethingChanged : Bool = false
+    private (set) var delay : Double = 0.0
+    
+    func start() {
+        self.inProgress = true
+        self.isSomethingChanged = false
+        self.delay = 0.0
+    }
+    
+    func finish() {
+        self.inProgress = false
+        self.delay = 0.0
+    }
+    
+    func lockSwipes() {
+        locked = true
+    }
+    
+    func unlockSwipes() {
+        locked = false
+    }
+    
+    func somethingChanged() {
+        isSomethingChanged = true
+    }
+    
+    func isInProgressOrLocked() -> Bool {
+        return inProgress || locked
+    }
+    
     func incrementDelay(delay : Double) {
-        
         self.delay = max(delay, self.delay)
     }
 }

@@ -64,6 +64,7 @@ class ScoreLabel : UILabel {
         
         self.currentValue = min(self.currentValue + speed.rawValue, self.nextValue)
         
+        //@todo: does it really neccesarry to use DispatchQueue for calculation score? Update from scene with time delta will be more appliable. However, if it is using not in scene UI 🤔
         let period : Double = 0.2 / Double(self.nextValue - self.currentValue)
         DispatchQueue.main.asyncAfter(deadline: .now() + period ) {
             self.scheduleNext(speed)

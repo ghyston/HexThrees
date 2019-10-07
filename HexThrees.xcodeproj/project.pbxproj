@@ -24,6 +24,8 @@
 		3F06B371207C81E000C8315A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F06B34B207C81E000C8315A /* GameScene.swift */; };
 		3F06B373207C81E000C8315A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F06B34C207C81E000C8315A /* Assets.xcassets */; };
 		3F11087D2190B591007743DF /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11087C2190B591007743DF /* FileHelper.swift */; };
+		3F11E62A23489036003294EC /* StrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62923489036003294EC /* StrategiesTests.swift */; };
+		3F11E62C234B0594003294EC /* SelectNodeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62B234B0594003294EC /* SelectNodeCMD.swift */; };
 		3F13AF8D221D3F260086194E /* ScoreNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F13AF8C221D3F260086194E /* ScoreNode.swift */; };
 		3F1A626721181DE400CC6586 /* grid.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626621181DE400CC6586 /* grid.fsh */; };
 		3F1A62692118A74100CC6586 /* blockStatic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A62682118A74100CC6586 /* blockStatic.fsh */; };
@@ -114,7 +116,6 @@
 		3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703AE20E16613009718F3 /* FieldGeometry.swift */; };
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
 		3FD9C6972314548800137319 /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6962314548800137319 /* HexField.swift */; };
-		3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C69A23158F7000137319 /* StrategiesTests.swift */; };
 		3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9C6AE2318FF7400137319 /* circleTimer.fsh */; };
 		3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */; };
 		3FD9C6B3231ECA2600137319 /* blockAnimated.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9C6B2231ECA2600137319 /* blockAnimated.fsh */; };
@@ -162,6 +163,8 @@
 		3F06B35C207C81E000C8315A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F06B35E207C81E000C8315A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F11087C2190B591007743DF /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
+		3F11E62923489036003294EC /* StrategiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategiesTests.swift; sourceTree = "<group>"; };
+		3F11E62B234B0594003294EC /* SelectNodeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectNodeCMD.swift; sourceTree = "<group>"; };
 		3F13AF8C221D3F260086194E /* ScoreNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNode.swift; sourceTree = "<group>"; };
 		3F1A626621181DE400CC6586 /* grid.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = grid.fsh; sourceTree = "<group>"; };
 		3F1A62682118A74100CC6586 /* blockStatic.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockStatic.fsh; sourceTree = "<group>"; };
@@ -253,7 +256,6 @@
 		3FB703AE20E16613009718F3 /* FieldGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldGeometry.swift; sourceTree = "<group>"; };
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
 		3FD9C6962314548800137319 /* HexField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
-		3FD9C69A23158F7000137319 /* StrategiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StrategiesTests.swift; path = "../New Group/StrategiesTests.swift"; sourceTree = "<group>"; };
 		3FD9C6A023158FB000137319 /* HexThreesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexThreesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD9C6A423158FB000137319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FD9C6AE2318FF7400137319 /* circleTimer.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = circleTimer.fsh; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
 				3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */,
+				3F11E62B234B0594003294EC /* SelectNodeCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -510,8 +513,8 @@
 		3FD9C6A123158FB000137319 /* HexThreesTests */ = {
 			isa = PBXGroup;
 			children = (
+				3F11E62923489036003294EC /* StrategiesTests.swift */,
 				3FD9C6A423158FB000137319 /* Info.plist */,
-				3FD9C69A23158F7000137319 /* StrategiesTests.swift */,
 				3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */,
 				3F708DA0232810DF008B95F1 /* HexFieldSelectorTest.swift */,
 			);
@@ -736,6 +739,7 @@
 				3F708D9D2326259F008B95F1 /* AddCellByTimerCMD.swift in Sources */,
 				3F06B357207C81E000C8315A /* GameVC.swift in Sources */,
 				3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */,
+				3F11E62C234B0594003294EC /* SelectNodeCMD.swift in Sources */,
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,
 				3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */,
 				3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */,
@@ -759,7 +763,7 @@
 			files = (
 				3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */,
 				3F708DA1232810DF008B95F1 /* HexFieldSelectorTest.swift in Sources */,
-				3FD9C6AD2315922C00137319 /* StrategiesTests.swift in Sources */,
+				3F11E62A23489036003294EC /* StrategiesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

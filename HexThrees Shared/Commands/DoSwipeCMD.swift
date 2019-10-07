@@ -11,22 +11,16 @@ import Foundation
 class DoSwipeCMD : GameCMD {
     
     func run(direction : SwipeDirection) {
-        
-        if self.gameModel.swipeStatus.inProgress {
+
+        guard let iterator = IteratorFabric.create(self.gameModel, direction) else {
             return
         }
         
-        self.gameModel.swipeStatus.inProgress = true
-        self.gameModel.swipeStatus.somethingChangeed = false
+        self.gameModel.swipeStatus.start()
         self.gameModel.hapticManager.warmup()
-
-        if let iterator = IteratorFabric.create(self.gameModel, direction) {
-            while let container = iterator.next() {
-                MoveLineCMD(self.gameModel, cells: container).run()
-            }
-        }
-        else {
-            self.gameModel.swipeStatus.inProgress = false
+        
+        while let container = iterator.next() {
+            MoveLineCMD(self.gameModel, cells: container).run()
         }
         
         Timer.scheduledTimer(
@@ -40,7 +34,6 @@ class DoSwipeCMD : GameCMD {
     @objc private func finishSwype() {
      
         gameModel.hapticManager.shutDown()
-        gameModel.swipeStatus.delay = 0.0
-        gameModel.swipeStatus.inProgress = false
+        gameModel.swipeStatus.finish()
     }
 }

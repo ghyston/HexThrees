@@ -52,7 +52,7 @@ class BonusFabric {
     class func collectableAction(bonus type: BonusType, gameModel: GameModel) -> GameCMD? {
         switch type {
         case .COLLECTABLE_TYPE_1:
-            return UnlockRandomCellCMD(gameModel) //@todo: use actual gameplay command
+            return SelectNodeCMD(gameModel) //@todo: use actual gameplay command
         default:
             return nil
         }

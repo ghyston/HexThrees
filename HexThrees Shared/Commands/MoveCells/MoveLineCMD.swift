@@ -93,7 +93,7 @@ class MoveLineCMD : GameCMD {
             return
         }
         
-        self.gameModel.swipeStatus.somethingChangeed = true
+        self.gameModel.swipeStatus.somethingChanged()
         
         cells.cellsAvailableForMove(from, to)
         
@@ -130,7 +130,7 @@ class MoveLineCMD : GameCMD {
             return 0.0
         }
         
-        self.gameModel.swipeStatus.somethingChangeed = true
+        self.gameModel.swipeStatus.somethingChanged()
         
         cells.cellsAvailableForMove(from, to)
         

@@ -11,7 +11,7 @@ import Foundation
 class AfterSwipeCMD : GameCMD {
     
     override func run() {
-        if !gameModel.swipeStatus.somethingChangeed {
+        if !gameModel.swipeStatus.isSomethingChanged {
             return
         }
         
