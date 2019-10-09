@@ -15,6 +15,7 @@ enum BonusType : Int, Codable {
     case X2_POINTS
     case X3_POINTS
     case COLLECTABLE_TYPE_1 //@todo: find real name
+    case COLLECTABLE_TYPE_2 //@todo: find real name
 }
 
 struct CollectableBonusModel {
@@ -50,6 +51,8 @@ class BonusFabric {
             return createX3Bonus(gameModel: gameModel)
         case .COLLECTABLE_TYPE_1:
             return createCollectableType1Bonus(gameModel: gameModel)
+        case .COLLECTABLE_TYPE_2:
+            return createCollectableType2Bonus(gameModel: gameModel)
         }
     }
     
@@ -57,6 +60,8 @@ class BonusFabric {
         
         switch type {
         case .COLLECTABLE_TYPE_1:
+            return (HexField.freeCell, StuckCellCMD(gameModel))
+        case .COLLECTABLE_TYPE_2:
             return (HexField.freeCell, StuckCellCMD(gameModel))
         default:
             return nil
@@ -75,6 +80,8 @@ class BonusFabric {
             return  "bonus_x2"
         case .COLLECTABLE_TYPE_1:
             return  "bonus_collectable"
+        case .COLLECTABLE_TYPE_2:
+            return  "bonus_unlock"
         }
     }
     
@@ -121,6 +128,15 @@ class BonusFabric {
             spriteName: spriteName(bonus: .COLLECTABLE_TYPE_1),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
             onPick: IncCollectableBonusCMD(gameModel, type: .COLLECTABLE_TYPE_1))
+    }
+    
+    class func createCollectableType2Bonus(gameModel: GameModel) -> BonusNode {
+        
+        return BonusNode(
+            type: .COLLECTABLE_TYPE_2,
+            spriteName: spriteName(bonus: .COLLECTABLE_TYPE_2),
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: IncCollectableBonusCMD(gameModel, type: .COLLECTABLE_TYPE_2))
     }
     
 }

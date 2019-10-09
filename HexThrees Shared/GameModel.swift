@@ -76,5 +76,8 @@ class GameModel {
         self.collectableBonuses[.COLLECTABLE_TYPE_1] = CollectableBonusModel(
             currentValue: 0,
             maxValue: 3)
+        self.collectableBonuses[.COLLECTABLE_TYPE_2] = CollectableBonusModel(
+            currentValue: 0,
+            maxValue: 5)
     }
 }

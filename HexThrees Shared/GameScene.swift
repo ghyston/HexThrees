@@ -22,13 +22,22 @@ class GameScene: SKScene {
     }
     
     func addCollectableButtons() {
-        let collectableBonusBtn = CollectableBtn(type: .COLLECTABLE_TYPE_1)
-        let btnSize = collectableBonusBtn.sprite.size
+        
         let offset: CGFloat = 3.0
-        collectableBonusBtn.position.y = -size.height / 2.0 + btnSize.height / 2.0 + offset
-        collectableBonusBtn.position.x = size.width / 2.0 - btnSize.width / 2.0 - offset
-        collectableBonusBtn.zPosition = zPositions.bonusCollectable.rawValue
-        addChild(collectableBonusBtn)
+        
+        let collectableBonusBtn1 = CollectableBtn(type: .COLLECTABLE_TYPE_1)
+        let btnSize1 = collectableBonusBtn1.sprite.size
+        collectableBonusBtn1.position.y = -size.height / 2.0 + btnSize1.height / 2.0 + offset
+        collectableBonusBtn1.position.x = size.width / 2.0 - btnSize1.width / 2.0 - offset
+        collectableBonusBtn1.zPosition = zPositions.bonusCollectable.rawValue
+        addChild(collectableBonusBtn1)
+        
+        let collectableBonusBtn2 = CollectableBtn(type: .COLLECTABLE_TYPE_2)
+        let btnSize2 = collectableBonusBtn2.sprite.size
+        collectableBonusBtn2.position.y = -size.height / 2.0 + btnSize2.height / 2.0 + offset
+        collectableBonusBtn2.position.x = -size.width / 2.0 + btnSize2.width / 2.0 + offset
+        collectableBonusBtn2.zPosition = zPositions.bonusCollectable.rawValue
+        addChild(collectableBonusBtn2)
     }
     
     //@note: run it after everything is initialised

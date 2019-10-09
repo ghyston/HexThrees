@@ -15,5 +15,4 @@ class UnlockRandomCellCMD : GameCMD {
             .getBgCells(compare: { $0.isBlocked } )
             .randomElement()?.unblock()
     }
-    
 }
