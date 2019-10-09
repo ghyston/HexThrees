@@ -10,29 +10,19 @@ import Foundation
 
 class StartCellSelectionCMD : GameCMD {
     
-    var comparator: CellComparator
-    var onSelectCmd: RunOnNodeCMD
-    
-    init(gameModel: GameModel,
-         comparator: @escaping (_: BgCell) -> Bool,
-         onSelect: RunOnNodeCMD) {
-        self.comparator = comparator
-        self.onSelectCmd = onSelect
-        super.init(gameModel)
-    }
-    
-    private func toggleHighlight(node: BgCell) {
-        if comparator(node) {
-            node.highlight()
+    func run(comparator: CellComparator, onSelectCmd: RunOnNodeCMD) {
+        
+        let toggleHighlight : (_: BgCell) -> Void = {
+            if comparator($0) {
+                $0.highlight()
+            }
+            else {
+                $0.shade()
+            }
         }
-        else {
-            node.shade()
-        }
-    }
-    
-    override func run() {
+        
         RollbackTimerCMD(self.gameModel).run()
-        gameModel.field.executeForAll(lambda: self.toggleHighlight)
+        gameModel.field.executeForAll(lambda: toggleHighlight)
         self.gameModel.selectCMD = onSelectCmd
         self.gameModel.swipeStatus.lockSwipes()
     }

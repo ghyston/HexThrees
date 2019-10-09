@@ -104,11 +104,9 @@ class CollectableBtn : SKNode, AnimatedNode {
             }
             
             self.gameModel.selectedBonusType = self.type
-            StartCellSelectionCMD(
-                gameModel: gameModel,
-                comparator: collectableBonus.comparator,
-                onSelect: collectableBonus.cmd)
-                .run()
+            StartCellSelectionCMD(gameModel)
+                .run(comparator: collectableBonus.comparator,
+                     onSelectCmd: collectableBonus.cmd)
         }
     }
     

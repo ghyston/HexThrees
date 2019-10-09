@@ -24,6 +24,10 @@ struct CollectableBonusModel {
         currentValue = min(currentValue + 1, maxValue)
     }
     
+    mutating func use() {
+        currentValue = 0
+    }
+    
     var isFull: Bool {
         get {
             return currentValue >= maxValue
