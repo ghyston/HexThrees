@@ -10,8 +10,8 @@ import Foundation
 
 class StartCellSelectionCMD : GameCMD {
     
-    var comparator: (_: BgCell) -> Bool
-    var onSelectCmd: RunOnNodeCMD //@todo: 
+    var comparator: CellComparator
+    var onSelectCmd: RunOnNodeCMD
     
     init(gameModel: GameModel,
          comparator: @escaping (_: BgCell) -> Bool,

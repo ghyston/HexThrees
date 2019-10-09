@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-typealias CellComparator = (_ cell: BgCell) -> Bool //@todo: use it!
+typealias CellComparator = (_ cell: BgCell) -> Bool
 
 protocol ICellsStatisticCalculator {
     
@@ -74,17 +74,17 @@ class HexField {
         return bgHexes[index]
     }
     
-    func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
+    func getBgCells(compare: CellComparator) -> [BgCell] {
         return self.bgHexes.filter(compare)
     }
     
-    func hasBgCells(compare: (_: BgCell) -> Bool) -> Bool {
+    func hasBgCells(compare: CellComparator) -> Bool {
         return self.bgHexes.first(where: compare) != nil
     }
     
     func getBgCellsWithPriority(
-        required: (_: BgCell) -> Bool,
-        priority: (_: BgCell) -> Bool...) -> [BgCell] {
+        required: CellComparator,
+        priority: CellComparator...) -> [BgCell] {
         let cells = getBgCells(compare: required)
         var preferedCells = cells
         for preferFilter in priority {
@@ -93,7 +93,7 @@ class HexField {
         return preferedCells.count > 0 ? preferedCells : cells
     }
     
-    func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
+    func countBgCells(compare: CellComparator) -> Int {
         return self.bgHexes.filter(compare).count
     }
     

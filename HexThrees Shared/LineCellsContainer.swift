@@ -26,7 +26,7 @@ class LineCellsContainer {
         return cells[index];
     }
     
-    func findNext(startIndex: Int, condition: (BgCell) -> Bool) -> (index: Int, cell: BgCell)? {
+    func findNext(startIndex: Int, condition: CellComparator) -> (index: Int, cell: BgCell)? {
         
         for (index, cell) in cells[startIndex...].enumerated() {
             if condition(cell) {
