@@ -32,6 +32,12 @@ class CollectableBtn : SKNode, AnimatedNode {
             selector: #selector(onCollectableUpdate),
             name: .updateCollectables,
             object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(onCollectableUse),
+            name: .useCollectables,
+            object: nil)
     }
     
     func updateAnimation(_ delta: TimeInterval) {
@@ -57,7 +63,27 @@ class CollectableBtn : SKNode, AnimatedNode {
             from: start,
             to: start + step)
         self.playback?.start(
-            duration: 1.0,
+            duration: 1.0, //@todo: duration hardcoded!
+            reversed: false,
+            repeated: false,
+            onFinish: self.removeAnimation)
+    }
+    
+    @objc func onCollectableUse(notification: Notification) {
+        if notification.object as? BonusType != self.type {
+            return
+        }
+        
+        guard let collectable = self.gameModel.collectableBonuses[self.type] else {
+            return
+        }
+        
+        self.playback = Playback()
+        self.playback?.setRange(
+            from: Double(collectable.maxValue),
+            to: 0.0)
+        self.playback?.start(
+            duration: 1.0, //@todo: duration hardcoded!
             reversed: false,
             repeated: false,
             onFinish: self.removeAnimation)
@@ -68,10 +94,20 @@ class CollectableBtn : SKNode, AnimatedNode {
     }
     
     func onClick() {
+        //@todo: what will be when other collectable already clicked?
+        //@todo: good testcase 🤔
         if self.gameModel.collectableBonuses[self.type]?.isFull == true {
-            BonusFabric.collectableAction(
-                bonus: self.type,
-                gameModel: self.gameModel)?
+            
+            guard let collectableBonus
+                = BonusFabric.collectableBonusCMD(bonus: self.type, gameModel: self.gameModel) else {
+                    return
+            }
+            
+            self.gameModel.selectedBonusType = self.type
+            StartCellSelectionCMD(
+                gameModel: gameModel,
+                comparator: collectableBonus.comparator,
+                onSelect: collectableBonus.cmd)
                 .run()
         }
     }

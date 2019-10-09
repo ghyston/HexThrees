@@ -541,7 +541,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
-            endingLineNumber = "36">
+            endingLineNumber = "36"
+            landmarkName = "finishSwype()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1150,7 +1152,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "removeShader()"
+            landmarkName = "removeGameCell()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1368,8 +1370,8 @@
             filePath = "HexThrees Shared/Commands/SelectNodeCMD.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "run()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1378,7 +1380,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F7FDCAD7-91BE-4C42-90D5-F41278C4E239"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HexThrees Shared/Nodes/CollectableBtn.swift"
@@ -1386,7 +1388,39 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
-            landmarkName = "onClick()"
+            landmarkName = "CollectableBtn"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "543C7E5B-C7EC-4EB2-A8B1-BAA4111A9CEE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HexThrees Shared/Nodes/SelectableNode.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "SelectableNode"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5B6F9FD-B52B-4ABF-B0CA-DD12E1C56DA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HexThrees iOS/GameVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "gestureRecognizer(_:shouldReceive:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

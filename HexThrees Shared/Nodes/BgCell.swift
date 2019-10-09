@@ -9,7 +9,9 @@
 import Foundation
 import SpriteKit
 
-class BgCell: SKNode, HexNode, BlockableNode, BonusableNode {
+class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode {
+    
+    var canBeSelected: Bool = false
     
     var playback: IPlayback?
     var hexShape : SKShapeNode

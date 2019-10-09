@@ -26,6 +26,8 @@ class GameModel {
     var scoreMultiplier : Int = 1
     var turnsWithoutBonus : Int = 0
     
+    var selectedBonusType : BonusType?
+    var selectCMD : RunOnNodeCMD?
     var collectableBonuses = [BonusType: CollectableBonusModel]()
     
     func recalculateScoreBaff(){

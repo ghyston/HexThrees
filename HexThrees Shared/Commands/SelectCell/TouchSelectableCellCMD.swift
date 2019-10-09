@@ -1,0 +1,26 @@
+//
+//  SelectCellCMD.swift
+//  HexThrees iOS
+//
+//  Created by Ilja Stepanow on 09.10.19.
+//  Copyright © 2019 Ilja Stepanow. All rights reserved.
+//
+
+import Foundation
+
+class TouchSelectableCellCMD : RunOnNodeCMD {
+    
+    override func run() {
+        
+        if  node == nil ||
+            node?.canBeSelected == false ||
+            self.gameModel.selectedBonusType == nil ||
+            self.gameModel.selectCMD == nil {
+            return;
+        }
+        
+        NotificationCenter.default.post(name: .useCollectables, object: self.gameModel.selectedBonusType)
+        self.gameModel.selectCMD?.setup(node: node!).run()
+        EndCellSelectionCMD(self.gameModel).run()
+    }
+}

@@ -9,6 +9,8 @@
 import Foundation
 import SpriteKit
 
+typealias CellComparator = (_ cell: BgCell) -> Bool //@todo: use it!
+
 protocol ICellsStatisticCalculator {
     
     func next(cell: BgCell)

@@ -18,4 +18,5 @@ extension NSNotification.Name {
     static let scoreBuffUpdate = Notification.Name(rawValue: "score_buff_update")
     static let pauseTimers = Notification.Name(rawValue: "pause_timers")
     static let updateCollectables = Notification.Name(rawValue: "update_collectables")
+    static let useCollectables = Notification.Name(rawValue: "use_collectables")
 }

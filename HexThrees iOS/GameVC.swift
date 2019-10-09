@@ -253,6 +253,15 @@ extension GameVC: UIGestureRecognizerDelegate {
                     button.onClick()
                     return false
                 }
+                
+                if let bgCell = node as? BgCell {
+                    if bgCell.canBeSelected {
+                        TouchSelectableCellCMD(self.gameModel!)
+                            .setup(node: bgCell)
+                            .run()
+                        return false
+                    }
+                }
             }
         }
 

@@ -49,10 +49,11 @@ class BonusFabric {
         }
     }
     
-    class func collectableAction(bonus type: BonusType, gameModel: GameModel) -> GameCMD? {
+    class func collectableBonusCMD(bonus type: BonusType, gameModel: GameModel) -> (comparator: (_:BgCell)->Bool, cmd: RunOnNodeCMD)? {
+        
         switch type {
         case .COLLECTABLE_TYPE_1:
-            return SelectNodeCMD(gameModel) //@todo: use actual gameplay command
+            return (HexField.freeCell, StuckCellCMD(gameModel))
         default:
             return nil
         }
