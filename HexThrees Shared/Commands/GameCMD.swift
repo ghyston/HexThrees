@@ -37,3 +37,13 @@ class GameCMD : CMD {
     }
 }
 
+class RunOnNodeCMD : GameCMD {
+    
+    var node: BgCell?
+    
+    func setup(node : BgCell) -> RunOnNodeCMD {
+        self.node = node
+        return self
+    }
+}
+

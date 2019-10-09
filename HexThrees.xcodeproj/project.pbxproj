@@ -26,7 +26,6 @@
 		3F083AA2234CEE68000F5B6B /* EndCellSelectionCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F083AA1234CEE68000F5B6B /* EndCellSelectionCMD.swift */; };
 		3F083AA4234CEECF000F5B6B /* StartCellSelectionCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F083AA3234CEECE000F5B6B /* StartCellSelectionCMD.swift */; };
 		3F083AA6234DAF74000F5B6B /* TouchSelectableCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F083AA5234DAF74000F5B6B /* TouchSelectableCellCMD.swift */; };
-		3F083AA9234DB09A000F5B6B /* RunOnNodeCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F083AA8234DB09A000F5B6B /* RunOnNodeCMD.swift */; };
 		3F11087D2190B591007743DF /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11087C2190B591007743DF /* FileHelper.swift */; };
 		3F11E62A23489036003294EC /* StrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62923489036003294EC /* StrategiesTests.swift */; };
 		3F11E62E234BA188003294EC /* SelectableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62D234BA188003294EC /* SelectableNode.swift */; };
@@ -170,7 +169,6 @@
 		3F083AA1234CEE68000F5B6B /* EndCellSelectionCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndCellSelectionCMD.swift; sourceTree = "<group>"; };
 		3F083AA3234CEECE000F5B6B /* StartCellSelectionCMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCellSelectionCMD.swift; sourceTree = "<group>"; };
 		3F083AA5234DAF74000F5B6B /* TouchSelectableCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchSelectableCellCMD.swift; sourceTree = "<group>"; };
-		3F083AA8234DB09A000F5B6B /* RunOnNodeCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOnNodeCMD.swift; sourceTree = "<group>"; };
 		3F11087C2190B591007743DF /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		3F11E62923489036003294EC /* StrategiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategiesTests.swift; sourceTree = "<group>"; };
 		3F11E62D234BA188003294EC /* SelectableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableNode.swift; sourceTree = "<group>"; };
@@ -352,6 +350,7 @@
 				3F21DF5120C9989D00A979D5 /* PaletteManager.swift */,
 				3FB7039C20D967AF009718F3 /* LineCellsContainer.swift */,
 				3FAC644D20B5DE010083C56C /* GameModel.swift */,
+				3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */,
 				3FAC647820BDC4040083C56C /* SwipeStatus.swift */,
 				3FB703AE20E16613009718F3 /* FieldGeometry.swift */,
 				3FB703B120E168EE009718F3 /* GameParams.swift */,
@@ -437,6 +436,18 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		3F321932234E519800526D96 /* GameState */ = {
+			isa = PBXGroup;
+			children = (
+				3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */,
+				3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */,
+				3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */,
+				3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */,
+				3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */,
+			);
+			path = GameState;
+			sourceTree = "<group>";
+		};
 		3F60069021B6F7C800BD4DCA /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +485,7 @@
 		3FAC644920B5DD7E0083C56C /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				3F321932234E519800526D96 /* GameState */,
 				3F083AA7234DAF88000F5B6B /* SelectCell */,
 				3F643DD9229ABBA600446DBC /* Timer */,
 				3FB703AA20E16004009718F3 /* MoveCells */,
@@ -489,12 +501,6 @@
 				3FE9202E20D1AFDD009B7370 /* DoSwipeCMD.swift */,
 				3FE9203420D232F1009B7370 /* DebugPaletteCMD.swift */,
 				3FB703A520DA1FEC009718F3 /* UpdateScoreCMD.swift */,
-				3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */,
-				3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */,
-				3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */,
-				3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */,
-				3F95A6CC20EFFF900052E1C6 /* LoadGameCMD.swift */,
-				3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */,
 				3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */,
 				3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */,
 				3F432D81213912FE00AF3DC0 /* AddScoreBaffCMD.swift */,
@@ -506,7 +512,6 @@
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
 				3F29E293232F5DAA00091D0B /* IncCollectableBonusCMD.swift */,
 				3F11E62F234BA4F1003294EC /* StuckCellCMD.swift */,
-				3F083AA8234DB09A000F5B6B /* RunOnNodeCMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -723,7 +728,6 @@
 				3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */,
 				3F06487821611AA6005461C7 /* MoveLeftIterator.swift in Sources */,
 				3FAC646D20BC85320083C56C /* MoveCellSpriteCMD.swift in Sources */,
-				3F083AA9234DB09A000F5B6B /* RunOnNodeCMD.swift in Sources */,
 				3F92C7D322AA347400B477A3 /* StressTimer.swift in Sources */,
 				3FD9C6972314548800137319 /* HexField.swift in Sources */,
 				3F8D11572280A9AE0034BC6D /* HelpSwipeScene.swift in Sources */,
