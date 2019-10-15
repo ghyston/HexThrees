@@ -22,7 +22,8 @@ class HelpSwipeNode : SKNode {
         
         addChild(self.fieldOutline)
         
-        model.field.addToScene(scene: scene)
+        let addToScene : (_ : BgCell) -> Void = { self.scene?.addChild($0) }
+        model.field.executeForAll(lambda: addToScene)
         
         for _ in 0 ... 4 {
             AddRandomCellCMD(model)

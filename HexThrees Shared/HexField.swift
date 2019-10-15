@@ -48,13 +48,6 @@ class HexField {
         bgHexes.removeAll()
     }
     
-    //@todo: how to create lambda with prdefined first argument?
-    func addToScene(scene: SKScene) {
-        for i in 0 ..< bgHexes.count {
-            scene.addChild(self[i])
-        }
-    }
-    
     subscript (index: Int) -> BgCell {
         return bgHexes[index]
     }

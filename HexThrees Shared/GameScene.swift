@@ -40,6 +40,18 @@ class GameScene: SKScene {
         addChild(collectableBonusBtn2)
     }
     
+    func addFieldOutline(_ model: GameModel) {
+        
+        let existingBg = childNode(withName: FieldOutline.defaultNodeName)
+        let fieldBg = existingBg as? FieldOutline ?? FieldOutline()
+        if existingBg == nil {
+            fieldBg.name = FieldOutline.defaultNodeName
+            addChild(fieldBg)
+        }
+        
+        fieldBg.recalculateFieldBg(model: model)
+    }
+    
     //@note: run it after everything is initialised
     func addTestNode() {
         let shape = SKShapeNode.init(rectOf: CGSize(width: 200, height: 200))

@@ -9,6 +9,8 @@
 import Foundation
 
 /**
+ Singletones container
+ 
  Usage:
  
  let container = Container()

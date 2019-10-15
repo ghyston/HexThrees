@@ -32,6 +32,8 @@ class GameVC: UIViewController {
     
     let defaults = UserDefaults.standard
     
+    // MARK: UIViewController things
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +48,144 @@ class GameVC: UIViewController {
         skView.showsFPS = true
         skView.showsNodeCount = false
         
+        registerObservers()
+        startGame()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scene?.updateSafeArea(
+            bounds: UIScreen.main.bounds,
+            insects: view.safeAreaInsets)
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .allButUpsideDown
+        } else {
+            return .all
+        }
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Release any cached data, images, etc that aren't in use.
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        let pal : IPaletteManager? = ContainerConfig.instance.tryResolve()
+        return pal?.statusBarStyle() ?? .`default`
+    }
+    
+    // MARK: Game starters
+    
+    private func createModel(_ params: GameParams) {
+        let strategy = MerginStrategyFabric.createByName(params.strategy)
+        strategy.prefilValues(maxIndex: params.fieldSize.cellsCount)
+        
+        self.gameModel = GameModel(
+            screenWidth: view.frame.width,
+            fieldSize: params.fieldSize.rawValue,
+            strategy: strategy,
+            motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
+            hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
+            timerEnabled: params.stressTimer == StressTimerStatus.Enabled)
+        ContainerConfig.instance.register(self.gameModel!)
+    }
+    
+    private func loadSettings(fieldSizeFromSave : FieldSize?) -> GameParams{
+        
+        let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
+        let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
+        let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
+        let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
+        let prefStress = StressTimerStatus(rawValue: defaults.integer(forKey: SettingsKey.StressTimer.rawValue))
+        
+        return GameParams(
+            fieldSize: (fieldSizeFromSave ?? prefFieldSize) ?? self.defaultGameParams.fieldSize,
+            randomElementsCount: self.defaultGameParams.randomElementsCount,
+            blockedCellsCount: self.defaultGameParams.blockedCellsCount,
+            motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
+            hapticFeedback: prefHapticFeedback ?? self.defaultGameParams.hapticFeedback,
+            strategy: self.defaultGameParams.strategy,
+            palette: prefPalette ?? self.defaultGameParams.palette,
+            stressTimer: prefStress ?? self.defaultGameParams.stressTimer)
+    }
+    
+    private func createPalette(_ palette: ColorSchemaType) {
+        let pal : IPaletteManager = PaletteManager(palette)
+        ContainerConfig.instance.register(pal)
+    }
+    
+    private func addToScene (cell : BgCell) -> Void {
+        self.scene?.addChild(cell)
+    }
+    
+    private func updateSceneColor() {
+        
+        let pal : IPaletteManager = ContainerConfig.instance.resolve()
+        
+        //@todo: find, how it works, may be it would be possible to use to switch palette with animation
+        /*UIView.animate(withDuration: 1.0) {
+            
+        }*/
+        
+        setNeedsStatusBarAppearanceUpdate()
+        
+        self.scene?.backgroundColor = pal.sceneBgColor()
+        if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
+            fieldOutine.updateColor(color: pal.fieldOutlineColor())
+        }
+    }
+    
+    // common parts between start and restart
+    private func createGame(_ settings: GameParams) {
+        createPalette(settings.palette)
+        createModel(settings)
+        
+        self.scene?.addFieldOutline(self.gameModel!)
+        self.gameModel?.field.executeForAll(lambda: self.addToScene)
+        updateSceneColor()
+    }
+    
+    private func startGame() {
+        let save = FileHelper.loadSave()  //@todo: use FileHelper by interface ?
+        let settings = loadSettings(fieldSizeFromSave: save?.fieldSize)
+        createGame(settings)
+        
+        //DebugPaletteCMD(self.gameModel!).run()
+        if save != nil {
+            LoadGameCMD(self.gameModel!).run(save!)
+        }
+        else {
+            AddRandomElementsCMD(self.gameModel!).run(
+                cells: settings.randomElementsCount,
+                blocked: settings.blockedCellsCount)
+        }
+        
+        // Delay one second because random cells appers with random delay
+        CheckGameEndCMD(self.gameModel!).runWithDelay(delay: 1.0)
+        
+        //self.scene!.addTestNode()
+    }
+    
+    private func restartGame() {
+        CleanGameCMD(self.gameModel!).run()
+        let settings = loadSettings(fieldSizeFromSave: nil)
+        createGame(settings)
+        
+        AddRandomElementsCMD(self.gameModel!).run(
+            cells: settings.randomElementsCount,
+            blocked: settings.blockedCellsCount)
+    }
+    
+    // MARK: Callbacks
+    
+    private func registerObservers() {
         let recognizer = HexSwipeGestureRecogniser(
             target: self,
             action:#selector(handleSwipe(recognizer:)))
@@ -75,108 +215,10 @@ class GameVC: UIViewController {
             selector: #selector(onScoreBuffUpdate),
             name: .scoreBuffUpdate,
             object: nil)
-        
-        
-        startGame(restart: false)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scene?.updateSafeArea(
-            bounds: UIScreen.main.bounds,
-            insects: view.safeAreaInsets)
-    }
-    
-    private func loadSettings(fieldSizeFromSave : FieldSize?) -> GameParams{
-        
-        let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
-        let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
-        let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
-        let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
-        let prefStress = StressTimerStatus(rawValue: defaults.integer(forKey: SettingsKey.StressTimer.rawValue))
-        
-        return GameParams(
-            fieldSize: (fieldSizeFromSave ?? prefFieldSize) ?? self.defaultGameParams.fieldSize,
-            randomElementsCount: self.defaultGameParams.randomElementsCount,
-            blockedCellsCount: self.defaultGameParams.blockedCellsCount,
-            motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
-            hapticFeedback: prefHapticFeedback ?? self.defaultGameParams.hapticFeedback,
-            strategy: self.defaultGameParams.strategy,
-            palette: prefPalette ?? self.defaultGameParams.palette,
-            stressTimer: prefStress ?? self.defaultGameParams.stressTimer)
-    }
-    
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        
-        let pal : IPaletteManager? = ContainerConfig.instance.tryResolve()
-        return pal?.statusBarStyle() ?? .`default`
-    }
-    
-    private func loadPalette(_ palette: ColorSchemaType) {
-        
-        let pal : IPaletteManager = PaletteManager(palette)
-        ContainerConfig.instance.register(pal)
-    }
-    
-    private func startGame(restart: Bool) {
-        
-        if restart && self.gameModel != nil {
-            CleanGameCMD(self.gameModel!).run()
-        }
-        
-        let save = restart ? nil : FileHelper.loadSave() //@todo: use FileHelper by interface ?
-        let settings = loadSettings(fieldSizeFromSave: save?.fieldSize)
-        loadPalette(settings.palette)
-        
-        let cmd = StartGameCMD(
-            scene: self.scene!,
-            view: self.view as! SKView,
-            params: settings)
-        cmd.run()
-        
-        self.gameModel = cmd.gameModel
-        ContainerConfig.instance.register(self.gameModel!)
-        setSceneColor()
-        
-        //DebugPaletteCMD(self.gameModel!).run()
-        if save != nil && !restart {
-            LoadGameCMD(self.gameModel!).run(save!)
-        }
-        else {
-            AddRandomElementsCMD(self.gameModel!).run(
-                cells: settings.randomElementsCount,
-                blocked: settings.blockedCellsCount)
-        }
-        
-        // do not start timer after starting from fresh
-        //StartStressTimerCMD(self.gameModel!).run()
-        
-        // Delay one second because random cells appers with random delay
-        CheckGameEndCMD(self.gameModel!).runWithDelay(delay: 1.0)
-        
-        //self.scene!.addTestNode()
     }
     
     @objc func onGameReset(notification: Notification) {
-        
-        startGame(restart: true)
+        restartGame()
     }
     
     @objc func onGameEnd(notification: Notification) {
@@ -190,8 +232,7 @@ class GameVC: UIViewController {
     }
     
     @objc func onColorChange(notification: Notification) {
-        
-        setSceneColor()
+        updateSceneColor()
     }
     
     @objc func onScoreBuffUpdate(notification: Notification) {
@@ -199,23 +240,6 @@ class GameVC: UIViewController {
         let multiplier = notification.object as? Int ?? 1
         scoreMultiplierLabel.text = multiplier == 1 ?
             "" : "X\(multiplier)"
-    }
-    
-    private func setSceneColor() {
-        
-        let pal : IPaletteManager = ContainerConfig.instance.resolve()
-        
-        //@todo: find, how it works, may be it would be possible to use to switch palette with animation
-        /*UIView.animate(withDuration: 1.0) {
-            
-        }*/
-        
-        setNeedsStatusBarAppearanceUpdate()
-        
-        self.scene?.backgroundColor = pal.sceneBgColor()
-        if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
-            fieldOutine.updateColor(color: pal.fieldOutlineColor())
-        }
     }
     
     @objc private func showEndGameVC() {
@@ -230,6 +254,8 @@ class GameVC: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
 }
+
+// MARK: Gesture recognizer
 
 extension GameVC: UIGestureRecognizerDelegate {
     

@@ -54,7 +54,6 @@
 		3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */; };
 		3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F45A13A232AB20A00157EDB /* blockStatic2.fsh */; };
 		3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F45A13C232AB82500157EDB /* blockAnimated2.fsh */; };
-		3F4FA81920E2DFCD00971892 /* StartGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */; };
 		3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81B20E57F3100971892 /* PauseVC.swift */; };
 		3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA82120E5FA2800971892 /* ContainerConfig.swift */; };
 		3F4FA82520E5FA2900971892 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA82220E5FA2800971892 /* Container.swift */; };
@@ -197,7 +196,6 @@
 		3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerCMD.swift; sourceTree = "<group>"; };
 		3F45A13A232AB20A00157EDB /* blockStatic2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockStatic2.fsh; sourceTree = "<group>"; };
 		3F45A13C232AB82500157EDB /* blockAnimated2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockAnimated2.fsh; sourceTree = "<group>"; };
-		3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameCMD.swift; sourceTree = "<group>"; };
 		3F4FA81B20E57F3100971892 /* PauseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseVC.swift; sourceTree = "<group>"; };
 		3F4FA82120E5FA2800971892 /* ContainerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerConfig.swift; sourceTree = "<group>"; };
 		3F4FA82220E5FA2800971892 /* Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -439,7 +437,6 @@
 		3F321932234E519800526D96 /* GameState */ = {
 			isa = PBXGroup;
 			children = (
-				3F4FA81820E2DFCD00971892 /* StartGameCMD.swift */,
 				3F95A6C220E8F1610052E1C6 /* CleanGameCMD.swift */,
 				3F95A6C820EC955C0052E1C6 /* CheckGameEndCMD.swift */,
 				3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */,
@@ -701,7 +698,6 @@
 				3F0648802166873D005461C7 /* AfterSwipeCMD.swift in Sources */,
 				3F60069221B6F7DC00BD4DCA /* HexNode.swift in Sources */,
 				3FE9203520D232F1009B7370 /* DebugPaletteCMD.swift in Sources */,
-				3F4FA81920E2DFCD00971892 /* StartGameCMD.swift in Sources */,
 				3FE9202F20D1AFDD009B7370 /* DoSwipeCMD.swift in Sources */,
 				3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
 				3F21DF4920C8F79600A979D5 /* SKColor.extensions.swift in Sources */,

@@ -62,9 +62,8 @@ class PauseVC : UIViewController {
             NSAttributedString.Key.foregroundColor: UIColor.white
             ], for: .selected)
         
-        let oldPlette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
-        
-        switch oldPlette {
+        let oldPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
+        switch oldPalette {
         case .Gray?:
             paletteChanger.selectedSegmentIndex = 1
         case .Light?:
