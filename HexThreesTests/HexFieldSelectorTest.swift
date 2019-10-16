@@ -93,7 +93,4 @@ class HexFieldSelectorTest : XCTestCase {
         //Then
         XCTAssertEqual(freeCells.count, 5)
     }
-    
-    
-    
 }

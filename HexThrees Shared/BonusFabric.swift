@@ -100,7 +100,7 @@ class BonusFabric {
             type: .BLOCK_CELL,
             spriteName: spriteName(bonus: .BLOCK_CELL),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: BlockRandomCellCMD(gameModel))
+            onPick: BlockRandomCellCmd(gameModel))
     }
     
     class func createX2Bonus(gameModel: GameModel) -> BonusNode {
@@ -109,7 +109,7 @@ class BonusFabric {
             type: .X2_POINTS,
             spriteName: spriteName(bonus: .X2_POINTS),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: AddScoreBaffCMD(gameModel, factor: 2))
+            onPick: AddScoreBaffCMD(gameModel).setup(factor: 2))
     }
     
     class func createX3Bonus(gameModel: GameModel) -> BonusNode {
@@ -118,7 +118,7 @@ class BonusFabric {
             type: .X3_POINTS,
             spriteName: spriteName(bonus: .X3_POINTS),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: AddScoreBaffCMD(gameModel, factor: 3))
+            onPick: AddScoreBaffCMD(gameModel).setup(factor: 3))
     }
     
     class func createCollectableType1Bonus(gameModel: GameModel) -> BonusNode {
@@ -127,7 +127,7 @@ class BonusFabric {
             type: .COLLECTABLE_TYPE_1,
             spriteName: spriteName(bonus: .COLLECTABLE_TYPE_1),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: IncCollectableBonusCMD(gameModel, type: .COLLECTABLE_TYPE_1))
+            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_TYPE_1))
     }
     
     class func createCollectableType2Bonus(gameModel: GameModel) -> BonusNode {
@@ -136,7 +136,7 @@ class BonusFabric {
             type: .COLLECTABLE_TYPE_2,
             spriteName: spriteName(bonus: .COLLECTABLE_TYPE_2),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: IncCollectableBonusCMD(gameModel, type: .COLLECTABLE_TYPE_2))
+            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_TYPE_2))
     }
     
 }

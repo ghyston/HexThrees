@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AfterSwipeCMD : GameCMD {
+class AfterSwipeCmd : GameCMD {
     
     override func run() {
         if !gameModel.swipeStatus.isSomethingChanged {
@@ -23,8 +23,8 @@ class AfterSwipeCMD : GameCMD {
             RollbackTimerCMD(gameModel).run()
             StartStressTimerCMD(gameModel).runWithDelay(delay: GameConstants.StressTimerRollbackInterval)
         }
-        AddRandomCellCMD(gameModel).skipRepeat().run()
+        AddRandomCellCmd(gameModel).skipRepeat().run()
         DropRandomBonusCMD(gameModel).run()
-        CheckGameEndCMD(gameModel).run()
+        CheckGameEndCmd(gameModel).run()
     }
 }

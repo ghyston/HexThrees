@@ -61,7 +61,7 @@ class HelpSwipeScene : SKScene, HelpScene {
             
             while let line = iterator.next() {
                 if(line.check(strategy: self.model.strategy)) {
-                    DoSwipeCMD(self.model).run(direction: direction.inverse())
+                    CmdFactory().DoSwipe(direction:  direction.inverse()).run()
                     showSwipeGestureNode(direction.inverse())
                     return
                 }

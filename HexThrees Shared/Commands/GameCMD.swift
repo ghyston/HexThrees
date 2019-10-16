@@ -25,10 +25,14 @@ extension CMD {
     }
 }
 
+struct CmdParam {
+    
+}
+
 class GameCMD : CMD {
     
     let gameModel: GameModel
-    init(_ gameModel: GameModel) {
+    required init(_ gameModel: GameModel) {
         self.gameModel = gameModel
     }
     

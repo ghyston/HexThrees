@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CheckGameEndCMD : GameCMD {
+class CheckGameEndCmd : GameCMD {
     
     override func run() {
         

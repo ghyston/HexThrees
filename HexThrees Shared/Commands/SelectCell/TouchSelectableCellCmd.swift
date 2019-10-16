@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TouchSelectableCellCMD : RunOnNodeCMD {
+class TouchSelectableCellCmd : RunOnNodeCMD {
     
     override func run() {
         

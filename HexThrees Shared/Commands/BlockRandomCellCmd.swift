@@ -43,7 +43,7 @@ class EmptyCellDistributionCalculator: ICellsStatisticCalculator {
     }
 }
 
-class BlockRandomCellCMD : GameCMD {
+class BlockRandomCellCmd : GameCMD {
     
     override func run() {
         

@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class CleanGameCMD : GameCMD {
+class CleanGameCmd : GameCMD {
     
     override func run() {
         

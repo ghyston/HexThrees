@@ -8,15 +8,15 @@
 
 import Foundation
 
-extension AddRandomCellCMD {
+extension AddRandomCellCmd {
     
-    func forTutorial() -> AddRandomCellCMD {
+    func forTutorial() -> AddRandomCellCmd {
         
         isTutorial = true
         return self
     }
     
-    func skipRepeat() -> AddRandomCellCMD {
+    func skipRepeat() -> AddRandomCellCmd {
         
         autoRepeat = false
         return self

@@ -8,9 +8,21 @@
 
 import Foundation
 
-class LoadGameCMD: GameCMD {
+class LoadGameCmd: GameCMD {
     
-    func run(_ gameSave : SavedGame) {
+    private var gameSave : SavedGame?
+    
+    func setup(_ gameSave : SavedGame) -> GameCMD {
+        self.gameSave = gameSave
+        return self
+    }
+    
+    override func run() {
+        
+        guard let gameSave = self.gameSave else {
+            return
+        }
+        
         //@todo: remove assets from final build, make soft loading,
         assert(gameModel.field.width * gameModel.field.height == gameSave.cells.count, "on load game configs are different")
         

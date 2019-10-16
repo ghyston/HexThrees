@@ -26,7 +26,7 @@ class HelpSwipeNode : SKNode {
         model.field.executeForAll(lambda: addToScene)
         
         for _ in 0 ... 4 {
-            AddRandomCellCMD(model)
+            AddRandomCellCmd(model)
                 .forTutorial()
                 .run()
         }

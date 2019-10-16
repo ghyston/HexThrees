@@ -8,10 +8,9 @@
 
 import Foundation
 
-class ApplyScoreBuffCMD : GameCMD {
+class ApplyScoreBuffCmd : GameCMD {
     
     private func buffStillAlive(buff: ScoreBuff) -> Bool {
-        
         return buff.turnsToApply > 0
     }
     

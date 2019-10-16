@@ -26,7 +26,6 @@ class StartStressTimerCMD : GameCMD {
         
         bgCell.playCircleAnimation()
         
-        
         self.gameModel.stressTimer.startNew(
             timer: AddCellByTimerCMD(self.gameModel)
                 .runWithDelay(delay: GameConstants.StressTimerInterval),

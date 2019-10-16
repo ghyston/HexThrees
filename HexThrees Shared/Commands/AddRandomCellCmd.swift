@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AddRandomCellCMD : GameCMD {
+class AddRandomCellCmd : GameCMD {
     
     internal var isTutorial : Bool = false
     internal var autoRepeat : Bool = true
@@ -23,7 +23,7 @@ class AddRandomCellCMD : GameCMD {
             return
         }
         
-        AddGameCellCMD(self.gameModel)
+        AddGameCellCmd(self.gameModel)
             .setup(addTo: bgCell)
             .run()
         

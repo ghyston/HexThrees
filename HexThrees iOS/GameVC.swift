@@ -147,6 +147,9 @@ class GameVC: UIViewController {
         createPalette(settings.palette)
         createModel(settings)
         
+        let cmdFactory : ICmdFactory = GameCmdFactory(self.gameModel!)
+        ContainerConfig.instance.register(cmdFactory)
+        
         self.scene?.addFieldOutline(self.gameModel!)
         self.gameModel?.field.executeForAll(lambda: self.addToScene)
         updateSceneColor()
@@ -159,28 +162,31 @@ class GameVC: UIViewController {
         
         //DebugPaletteCMD(self.gameModel!).run()
         if save != nil {
-            LoadGameCMD(self.gameModel!).run(save!)
+            CmdFactory().LoadGame(save: save!).run()
         }
         else {
-            AddRandomElementsCMD(self.gameModel!).run(
-                cells: settings.randomElementsCount,
-                blocked: settings.blockedCellsCount)
+            CmdFactory()
+                .AddRandomElements(
+                    cells: settings.randomElementsCount,
+                    blocked: settings.blockedCellsCount)
+                .run()
         }
         
         // Delay one second because random cells appers with random delay
-        CheckGameEndCMD(self.gameModel!).runWithDelay(delay: 1.0)
-        
+        CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
         //self.scene!.addTestNode()
     }
     
     private func restartGame() {
-        CleanGameCMD(self.gameModel!).run()
+        CmdFactory().CleanGame().run()
         let settings = loadSettings(fieldSizeFromSave: nil)
         createGame(settings)
         
-        AddRandomElementsCMD(self.gameModel!).run(
-            cells: settings.randomElementsCount,
-            blocked: settings.blockedCellsCount)
+        CmdFactory()
+            .AddRandomElements(
+                cells: settings.randomElementsCount,
+                blocked: settings.blockedCellsCount)
+            .run()
     }
     
     // MARK: Callbacks
@@ -260,12 +266,9 @@ class GameVC: UIViewController {
 extension GameVC: UIGestureRecognizerDelegate {
     
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
-        
-        DoSwipeCMD(self.gameModel!)
-            .run(direction: recognizer.direction)
-        ApplyScoreBuffCMD(self.gameModel!).run()
-        AfterSwipeCMD(self.gameModel!)
-            .runWithDelay(delay: gameModel!.swipeStatus.delay)
+        CmdFactory().DoSwipe(direction: recognizer.direction).run()
+        CmdFactory().ApplyScoreBuff().run()
+        CmdFactory().AfterSwipe().runWithDelay(delay: gameModel!.swipeStatus.delay)
     }
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
@@ -282,7 +285,8 @@ extension GameVC: UIGestureRecognizerDelegate {
                 
                 if let bgCell = node as? BgCell {
                     if bgCell.canBeSelected {
-                        TouchSelectableCellCMD(self.gameModel!)
+                        CmdFactory()
+                            .TouchSelectableCell()
                             .setup(node: bgCell)
                             .run()
                         return false

@@ -15,7 +15,7 @@ class AddCellByTimerCMD : GameCMD {
             return
         }
         
-        AddGameCellCMD(self.gameModel)
+        AddGameCellCmd(self.gameModel)
             .setup(addTo: bgCell)
             .run()
         

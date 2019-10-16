@@ -10,16 +10,14 @@ import Foundation
 
 class AddScoreBaffCMD: GameCMD {
     
-    let factor: Int
+     private var factor: Int = 0
     
-    init(_ gameModel: GameModel, factor: Int) {
-        
+    func setup(factor: Int) -> GameCMD{
         self.factor = factor
-        super.init(gameModel)
+        return self
     }
     
     override func run() {
-        
         self.gameModel.scoreBuffs.append(
             ScoreBuff(
                 turnsToApply: 3,

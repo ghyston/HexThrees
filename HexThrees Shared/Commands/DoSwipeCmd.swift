@@ -8,10 +8,16 @@
 
 import Foundation
 
-class DoSwipeCMD : GameCMD {
+class DoSwipeCmd : GameCMD {
     
-    func run(direction : SwipeDirection) {
-
+    private var direction = SwipeDirection.Unknown
+    
+    func setup(direction : SwipeDirection) -> GameCMD {
+        self.direction = direction
+        return self
+    }
+    
+    override func run() {
         guard let iterator = IteratorFabric.create(self.gameModel, direction) else {
             return
         }
@@ -20,13 +26,13 @@ class DoSwipeCMD : GameCMD {
         self.gameModel.hapticManager.warmup()
         
         while let container = iterator.next() {
-            MoveLineCMD(self.gameModel, cells: container).run()
+            MoveLineCMD(self.gameModel).setup(cells: container).run()
         }
         
         Timer.scheduledTimer(
             timeInterval: gameModel.swipeStatus.delay,
             target: self,
-            selector: #selector(DoSwipeCMD.finishSwype),
+            selector: #selector(DoSwipeCmd.finishSwype),
             userInfo: nil,
             repeats: false)
     }

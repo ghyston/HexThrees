@@ -8,20 +8,26 @@
 
 import Foundation
 
-class AddRandomElementsCMD : GameCMD {
+class AddRandomElementsCmd : GameCMD {
+    
+    private var cells : Int = 0
+    private var blocked : Int = 0
+    
+    func setup(_ cells: Int, _ blocked: Int) -> GameCMD {
+        self.cells = cells
+        self.blocked = blocked
+        return self
+    }
     
     func run(cells: Int, blocked: Int) {
-        
         for _ in 0 ..< cells {
-            
-            AddRandomCellCMD(gameModel)
+            AddRandomCellCmd(gameModel)
                 .skipRepeat()
                 .runWithDelay(delay: Double.random)
         }
         
         for _ in 0 ..< blocked {
-            
-            BlockRandomCellCMD(gameModel).run()
+            BlockRandomCellCmd(gameModel).run()
         }
     }
 }

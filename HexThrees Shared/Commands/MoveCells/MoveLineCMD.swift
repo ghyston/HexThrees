@@ -13,12 +13,11 @@ import SpriteKit
 // Try to move/merge cells in one dimension array from end to 0
 class MoveLineCMD : GameCMD {
     
-    private var cells : LineCellsContainer
+    private var cells : LineCellsContainer! //@todo: too bad
     
-    init(_ gameModel: GameModel, cells: LineCellsContainer) {
-        
+    func setup(cells: LineCellsContainer) -> GameCMD {
         self.cells = cells
-        super.init(gameModel)
+        return self
     }
     
     override func run() {

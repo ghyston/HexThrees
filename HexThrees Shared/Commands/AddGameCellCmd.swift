@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AddGameCellCMD : GameCMD {
+class AddGameCellCmd : GameCMD {
     
     var bgCell: BgCell?
     
