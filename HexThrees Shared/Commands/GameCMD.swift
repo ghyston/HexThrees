@@ -15,7 +15,6 @@ import Foundation
 extension CMD {
     
     func runWithDelay(delay : Double) -> Timer {
-        
         return Timer.scheduledTimer(
             timeInterval: delay,
             target: self,

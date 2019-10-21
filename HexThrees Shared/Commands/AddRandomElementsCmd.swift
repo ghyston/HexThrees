@@ -21,13 +21,13 @@ class AddRandomElementsCmd : GameCMD {
     
     func run(cells: Int, blocked: Int) {
         for _ in 0 ..< cells {
-            AddRandomCellCmd(gameModel)
-                .skipRepeat()
+            CmdFactory()
+                .AddRandomCellSkipRepeat()
                 .runWithDelay(delay: Double.random)
         }
         
         for _ in 0 ..< blocked {
-            BlockRandomCellCmd(gameModel).run()
+            CmdFactory().BlockRandomCell().run()
         }
     }
 }

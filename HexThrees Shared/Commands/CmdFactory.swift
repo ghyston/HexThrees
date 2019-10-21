@@ -13,7 +13,8 @@ protocol ICmdFactory {
     func IncCollectableBonus(type: BonusType) -> GameCMD
     func LoadGame(save: SavedGame) -> GameCMD
     func AddRandomElements(cells: Int, blocked: Int) -> GameCMD
-    func AddRandomCell() -> GameCMD
+    func AddRandomCellForTutorial() -> GameCMD
+    func AddRandomCellSkipRepeat() -> GameCMD
     func AddGameCell(addTo: BgCell) -> GameCMD
     func BlockRandomCell() -> GameCMD
     func CheckGameEnd() -> GameCMD
@@ -59,8 +60,12 @@ class GameCmdFactory : ICmdFactory {
         return AddRandomElementsCmd(self.gameModel).setup(cells, blocked)
     }
     
-    func AddRandomCell() -> GameCMD {
-        return AddRandomCellCmd(self.gameModel)
+    func AddRandomCellForTutorial() -> GameCMD {
+        return AddRandomCellCmd(self.gameModel).forTutorial()
+    }
+    
+    func AddRandomCellSkipRepeat() -> GameCMD {
+        return AddRandomCellCmd(self.gameModel).skipRepeat()
     }
     
     func AddGameCell(addTo: BgCell) -> GameCMD {

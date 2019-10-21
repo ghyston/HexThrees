@@ -23,7 +23,8 @@ class AfterSwipeCmd : GameCMD {
             RollbackTimerCMD(gameModel).run()
             StartStressTimerCMD(gameModel).runWithDelay(delay: GameConstants.StressTimerRollbackInterval)
         }
-        AddRandomCellCmd(gameModel).skipRepeat().run()
+        
+        CmdFactory().AddRandomCellSkipRepeat().run()
         DropRandomBonusCMD(gameModel).run()
         CheckGameEndCmd(gameModel).run()
     }

@@ -16,7 +16,7 @@ class StartStressTimerCMD : GameCMD {
             return
         }
         
-        var cells = self.gameModel.field.getBgCellsWithPriority(
+        let cells = self.gameModel.field.getBgCellsWithPriority(
             required: HexField.freeCell,
             priority: HexField.cellWoBonuses, HexField.cellWoShader)
         
