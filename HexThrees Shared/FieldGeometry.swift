@@ -60,6 +60,37 @@ class FieldGeometry {
         
         return ((fieldW + gap) / Double(hexCount) - gap) / 1.732
     }
+	
+	class func createGearPath(radIn: Double, radOut: Double, count: Int) -> CGPath {
+		
+		assert(radOut > radIn, "wrong radius")
+		assert(radOut > 0, "wrong out radius")
+		assert(radIn > 0, "wrong in radius")
+		assert(count >= 3, "wrong gear count")
+		
+		let gearPath = CGMutablePath.init()
+		let start = CGPoint.init(x: 0, y: radOut)
+		gearPath.move(to: start)
+		
+		let Δα = 6.28 / Double(count)
+		
+		for i in 0 ..< count {
+			let leftα = Δα * (Double(i) + 0.25)
+			let rightα = Δα * (Double(i) + 0.75)
+			
+			let p0 = CGPoint.init(x: radOut * cos(leftα), y: radOut * sin(leftα))
+			let p1 = CGPoint.init(x: radIn * cos(leftα), y: radIn * sin(leftα))
+			let p2 = CGPoint.init(x: radIn * cos(rightα), y: radIn * sin(rightα))
+			let p3 = CGPoint.init(x: radOut * cos(rightα), y: radOut * sin(rightα))
+			
+			gearPath.addLine(to: p0)
+			gearPath.addLine(to: p1)
+			gearPath.addLine(to: p2)
+			gearPath.addLine(to: p3)
+		}
+		gearPath.addLine(to: start)
+		return gearPath
+	}
     
     class func createPath(rad: Double) -> CGPath {
         

@@ -19,7 +19,7 @@ class AddRandomElementsCmd : GameCMD {
         return self
     }
     
-    func run(cells: Int, blocked: Int) {
+	override func run() {
         for _ in 0 ..< cells {
             CmdFactory()
                 .AddRandomCellSkipRepeat()

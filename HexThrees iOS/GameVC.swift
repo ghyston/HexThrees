@@ -268,6 +268,9 @@ extension GameVC: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         CmdFactory().DoSwipe(direction: recognizer.direction).run()
         CmdFactory().ApplyScoreBuff().run()
+		scene?.runCircles(
+			angle: 0.2,
+			duration: gameModel!.swipeStatus.delay + 0.3)
         CmdFactory().AfterSwipe().runWithDelay(delay: gameModel!.swipeStatus.delay)
     }
     
