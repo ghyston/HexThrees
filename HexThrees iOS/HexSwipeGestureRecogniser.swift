@@ -8,6 +8,11 @@
 
 import Foundation
 import UIKit
+import os
+
+extension OSLog {
+    static let gestures: OSLog = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "gestures")
+}
 
 class HexSwipeGestureRecogniser : UIGestureRecognizer {
     
@@ -16,6 +21,8 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
     let rad30 = toRadian(30.0)
     let rad90 = toRadian(90.0)
     let rad150 = toRadian(150.0)
+	
+	//let osLog =
     
     var firstPoint:CGPoint = CGPoint.zero
     var lastPoint:CGPoint = CGPoint.zero
@@ -25,7 +32,7 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         if let touch = touches.first {
             self.firstPoint = touch.location(in: self.view)
             self.lastPoint = firstPoint
-            printDebug("touch begin at: \(self.firstPoint)")
+			os_log("touch begin x:%f y: %f", log: .gestures, type: .info, firstPoint.x, firstPoint.y)
         }
     }
     
@@ -36,28 +43,26 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         }
         
         let currentPoint = touch.location(in: self.view)
-        printDebug("touch move at: \(currentPoint)")
+		os_log("touch move x:%f y: %f", log: .gestures, type: .info, currentPoint.x, currentPoint.y)
         
         let diff = CGVector(from: lastPoint, to: currentPoint)
         if diff.squareLen() < squareDistanceToDetect {
-            
-            printDebug("diff too small")
+            os_log("diff too small %f", log: .gestures, type: .info, diff.squareLen())
             return
         }
         
         let direction = self.getDirection(vector: diff)
-        printDebug("direction is: \(direction)")
+		os_log("direction is: %s", log: .gestures, type: .info, String(describing: direction))
         
         if self.direction != .Unknown && self.direction != direction {
-            
-            printDebug("Direction changed!")
+        	os_log("direction changed", log: .gestures, type: .info)
             self.reset() //@todo: detect, what will happen here
             return
         }
         
         let sqrLenFromFirstTouch = CGVector(from: currentPoint, to: firstPoint).squareLen()
         if (sqrLenFromFirstTouch) > distanceToSwype {
-            printDebug("Detect touch! sqrLenFromFirstTouch: \(sqrLenFromFirstTouch)")
+			os_log("touch detected %f", log: .gestures, type: .info, sqrLenFromFirstTouch)
             self.state = .ended
         }
         
@@ -66,15 +71,14 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        printDebug("touchesEnded")
+		os_log("touch ended", log: .gestures, type: .info)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        printDebug("touchesCancelled")
+		os_log("touch cancelled", log: .gestures, type: .info)
     }
     
     override func reset() {
-        
         self.firstPoint = CGPoint.zero
         self.lastPoint = CGPoint.zero
         self.direction = .Unknown
@@ -83,6 +87,7 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         }
     }
     
+	//@todo: good candidate to write tests and make switch on range
     private func getDirection(vector: CGVector) -> SwipeDirection {
         
         let tang = atan2(-vector.dy, vector.dx) //minus because y increasing up
@@ -121,25 +126,9 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
          }
     }
     
-    private class func toRadian(_ degree: CGFloat) -> CGFloat {
-        
-        return (degree * .pi) / 180.0
-    }
+    private class func toRadian(_ degree: CGFloat) -> CGFloat { (degree * .pi) / 180.0 }
     
-    private class func toDegree(_ rad: CGFloat) -> CGFloat {
-        
-        return rad * (180.0) / .pi
-    }
+    private class func toDegree(_ rad: CGFloat) -> CGFloat { rad * (180.0) / .pi }
     
-    private class func sqr(_ val: CGFloat) -> CGFloat {
-        return val * val;
-    }
-    
-    private func printDebug(_ message: String) {
-        
-#if PRINT_TOUCH_DEBUG
-        print(message)
-#endif
-    }
-    
+    private class func sqr(_ val: CGFloat) -> CGFloat { return val * val; }
 }
