@@ -62,7 +62,7 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
         
         let sqrLenFromFirstTouch = CGVector(from: currentPoint, to: firstPoint).squareLen()
         if (sqrLenFromFirstTouch) > distanceToSwype {
-			os_log("touch detected %f", log: .gestures, type: .info, sqrLenFromFirstTouch)
+			os_log("touch detected %f %s", log: .gestures, type: .info, sqrLenFromFirstTouch, String(describing: direction))
             self.state = .ended
         }
         
