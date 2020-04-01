@@ -29,7 +29,7 @@
 		3F11087D2190B591007743DF /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11087C2190B591007743DF /* FileHelper.swift */; };
 		3F11E62A23489036003294EC /* StrategiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62923489036003294EC /* StrategiesTests.swift */; };
 		3F11E62E234BA188003294EC /* SelectableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62D234BA188003294EC /* SelectableNode.swift */; };
-		3F11E630234BA4F1003294EC /* StuckCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62F234BA4F1003294EC /* StuckCellCMD.swift */; };
+		3F11E630234BA4F1003294EC /* UnlockCellCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F11E62F234BA4F1003294EC /* UnlockCellCMD.swift */; };
 		3F13AF8D221D3F260086194E /* ScoreNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F13AF8C221D3F260086194E /* ScoreNode.swift */; };
 		3F1A626721181DE400CC6586 /* grid.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A626621181DE400CC6586 /* grid.fsh */; };
 		3F1A62692118A74100CC6586 /* blockStatic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F1A62682118A74100CC6586 /* blockStatic.fsh */; };
@@ -173,7 +173,7 @@
 		3F11087C2190B591007743DF /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		3F11E62923489036003294EC /* StrategiesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrategiesTests.swift; sourceTree = "<group>"; };
 		3F11E62D234BA188003294EC /* SelectableNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableNode.swift; sourceTree = "<group>"; };
-		3F11E62F234BA4F1003294EC /* StuckCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuckCellCMD.swift; sourceTree = "<group>"; };
+		3F11E62F234BA4F1003294EC /* UnlockCellCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockCellCMD.swift; sourceTree = "<group>"; };
 		3F13AF8C221D3F260086194E /* ScoreNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNode.swift; sourceTree = "<group>"; };
 		3F1A626621181DE400CC6586 /* grid.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = grid.fsh; sourceTree = "<group>"; };
 		3F1A62682118A74100CC6586 /* blockStatic.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockStatic.fsh; sourceTree = "<group>"; };
@@ -497,6 +497,7 @@
 				3F708D9E23262882008B95F1 /* AddGameCellCmd.swift */,
 				3FB7039F20DA1B69009718F3 /* BlockRandomCellCmd.swift */,
 				3FB703A220DA1C93009718F3 /* UnlockRandomCellCMD.swift */,
+				3F11E62F234BA4F1003294EC /* UnlockCellCMD.swift */,
 				3FAC646F20BC89530083C56C /* RemoveCellCMD.swift */,
 				3FAC647520BCA6660083C56C /* UpdateCellCMD.swift */,
 				3FE9202E20D1AFDD009B7370 /* DoSwipeCmd.swift */,
@@ -512,7 +513,6 @@
 				3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */,
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
 				3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */,
-				3F11E62F234BA4F1003294EC /* StuckCellCMD.swift */,
 				3F4D67592350556200635E5E /* CmdFactory.swift */,
 			);
 			path = Commands;
@@ -748,7 +748,7 @@
 				3F8D11532280A9410034BC6D /* HelpMergingNode.swift in Sources */,
 				3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */,
 				3F064876215D4180005461C7 /* CellsIterator.swift in Sources */,
-				3F11E630234BA4F1003294EC /* StuckCellCMD.swift in Sources */,
+				3F11E630234BA4F1003294EC /* UnlockCellCMD.swift in Sources */,
 				3FAC644E20B5DE010083C56C /* GameModel.swift in Sources */,
 				3F7E694F226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift in Sources */,
 				3FAC645720B5E3170083C56C /* GameCMD.swift in Sources */,

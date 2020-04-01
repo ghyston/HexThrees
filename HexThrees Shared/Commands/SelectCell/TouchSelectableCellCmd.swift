@@ -23,6 +23,7 @@ class TouchSelectableCellCmd : RunOnNodeCMD {
         NotificationCenter.default.post(name: .useCollectables, object: bonusType)
         self.gameModel.collectableBonuses[bonusType]?.use()
         self.gameModel.selectCMD?.setup(node: node!).run()
+		self.gameModel.selectedBonusType = nil
         EndCellSelectionCMD(self.gameModel).run()
     }
 }

@@ -14,7 +14,7 @@ enum BonusType : Int, Codable {
     case BLOCK_CELL
     case X2_POINTS
     case X3_POINTS
-    case COLLECTABLE_TYPE_1 //@todo: find real name
+    case COLLECTABLE_UNLOCK_CELL
     case COLLECTABLE_TYPE_2 //@todo: find real name
 }
 
@@ -49,8 +49,8 @@ class BonusFabric {
             return createX2Bonus(gameModel: gameModel)
         case .X3_POINTS:
             return createX3Bonus(gameModel: gameModel)
-        case .COLLECTABLE_TYPE_1:
-            return createCollectableType1Bonus(gameModel: gameModel)
+        case .COLLECTABLE_UNLOCK_CELL:
+            return createCollectableUnlockCellBonus(gameModel: gameModel)
         case .COLLECTABLE_TYPE_2:
             return createCollectableType2Bonus(gameModel: gameModel)
         }
@@ -59,10 +59,10 @@ class BonusFabric {
     class func collectableBonusCMD(bonus type: BonusType, gameModel: GameModel) -> (comparator: (_:BgCell)->Bool, cmd: RunOnNodeCMD)? {
         
         switch type {
-        case .COLLECTABLE_TYPE_1:
-            return (HexField.freeCell, StuckCellCMD(gameModel))
+        case .COLLECTABLE_UNLOCK_CELL:
+            return (HexField.blockedCell, UnlockCellCMD(gameModel))
         case .COLLECTABLE_TYPE_2:
-            return (HexField.freeCell, StuckCellCMD(gameModel))
+            return (HexField.freeCell, UnlockCellCMD(gameModel))
         default:
             return nil
         }
@@ -78,10 +78,10 @@ class BonusFabric {
             return  "bonus_x2"
         case .X3_POINTS:
             return  "bonus_x2"
-        case .COLLECTABLE_TYPE_1:
-            return  "bonus_collectable"
-        case .COLLECTABLE_TYPE_2:
+        case .COLLECTABLE_UNLOCK_CELL:
             return  "bonus_unlock"
+        case .COLLECTABLE_TYPE_2:
+            return  "bonus_collectable"
         }
     }
     
@@ -121,13 +121,13 @@ class BonusFabric {
             onPick: AddScoreBaffCMD(gameModel).setup(factor: 3))
     }
     
-    class func createCollectableType1Bonus(gameModel: GameModel) -> BonusNode {
+    class func createCollectableUnlockCellBonus(gameModel: GameModel) -> BonusNode {
         
         return BonusNode(
-            type: .COLLECTABLE_TYPE_1,
-            spriteName: spriteName(bonus: .COLLECTABLE_TYPE_1),
+            type: .COLLECTABLE_UNLOCK_CELL,
+            spriteName: spriteName(bonus: .COLLECTABLE_UNLOCK_CELL),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_TYPE_1))
+            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_UNLOCK_CELL))
     }
     
     class func createCollectableType2Bonus(gameModel: GameModel) -> BonusNode {

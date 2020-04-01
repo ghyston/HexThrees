@@ -73,7 +73,7 @@ class GameModel {
     
     private func resetCollectables() {
         self.collectableBonuses.removeAll()
-        self.collectableBonuses[.COLLECTABLE_TYPE_1] = CollectableBonusModel(
+        self.collectableBonuses[.COLLECTABLE_UNLOCK_CELL] = CollectableBonusModel(
             currentValue: 0,
             maxValue: 3)
         self.collectableBonuses[.COLLECTABLE_TYPE_2] = CollectableBonusModel(

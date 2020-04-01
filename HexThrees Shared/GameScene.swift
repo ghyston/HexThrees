@@ -11,51 +11,21 @@ import SpriteKit
 class GameScene: SKScene {
     
     var prevInterval : TimeInterval?
-	let bikeStar : SKSpriteNode
     
     override init(size: CGSize) {
-		
-		self.bikeStar = SKSpriteNode.init(imageNamed: "bikeStar")
-		
         super.init(size: size)
         
         self.anchorPoint.x = 0.5
         self.anchorPoint.y = 0.5
         self.scaleMode = .resizeFill
         addCollectableButtons()
-		
-		//@todo: all of this for test
-		self.bikeStar.xScale = 1.5
-		self.bikeStar.yScale = 1.5
-		self.bikeStar.colorBlendFactor = 1.0
-		self.bikeStar.color = .darkGray
-		self.addChild(self.bikeStar)
-		
-		createGear()
     }
-	
-	func createGear() {
-		let hexShape = SKShapeNode()
-		hexShape.path = FieldGeometry.createGearPath(
-			radIn: 70, radOut: 100, count: 8)
-		hexShape.fillColor = .red
-		hexShape.position.y = -200
-		hexShape.position.x = -200
-		 
-        addChild(hexShape)
-	}
-	
-	func runCircles(angle: CGFloat, duration: TimeInterval) {
-		let rotateAction = SKAction.rotate(byAngle: angle, duration: duration)
-		rotateAction.timingMode = SKActionTimingMode.easeInEaseOut
-		self.bikeStar.run(rotateAction)
-	}
     
     func addCollectableButtons() {
         
         let offset: CGFloat = 3.0
         
-        let collectableBonusBtn1 = CollectableBtn(type: .COLLECTABLE_TYPE_1)
+        let collectableBonusBtn1 = CollectableBtn(type: .COLLECTABLE_UNLOCK_CELL)
         let btnSize1 = collectableBonusBtn1.sprite.size
         collectableBonusBtn1.position.y = -size.height / 2.0 + btnSize1.height / 2.0 + offset
         collectableBonusBtn1.position.x = size.width / 2.0 - btnSize1.width / 2.0 - offset

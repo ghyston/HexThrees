@@ -96,6 +96,8 @@ class HexField {
         }
     }
     
+	// MARK: Cell selectors
+	
     class func freeCell(cell: BgCell) -> Bool {
         return cell.gameCell == nil && !cell.isBlocked
     }
@@ -103,6 +105,10 @@ class HexField {
     class func freeCellWoBonuses(cell: BgCell) -> Bool {
         return cell.gameCell == nil && !cell.isBlocked &&
             cell.bonus == nil
+    }
+	
+	class func blockedCell(cell: BgCell) -> Bool {
+        return cell.isBlocked
     }
     
     class func cellWoBonuses(cell: BgCell) -> Bool {

@@ -94,8 +94,10 @@ class CollectableBtn : SKNode, AnimatedNode {
     }
     
     func onClick() {
-        //@todo: what will be when other collectable already clicked?
-        //@todo: good testcase 🤔
+		if self.gameModel.selectedBonusType != nil {
+			return
+		}
+		
         if self.gameModel.collectableBonuses[self.type]?.isFull == true {
             
             guard let collectableBonus

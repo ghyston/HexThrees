@@ -8,16 +8,16 @@
 
 import Foundation
 
+//@todo: do we need spearate protocol for this?
 protocol CollectableBonusCMD : GameCMD {
     var bonusType: BonusType { get }
 }
 
-//@todo: bad naming
-class StuckCellCMD : RunOnNodeCMD, CollectableBonusCMD {
+class UnlockCellCMD : RunOnNodeCMD, CollectableBonusCMD {
     
-    var bonusType = BonusType.COLLECTABLE_TYPE_1
+    var bonusType = BonusType.COLLECTABLE_UNLOCK_CELL
     
     override func run() {
-        //@todo: implement
+		self.node?.unblock()
     }
 }
