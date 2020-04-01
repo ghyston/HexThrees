@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 class DoSwipeCmd : GameCMD {
     
@@ -25,9 +26,11 @@ class DoSwipeCmd : GameCMD {
         self.gameModel.swipeStatus.start()
         self.gameModel.hapticManager.warmup()
         
+		os_signpost(.begin, log: .gestures, name: "moveLine")
         while let container = iterator.next() {
             MoveLineCMD(self.gameModel).setup(cells: container).run()
         }
+		os_signpost(.end, log: .gestures, name: "moveLine")
         
         Timer.scheduledTimer(
             timeInterval: gameModel.swipeStatus.delay,

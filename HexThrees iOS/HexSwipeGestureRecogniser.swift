@@ -29,6 +29,7 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
     var direction:SwipeDirection = .Unknown
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		os_signpost(.begin, log: .gestures, name: "swipe")
         if let touch = touches.first {
             self.firstPoint = touch.location(in: self.view)
             self.lastPoint = firstPoint
@@ -72,13 +73,16 @@ class HexSwipeGestureRecogniser : UIGestureRecognizer {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		os_log("touch ended", log: .gestures, type: .info)
+		os_signpost(.end, log: .gestures, name: "swipe")
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
 		os_log("touch cancelled", log: .gestures, type: .info)
+		os_signpost(.end, log: .gestures, name: "swipe")
     }
     
     override func reset() {
+		os_signpost(.end, log: .gestures, name: "swipe")
         self.firstPoint = CGPoint.zero
         self.lastPoint = CGPoint.zero
         self.direction = .Unknown
