@@ -9,21 +9,27 @@
 import Foundation
 import SpriteKit
 
-class UserBlockedCell : SKNode {
-    
-    let shap : SKShapeNode
-    
-    init(model : GameModel) {
-        
-        let path = model.geometry.outlinePath
-        
-        self.shap = model.geometry.createOutlineShape()
-        super.init()
-        
-    }
-    
-    //@todo: why do we need all these coders?
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+protocol UserBlockedNode : class {
+	
+	var isBlockedFromSwipe: Bool { get set }
+	
+	func blockFromSwipe()
+	func unblockFromSwipe()
+}
+
+extension UserBlockedNode where Self : HexNode {
+	
+	func blockFromSwipe() {
+		
+		let shader = SKShader.init(fileNamed: "blockSwipe")
+		self.hexShape.lineWidth = 20
+		self.hexShape.strokeShader = shader
+		self.isBlockedFromSwipe = true
+	}
+	
+	func unblockFromSwipe() {
+		self.hexShape.strokeShader = nil
+		self.isBlockedFromSwipe = false
+		self.hexShape.lineWidth = 0
+	}
 }

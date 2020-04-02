@@ -38,6 +38,13 @@ class GameScene: SKScene {
         collectableBonusBtn2.position.x = -size.width / 2.0 + btnSize2.width / 2.0 + offset
         collectableBonusBtn2.zPosition = zPositions.bonusCollectable.rawValue
         addChild(collectableBonusBtn2)
+		
+		let collectableBonusBtn3 = CollectableBtn(type: .COLLECTABLE_SWIPE_BLOCK)
+        let btnSize3 = collectableBonusBtn3.sprite.size
+        collectableBonusBtn3.position.y = -size.height / 2.0 + btnSize2.height / 2.0 + offset
+		collectableBonusBtn3.position.x = 0.0
+        collectableBonusBtn3.zPosition = zPositions.bonusCollectable.rawValue
+        addChild(collectableBonusBtn3)
     }
     
     func addFieldOutline(_ model: GameModel) {

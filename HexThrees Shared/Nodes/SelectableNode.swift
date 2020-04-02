@@ -33,7 +33,7 @@ extension SelectableNode where Self : HexNode {
     
     func removeHighlight() {
         self.canBeSelected = false
-        self.hexShape.lineWidth = 0
+        //self.hexShape.lineWidth = 0
         //@todo
     }
 }

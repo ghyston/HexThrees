@@ -79,5 +79,9 @@ class GameModel {
         self.collectableBonuses[.COLLECTABLE_PAUSE_TIMER] = CollectableBonusModel(
             currentValue: 0,
             maxValue: 2)
+		self.collectableBonuses[.COLLECTABLE_SWIPE_BLOCK] = CollectableBonusModel(
+			currentValue: 3,
+			maxValue: 3)
+		
     }
 }

@@ -16,6 +16,7 @@ enum BonusType : Int, Codable {
     case X3_POINTS
     case COLLECTABLE_UNLOCK_CELL
     case COLLECTABLE_PAUSE_TIMER
+	case COLLECTABLE_SWIPE_BLOCK
 }
 
 struct CollectableBonusModel {
@@ -53,6 +54,8 @@ class BonusFabric {
             return createCollectableUnlockCellBonus(gameModel: gameModel)
         case .COLLECTABLE_PAUSE_TIMER:
             return createCollectablePauseTimerBonus(gameModel: gameModel)
+		case .COLLECTABLE_SWIPE_BLOCK:
+			return createCollectableSwipeBlockBonus(gameModel: gameModel)
         }
     }
     
@@ -61,6 +64,8 @@ class BonusFabric {
         switch type {
         case .COLLECTABLE_UNLOCK_CELL:
             return (HexField.blockedCell, UnlockCellCMD(gameModel))
+		case .COLLECTABLE_SWIPE_BLOCK:
+            return (HexField.notBlockedCell, SwipeBlockCmd(gameModel))
 		default:
             return nil
         }
@@ -90,6 +95,8 @@ class BonusFabric {
             return  "bonus_unlock"
         case .COLLECTABLE_PAUSE_TIMER:
             return  "cat_shit"
+		case .COLLECTABLE_SWIPE_BLOCK:
+			return "cat_13"
         }
     }
     
@@ -146,5 +153,14 @@ class BonusFabric {
             turnsToDispose: GameConstants.BonusTurnsLifetime,
             onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_PAUSE_TIMER))
     }
-    
+
+	class func createCollectableSwipeBlockBonus(gameModel: GameModel) -> BonusNode {
+        
+        return BonusNode(
+            type: .COLLECTABLE_SWIPE_BLOCK,
+            spriteName: spriteName(bonus: .COLLECTABLE_SWIPE_BLOCK),
+            turnsToDispose: GameConstants.BonusTurnsLifetime,
+            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_SWIPE_BLOCK))
+    }
+
 }

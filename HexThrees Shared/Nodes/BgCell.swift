@@ -9,13 +9,14 @@
 import Foundation
 import SpriteKit
 
-class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode {
+class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode, UserBlockedNode {
     
     var canBeSelected: Bool = false
     
     var playback: IPlayback?
     var hexShape : SKShapeNode
     var isBlocked: Bool = false
+	var isBlockedFromSwipe: Bool = false
     var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)
     var circleTimerAnimatedShader : AnimatedShaderNode //@todo: same?
     var blockingAnimatedShader : AnimatedShaderNode

@@ -110,6 +110,10 @@ class HexField {
 	class func blockedCell(cell: BgCell) -> Bool {
         return cell.isBlocked
     }
+	
+	class func notBlockedCell(cell: BgCell) -> Bool {
+        return !cell.isBlocked
+    }
     
     class func cellWoBonuses(cell: BgCell) -> Bool {
         return cell.bonus == nil
@@ -117,6 +121,10 @@ class HexField {
     
     class func cellWoShader(cell: BgCell) -> Bool {
         return cell.shape?.fillShader == nil
+    }
+	
+	class func userBlockedCell(cell: BgCell) -> Bool {
+        return cell.isBlockedFromSwipe
     }
     
 //    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {

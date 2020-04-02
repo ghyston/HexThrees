@@ -16,6 +16,7 @@ class AfterSwipeCmd : GameCMD {
         }
         
         UpdateBonusesCounterCMD(gameModel).run()
+		UnlockSwypeBlockedCellsCmd(gameModel).run()
         
         //@todo: startTimer only if there are available cells
         if gameModel.stressTimer.isEnabled() {

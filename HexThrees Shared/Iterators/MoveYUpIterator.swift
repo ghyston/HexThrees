@@ -35,7 +35,7 @@ class MoveYUpIterator: BaseCellsIterator, CellsIterator {
             
             y -= 1
             
-            if(cell.isBlocked) {
+            if(cell.isBlocked || cell.isBlockedFromSwipe) {
                 break
             }
             

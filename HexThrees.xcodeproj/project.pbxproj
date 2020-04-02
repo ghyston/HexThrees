@@ -120,6 +120,9 @@
 		3FB703A920DAE7A6009718F3 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FB703A820DAE7A6009718F3 /* View.xib */; };
 		3FB703AF20E16613009718F3 /* FieldGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703AE20E16613009718F3 /* FieldGeometry.swift */; };
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
+		3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8328B2436335300902B7C /* blockSwipe.fsh */; };
+		3FD8328E243634D400902B7C /* SwipeBlockCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */; };
+		3FD832902436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */; };
 		3FD9C6972314548800137319 /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6962314548800137319 /* HexField.swift */; };
 		3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9C6AE2318FF7400137319 /* circleTimer.fsh */; };
 		3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */; };
@@ -265,6 +268,9 @@
 		3FB703A820DAE7A6009718F3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		3FB703AE20E16613009718F3 /* FieldGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldGeometry.swift; sourceTree = "<group>"; };
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
+		3FD8328B2436335300902B7C /* blockSwipe.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockSwipe.fsh; sourceTree = "<group>"; };
+		3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBlockCmd.swift; sourceTree = "<group>"; };
+		3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockSwypeBlockedCellsCmd.swift; sourceTree = "<group>"; };
 		3FD9C6962314548800137319 /* HexField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
 		3FD9C6A023158FB000137319 /* HexThreesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexThreesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD9C6A423158FB000137319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -419,6 +425,7 @@
 				3F45A13A232AB20A00157EDB /* blockStatic2.fsh */,
 				3F45A13C232AB82500157EDB /* blockAnimated2.fsh */,
 				3F29E297233126F100091D0B /* collectableButton.fsh */,
+				3FD8328B2436335300902B7C /* blockSwipe.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -514,6 +521,8 @@
 				3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */,
 				3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */,
 				3F4D67592350556200635E5E /* CmdFactory.swift */,
+				3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */,
+				3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -650,6 +659,7 @@
 				3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */,
 				3FB703A920DAE7A6009718F3 /* View.xib in Resources */,
 				3FD9C6B3231ECA2600137319 /* blockAnimated.fsh in Resources */,
+				3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */,
 				3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */,
 				3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */,
 				3F06B36F207C81E000C8315A /* GameScene.sks in Resources */,
@@ -681,6 +691,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F708D9F23262882008B95F1 /* AddGameCellCmd.swift in Sources */,
+				3FD832902436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift in Sources */,
 				3F60069A21B8F4CD00BD4DCA /* MotionBlurNode.swift in Sources */,
 				3FB703A620DA1FEC009718F3 /* UpdateScoreCMD.swift in Sources */,
 				3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */,
@@ -739,6 +750,7 @@
 				3FAC647920BDC4040083C56C /* SwipeStatus.swift in Sources */,
 				3F643DDB229ABBC000446DBC /* RollbackTimerCMD.swift in Sources */,
 				3F8D114F2280A8C40034BC6D /* HelpRulesVC.swift in Sources */,
+				3FD8328E243634D400902B7C /* SwipeBlockCmd.swift in Sources */,
 				3F8D115D2284948E0034BC6D /* StartStressTimerCMD.swift in Sources */,
 				3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
