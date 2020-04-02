@@ -15,7 +15,7 @@ enum BonusType : Int, Codable {
     case X2_POINTS
     case X3_POINTS
     case COLLECTABLE_UNLOCK_CELL
-    case COLLECTABLE_TYPE_2 //@todo: find real name
+    case COLLECTABLE_PAUSE_TIMER
 }
 
 struct CollectableBonusModel {
@@ -51,18 +51,26 @@ class BonusFabric {
             return createX3Bonus(gameModel: gameModel)
         case .COLLECTABLE_UNLOCK_CELL:
             return createCollectableUnlockCellBonus(gameModel: gameModel)
-        case .COLLECTABLE_TYPE_2:
-            return createCollectableType2Bonus(gameModel: gameModel)
+        case .COLLECTABLE_PAUSE_TIMER:
+            return createCollectablePauseTimerBonus(gameModel: gameModel)
         }
     }
     
-    class func collectableBonusCMD(bonus type: BonusType, gameModel: GameModel) -> (comparator: (_:BgCell)->Bool, cmd: RunOnNodeCMD)? {
+    class func collectableSelectableBonusCMD(bonus type: BonusType, gameModel: GameModel) -> (comparator: (_:BgCell)->Bool, cmd: RunOnNodeCMD)? {
         
         switch type {
         case .COLLECTABLE_UNLOCK_CELL:
             return (HexField.blockedCell, UnlockCellCMD(gameModel))
-        case .COLLECTABLE_TYPE_2:
-            return (HexField.freeCell, UnlockCellCMD(gameModel))
+		default:
+            return nil
+        }
+    }
+	
+	class func collectableNotSelectableBonusCMD(bonus type: BonusType, gameModel: GameModel) -> GameCMD? {
+        
+        switch type {
+        case .COLLECTABLE_PAUSE_TIMER:
+            return RollbackTimerCMD(gameModel)
         default:
             return nil
         }
@@ -80,8 +88,8 @@ class BonusFabric {
             return  "bonus_x2"
         case .COLLECTABLE_UNLOCK_CELL:
             return  "bonus_unlock"
-        case .COLLECTABLE_TYPE_2:
-            return  "bonus_collectable"
+        case .COLLECTABLE_PAUSE_TIMER:
+            return  "cat_shit"
         }
     }
     
@@ -130,13 +138,13 @@ class BonusFabric {
             onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_UNLOCK_CELL))
     }
     
-    class func createCollectableType2Bonus(gameModel: GameModel) -> BonusNode {
+    class func createCollectablePauseTimerBonus(gameModel: GameModel) -> BonusNode {
         
         return BonusNode(
-            type: .COLLECTABLE_TYPE_2,
-            spriteName: spriteName(bonus: .COLLECTABLE_TYPE_2),
+            type: .COLLECTABLE_PAUSE_TIMER,
+            spriteName: spriteName(bonus: .COLLECTABLE_PAUSE_TIMER),
             turnsToDispose: GameConstants.BonusTurnsLifetime,
-            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_TYPE_2))
+            onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_PAUSE_TIMER))
     }
     
 }

@@ -100,15 +100,15 @@ class CollectableBtn : SKNode, AnimatedNode {
 		
         if self.gameModel.collectableBonuses[self.type]?.isFull == true {
             
-            guard let collectableBonus
-                = BonusFabric.collectableBonusCMD(bonus: self.type, gameModel: self.gameModel) else {
-                    return
-            }
-            
-            self.gameModel.selectedBonusType = self.type
-            StartCellSelectionCMD(gameModel)
-                .run(comparator: collectableBonus.comparator,
-                     onSelectCmd: collectableBonus.cmd)
+            if let collectableBonus = BonusFabric.collectableSelectableBonusCMD(bonus: self.type, gameModel: self.gameModel) {
+				self.gameModel.selectedBonusType = self.type
+				StartCellSelectionCMD(gameModel)
+					.run(comparator: collectableBonus.comparator,
+						 onSelectCmd: collectableBonus.cmd)
+			} else if let bonusCmd = BonusFabric.collectableNotSelectableBonusCMD(bonus: self.type, gameModel: self.gameModel) {
+				bonusCmd.run()
+				self.gameModel.collectableBonuses[self.type]?.use()
+			}
         }
     }
     

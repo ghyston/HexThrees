@@ -32,7 +32,7 @@ class GameScene: SKScene {
         collectableBonusBtn1.zPosition = zPositions.bonusCollectable.rawValue
         addChild(collectableBonusBtn1)
         
-        let collectableBonusBtn2 = CollectableBtn(type: .COLLECTABLE_TYPE_2)
+        let collectableBonusBtn2 = CollectableBtn(type: .COLLECTABLE_PAUSE_TIMER)
         let btnSize2 = collectableBonusBtn2.sprite.size
         collectableBonusBtn2.position.y = -size.height / 2.0 + btnSize2.height / 2.0 + offset
         collectableBonusBtn2.position.x = -size.width / 2.0 + btnSize2.width / 2.0 + offset
