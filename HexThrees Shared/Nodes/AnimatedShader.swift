@@ -27,10 +27,7 @@ extension SKShader {
     }
 }
 
-//@todo: rename
-class AnimatedShaderNode: SKShader {
-    
-    private var playback = Playback()
+class AnimatedShader: SKShader {
     
     convenience init(fileNamed: String) {
     

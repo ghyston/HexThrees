@@ -8,7 +8,7 @@
 
 import Foundation
 
-//@todo: default arguments in interface?! >(
+//@todo: default arguments in protocol?! >(
 protocol IPlayback {
     
     func setRange(from: Double, to: Double)

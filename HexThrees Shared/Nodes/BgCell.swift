@@ -18,8 +18,8 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode, Use
     var isBlocked: Bool = false
 	var isBlockedFromSwipe: Bool = false
     var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)
-    var circleTimerAnimatedShader : AnimatedShaderNode //@todo: same?
-    var blockingAnimatedShader : AnimatedShaderNode
+    var circleTimerAnimatedShader : AnimatedShader //@todo: same?
+    var blockingAnimatedShader : AnimatedShader
     var shape : SKShapeNode?
     var normalBgColor: vector_float3
     var blockedBgColor: vector_float3
@@ -38,9 +38,10 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode, Use
         //we need to set them to something in order to call super init
         //@todo: crap, just find a way to refactor this!!
         self.hexShape = SKShapeNode()
+		self.selectorHex = SKShapeNode()
         self.blockedStaticShader = SKShader()
-        self.circleTimerAnimatedShader = AnimatedShaderNode()
-        self.blockingAnimatedShader = AnimatedShaderNode()
+        self.circleTimerAnimatedShader = AnimatedShader()
+        self.blockingAnimatedShader = AnimatedShader()
         self.normalBgColor = vector_float3()
         self.blockedBgColor = vector_float3()
         self.blockLinesColor = vector_float3()

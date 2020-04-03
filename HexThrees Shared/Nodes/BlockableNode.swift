@@ -17,8 +17,8 @@ protocol BlockableNode : class, AnimatedNode {
     
     var isBlocked: Bool { get set }
     var blockedStaticShader : SKShader { get set }
-    var blockingAnimatedShader : AnimatedShaderNode { get set }
-    var circleTimerAnimatedShader : AnimatedShaderNode { get set }
+    var blockingAnimatedShader : AnimatedShader { get set }
+    var circleTimerAnimatedShader : AnimatedShader { get set }
     var playback : IPlayback? { get set }
     var shape : SKShapeNode? { get set }
     
@@ -39,9 +39,9 @@ extension BlockableNode where Self : SKNode {
     func loadShader(shape: SKShapeNode, palette: IPaletteManager) {
         self.shape = shape
         self.blockedStaticShader = SKShader.init(fileNamed: "blockStatic2")
-        self.blockingAnimatedShader = AnimatedShaderNode.init(fileNamed: "blockAnimated2")
+        self.blockingAnimatedShader = AnimatedShader.init(fileNamed: "blockAnimated2")
         self.circleTimerAnimatedShader =
-            AnimatedShaderNode.init(fileNamed: "circleTimer")
+            AnimatedShader.init(fileNamed: "circleTimer")
         
         self.normalBgColor = palette.cellBgColor().toVector()
         self.blockedBgColor = palette.cellBlockedBgColor().toVector()
@@ -79,8 +79,7 @@ extension BlockableNode where Self : SKNode {
     func playCircleAnimation() {
         self.removeRollbackDelayedAction()
         self.playback = Playback()
-        //@todo: use 2PI, find constant
-        self.playback?.setRange(from: 0, to: 6.28)
+		self.playback?.setRange(from: 0, to: .pi * 2.0)
         self.playback!.start(
             duration: GameConstants.StressTimerInterval,
             reversed: false,
@@ -97,7 +96,7 @@ extension BlockableNode where Self : SKNode {
     
     func updateAnimation(_ delta: TimeInterval) {
         if let playbackValue = self.playback?.update(delta: delta) {
-            if let shader = self.shape?.fillShader as? AnimatedShaderNode {
+            if let shader = self.shape?.fillShader as? AnimatedShader {
                 shader.update(playbackValue)
             }
         }

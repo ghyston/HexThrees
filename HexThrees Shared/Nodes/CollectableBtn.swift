@@ -11,7 +11,7 @@ import SpriteKit
 
 class CollectableBtn : SKNode, AnimatedNode {
     
-    private let shader : AnimatedShaderNode
+    private let shader : AnimatedShader
     private var playback: IPlayback?
     
     let sprite : SKSpriteNode
@@ -22,7 +22,7 @@ class CollectableBtn : SKNode, AnimatedNode {
         self.type = type
         let spriteName = BonusFabric.spriteName(bonus: type)
         self.sprite = SKSpriteNode.init(imageNamed: spriteName)
-        self.shader = AnimatedShaderNode(fileNamed: "collectableButton")
+        self.shader = AnimatedShader(fileNamed: "collectableButton")
         self.sprite.shader = self.shader
         super.init()
         addChild(self.sprite)
