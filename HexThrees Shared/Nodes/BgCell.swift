@@ -9,12 +9,13 @@
 import Foundation
 import SpriteKit
 
-class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode, UserBlockedNode {
+class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode {
     
     var canBeSelected: Bool = false
-    
     var playback: IPlayback?
     var hexShape : SKShapeNode
+	var selectorHex: SKShapeNode
+	var selectorPlayback : IPlayback?
     var isBlocked: Bool = false
 	var isBlockedFromSwipe: Bool = false
     var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)
@@ -49,6 +50,7 @@ class BgCell: SKNode, HexNode, BlockableNode, BonusableNode, SelectableNode, Use
         super.init()
         
         self.addShape(shape: hexShape)
+		self.createSelector()
         self.loadShader(
             shape: hexShape,
             palette: pal)
