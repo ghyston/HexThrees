@@ -1,10 +1,12 @@
 void main() {
 	
-	int N = 10;
+	int N = 6;
 	
 	float stripeL = u_path_length / N; // lenth of stripe in points
 	float currentPos = mod(v_path_distance, stripeL); // current position in stripe in points
-	float currentRelativePos = currentPos / stripeL + uPos;
+	float currentRelativePos = currentPos / stripeL;
 	
-	gl_FragColor = float4(currentRelativePos > 0.3 ? 1.0 : 0.0);
+	float intensivity = cos(abs(currentRelativePos - uPos) * 6.28);
+	
+	gl_FragColor = float4(max(0.5 + intensivity * 2.0, 0.0));
 }

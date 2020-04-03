@@ -48,7 +48,7 @@ extension SelectableNode where Self : HexNode {
             onFinish: nil)
 		
 		addChild(self.selectorHex)
-    }	
+    }
     
     func shade() {
         //@todo
