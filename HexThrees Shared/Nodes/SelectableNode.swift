@@ -9,15 +9,14 @@
 import Foundation
 import SpriteKit
 
-protocol SelectableNode : SKNode, AnimatedNode {
+protocol SelectableNode : SKNode {
     
 	var selectorHex : SKShapeNode { get set }
-	
 	var selectorPlayback : IPlayback? { get set }
 	
     // @todo: why I cant use private set in protocols?
     // @todo: how can I set default value in protocols?
-	func updateAnimation(_ delta: TimeInterval)
+	func updateSelectableAnimation(_ delta: TimeInterval)
     var canBeSelected : Bool { get set }
     func highlight()
     func shade() //@todo: rename to dim?
@@ -49,13 +48,13 @@ extension SelectableNode where Self : HexNode {
             onFinish: nil)
 		
 		addChild(self.selectorHex)
-    }
+    }	
     
     func shade() {
         //@todo
     }
 	
-	func updateAnimation(_ delta: TimeInterval) {
+	func updateSelectableAnimation(_ delta: TimeInterval) {
         if let playbackValue = self.selectorPlayback?.update(delta: delta) {
 			if let shader = self.selectorHex.strokeShader as? AnimatedShader {
                 shader.update(playbackValue)

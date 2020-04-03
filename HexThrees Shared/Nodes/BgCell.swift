@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode {
+class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode {
     
     var canBeSelected: Bool = false
     var playback: IPlayback?
@@ -99,6 +99,11 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+	
+	func updateAnimation(_ delta: TimeInterval) {
+        updateBlockableAnimation(delta)
+		updateSelectableAnimation(delta)
     }
     
 }

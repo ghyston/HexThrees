@@ -13,7 +13,7 @@ protocol AnimatedNode {
     func updateAnimation(_ delta: TimeInterval)
 }
 
-protocol BlockableNode : class, AnimatedNode {
+protocol BlockableNode : class {
     
     var isBlocked: Bool { get set }
     var blockedStaticShader : SKShader { get set }
@@ -26,7 +26,7 @@ protocol BlockableNode : class, AnimatedNode {
     var blockedBgColor: vector_float3 { get set }
     var blockLinesColor: vector_float3 { get set }
     
-    func updateAnimation(_ delta: TimeInterval)
+    func updateBlockableAnimation(_ delta: TimeInterval)
     func loadShader(shape: SKShapeNode, palette: IPaletteManager)
     func removeShader()
     func block()
@@ -94,7 +94,7 @@ extension BlockableNode where Self : SKNode {
             onFinish: self.removeShaderWithDelay)
     }
     
-    func updateAnimation(_ delta: TimeInterval) {
+    func updateBlockableAnimation(_ delta: TimeInterval) {
         if let playbackValue = self.playback?.update(delta: delta) {
             if let shader = self.shape?.fillShader as? AnimatedShader {
                 shader.update(playbackValue)
