@@ -16,6 +16,7 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
     var hexShape : SKShapeNode
 	var selectorHex: SKShapeNode
 	var selectorPlayback : IPlayback?
+	var selectorAppearPlayback : IPlayback?
     var isBlocked: Bool = false
 	var isBlockedFromSwipe: Bool = false
     var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)

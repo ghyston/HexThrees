@@ -8,5 +8,5 @@ void main() {
 	
 	float intensivity = cos(abs(currentRelativePos - uPos) * 6.28);
 	
-	gl_FragColor = float4(max(0.5 + intensivity * 2.0, 0.0));
+	gl_FragColor = float4(max(0.5 + 2.0 * (u_appear - 1.0)  + intensivity * 2.0, 0.0));
 }
