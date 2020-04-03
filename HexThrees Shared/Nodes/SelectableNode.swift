@@ -54,6 +54,27 @@ extension SelectableNode where Self : HexNode {
 		
 		addChild(self.selectorHex)
     }
+    
+    func shade() {
+		self.hexShape.addChild(self.selectorShadeHex)
+		createFadeInPlayback()
+    }
+	
+	func updateSelectableAnimation(_ delta: TimeInterval) {
+        if let playbackValue = self.selectorPlayback?.update(delta: delta) {
+			(self.selectorHex.strokeShader as? AnimatedShader)?.update(playbackValue)
+        }
+		
+		if let appearPlaybackValue = self.selectorAppearPlayback?.update(delta: delta) {
+			(self.selectorHex.strokeShader as? AnimatedShader)?.update(appearPlaybackValue, variableName: "u_appear")
+			(self.selectorShadeHex.fillShader as? AnimatedShader)?.update(appearPlaybackValue)
+		}
+    }
+    
+    func removeHighlight() {
+        self.canBeSelected = false
+		createFadeOutPlayback()
+    }
 	
 	private func createIdlePlayback() {
 		self.selectorPlayback = Playback()
@@ -88,27 +109,6 @@ extension SelectableNode where Self : HexNode {
 	private func removeAppearPlayback() {
 		self.selectorAppearPlayback = nil
 	}
-    
-    func shade() {
-		self.hexShape.addChild(self.selectorShadeHex)
-		createFadeInPlayback()
-    }
-	
-	func updateSelectableAnimation(_ delta: TimeInterval) {
-        if let playbackValue = self.selectorPlayback?.update(delta: delta) {
-			(self.selectorHex.strokeShader as? AnimatedShader)?.update(playbackValue)
-        }
-		
-		if let appearPlaybackValue = self.selectorAppearPlayback?.update(delta: delta) {
-			(self.selectorHex.strokeShader as? AnimatedShader)?.update(appearPlaybackValue, variableName: "u_appear")
-			(self.selectorShadeHex.fillShader as? AnimatedShader)?.update(appearPlaybackValue)
-		}
-    }
-    
-    func removeHighlight() {
-        self.canBeSelected = false
-		createFadeOutPlayback()
-    }
 	
 	private func removeHightlightDelayed() {
 		self.selectorPlayback = nil
