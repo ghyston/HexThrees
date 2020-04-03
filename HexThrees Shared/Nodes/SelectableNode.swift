@@ -12,6 +12,7 @@ import SpriteKit
 protocol SelectableNode : SKNode {
     
 	var selectorHex : SKShapeNode { get set }
+	var selectorShadeHex : SKShapeNode { get set }
 	var selectorPlayback : IPlayback? { get set }
 	var selectorAppearPlayback : IPlayback? { get set }
 	
@@ -36,6 +37,13 @@ extension SelectableNode where Self : HexNode {
 		//@todo: can one shader be used in many places? If so, create shader manager for reusable shaders
 		self.selectorHex.strokeShader = AnimatedShader.init(fileNamed: "selectable")
 		self.selectorHex.strokeShader?.addUniform(name: "u_appear", value: 0.0)
+		
+		self.selectorShadeHex = SKShapeNode()
+		self.selectorShadeHex.path = self.hexShape.path
+		self.selectorShadeHex.zPosition = zPositions.selectorShadeShape.rawValue
+		self.selectorShadeHex.fillShader = AnimatedShader.init(fileNamed: "selectableShade")
+		(self.selectorShadeHex.fillShader as? AnimatedShader)?.update(1.0)
+		self.selectorShadeHex.lineWidth = 0
 	}
 	
     func highlight() {
@@ -82,25 +90,23 @@ extension SelectableNode where Self : HexNode {
 	}
     
     func shade() {
-        //@todo
+		self.hexShape.addChild(self.selectorShadeHex)
+		createFadeInPlayback()
     }
 	
 	func updateSelectableAnimation(_ delta: TimeInterval) {
         if let playbackValue = self.selectorPlayback?.update(delta: delta) {
-			if let shader = self.selectorHex.strokeShader as? AnimatedShader {
-                shader.update(playbackValue)
-				
-				if let appearPlaybackValue = self.selectorAppearPlayback?.update(delta: delta) {
-					shader.update(appearPlaybackValue, variableName: "u_appear")
-				}
-            }
+			(self.selectorHex.strokeShader as? AnimatedShader)?.update(playbackValue)
         }
+		
+		if let appearPlaybackValue = self.selectorAppearPlayback?.update(delta: delta) {
+			(self.selectorHex.strokeShader as? AnimatedShader)?.update(appearPlaybackValue, variableName: "u_appear")
+			(self.selectorShadeHex.fillShader as? AnimatedShader)?.update(appearPlaybackValue)
+		}
     }
     
     func removeHighlight() {
         self.canBeSelected = false
-		removeAppearPlayback() //in case it hasn't been finished
-		
 		createFadeOutPlayback()
     }
 	
@@ -108,5 +114,6 @@ extension SelectableNode where Self : HexNode {
 		self.selectorPlayback = nil
 		removeAppearPlayback()
 		self.selectorHex.removeFromParent()
+		self.selectorShadeHex.removeFromParent()
     }
 }

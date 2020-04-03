@@ -124,6 +124,7 @@
 		3FD8328E243634D400902B7C /* SwipeBlockCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */; };
 		3FD832902436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */; };
 		3FD8329224372C8600902B7C /* selectable.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8329124372C8600902B7C /* selectable.fsh */; };
+		3FD8329424377AB300902B7C /* selectableShade.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8329324377AB300902B7C /* selectableShade.fsh */; };
 		3FD9C6972314548800137319 /* HexField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6962314548800137319 /* HexField.swift */; };
 		3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD9C6AE2318FF7400137319 /* circleTimer.fsh */; };
 		3FD9C6B1231D94FA00137319 /* PlaybackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD9C6B0231D94FA00137319 /* PlaybackTests.swift */; };
@@ -273,6 +274,7 @@
 		3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBlockCmd.swift; sourceTree = "<group>"; };
 		3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockSwypeBlockedCellsCmd.swift; sourceTree = "<group>"; };
 		3FD8329124372C8600902B7C /* selectable.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = selectable.fsh; sourceTree = "<group>"; };
+		3FD8329324377AB300902B7C /* selectableShade.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = selectableShade.fsh; sourceTree = "<group>"; };
 		3FD9C6962314548800137319 /* HexField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexField.swift; sourceTree = "<group>"; };
 		3FD9C6A023158FB000137319 /* HexThreesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexThreesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD9C6A423158FB000137319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 				3F29E297233126F100091D0B /* collectableButton.fsh */,
 				3FD8328B2436335300902B7C /* blockSwipe.fsh */,
 				3FD8329124372C8600902B7C /* selectable.fsh */,
+				3FD8329324377AB300902B7C /* selectableShade.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */,
 				3FB703A920DAE7A6009718F3 /* View.xib in Resources */,
 				3FD9C6B3231ECA2600137319 /* blockAnimated.fsh in Resources */,
+				3FD8329424377AB300902B7C /* selectableShade.fsh in Resources */,
 				3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */,
 				3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */,
 				3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */,

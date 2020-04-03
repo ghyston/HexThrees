@@ -10,13 +10,16 @@ import Foundation
 import SpriteKit
 
 class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode {
-    
-    var canBeSelected: Bool = false
+	
     var playback: IPlayback?
     var hexShape : SKShapeNode
+	
+	var canBeSelected: Bool = false
 	var selectorHex: SKShapeNode
+	var selectorShadeHex: SKShapeNode
 	var selectorPlayback : IPlayback?
 	var selectorAppearPlayback : IPlayback?
+	
     var isBlocked: Bool = false
 	var isBlockedFromSwipe: Bool = false
     var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)
@@ -41,6 +44,7 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
         //@todo: crap, just find a way to refactor this!!
         self.hexShape = SKShapeNode()
 		self.selectorHex = SKShapeNode()
+		self.selectorShadeHex = SKShapeNode()
         self.blockedStaticShader = SKShader()
         self.circleTimerAnimatedShader = AnimatedShader()
         self.blockingAnimatedShader = AnimatedShader()

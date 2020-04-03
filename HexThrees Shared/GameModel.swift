@@ -74,7 +74,7 @@ class GameModel {
     private func resetCollectables() {
         self.collectableBonuses.removeAll()
         self.collectableBonuses[.COLLECTABLE_UNLOCK_CELL] = CollectableBonusModel(
-            currentValue: 2,
+            currentValue: 3,
             maxValue: 3)
         self.collectableBonuses[.COLLECTABLE_PAUSE_TIMER] = CollectableBonusModel(
             currentValue: 0,
