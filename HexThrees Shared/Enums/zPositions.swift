@@ -18,6 +18,7 @@ enum zPositions: CGFloat {
     case bonusCollectable = 10
 	case selectorHexShape = 15
 	case selectorShadeShape = 16
+	case userBlockedHexShape = 17
     case testShadersNode = 20
     case helpGesture = 100
 }

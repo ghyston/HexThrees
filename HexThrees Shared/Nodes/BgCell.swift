@@ -22,6 +22,8 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	
     var isBlocked: Bool = false
 	var isBlockedFromSwipe: Bool = false
+	var userBlockedHex: SKShapeNode = SKShapeNode()
+	var blockedPlayback: IPlayback?
     var blockedStaticShader : SKShader //@todo: make it lazy static (to init once per game)
     var circleTimerAnimatedShader : AnimatedShader //@todo: same?
     var blockingAnimatedShader : AnimatedShader
@@ -56,6 +58,7 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
         
         self.addShape(shape: hexShape)
 		self.createSelector()
+		self.createUserBlockedHex()
         self.loadShader(
             shape: hexShape,
             palette: pal)
@@ -108,6 +111,7 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	
 	func updateAnimation(_ delta: TimeInterval) {
         updateBlockableAnimation(delta)
+		updateUserBlockedOutline(delta)
 		updateSelectableAnimation(delta)
     }
     
