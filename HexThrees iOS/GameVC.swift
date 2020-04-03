@@ -38,7 +38,6 @@ class GameVC: UIViewController {
         super.viewDidLoad()
         
         self.scene = GameScene(size: self.view.frame.size)
-        
 
         // Present the scene
         let skView = self.view as! SKView
@@ -174,6 +173,11 @@ class GameVC: UIViewController {
         
         // Delay one second because random cells appers with random delay
         CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
+		
+		for bonus in  self.gameModel!.collectableBonuses {
+			NotificationCenter.default.post(name: .updateCollectables, object: bonus.key)
+		}
+        
         //self.scene!.addTestNode()
     }
     
