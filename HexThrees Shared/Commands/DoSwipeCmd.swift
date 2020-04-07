@@ -31,6 +31,10 @@ class DoSwipeCmd : GameCMD {
             MoveLineCMD(self.gameModel).setup(cells: container).run()
         }
 		os_signpost(.end, log: .gestures, name: "moveLine")
+		
+		if gameModel.swipeStatus.isSomethingChanged {
+			RollbackTimerCMD(gameModel).run()
+		}
         
         Timer.scheduledTimer(
             timeInterval: gameModel.swipeStatus.delay,
