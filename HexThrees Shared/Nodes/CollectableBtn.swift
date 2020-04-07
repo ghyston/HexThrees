@@ -25,19 +25,7 @@ class CollectableBtn : SKNode, AnimatedNode {
         self.shader = AnimatedShader(fileNamed: "collectableButton")
         self.sprite.shader = self.shader
         super.init()
-        addChild(self.sprite)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onCollectableUpdate),
-            name: .updateCollectables,
-            object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onCollectableUse),
-            name: .useCollectables,
-            object: nil)
+        addChild(self.sprite)	
     }
     
     func updateAnimation(_ delta: TimeInterval) {
@@ -46,7 +34,7 @@ class CollectableBtn : SKNode, AnimatedNode {
         }
     }
     
-    @objc func onCollectableUpdate(notification: Notification) {
+    func onCollectableUpdate(notification: Notification) {
         if notification.object as? BonusType != self.type {
             return
         }
@@ -63,17 +51,13 @@ class CollectableBtn : SKNode, AnimatedNode {
             from: start,
             to: start + step)
         self.playback?.start(
-            duration: 1.0, //@todo: duration hardcoded!
+            duration: GameConstants.CollectableUpdateAnimationDuration,
             reversed: false,
             repeated: false,
             onFinish: self.removeAnimation)
     }
     
-    @objc func onCollectableUse(notification: Notification) {
-        if notification.object as? BonusType != self.type {
-            return
-        }
-        
+    func playUseAnimation() {
         guard let collectable = self.gameModel.collectableBonuses[self.type] else {
             return
         }
@@ -83,7 +67,7 @@ class CollectableBtn : SKNode, AnimatedNode {
             from: Double(collectable.maxValue),
             to: 0.0)
         self.playback?.start(
-            duration: 1.0, //@todo: duration hardcoded!
+            duration: GameConstants.CollectableUpdateAnimationDuration,
             reversed: false,
             repeated: false,
             onFinish: self.removeAnimation)
@@ -108,6 +92,7 @@ class CollectableBtn : SKNode, AnimatedNode {
 			} else if let bonusCmd = BonusFabric.collectableNotSelectableBonusCMD(bonus: self.type, gameModel: self.gameModel) {
 				bonusCmd.run()
 				self.gameModel.collectableBonuses[self.type]?.use()
+				NotificationCenter.default.post(name: .useCollectables, object: self.type)
 			}
         }
     }

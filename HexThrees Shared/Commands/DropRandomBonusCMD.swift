@@ -51,12 +51,28 @@ class DropRandomBonusCMD : GameCMD {
             
             bonusTypes.add(.BLOCK_CELL, GameConstants.LockBonusProbability)
         }
-        
+		
         for collectable in self.gameModel.collectableBonuses {
             if !collectable.value.isFull {
                 bonusTypes.add(collectable.key, 1.0) //@todo: choose probability by type
             }
         }
+		
+		if(self.gameModel.collectableBonuses.count < GameConstants.MaxBonusesOnPanel) {
+			if self.gameModel.collectableBonuses[.COLLECTABLE_UNLOCK_CELL] == nil &&
+				blockedCellsCount > 1 {
+				bonusTypes.add(.COLLECTABLE_UNLOCK_CELL, GameConstants.CollectableUnlockCellBonusProbability)
+			}
+			
+			if self.gameModel.collectableBonuses[.COLLECTABLE_SWIPE_BLOCK] == nil {
+				bonusTypes.add(.COLLECTABLE_SWIPE_BLOCK, GameConstants.CollectableSwipeBlockBonusProbability)
+			}
+			
+			if self.gameModel.collectableBonuses[.COLLECTABLE_PAUSE_TIMER] == nil &&
+				self.gameModel.stressTimer.isEnabled() {
+				bonusTypes.add(.COLLECTABLE_PAUSE_TIMER, GameConstants.CollectablePauseTimerBonusProbability)
+			}
+		}
        
         guard let bonusType = bonusTypes.getRandom() else {
             return

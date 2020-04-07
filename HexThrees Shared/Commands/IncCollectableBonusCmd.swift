@@ -18,7 +18,24 @@ class IncCollectableBonusCmd : GameCMD {
     }
     
     override func run() {
-        self.gameModel.collectableBonuses[type!]?.inc()
+		
+		guard let bonusType = type else {
+			assert(true, "IncCollectableBonusCmd: bonus type was not set")
+			return
+		}
+		
+		if self.gameModel.collectableBonuses[bonusType] == nil {
+			guard let maxValue = BonusFabric.collectableMaxValue(bonus: bonusType) else {
+				assert(true, "IncCollectableBonusCmd: bonus type max value is incorrect")
+				return
+			}
+			
+			self.gameModel.collectableBonuses[bonusType] = CollectableBonusModel(
+				currentValue: 0,
+				maxValue: maxValue)
+		}
+		
+        self.gameModel.collectableBonuses[bonusType]?.inc()
         NotificationCenter.default.post(name: .updateCollectables, object: type!)
     }
 }

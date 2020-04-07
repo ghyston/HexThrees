@@ -38,6 +38,19 @@ struct CollectableBonusModel {
 }
 
 class BonusFabric {
+	
+	class func collectableMaxValue(bonus type: BonusType) -> Int? {
+		switch type {
+		case .COLLECTABLE_UNLOCK_CELL:
+            return 3
+        case .COLLECTABLE_PAUSE_TIMER:
+            return 3
+		case .COLLECTABLE_SWIPE_BLOCK:
+			return 3
+		default:
+			return nil
+		}
+	}
     
     class func createBy(bonus type: BonusType, gameModel: GameModel) -> BonusNode {
         
