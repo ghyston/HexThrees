@@ -13,6 +13,7 @@ class CollectableButtonsPanel : SKNode {
 	
 	private let width: CGFloat
 	private var buttons = [BonusType : CollectableBtn] ()
+	private var buttonsOrder = [BonusType]()
 	
 	init(width: CGFloat) {
 		self.width = width
@@ -31,19 +32,19 @@ class CollectableButtonsPanel : SKNode {
 			object: nil)
 	}
 	
-	func addButton(type: BonusType) {
+	private func addButton(type: BonusType) {
 		addButtonNode(type)
 		moveButtons()
 	}
 	
-	func addButtons(types: BonusType ... ) {
+	private func addButtons(types: BonusType ... ) {
 		for type in types {
 			addButtonNode(type)
 		}
 		moveButtons()
 	}
 	
-	func addButtonIfNotExist(type bonusType: BonusType) -> CollectableBtn {
+	private func addButtonIfNotExist(type bonusType: BonusType) -> CollectableBtn {
 		if let btn = buttons[bonusType] {
 			return btn
 		}
@@ -76,6 +77,7 @@ class CollectableButtonsPanel : SKNode {
 		
 		button.playUseAnimation()
 		buttons.removeValue(forKey: bonusType)
+		buttonsOrder.removeAll(where: {$0 == bonusType})
 		
 		let delay = SKAction.wait(forDuration: GameConstants.CollectableUpdateAnimationDuration)
 		let moveDown = SKAction.move(
@@ -103,21 +105,25 @@ class CollectableButtonsPanel : SKNode {
 		
 		addChild(button)
 		buttons[type] = button
+		buttonsOrder.append(type)
 	}
 	
 	@objc private func moveButtons() {
 		let offset = self.width / CGFloat(buttons.count)
 		var i : CGFloat = 0.0
-		for btn in buttons {
+		for btnType in buttonsOrder {
+			guard let btn = buttons[btnType] else {
+				continue
+			}
 			let action = SKAction.move(
 				to: CGPoint(
 					x: -self.width / 2.0 + offset * (i + 0.5),
-					y: btn.value.sprite.size.height / 2),
+					y: btn.sprite.size.height / 2),
 				duration: GameConstants.CellAppearAnimationDuration
 			);
 			action.timingMode = SKActionTimingMode.easeIn
-			btn.value.removeAllActions()
-			btn.value.run(action)
+			btn.removeAllActions()
+			btn.run(action)
 			
 			i += 1
 		}
