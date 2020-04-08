@@ -172,7 +172,7 @@ class GameVC: UIViewController {
         }
         
         // Delay one second because random cells appers with random delay
-        CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
+        _ = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
 		
 		for bonus in  self.gameModel!.collectableBonuses {
 			NotificationCenter.default.post(name: .updateCollectables, object: bonus.key)
@@ -272,7 +272,7 @@ extension GameVC: UIGestureRecognizerDelegate {
     @objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
         CmdFactory().DoSwipe(direction: recognizer.direction).run()
         CmdFactory().ApplyScoreBuff().run()
-        CmdFactory().AfterSwipe().runWithDelay(delay: gameModel!.swipeStatus.delay)
+        _ = CmdFactory().AfterSwipe().runWithDelay(delay: gameModel!.swipeStatus.delay)
     }
     
     // https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions

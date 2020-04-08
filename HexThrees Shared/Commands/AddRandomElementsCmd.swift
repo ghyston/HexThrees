@@ -21,7 +21,7 @@ class AddRandomElementsCmd : GameCMD {
     
 	override func run() {
         for _ in 0 ..< cells {
-            CmdFactory()
+            _ = CmdFactory()
                 .AddRandomCellSkipRepeat()
                 .runWithDelay(delay: Double.random)
         }
