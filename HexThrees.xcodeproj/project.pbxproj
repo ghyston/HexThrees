@@ -142,6 +142,7 @@
 		3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */; };
 		3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */; };
 		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
+		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +296,7 @@
 		3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRandomBonusCMD.swift; sourceTree = "<group>"; };
 		3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBonusesCounterCMD.swift; sourceTree = "<group>"; };
 		3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityDice.swift; sourceTree = "<group>"; };
+		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,6 +433,7 @@
 				3F45A13A232AB20A00157EDB /* blockStatic2.fsh */,
 				3F45A13C232AB82500157EDB /* blockAnimated2.fsh */,
 				3F29E297233126F100091D0B /* collectableButton.fsh */,
+				3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */,
 				3FD8328B2436335300902B7C /* blockSwipe.fsh */,
 				3FD8329124372C8600902B7C /* selectable.fsh */,
 				3FD8329324377AB300902B7C /* selectableShade.fsh */,
@@ -679,6 +682,7 @@
 				3F06B35A207C81E000C8315A /* Main.storyboard in Resources */,
 				3F29E298233126F100091D0B /* collectableButton.fsh in Resources */,
 				3F1A626721181DE400CC6586 /* grid.fsh in Resources */,
+				3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */,
 				3F555CEC208FC30D003C67A7 /* Resourses in Resources */,
 				3F06B36D207C81E000C8315A /* Actions.sks in Resources */,
 				3F06B35D207C81E000C8315A /* LaunchScreen.storyboard in Resources */,
