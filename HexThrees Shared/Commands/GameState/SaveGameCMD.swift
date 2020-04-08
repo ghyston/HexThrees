@@ -46,11 +46,14 @@ class SaveGameCMD : GameCMD {
         }
         
         self.gameModel.field.executeForAll(lambda: saveCell)
-        
+		
         return SavedGame(
             cells: cells,
             score: self.gameModel.score,
-            fieldSize: FieldSize(rawValue: self.gameModel.field.width)!)
+            fieldSize: FieldSize(rawValue: self.gameModel.field.width)!,
+			bonuses: self.gameModel.collectableBonuses
+				.filter {$0.value.currentValue > 0 }
+				.mapValues { SavedGame.CollectableBonusCodable(currentValue: $0.currentValue, maxValue: $0.maxValue )})
     }
     
     private func saveJsonToFile(_ json: String)

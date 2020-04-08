@@ -57,6 +57,9 @@ class LoadGameCmd: GameCMD {
         NotificationCenter.default.post(
             name: .updateScore,
             object: self.gameModel.score)
+		
+		gameModel.collectableBonuses = gameSave.bonuses
+			.filter { $0.value.currentValue > 0 }
+			.mapValues { CollectableBonusModel (currentValue: $0.currentValue, maxValue: $0.maxValue )}
     }
-    
 }
