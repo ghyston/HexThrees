@@ -143,6 +143,7 @@
 		3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */; };
 		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
 		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
+		3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +298,7 @@
 		3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBonusesCounterCMD.swift; sourceTree = "<group>"; };
 		3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityDice.swift; sourceTree = "<group>"; };
 		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
+		3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpGameCellCmd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -535,6 +537,7 @@
 				3F4D67592350556200635E5E /* CmdFactory.swift */,
 				3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */,
 				3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */,
+				3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				3F8D115D2284948E0034BC6D /* StartStressTimerCMD.swift in Sources */,
 				3F064874215D4167005461C7 /* MoveYUpIterator.swift in Sources */,
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
+				3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */,
 				3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,

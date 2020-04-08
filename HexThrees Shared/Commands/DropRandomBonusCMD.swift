@@ -72,6 +72,10 @@ class DropRandomBonusCMD : GameCMD {
 				self.gameModel.stressTimer.isEnabled() {
 				bonusTypes.add(.COLLECTABLE_PAUSE_TIMER, GameConstants.CollectablePauseTimerBonusProbability)
 			}
+			
+			if self.gameModel.collectableBonuses[.COLLECTABLE_PICK_UP] == nil {
+				bonusTypes.add(.COLLECTABLE_PICK_UP, GameConstants.CollectablePickUpBonusProbability)
+			}
 		}
        
         guard let bonusType = bonusTypes.getRandom() else {

@@ -126,6 +126,10 @@ class HexField {
 	class func userBlockedCell(cell: BgCell) -> Bool {
         return cell.isBlockedFromSwipe
     }
+	
+	class func containGameCell(cell: BgCell) -> Bool {
+        return cell.gameCell != nil
+    }
     
 //    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {
 //        for y in 0 ..< height {

@@ -16,7 +16,7 @@ class GameConstants {
     static let SecondsPerCell = 0.15
     static let BonusAnimationDuration = 0.5
     static let GameOverScreenDelay = 1.2
-    static let StressTimerInterval = 3.0
+    static let StressTimerInterval = 6.0
     static let StressTimerRollbackInterval = 0.5
     static let HelpVCAnimationDelay = 1.0
     static let BlockAnimationDuration = 1.0
@@ -35,6 +35,7 @@ class GameConstants {
     static let CollectableUnlockCellBonusProbability: Float = 1.0
 	static let CollectableSwipeBlockBonusProbability: Float = 1.0
 	static let CollectablePauseTimerBonusProbability: Float = 1.0
+	static let CollectablePickUpBonusProbability: Float = 1.0
 }
 
 enum SettingsKey : String {
