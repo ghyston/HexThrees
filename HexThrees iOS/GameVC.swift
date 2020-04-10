@@ -93,6 +93,7 @@ class GameVC: UIViewController {
             motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
             hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
             timerEnabled: params.stressTimer == StressTimerStatus.Enabled)
+		self.gameModel?.collectableBonuses.removeAll()
         ContainerConfig.instance.register(self.gameModel!)
     }
     
@@ -191,6 +192,11 @@ class GameVC: UIViewController {
                 cells: settings.randomElementsCount,
                 blocked: settings.blockedCellsCount)
             .run()
+		
+		NotificationCenter.default.post(
+			name: .updateScore,
+			object: self.gameModel?.score)
+		self.scene?.panel?.removeAllButtons()
     }
     
     // MARK: Callbacks

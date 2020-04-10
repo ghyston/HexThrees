@@ -14,7 +14,5 @@ class CleanGameCmd : GameCMD {
     override func run() {
         
         self.gameModel.field.clean()
-        //@todo: check, do we need to reset score, if we create model afterwards anyway?
-        self.gameModel.score = 0
     }
 }

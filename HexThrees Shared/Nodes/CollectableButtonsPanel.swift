@@ -32,6 +32,12 @@ class CollectableButtonsPanel : SKNode {
 			object: nil)
 	}
 	
+	public func removeAllButtons() {
+		for btn in buttons {
+			removeButton(btn.value, btn.key)
+		}
+	}
+	
 	private func addButton(type: BonusType) {
 		addButtonNode(type)
 		moveButtons()
@@ -75,6 +81,10 @@ class CollectableButtonsPanel : SKNode {
 			return
 		}
 		
+		removeButton(button, bonusType)
+	}
+	
+	private func removeButton(_ button: CollectableBtn, _ bonusType: BonusType) {
 		button.playUseAnimation()
 		buttons.removeValue(forKey: bonusType)
 		buttonsOrder.removeAll(where: {$0 == bonusType})
