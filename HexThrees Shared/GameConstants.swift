@@ -14,7 +14,7 @@ class GameConstants {
 	static let TurnsToAutoSave = 5
     
     // Animations
-    static let SecondsPerCell = 0.15
+    static let SecondsPerCell = 0.20
     static let BonusAnimationDuration = 0.5
     static let GameOverScreenDelay = 1.2
     static let StressTimerInterval = 6.0

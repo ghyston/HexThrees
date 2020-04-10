@@ -146,23 +146,23 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		self.updatePlayback = Playback()
 		self.updatePlayback?.setRange(from: 0, to: 1.96)
         self.updatePlayback!.start(
-			duration: GameConstants.SecondsPerCell,
+			duration: GameConstants.SecondsPerCell * 1.4,
             reversed: false,
             repeated: false,
             onFinish: self.finishUpdate)
 		
 		self.hexShape.fillShader = self.updateShader
+		
+		let zoomIn = SKAction.scale(to: 1.3, duration: GameConstants.SecondsPerCell)
+        zoomIn.timingMode = SKActionTimingMode.easeIn
+        let zoomOut = SKAction.scale(to: 1.0, duration: GameConstants.SecondsPerCell)
+        zoomOut.timingMode = SKActionTimingMode.easeIn
+        self.run(SKAction.sequence([zoomIn, zoomOut]))
     }
 	
 	@objc private func finishUpdate() {
 		self.hexShape.fillShader = nil
 		self.updatePlayback = nil
-		
-		let zoomIn = SKAction.scale(to: 1.3, duration: 0.3)
-        zoomIn.timingMode = SKActionTimingMode.easeIn
-        let zoomOut = SKAction.scale(to: 1.0, duration: 0.2)
-        zoomOut.timingMode = SKActionTimingMode.easeIn
-        self.run(SKAction.sequence([zoomIn, zoomOut]))
 	}
     
     func playMoveAnimation(diff: CGVector, duration: Double) {
