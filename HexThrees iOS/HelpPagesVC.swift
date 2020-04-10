@@ -74,7 +74,7 @@ class HelpPagesVC : UIPageViewController, UIPageViewControllerDataSource, UIPage
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         let pageContentViewController = pageViewController.viewControllers![0]
-        let currentPageIndex = viewControllersList.index(of: pageContentViewController)!
+        let currentPageIndex = viewControllersList.firstIndex(of: pageContentViewController)!
         self.pageControl.currentPage = currentPageIndex
     }
     
@@ -91,7 +91,7 @@ class HelpPagesVC : UIPageViewController, UIPageViewControllerDataSource, UIPage
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
     
         //this is from https://www.youtube.com/watch?v=jVBtDH6jjl8
-        guard let vcIndex = viewControllersList.index(of: viewController) else { return nil }
+        guard let vcIndex = viewControllersList.firstIndex(of: viewController) else { return nil }
         let previousIndex = vcIndex - 1
         
         guard previousIndex >= 0 else { return nil }
@@ -103,7 +103,7 @@ class HelpPagesVC : UIPageViewController, UIPageViewControllerDataSource, UIPage
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        guard let vcIndex = viewControllersList.index(of: viewController) else { return nil }
+        guard let vcIndex = viewControllersList.firstIndex(of: viewController) else { return nil }
         let nextIndex = vcIndex + 1
         
         guard viewControllersList.count > nextIndex else {return nil}
