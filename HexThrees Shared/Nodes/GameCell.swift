@@ -10,8 +10,7 @@ import Foundation
 import SpriteKit
 
 
-
-class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
+class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
     var prevPosition: CGPoint?
     var prevDelta: Double?
     
@@ -21,10 +20,19 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
     var effectNode : SKEffectNode
     var blurFilter : CIFilter
     var motionBlurDisabled : Bool
+	
+	var updateShader: AnimatedShader
+	var updatePlayback: Playback?
     
     var value: Int
     var newParent : BgCell?
     let pal : IPaletteManager = ContainerConfig.instance.resolve()
+	
+	struct UniformNames {
+		static let oldColor = "uOldColor"
+		static let newColor = "uNewColor"
+		static let startPoint = "uStart"
+	}
     
     init(model: GameModel, val: Int) {
         
@@ -38,6 +46,18 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         effectNode = SKEffectNode()
         blurFilter = CIFilter()
         prevPosition = CGPoint()
+		
+		// load shader and set default uniforms
+		self.updateShader = AnimatedShader.init(fileNamed: "cellUpdateValue")
+		self.updateShader.addUniform(
+			name: UniformNames.oldColor,
+			value: self.pal.color(value: 0).toVector())
+		self.updateShader.addUniform(
+			name: UniformNames.newColor,
+			value: self.pal.color(value: 0).toVector())
+		self.updateShader.addUniform(
+			name: UniformNames.startPoint,
+			value: vector_float2(0.0, 0.0))
         
         super.init()
         
@@ -90,15 +110,60 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         self.setScale(0.01)
         self.run(SKAction.scale(to: 1.0, duration: GameConstants.CellAppearAnimationDuration))
     }
+	
+	func updateAnimation(_ delta: TimeInterval) {
+		if let playbackValue = self.updatePlayback?.update(delta: delta) {
+			self.updateShader.update(playbackValue)
+		}
+	}
+	
+	private class func startUpdateAnimatonPoint(by direction: SwipeDirection) -> vector_float2 {
+		switch direction {
+			case .Right: 	return vector_float2(0.0, 0.5)
+			case .YDown: 	return vector_float2(0.0, 1.0)
+			case .XDown: 	return vector_float2(1.0, 1.0)
+			case .Left:		return vector_float2(1.0, 0.5)
+			case .YUp: 		return vector_float2(1.0, 0.0)
+			case .XUp: 		return vector_float2(0.0, 0.0)
+			case .Unknown:	return vector_float2(0.0, 0.0)
+		}
+	}
     
-	func playUpdateAnimation(_ direction: SwipeDirection) {
-        
-        let zoomIn = SKAction.scale(to: 1.5, duration: 0.3)
+	private func playUpdateAnimation(_ direction: SwipeDirection) {
+     
+		let startPoint = GameCell.startUpdateAnimatonPoint(by: direction)
+		
+		self.updateShader.updateUniform(
+			name: UniformNames.oldColor,
+			value: self.pal.color(value: value - 1).toVector())
+		self.updateShader.updateUniform(
+			name: UniformNames.newColor,
+			value: self.pal.color(value: value).toVector())
+		self.updateShader.updateUniform(
+			name: UniformNames.startPoint,
+			value: startPoint)
+		
+		self.updatePlayback = Playback()
+		self.updatePlayback?.setRange(from: 0, to: 1.96)
+        self.updatePlayback!.start(
+			duration: GameConstants.SecondsPerCell,
+            reversed: false,
+            repeated: false,
+            onFinish: self.finishUpdate)
+		
+		self.hexShape.fillShader = self.updateShader
+    }
+	
+	@objc private func finishUpdate() {
+		self.hexShape.fillShader = nil
+		self.updatePlayback = nil
+		
+		let zoomIn = SKAction.scale(to: 1.3, duration: 0.3)
         zoomIn.timingMode = SKActionTimingMode.easeIn
         let zoomOut = SKAction.scale(to: 1.0, duration: 0.2)
         zoomOut.timingMode = SKActionTimingMode.easeIn
         self.run(SKAction.sequence([zoomIn, zoomOut]))
-    }
+	}
     
     func playMoveAnimation(diff: CGVector, duration: Double) {
         
