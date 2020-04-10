@@ -17,6 +17,10 @@ extension SKShader {
     func addUniform(name: String, value: vector_float3) {
         addUniform(SKUniform(name: name, vectorFloat3: value))
     }
+	
+	func addUniform(name: String, value: vector_float2) {
+        addUniform(SKUniform(name: name, vectorFloat2: value))
+    }
     
     func updateUniform(name: String, value: Float) {
         uniformNamed(name)?.floatValue = value
@@ -24,6 +28,10 @@ extension SKShader {
     
     func updateUniform(name: String, value: vector_float3) {
         uniformNamed(name)?.vectorFloat3Value = value
+    }
+	
+	func updateUniform(name: String, value: vector_float2) {
+		uniformNamed(name)?.vectorFloat2Value = value
     }
 }
 

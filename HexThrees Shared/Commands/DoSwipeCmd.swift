@@ -28,7 +28,11 @@ class DoSwipeCmd : GameCMD {
         
 		os_signpost(.begin, log: .gestures, name: "moveLine")
         while let container = iterator.next() {
-            MoveLineCMD(self.gameModel).setup(cells: container).run()
+            MoveLineCMD(self.gameModel)
+				.setup(
+					cells: container,
+					direction: self.direction)
+				.run()
         }
 		os_signpost(.end, log: .gestures, name: "moveLine")
 		
