@@ -144,6 +144,7 @@
 		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
 		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
 		3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */; };
+		3FF8B99C24406B2200703AF9 /* cellUpdateValue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +300,7 @@
 		3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityDice.swift; sourceTree = "<group>"; };
 		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
 		3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpGameCellCmd.swift; sourceTree = "<group>"; };
+		3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cellUpdateValue.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +441,7 @@
 				3FD8328B2436335300902B7C /* blockSwipe.fsh */,
 				3FD8329124372C8600902B7C /* selectable.fsh */,
 				3FD8329324377AB300902B7C /* selectableShade.fsh */,
+				3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				3FD8329424377AB300902B7C /* selectableShade.fsh in Resources */,
 				3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */,
 				3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */,
+				3FF8B99C24406B2200703AF9 /* cellUpdateValue.fsh in Resources */,
 				3FD9C6AF2318FF7400137319 /* circleTimer.fsh in Resources */,
 				3F06B36F207C81E000C8315A /* GameScene.sks in Resources */,
 				3F1A62692118A74100CC6586 /* blockStatic.fsh in Resources */,
