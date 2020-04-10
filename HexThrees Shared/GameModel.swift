@@ -25,6 +25,7 @@ class GameModel {
     var scoreBuffs = [ScoreBuff]()
     var scoreMultiplier : Int = 1
     var turnsWithoutBonus : Int = 0
+	var turnsWithoutSave : Int = 0
     
     var selectedBonusType : BonusType?
     var selectCMD : RunOnNodeCMD?

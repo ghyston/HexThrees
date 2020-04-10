@@ -11,6 +11,7 @@ class GameConstants {
     static let BonusTurnsLifetime = 2
     static let MaxBonusesOnScreen = 3
 	static let MaxBonusesOnPanel = 3
+	static let TurnsToAutoSave = 5
     
     // Animations
     static let SecondsPerCell = 0.15

@@ -26,5 +26,11 @@ class AfterSwipeCmd : GameCMD {
         CmdFactory().AddRandomCellSkipRepeat().run()
         DropRandomBonusCMD(gameModel).run()
         CheckGameEndCmd(gameModel).run()
+		
+		gameModel.turnsWithoutSave += 1
+		if gameModel.turnsWithoutSave > GameConstants.TurnsToAutoSave {
+			SaveGameCMD(gameModel).run()
+			gameModel.turnsWithoutSave = 0
+		}
     }
 }
