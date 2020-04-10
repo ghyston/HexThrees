@@ -8,14 +8,13 @@
 
 import Foundation
 
-class PickUpGameCellCmd : RunOnNodeCMD {
-
+class PickUpGameCellCmd: RunOnNodeCMD {
 	override func run() {
 		guard let value = self.node?.gameCell?.value else {
 			assert(true, "PickUpGameCellCmd: value is not defined!")
 			return
 		}
-		
+
 		let deltaScore = self.gameModel.strategy[value] * self.gameModel.scoreMultiplier
 		UpdateScoreCMD(self.gameModel).run(deltaScore)
 		RemoveCellCMD(self.gameModel).run(cell: self.node!, delay: 0)

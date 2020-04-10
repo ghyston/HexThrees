@@ -8,20 +8,18 @@
 
 import Foundation
 
-class AddCellByTimerCMD : GameCMD {
-    
-    override func run() {
-        guard let bgCell = self.gameModel.stressTimer.getCell() else {
-            return
-        }
-        
-        AddGameCellCmd(self.gameModel)
-            .setup(addTo: bgCell)
-            .run()
-        
-        if self.gameModel.stressTimer.isEnabled() {
-            StartStressTimerCMD(self.gameModel).run()
-        }
-    }
-}
+class AddCellByTimerCMD: GameCMD {
+	override func run() {
+		guard let bgCell = self.gameModel.stressTimer.getCell() else {
+			return
+		}
 
+		AddGameCellCmd(self.gameModel)
+			.setup(addTo: bgCell)
+			.run()
+
+		if self.gameModel.stressTimer.isEnabled() {
+			StartStressTimerCMD(self.gameModel).run()
+		}
+	}
+}

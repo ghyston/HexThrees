@@ -9,26 +9,24 @@
 import Foundation
 
 class IteratorFabric {
-    
-    class func create(_ model : GameModel, _ direction : SwipeDirection) -> CellsIterator? {
-        
-        switch direction {
-        case .Left:
-            return MoveLeftIterator(model)
-        case .Right:
-            return MoveRightIterator(model)
-        case .XUp:
-            return MoveXUpIterator(model)
-        case .YUp:
-            return MoveYUpIterator(model)
-        case .XDown:
-            return MoveXDownIterator(model)
-        case .YDown:
-            return MoveYDownIterator(model)
-        case .Unknown:
-            fallthrough
-        default:
-            return nil
-        }
-    }
+	class func create(_ model: GameModel, _ direction: SwipeDirection) -> CellsIterator? {
+		switch direction {
+		case .Left:
+			return MoveLeftIterator(model)
+		case .Right:
+			return MoveRightIterator(model)
+		case .XUp:
+			return MoveXUpIterator(model)
+		case .YUp:
+			return MoveYUpIterator(model)
+		case .XDown:
+			return MoveXDownIterator(model)
+		case .YDown:
+			return MoveYDownIterator(model)
+		case .Unknown:
+			fallthrough
+		default:
+			return nil
+		}
+	}
 }

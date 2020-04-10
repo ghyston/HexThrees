@@ -9,10 +9,8 @@
 import Foundation
 import SpriteKit
 
-class CleanGameCmd : GameCMD {
-    
-    override func run() {
-        
-        self.gameModel.field.clean()
-    }
+class CleanGameCmd: GameCMD {
+	override func run() {
+		self.gameModel.field.clean()
+	}
 }

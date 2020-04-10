@@ -9,14 +9,13 @@
 import Foundation
 
 extension AddRandomCellCmd {
-    
-    func forTutorial() -> AddRandomCellCmd {
-        isTutorial = true
-        return self
-    }
-    
-    func skipRepeat() -> AddRandomCellCmd {
-        autoRepeat = false
-        return self
-    }
+	func forTutorial() -> AddRandomCellCmd {
+		isTutorial = true
+		return self
+	}
+
+	func skipRepeat() -> AddRandomCellCmd {
+		autoRepeat = false
+		return self
+	}
 }

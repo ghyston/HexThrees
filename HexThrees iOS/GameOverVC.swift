@@ -8,26 +8,22 @@
 
 import Foundation
 
-class GameOverVC : UIViewController {
-    
-    var gameModel : GameModel?
-    
-    @IBOutlet weak var popupView: UIView!
-    @IBOutlet weak var ScoreLabel: UILabel!
-    
-    @IBAction func onResetGame(_ sender: Any) {
-        
-        NotificationCenter.default.post(name: .resetGame, object: nil)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        popupView.layer.cornerRadius = 20
-        
-        self.gameModel = ContainerConfig.instance.resolve() as GameModel
-        ScoreLabel.text = "\(self.gameModel!.score)"
-        
-    }
+class GameOverVC: UIViewController {
+	var gameModel: GameModel?
+	
+	@IBOutlet var popupView: UIView!
+	@IBOutlet var ScoreLabel: UILabel!
+	
+	@IBAction func onResetGame(_ sender: Any) {
+		NotificationCenter.default.post(name: .resetGame, object: nil)
+		dismiss(animated: true, completion: nil)
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		popupView.layer.cornerRadius = 20
+		
+		gameModel = ContainerConfig.instance.resolve() as GameModel
+		ScoreLabel.text = "\(gameModel!.score)"
+	}
 }

@@ -8,58 +8,54 @@
 
 import Foundation
 
-class DropRandomBonusCMD : GameCMD {
-    
-    override func run() {
-        
-        guard let randomFreeCell = self.gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses).randomElement() else {
-            return
-        }
-        
-        let dropBonusProbability =
-            Float(GameConstants.BaseBonusDropProbability) *
-            Float(gameModel.turnsWithoutBonus)
-        
-        if Float.random > dropBonusProbability {
-            
-            gameModel.turnsWithoutBonus += 1
-            return
-        }
-        
-        gameModel.turnsWithoutBonus = 0
-        
-        let maxBonusesOnField = GameConstants.MaxBonusesOnScreen
-        
-        let bonusesOnField = self.gameModel.field.countBgCells(compare: { $0.bonus != nil })
-        if bonusesOnField > maxBonusesOnField {
-            return
-        }
-        
-        let bonusTypes = ProbabilityArray<BonusType>()
-        bonusTypes.add(.X2_POINTS, GameConstants.X2BonusProbability)
-        bonusTypes.add(.X3_POINTS, GameConstants.X3BonusProbability)
-        
-        let blockedCellsCount = self.gameModel.field.countBgCells(compare: { $0.isBlocked })
-        if blockedCellsCount > 1 {
-            bonusTypes.add(.UNLOCK_CELL, GameConstants.UnlockBonusProbability)
-        }
-        else if blockedCellsCount == 1 {
-            bonusTypes.add(.UNLOCK_CELL, GameConstants.LastBlockedUnlockBonusProbability)
-        }
-        
-        if self.gameModel.field.countBgCells(compare: HexField.freeCell) > 2 {
-            
-            bonusTypes.add(.BLOCK_CELL, GameConstants.LockBonusProbability)
-        }
+class DropRandomBonusCMD: GameCMD {
+	override func run() {
+		guard let randomFreeCell = self.gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses).randomElement() else {
+			return
+		}
 		
-        for collectable in self.gameModel.collectableBonuses {
-            if !collectable.value.isFull {
-                bonusTypes.add(collectable.key, 1.0) //@todo: choose probability by type
-            }
-        }
+		let dropBonusProbability =
+			Float(GameConstants.BaseBonusDropProbability) *
+			Float(gameModel.turnsWithoutBonus)
 		
-		if(self.gameModel.collectableBonuses.count < GameConstants.MaxBonusesOnPanel) {
-			if self.gameModel.collectableBonuses[.COLLECTABLE_UNLOCK_CELL] == nil &&
+		if Float.random > dropBonusProbability {
+			gameModel.turnsWithoutBonus += 1
+			return
+		}
+		
+		gameModel.turnsWithoutBonus = 0
+		
+		let maxBonusesOnField = GameConstants.MaxBonusesOnScreen
+		
+		let bonusesOnField = self.gameModel.field.countBgCells(compare: { $0.bonus != nil })
+		if bonusesOnField > maxBonusesOnField {
+			return
+		}
+		
+		let bonusTypes = ProbabilityArray<BonusType>()
+		bonusTypes.add(.X2_POINTS, GameConstants.X2BonusProbability)
+		bonusTypes.add(.X3_POINTS, GameConstants.X3BonusProbability)
+		
+		let blockedCellsCount = self.gameModel.field.countBgCells(compare: { $0.isBlocked })
+		if blockedCellsCount > 1 {
+			bonusTypes.add(.UNLOCK_CELL, GameConstants.UnlockBonusProbability)
+		}
+		else if blockedCellsCount == 1 {
+			bonusTypes.add(.UNLOCK_CELL, GameConstants.LastBlockedUnlockBonusProbability)
+		}
+		
+		if self.gameModel.field.countBgCells(compare: HexField.freeCell) > 2 {
+			bonusTypes.add(.BLOCK_CELL, GameConstants.LockBonusProbability)
+		}
+		
+		for collectable in self.gameModel.collectableBonuses {
+			if !collectable.value.isFull {
+				bonusTypes.add(collectable.key, 1.0) // @todo: choose probability by type
+			}
+		}
+		
+		if self.gameModel.collectableBonuses.count < GameConstants.MaxBonusesOnPanel {
+			if self.gameModel.collectableBonuses[.COLLECTABLE_UNLOCK_CELL] == nil,
 				blockedCellsCount > 1 {
 				bonusTypes.add(.COLLECTABLE_UNLOCK_CELL, GameConstants.CollectableUnlockCellBonusProbability)
 			}
@@ -68,7 +64,7 @@ class DropRandomBonusCMD : GameCMD {
 				bonusTypes.add(.COLLECTABLE_SWIPE_BLOCK, GameConstants.CollectableSwipeBlockBonusProbability)
 			}
 			
-			if self.gameModel.collectableBonuses[.COLLECTABLE_PAUSE_TIMER] == nil &&
+			if self.gameModel.collectableBonuses[.COLLECTABLE_PAUSE_TIMER] == nil,
 				self.gameModel.stressTimer.isEnabled() {
 				bonusTypes.add(.COLLECTABLE_PAUSE_TIMER, GameConstants.CollectablePauseTimerBonusProbability)
 			}
@@ -77,12 +73,12 @@ class DropRandomBonusCMD : GameCMD {
 				bonusTypes.add(.COLLECTABLE_PICK_UP, GameConstants.CollectablePickUpBonusProbability)
 			}
 		}
-       
-        guard let bonusType = bonusTypes.getRandom() else {
-            return
-        }
-        
-        let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: gameModel)
-        randomFreeCell.addBonus(bonusNode)
-    }
+		
+		guard let bonusType = bonusTypes.getRandom() else {
+			return
+		}
+		
+		let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: gameModel)
+		randomFreeCell.addBonus(bonusNode)
+	}
 }

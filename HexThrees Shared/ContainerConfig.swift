@@ -10,25 +10,23 @@ import Foundation
 import SpriteKit
 
 class ContainerConfig {
-    
-    static var instance : Container = {
-        var container = Container()
-        Configure(&container)
-        return container
-    }()
-    
-    static func Configure(_ container : inout Container) {
-        
-        /*let scene = GameScene.newGameScene()
-        let entityManager = RavenEntityManager(scene)
-        let gamePlay = RavensGameplay(entityManager)
-        let inputSystem = RavensInputSystem(gamePlay: gamePlay, entityManager: entityManager)
-        let eventSysten = EventSystem()
-        
-        container.Register(scene as SKScene)
-        container.Register(entityManager as EntityManager)
-        container.Register(gamePlay as GamePlay)
-        container.Register(inputSystem as InputSystem)
-        container.Register(eventSysten as IEventSystem)*/
-    }
+	static var instance: Container = {
+		var container = Container()
+		Configure(&container)
+		return container
+	}()
+	
+	static func Configure(_ container: inout Container) {
+		/* let scene = GameScene.newGameScene()
+		 let entityManager = RavenEntityManager(scene)
+		 let gamePlay = RavensGameplay(entityManager)
+		 let inputSystem = RavensInputSystem(gamePlay: gamePlay, entityManager: entityManager)
+		 let eventSysten = EventSystem()
+		 
+		 container.Register(scene as SKScene)
+		 container.Register(entityManager as EntityManager)
+		 container.Register(gamePlay as GamePlay)
+		 container.Register(inputSystem as InputSystem)
+		 container.Register(eventSysten as IEventSystem) */
+	}
 }

@@ -8,23 +8,21 @@
 
 import Foundation
 
-struct SavedGame : Codable{
-    
-    struct SavedCell : Codable {
-        
-        let val : Int?
-        let blocked: Bool
-        let bonusType: BonusType?
-        let bonusTurns: Int?
-    }
-	
-	struct CollectableBonusCodable : Codable {
-		let currentValue : Int
-		let maxValue : Int
+struct SavedGame: Codable {
+	struct SavedCell: Codable {
+		let val: Int?
+		let blocked: Bool
+		let bonusType: BonusType?
+		let bonusTurns: Int?
 	}
-    
-    let cells: [SavedCell]
-    let score: Int
-    let fieldSize: FieldSize //@todo: save and check for validation on load!
-	let bonuses: [BonusType : CollectableBonusCodable]
+	
+	struct CollectableBonusCodable: Codable {
+		let currentValue: Int
+		let maxValue: Int
+	}
+	
+	let cells: [SavedCell]
+	let score: Int
+	let fieldSize: FieldSize // @todo: save and check for validation on load!
+	let bonuses: [BonusType: CollectableBonusCodable]
 }

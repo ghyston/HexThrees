@@ -8,27 +8,25 @@
 
 import Foundation
 
-class StartStressTimerCMD : GameCMD {
-    
-    override func run() {
-        
-        guard gameModel.stressTimer.isEnabled() else {
-            return
-        }
-        
-        let cells = self.gameModel.field.getBgCellsWithPriority(
-            required: HexField.freeCell,
-            priority: HexField.cellWoBonuses, HexField.cellWoShader)
-        
-        guard let bgCell = cells.randomElement() else {
-            return
-        }
-        
-        bgCell.playCircleAnimation()
-        
-        self.gameModel.stressTimer.startNew(
-            timer: AddCellByTimerCMD(self.gameModel)
-                .runWithDelay(delay: GameConstants.StressTimerInterval),
-            cell: bgCell)
-    }
+class StartStressTimerCMD: GameCMD {
+	override func run() {
+		guard gameModel.stressTimer.isEnabled() else {
+			return
+		}
+		
+		let cells = self.gameModel.field.getBgCellsWithPriority(
+			required: HexField.freeCell,
+			priority: HexField.cellWoBonuses, HexField.cellWoShader)
+		
+		guard let bgCell = cells.randomElement() else {
+			return
+		}
+		
+		bgCell.playCircleAnimation()
+		
+		self.gameModel.stressTimer.startNew(
+			timer: AddCellByTimerCMD(self.gameModel)
+				.runWithDelay(delay: GameConstants.StressTimerInterval),
+			cell: bgCell)
+	}
 }

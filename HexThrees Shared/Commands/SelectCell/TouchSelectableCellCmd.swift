@@ -8,22 +8,20 @@
 
 import Foundation
 
-class TouchSelectableCellCmd : RunOnNodeCMD {
-    
-    override func run() {
-        
-        if  node == nil ||
-            node?.canBeSelected == false ||
-            self.gameModel.selectedBonusType == nil ||
-            self.gameModel.selectCMD == nil {
-            return;
-        }
-        
-        let bonusType = self.gameModel.selectedBonusType!
-        NotificationCenter.default.post(name: .useCollectables, object: bonusType)
-        self.gameModel.collectableBonuses[bonusType]?.use()
-        self.gameModel.selectCMD?.setup(node: node!).run()
+class TouchSelectableCellCmd: RunOnNodeCMD {
+	override func run() {
+		if node == nil ||
+			node?.canBeSelected == false ||
+			self.gameModel.selectedBonusType == nil ||
+			self.gameModel.selectCMD == nil {
+			return
+		}
+
+		let bonusType = self.gameModel.selectedBonusType!
+		NotificationCenter.default.post(name: .useCollectables, object: bonusType)
+		self.gameModel.collectableBonuses[bonusType]?.use()
+		self.gameModel.selectCMD?.setup(node: node!).run()
 		self.gameModel.selectedBonusType = nil
-        EndCellSelectionCMD(self.gameModel).run()
-    }
+		EndCellSelectionCMD(self.gameModel).run()
+	}
 }

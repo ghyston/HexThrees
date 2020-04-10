@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum StressTimerStatus : Int {
-    
-    case Enabled = 1
-    case Disabled = 2
+enum StressTimerStatus: Int {
+	case Enabled = 1
+	case Disabled = 2
 }

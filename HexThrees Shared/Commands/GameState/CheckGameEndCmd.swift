@@ -8,33 +8,32 @@
 
 import Foundation
 
-class CheckGameEndCmd : GameCMD {
-    
-    override func run() {
-        
-        //First, check is there any free space
-        if gameModel.field.hasBgCells(compare: HexField.freeCell) {
-            return
-        }
-        
-        // Check possible movement on all directions
-        let iterators = [
-            MoveLeftIterator(self.gameModel),
-            MoveRightIterator(self.gameModel),
-            MoveXUpIterator(self.gameModel),
-            MoveYUpIterator(self.gameModel),
-            MoveXDownIterator(self.gameModel),
-            MoveYDownIterator(self.gameModel)]
-        
-        for iterator in iterators {
-            while let line = (iterator as! CellsIterator).next() {
-                if(line.check(strategy: gameModel.strategy)) {
-                    return
-                }
-            }
-        }
-        
-        //thisIsTheEnd = true //my only friend
-        NotificationCenter.default.post(name: .gameOver, object: nil)
-    }
+class CheckGameEndCmd: GameCMD {
+	override func run() {
+		// First, check is there any free space
+		if gameModel.field.hasBgCells(compare: HexField.freeCell) {
+			return
+		}
+		
+		// Check possible movement on all directions
+		let iterators = [
+			MoveLeftIterator(gameModel),
+			MoveRightIterator(gameModel),
+			MoveXUpIterator(gameModel),
+			MoveYUpIterator(gameModel),
+			MoveXDownIterator(gameModel),
+			MoveYDownIterator(gameModel),
+		]
+		
+		for iterator in iterators {
+			while let line = (iterator as! CellsIterator).next() {
+				if line.check(strategy: gameModel.strategy) {
+					return
+				}
+			}
+		}
+		
+		// thisIsTheEnd = true //my only friend
+		NotificationCenter.default.post(name: .gameOver, object: nil)
+	}
 }

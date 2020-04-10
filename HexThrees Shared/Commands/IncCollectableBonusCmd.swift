@@ -8,17 +8,15 @@
 
 import Foundation
 
-class IncCollectableBonusCmd : GameCMD {
-    
-    private var type: BonusType?
-    
-    func setup(_ type: BonusType) -> GameCMD {
-        self.type = type
-        return self
-    }
-    
-    override func run() {
-		
+class IncCollectableBonusCmd: GameCMD {
+	private var type: BonusType?
+	
+	func setup(_ type: BonusType) -> GameCMD {
+		self.type = type
+		return self
+	}
+	
+	override func run() {
 		guard let bonusType = type else {
 			assert(true, "IncCollectableBonusCmd: bonus type was not set")
 			return
@@ -35,7 +33,7 @@ class IncCollectableBonusCmd : GameCMD {
 				maxValue: maxValue)
 		}
 		
-        self.gameModel.collectableBonuses[bonusType]?.inc()
-        NotificationCenter.default.post(name: .updateCollectables, object: type!)
-    }
+		self.gameModel.collectableBonuses[bonusType]?.inc()
+		NotificationCenter.default.post(name: .updateCollectables, object: self.type!)
+	}
 }

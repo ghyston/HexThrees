@@ -9,8 +9,6 @@
 import Foundation
 
 struct ScoreBuff {
-    
-    var turnsToApply: Int
-    let factor: Int
-    
+	var turnsToApply: Int
+	let factor: Int
 }

@@ -8,17 +8,16 @@
 
 import Foundation
 
-class UpdateBonusesCounterCMD : GameCMD {
-    
-    private func updateBonusCounter(cell: BgCell) {
-        if let bonus = cell.bonus {
-            if bonus.decCount() {
-                cell.removeBonusWithDisposeAnimation()
-            }
-        }
-    }
-    
-    override func run() {
-        self.gameModel.field.executeForAll(lambda: self.updateBonusCounter)
-    }
+class UpdateBonusesCounterCMD: GameCMD {
+	private func updateBonusCounter(cell: BgCell) {
+		if let bonus = cell.bonus {
+			if bonus.decCount() {
+				cell.removeBonusWithDisposeAnimation()
+			}
+		}
+	}
+
+	override func run() {
+		self.gameModel.field.executeForAll(lambda: self.updateBonusCounter)
+	}
 }

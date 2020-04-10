@@ -8,15 +8,14 @@
 
 import Foundation
 
-class EndCellSelectionCMD : GameCMD {
-    
-    private func removeHighlight(node: BgCell) {
-        node.removeHighlight()
-    }
-    
-    override func run() {
-        gameModel.field.executeForAll(lambda: self.removeHighlight)
-        StartStressTimerCMD(self.gameModel).run()
-        gameModel.swipeStatus.unlockSwipes()
-    }
+class EndCellSelectionCMD: GameCMD {
+	private func removeHighlight(node: BgCell) {
+		node.removeHighlight()
+	}
+
+	override func run() {
+		gameModel.field.executeForAll(lambda: self.removeHighlight)
+		StartStressTimerCMD(self.gameModel).run()
+		gameModel.swipeStatus.unlockSwipes()
+	}
 }

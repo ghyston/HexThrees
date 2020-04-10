@@ -8,15 +8,13 @@
 
 import Foundation
 
-class RollbackTimerCMD : GameCMD {
-    
-    override func run() {
-        
-        guard gameModel.stressTimer.isEnabled() else {
-            return
-        }
-        
-        self.gameModel.stressTimer.getCell()?.playRollbackCircleAnimation()
-        self.gameModel.stressTimer.stop()
-    }
+class RollbackTimerCMD: GameCMD {
+	override func run() {
+		guard gameModel.stressTimer.isEnabled() else {
+			return
+		}
+
+		self.gameModel.stressTimer.getCell()?.playRollbackCircleAnimation()
+		self.gameModel.stressTimer.stop()
+	}
 }

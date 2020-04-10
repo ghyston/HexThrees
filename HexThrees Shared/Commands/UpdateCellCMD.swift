@@ -8,10 +8,9 @@
 
 import Foundation
 
-class UpdateCellCMD : GameCMD {
-	
-	var cell : GameCell?
-	var value : Int?
+class UpdateCellCMD: GameCMD {
+	var cell: GameCell?
+	var value: Int?
 	var direction: SwipeDirection?
 	
 	func setup(cell: GameCell, value: Int, from direction: SwipeDirection) -> UpdateCellCMD {
@@ -25,7 +24,6 @@ class UpdateCellCMD : GameCMD {
 		self.cell?.updateValue(
 			value: self.value!,
 			strategy: self.gameModel.strategy,
-			direction: direction)
+			direction: self.direction)
 	}
-	
 }

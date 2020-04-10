@@ -8,27 +8,25 @@
 
 import Foundation
 
-class AddRandomCellCmd : GameCMD {
-    
-    internal var isTutorial : Bool = false
-    internal var autoRepeat : Bool = true
-    
-    override func run() {
-        
-        let cells = self.gameModel.field.getBgCellsWithPriority(
-            required: HexField.freeCell,
-            priority: HexField.freeCellWoBonuses, HexField.cellWoShader)
-        
-        guard let bgCell = cells.randomElement() else {
-            return
-        }
-        
-        AddGameCellCmd(self.gameModel)
-            .setup(addTo: bgCell)
-            .run()
-        
-        /*if self.gameModel.stressTimer.isEnabled() && autoRepeat{
-            StartStressTimerCMD(self.gameModel).run()
-        }*/
-    }
+class AddRandomCellCmd: GameCMD {
+	internal var isTutorial: Bool = false
+	internal var autoRepeat: Bool = true
+	
+	override func run() {
+		let cells = self.gameModel.field.getBgCellsWithPriority(
+			required: HexField.freeCell,
+			priority: HexField.freeCellWoBonuses, HexField.cellWoShader)
+		
+		guard let bgCell = cells.randomElement() else {
+			return
+		}
+		
+		AddGameCellCmd(self.gameModel)
+			.setup(addTo: bgCell)
+			.run()
+		
+		/* if self.gameModel.stressTimer.isEnabled() && autoRepeat{
+		     StartStressTimerCMD(self.gameModel).run()
+		 } */
+	}
 }

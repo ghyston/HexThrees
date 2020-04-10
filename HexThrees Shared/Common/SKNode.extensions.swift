@@ -10,12 +10,10 @@ import Foundation
 import SpriteKit
 
 extension SKNode {
-    
-    func runForAllSubnodes(lambda: (_: SKNode) -> Void) {
-        
-        lambda(self)
-        for child in self.children {
-            child.runForAllSubnodes(lambda: lambda)
-        }
-    }
+	func runForAllSubnodes(lambda: (_: SKNode) -> Void) {
+		lambda(self)
+		for child in self.children {
+			child.runForAllSubnodes(lambda: lambda)
+		}
+	}
 }

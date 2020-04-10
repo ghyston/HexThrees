@@ -8,10 +8,9 @@
 
 import Foundation
 
-enum ColorSchemaType : Int {
-    case Dark = 1
-    case Gray = 2
-    case Light = 3
-    case Blue = 4
+enum ColorSchemaType: Int {
+	case Dark = 1
+	case Gray = 2
+	case Light = 3
+	case Blue = 4
 }
-

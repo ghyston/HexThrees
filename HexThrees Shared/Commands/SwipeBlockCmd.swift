@@ -8,10 +8,8 @@
 
 import Foundation
 
-class SwipeBlockCmd : RunOnNodeCMD {
-    
-    override func run() {
+class SwipeBlockCmd: RunOnNodeCMD {
+	override func run() {
 		self.node?.blockFromSwipe()
-    }
+	}
 }
-

@@ -6,15 +6,12 @@
 //  Copyright © 2018 Ilja Stepanow. All rights reserved.
 //
 
-enum FieldSize : Int, Codable {
-    
-    case Thriple = 3
-    case Quaddro = 4
-    case Pento = 5
-    
-    var cellsCount: Int {
-        get {
-            return self.rawValue * self.rawValue
-        }
-    }
+enum FieldSize: Int, Codable {
+	case Thriple = 3
+	case Quaddro = 4
+	case Pento = 5
+
+	var cellsCount: Int {
+		return self.rawValue * self.rawValue
+	}
 }

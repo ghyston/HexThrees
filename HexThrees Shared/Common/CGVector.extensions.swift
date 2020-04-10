@@ -9,13 +9,11 @@
 import Foundation
 
 extension CGVector {
-    
-    init(from: CGPoint, to: CGPoint) {
-        
-        self.init(dx: to.x - from.x, dy: to.y - from.y)
-    }
-    
-    func squareLen() -> CGFloat {
-        return pow(self.dx, 2) + pow(self.dy, 2)
-    }
+	init(from: CGPoint, to: CGPoint) {
+		self.init(dx: to.x - from.x, dy: to.y - from.y)
+	}
+
+	func squareLen() -> CGFloat {
+		return pow(self.dx, 2) + pow(self.dy, 2)
+	}
 }

@@ -8,9 +8,8 @@
 
 import Foundation
 
-class SelectHapticFeedbackCMD : GameCMD {
-    
-    override func run(){
-        gameModel.hapticManager.select()
-    }
+class SelectHapticFeedbackCMD: GameCMD {
+	override func run() {
+		gameModel.hapticManager.select()
+	}
 }

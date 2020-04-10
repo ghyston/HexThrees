@@ -9,8 +9,7 @@
 import Foundation
 import SpriteKit
 
-protocol UserBlockedNode : class {
-	
+protocol UserBlockedNode: class {
 	var userBlockedHex: SKShapeNode { get set }
 	var isBlockedFromSwipe: Bool { get set }
 	var blockedPlayback: IPlayback? { get set }
@@ -19,11 +18,10 @@ protocol UserBlockedNode : class {
 	func unblockFromSwipe()
 }
 
-extension UserBlockedNode where Self : HexNode {
-	
+extension UserBlockedNode where Self: HexNode {
 	func createUserBlockedHex() {
 		self.userBlockedHex.path = self.hexShape.path
-		self.userBlockedHex.strokeShader = SKShader.init(fileNamed: "blockSwipe")
+		self.userBlockedHex.strokeShader = SKShader(fileNamed: "blockSwipe")
 		self.userBlockedHex.lineWidth = 0
 		self.userBlockedHex.zPosition = zPositions.userBlockedHexShape.rawValue
 	}
@@ -31,42 +29,42 @@ extension UserBlockedNode where Self : HexNode {
 	func updateUserBlockedOutline(_ delta: TimeInterval) {
 		if let playbackValue = self.blockedPlayback?.update(delta: delta) {
 			self.userBlockedHex.lineWidth = CGFloat(playbackValue)
-        }
+		}
 	}
 	
 	func blockFromSwipe() {
 		self.hexShape.addChild(self.userBlockedHex)
 		self.isBlockedFromSwipe = true
-		fadeIn()
+		self.fadeIn()
 	}
 	
 	func unblockFromSwipe() {
 		self.isBlockedFromSwipe = false
-		fadeOut()
+		self.fadeOut()
 	}
 	
 	private func fadeIn() {
 		self.blockedPlayback = Playback()
 		self.blockedPlayback!.setRange(from: 0, to: 3.0)
-        self.blockedPlayback!.start(
+		self.blockedPlayback!.start(
 			duration: GameConstants.CellAppearAnimationDuration,
-            reversed: false,
-            repeated: false,
-            onFinish: removePlayback)
+			reversed: false,
+			repeated: false,
+			onFinish: self.removePlayback)
 	}
 	
 	private func fadeOut() {
 		self.blockedPlayback = Playback()
 		self.blockedPlayback!.setRange(from: 3.0, to: 0.0)
-        self.blockedPlayback!.start(
+		self.blockedPlayback!.start(
 			duration: GameConstants.CellAppearAnimationDuration,
-            reversed: false,
-            repeated: false,
-            onFinish: removePlaybackWithNode)
+			reversed: false,
+			repeated: false,
+			onFinish: self.removePlaybackWithNode)
 	}
 	
 	private func removePlaybackWithNode() {
-		removePlayback()
+		self.removePlayback()
 		self.userBlockedHex.removeFromParent()
 	}
 	

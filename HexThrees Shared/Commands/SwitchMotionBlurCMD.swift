@@ -8,11 +8,9 @@
 
 import Foundation
 
-class SwitchMotionBlurCMD : GameCMD {
-    
-    func run(isOn: Bool) {
-        
-        self.gameModel.motionBlurEnabled = isOn
-        NotificationCenter.default.post(name: .switchMotionBlur, object: isOn)
-    }
+class SwitchMotionBlurCMD: GameCMD {
+	func run(isOn: Bool) {
+		self.gameModel.motionBlurEnabled = isOn
+		NotificationCenter.default.post(name: .switchMotionBlur, object: isOn)
+	}
 }

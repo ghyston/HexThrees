@@ -11,14 +11,12 @@ import SpriteKit
 import UIKit
 
 struct ColorSchema {
-    
-    var fieldOutlineColor : SKColor
-    var sceneBgColor : SKColor
-    var cellBgColor : SKColor
-    var cellBlockedBgColor : SKColor
-    var cellBlockingLinesColor: SKColor
-    var cellTutorialColor: SKColor
-    var statusBarStyle: UIStatusBarStyle
-    var colors: Dictionary<Int, SKColor>
+	var fieldOutlineColor: SKColor
+	var sceneBgColor: SKColor
+	var cellBgColor: SKColor
+	var cellBlockedBgColor: SKColor
+	var cellBlockingLinesColor: SKColor
+	var cellTutorialColor: SKColor
+	var statusBarStyle: UIStatusBarStyle
+	var colors: [Int: SKColor]
 }
-

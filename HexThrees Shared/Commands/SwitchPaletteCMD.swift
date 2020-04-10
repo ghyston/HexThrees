@@ -8,12 +8,10 @@
 
 import Foundation
 
-class SwitchPaletteCMD : GameCMD {
-    
-    func run(_ palette: ColorSchemaType) {
-        
-        let pal : IPaletteManager = ContainerConfig.instance.resolve()
-        pal.switchPalette(to: palette)
-        NotificationCenter.default.post(name: .switchPalette, object: nil)
-    }
+class SwitchPaletteCMD: GameCMD {
+	func run(_ palette: ColorSchemaType) {
+		let pal: IPaletteManager = ContainerConfig.instance.resolve()
+		pal.switchPalette(to: palette)
+		NotificationCenter.default.post(name: .switchPalette, object: nil)
+	}
 }

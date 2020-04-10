@@ -8,12 +8,11 @@
 
 import Foundation
 
-class UnlockSwypeBlockedCellsCmd : GameCMD {
-    
-    override func run() {
+class UnlockSwypeBlockedCellsCmd: GameCMD {
+	override func run() {
 		let cells = self.gameModel.field.getBgCells(compare: HexField.userBlockedCell)
 		for cell in cells {
 			cell.unblockFromSwipe()
 		}
-    }
+	}
 }

@@ -8,29 +8,28 @@
 
 import Foundation
 
-class AfterSwipeCmd : GameCMD {
-    
-    override func run() {
-        if !gameModel.swipeStatus.isSomethingChanged {
-            return
-        }
-        
-        UpdateBonusesCounterCMD(gameModel).run()
+class AfterSwipeCmd: GameCMD {
+	override func run() {
+		if !gameModel.swipeStatus.isSomethingChanged {
+			return
+		}
+		
+		UpdateBonusesCounterCMD(gameModel).run()
 		UnlockSwypeBlockedCellsCmd(gameModel).run()
-        
-        //@todo: startTimer only if there are available cells
-        if gameModel.stressTimer.isEnabled() {
-            _ = StartStressTimerCMD(gameModel).runWithDelay(delay: GameConstants.StressTimerRollbackInterval)
-        }
-        
-        CmdFactory().AddRandomCellSkipRepeat().run()
-        DropRandomBonusCMD(gameModel).run()
-        CheckGameEndCmd(gameModel).run()
+		
+		// @todo: startTimer only if there are available cells
+		if gameModel.stressTimer.isEnabled() {
+			_ = StartStressTimerCMD(gameModel).runWithDelay(delay: GameConstants.StressTimerRollbackInterval)
+		}
+		
+		CmdFactory().AddRandomCellSkipRepeat().run()
+		DropRandomBonusCMD(gameModel).run()
+		CheckGameEndCmd(gameModel).run()
 		
 		gameModel.turnsWithoutSave += 1
 		if gameModel.turnsWithoutSave > GameConstants.TurnsToAutoSave {
 			SaveGameCMD(gameModel).run()
 			gameModel.turnsWithoutSave = 0
 		}
-    }
+	}
 }

@@ -9,10 +9,9 @@
 import Foundation
 import SpriteKit
 
-class CollectableButtonsPanel : SKNode {
-	
+class CollectableButtonsPanel: SKNode {
 	private let width: CGFloat
-	private var buttons = [BonusType : CollectableBtn] ()
+	private var buttons = [BonusType: CollectableBtn]()
 	private var buttonsOrder = [BonusType]()
 	
 	init(width: CGFloat) {
@@ -43,7 +42,7 @@ class CollectableButtonsPanel : SKNode {
 		moveButtons()
 	}
 	
-	private func addButtons(types: BonusType ... ) {
+	private func addButtons(types: BonusType ...) {
 		for type in types {
 			addButtonNode(type)
 		}
@@ -59,22 +58,20 @@ class CollectableButtonsPanel : SKNode {
 	}
 	
 	@objc func onCollectableUpdate(notification: Notification) {
-		
 		guard let bonusType = notification.object as? BonusType else {
 			assert(true, "updateCollectables notification contain incorrect bonus type")
-            return
-        }
+			return
+		}
 		
 		let btn = addButtonIfNotExist(type: bonusType)
 		btn.onCollectableUpdate(notification: notification)
 	}
 	
-	 @objc func onCollectableUse(notification: Notification) {
-		
+	@objc func onCollectableUse(notification: Notification) {
 		guard let bonusType = notification.object as? BonusType else {
 			assert(true, "collectables use: notification contain incorrect bonus type")
-            return
-        }
+			return
+		}
 		
 		guard let button = buttons[bonusType] else {
 			assert(true, "collectables use: button for bonus type is not found")
@@ -87,15 +84,14 @@ class CollectableButtonsPanel : SKNode {
 	private func removeButton(_ button: CollectableBtn, _ bonusType: BonusType) {
 		button.playUseAnimation()
 		buttons.removeValue(forKey: bonusType)
-		buttonsOrder.removeAll(where: {$0 == bonusType})
+		buttonsOrder.removeAll(where: { $0 == bonusType })
 		
 		let delay = SKAction.wait(forDuration: GameConstants.CollectableUpdateAnimationDuration)
 		let moveDown = SKAction.move(
 			to: CGPoint(
 				x: button.position.x,
 				y: -button.sprite.size.height),
-			duration: GameConstants.CellAppearAnimationDuration
-		);
+			duration: GameConstants.CellAppearAnimationDuration)
 		moveDown.timingMode = SKActionTimingMode.easeIn
 		let delete = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: button)
 		
@@ -103,15 +99,15 @@ class CollectableButtonsPanel : SKNode {
 		
 		let moveButtonsDelay = SKAction.wait(forDuration: GameConstants.CollectableUpdateAnimationDuration)
 		let moveRestButtons = SKAction.perform(#selector(CollectableButtonsPanel.moveButtons), onTarget: self)
-        
-        self.run(SKAction.sequence([moveButtonsDelay, moveRestButtons]))
+		
+		run(SKAction.sequence([moveButtonsDelay, moveRestButtons]))
 	}
 	
 	private func addButtonNode(_ type: BonusType) {
 		let button = CollectableBtn(type: type)
 		button.zPosition = zPositions.bonusCollectable.rawValue
 		button.position.y = button.sprite.size.height / 2.0
-        button.position.x = width
+		button.position.x = width
 		
 		addChild(button)
 		buttons[type] = button
@@ -119,18 +115,17 @@ class CollectableButtonsPanel : SKNode {
 	}
 	
 	@objc private func moveButtons() {
-		let offset = self.width / CGFloat(buttons.count)
-		var i : CGFloat = 0.0
+		let offset = width / CGFloat(buttons.count)
+		var i: CGFloat = 0.0
 		for btnType in buttonsOrder {
 			guard let btn = buttons[btnType] else {
 				continue
 			}
 			let action = SKAction.move(
 				to: CGPoint(
-					x: -self.width / 2.0 + offset * (i + 0.5),
+					x: -width / 2.0 + offset * (i + 0.5),
 					y: btn.sprite.size.height / 2),
-				duration: GameConstants.CellAppearAnimationDuration
-			);
+				duration: GameConstants.CellAppearAnimationDuration)
 			action.timingMode = SKActionTimingMode.easeIn
 			btn.removeAllActions()
 			btn.run(action)
@@ -140,6 +135,6 @@ class CollectableButtonsPanel : SKNode {
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
-		 fatalError("init(coder:) has not been implemented")
+		fatalError("init(coder:) has not been implemented")
 	}
 }

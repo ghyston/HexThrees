@@ -8,11 +8,10 @@
 
 import Foundation
 
-class UnlockRandomCellCMD : GameCMD {
-    
-    override func run() {
-        self.gameModel.field
-            .getBgCells(compare: { $0.isBlocked } )
-            .randomElement()?.unblock()
-    }
+class UnlockRandomCellCMD: GameCMD {
+	override func run() {
+		self.gameModel.field
+			.getBgCells(compare: { $0.isBlocked })
+			.randomElement()?.unblock()
+	}
 }

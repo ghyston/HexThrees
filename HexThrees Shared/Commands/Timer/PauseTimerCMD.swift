@@ -8,11 +8,9 @@
 
 import Foundation
 
-class PauseTimerCMD : GameCMD {
-    
-    override func run() {
-        
-        NotificationCenter.default.post(name: .pauseTimers, object: nil)
-        self.gameModel.stressTimer.fire()
-    }
+class PauseTimerCMD: GameCMD {
+	override func run() {
+		NotificationCenter.default.post(name: .pauseTimers, object: nil)
+		self.gameModel.stressTimer.fire()
+	}
 }

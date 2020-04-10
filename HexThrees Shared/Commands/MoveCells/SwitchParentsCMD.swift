@@ -8,12 +8,11 @@
 
 import Foundation
 
-class SwitchParentsCMD : GameCMD {
-    
-    func run(from: BgCell, to: BgCell) {
-        //@todo: after this do we need BGCell functions remove/add?
-        from.gameCell?.removeFromParent()
-        to.addGameCell(cell: from.gameCell!)
-        from.gameCell = nil
-    }
+class SwitchParentsCMD: GameCMD {
+	func run(from: BgCell, to: BgCell) {
+		// @todo: after this do we need BGCell functions remove/add?
+		from.gameCell?.removeFromParent()
+		to.addGameCell(cell: from.gameCell!)
+		from.gameCell = nil
+	}
 }

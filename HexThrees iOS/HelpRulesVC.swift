@@ -9,29 +9,25 @@
 import Foundation
 import SpriteKit
 
-protocol HelpScene : SKScene {
-    init(frameSize : CGSize)
+protocol HelpScene: SKScene {
+	init(frameSize: CGSize)
 }
 
-class HelpRulesVC<SceneClass : HelpScene> : UIViewController {
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        let skView = self.view as! SKView
-        
-        let scene = SceneClass(frameSize: skView.frame.size)
-        
-        skView.presentScene(scene)
-        skView.ignoresSiblingOrder = true
-        skView.showsFPS = false
-        skView.showsNodeCount = false
-    }
+class HelpRulesVC<SceneClass: HelpScene>: UIViewController {
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		let skView = self.view as! SKView
+
+		let scene = SceneClass(frameSize: skView.frame.size)
+
+		skView.presentScene(scene)
+		skView.ignoresSiblingOrder = true
+		skView.showsFPS = false
+		skView.showsNodeCount = false
+	}
 }
 
-class HelpSwipeRulesVC : HelpRulesVC<HelpSwipeScene> {
-}
+class HelpSwipeRulesVC: HelpRulesVC<HelpSwipeScene> {}
 
-class HelpMergeRulesVC : HelpRulesVC<HelpMergingScene> {
-}
+class HelpMergeRulesVC: HelpRulesVC<HelpMergingScene> {}
