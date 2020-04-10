@@ -47,18 +47,19 @@ class HelpMergingNode : SKNode {
         
         self.leftNode.updateValue(
             value: self.valueLeft,
-            strategy: self.model.strategy,
-            animate: false)
+            strategy: self.model.strategy)
         self.rightNode.updateValue(
             value: self.valueRight,
-            strategy: self.model.strategy,
-            animate: false)
+            strategy: self.model.strategy)
         self.resetPosition()
     }
     
     @objc private func updateRight() {
         
-        self.rightNode.updateValue(value: self.rightNode.value + 1, strategy: self.model.strategy)
+        self.rightNode.updateValue(
+			value: self.rightNode.value + 1,
+			strategy: self.model.strategy,
+			direction: .Left)
     }
     
     @objc private func moveAnimation() {

@@ -14,9 +14,11 @@ import SpriteKit
 class MoveLineCMD : GameCMD {
     
     private var cells : LineCellsContainer! //@todo: too bad
+	private var direction: SwipeDirection!
     
-    func setup(cells: LineCellsContainer) -> GameCMD {
+	func setup(cells: LineCellsContainer, direction: SwipeDirection) -> GameCMD {
         self.cells = cells
+		self.direction = direction
         return self
     }
     
@@ -161,7 +163,8 @@ class MoveLineCMD : GameCMD {
         _ = UpdateCellCMD(self.gameModel)
             .setup(
                 cell: cells[index].gameCell!,
-                value: newVal)
+                value: newVal,
+				from: self.direction)
             .runWithDelay(delay: timeDelay)
         let deltaScore = gameModel.strategy[newVal - 1] * self.gameModel.scoreMultiplier
         UpdateScoreCMD(self.gameModel).run(deltaScore)

@@ -91,7 +91,7 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         self.run(SKAction.scale(to: 1.0, duration: GameConstants.CellAppearAnimationDuration))
     }
     
-    func playUpdateAnimation() {
+	func playUpdateAnimation(_ direction: SwipeDirection) {
         
         let zoomIn = SKAction.scale(to: 1.5, duration: 0.3)
         zoomIn.timingMode = SKActionTimingMode.easeIn
@@ -123,12 +123,12 @@ class GameCell : SKNode, HexNode, LabeledNode, MotionBlurNode {
         self.run(SKAction.sequence([delay, delete]))
     }
     
-    func updateValue(value: Int, strategy: MergingStrategy, animate: Bool = true) {
+    func updateValue(value: Int, strategy: MergingStrategy, direction: SwipeDirection? = nil) {
         self.value = value
         let strategyValue = strategy[self.value]
         self.updateText(text: "\(strategyValue)")
-        if animate {
-            self.playUpdateAnimation()
+        if let from = direction {
+            self.playUpdateAnimation(from)
         }
         updateColor()
     }

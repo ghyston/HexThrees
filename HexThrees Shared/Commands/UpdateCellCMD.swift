@@ -9,21 +9,23 @@
 import Foundation
 
 class UpdateCellCMD : GameCMD {
-    
-    var cell : GameCell?
-    var value : Int?
-    
-    func setup(cell: GameCell, value: Int) -> UpdateCellCMD {
-        self.cell = cell
-        self.value = value
-        return self
-    }
-    
-    override func run() {
-        
-        self.cell?.updateValue(
-            value: self.value!,
-            strategy: self.gameModel.strategy)
-    }
-    
+	
+	var cell : GameCell?
+	var value : Int?
+	var direction: SwipeDirection?
+	
+	func setup(cell: GameCell, value: Int, from direction: SwipeDirection) -> UpdateCellCMD {
+		self.cell = cell
+		self.value = value
+		self.direction = direction
+		return self
+	}
+	
+	override func run() {
+		self.cell?.updateValue(
+			value: self.value!,
+			strategy: self.gameModel.strategy,
+			direction: direction)
+	}
+	
 }
