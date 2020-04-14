@@ -109,7 +109,7 @@ class BonusFabric {
 		case .COLLECTABLE_PAUSE_TIMER:
 			return "cat_shit"
 		case .COLLECTABLE_SWIPE_BLOCK:
-			return "cat_13"
+			return "block_swipe"
 		case .COLLECTABLE_PICK_UP:
 			return "bonus_collectable"
 		}
