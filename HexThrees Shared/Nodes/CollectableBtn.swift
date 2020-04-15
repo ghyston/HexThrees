@@ -29,7 +29,7 @@ class CollectableBtn: SKNode, AnimatedNode {
 	
 	func updateAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.playback?.update(delta: delta) {
-			self.shader.update(playbackValue)
+			self.shader.updateUniform(playbackValue)
 		}
 	}
 	

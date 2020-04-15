@@ -23,5 +23,10 @@ class StartCellSelectionCMD: GameCMD {
 		gameModel.field.executeForAll(lambda: toggleHighlight)
 		self.gameModel.selectCMD = onSelectCmd
 		self.gameModel.swipeStatus.lockSwipes()
+		
+		if let shaderManager: IShaderManager = ContainerConfig.instance.tryResolve() {
+			shaderManager.fadeInSelectable()
+		}
 	}
 }
+ 

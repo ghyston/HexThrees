@@ -54,21 +54,21 @@ class AnimatedShader: SKShader {
 		self.init() // @todo: this is for error case. Control flow in this function needs to be reviewed
 	}
 	
-	func update(_ floatUPos: Float, variableName: String) {
+	func updateUniform(_ floatUPos: Float, variableName: String) {
 		let uPos = uniformNamed(variableName)
 		uPos?.floatValue = floatUPos
 	}
 	
-	func update(_ doubleUPos: Double, variableName: String) {
-		update(Float(doubleUPos), variableName: variableName)
+	func updateUniform(_ doubleUPos: Double, variableName: String) {
+		updateUniform(Float(doubleUPos), variableName: variableName)
 	}
 	
-	func update(_ floatUPos: Float) {
+	func updateUniform(_ floatUPos: Float) {
 		let uPos = uniformNamed("uPos")
 		uPos?.floatValue = floatUPos
 	}
 	
-	func update(_ doubleUPos: Double) {
-		update(Float(doubleUPos))
+	func updateUniform(_ doubleUPos: Double) {
+		updateUniform(Float(doubleUPos))
 	}
 }

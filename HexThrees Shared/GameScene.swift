@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene {
 	var prevInterval: TimeInterval?
 	var panel: CollectableButtonsPanel?
+	var shaderManager: IShaderManager?
 	
 	override init(size: CGSize) {
 		super.init(size: size)
@@ -51,6 +52,8 @@ class GameScene: SKScene {
 		
 		let delta = currentTime - prevInterval!
 		prevInterval = currentTime
+		
+		shaderManager?.updateSelectableAnimation(delta)
 		
 		let updateNode: (_: SKNode) -> Void = {
 			($0 as? MotionBlurNode)?.updateMotionBlur(delta)

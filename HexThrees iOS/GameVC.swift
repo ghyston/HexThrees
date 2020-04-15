@@ -36,7 +36,11 @@ class GameVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		let shaderManager: IShaderManager = ShaderManager()
+		ContainerConfig.instance.register(shaderManager)
+		
 		self.scene = GameScene(size: self.view.frame.size)
+		self.scene?.shaderManager = shaderManager
 		
 		// Present the scene
 		let skView = self.view as! SKView

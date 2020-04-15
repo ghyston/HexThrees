@@ -108,6 +108,5 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	func updateAnimation(_ delta: TimeInterval) {
 		updateBlockableAnimation(delta)
 		updateUserBlockedOutline(delta)
-		updateSelectableAnimation(delta)
 	}
 }

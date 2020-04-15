@@ -95,7 +95,7 @@ extension BlockableNode where Self: SKNode {
 	func updateBlockableAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.playback?.update(delta: delta) {
 			if let shader = self.shape?.fillShader as? AnimatedShader {
-				shader.update(playbackValue)
+				shader.updateUniform(playbackValue)
 			}
 		}
 	}

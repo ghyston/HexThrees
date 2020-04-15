@@ -108,7 +108,7 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	
 	func updateAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.updatePlayback?.update(delta: delta) {
-			self.updateShader.update(playbackValue)
+			self.updateShader.updateUniform(playbackValue)
 		}
 	}
 	
@@ -173,12 +173,6 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	
 	@objc func stopBlurDelayed() {
 		self.stopBlur()
-	}
-	
-	func removeFromParentWithDelay(delay: Double) {
-		let delay = SKAction.wait(forDuration: delay)
-		let delete = SKAction.perform(#selector(GameCell.removeFromParent), onTarget: self)
-		self.run(SKAction.sequence([delay, delete]))
 	}
 	
 	func updateValue(value: Int, strategy: MergingStrategy, direction: SwipeDirection? = nil) {

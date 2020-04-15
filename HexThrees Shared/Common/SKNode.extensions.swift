@@ -16,4 +16,10 @@ extension SKNode {
 			child.runForAllSubnodes(lambda: lambda)
 		}
 	}
+	
+	func removeFromParentWithDelay(delay: Double) {
+		let delay = SKAction.wait(forDuration: delay)
+		let delete = SKAction.perform(#selector(SKNode.removeFromParent), onTarget: self)
+		self.run(SKAction.sequence([delay, delete]))
+	}
 }

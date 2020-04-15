@@ -17,5 +17,9 @@ class EndCellSelectionCMD: GameCMD {
 		gameModel.field.executeForAll(lambda: self.removeHighlight)
 		StartStressTimerCMD(self.gameModel).run()
 		gameModel.swipeStatus.unlockSwipes()
+		
+		if let shaderManager: IShaderManager = ContainerConfig.instance.tryResolve() {
+			shaderManager.fadeOutSelectable()
+		}
 	}
 }
