@@ -38,6 +38,7 @@ class ShaderManager: IShaderManager {
 	private class func loadSelectable() -> AnimatedShader {
 		let shader = AnimatedShader(fileNamed: "selectable")
 		shader.addUniform(name: "u_appear", value: 0.0)
+		
 		return shader
 	}
 	
@@ -48,38 +49,27 @@ class ShaderManager: IShaderManager {
 	}
 	
 	private func createIdlePlayback() {
-		self.selectorIdlePlayback = Playback()
-		self.selectorIdlePlayback?.setRange(from: 0, to: 1.0)
-		self.selectorIdlePlayback?.start(
+		self.selectorIdlePlayback = Playback(
 			duration: 1.0,
-			reversed: false,
-			repeated: true,
-			onFinish: nil)
+			repeated: true)
 	}
 	
 	private func createFadeInPlayback() {
-		self.selectorAppearPlayback = Playback()
-		self.selectorAppearPlayback?.setRange(from: 0, to: 1.0)
-		self.selectorAppearPlayback?.start(
+		self.selectorAppearPlayback = Playback(
 			duration: GameConstants.CellAppearAnimationDuration,
-			reversed: false,
-			repeated: false,
 			onFinish: {
 				self.selectorAppearPlayback = nil
 			})
 	}
 	
 	private func createFadeOutPlayback() {
-		self.selectorDisappearPlayback = Playback()
-		self.selectorDisappearPlayback?.setRange(from: 1.0, to: 0.0)
-		self.selectorDisappearPlayback?.start(
+		self.selectorDisappearPlayback = Playback(
 			duration: GameConstants.CellAppearAnimationDuration,
-			reversed: false,
-			repeated: false,
+			reversed: true,
 			onFinish: {
 				self.selectorIdlePlayback = nil
 				self.selectorDisappearPlayback = nil
-			})
+			});
 	}
 	
 	func updateSelectableAnimation(_ delta: TimeInterval) {

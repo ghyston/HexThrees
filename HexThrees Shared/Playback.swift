@@ -8,7 +8,6 @@
 
 import Foundation
 
-// @todo: default arguments in protocol?! >(
 protocol IPlayback {
 	func setRange(from: Double, to: Double)
 	func setRange(from: Float, to: Float)
@@ -18,6 +17,12 @@ protocol IPlayback {
 	func reverse(reversed: Bool?)
 	// func pause() //@todo
 	// func resume() //@todo
+}
+
+extension IPlayback {
+	func start(duration: TimeInterval, reversed: Bool? = false, repeated: Bool? = false, onFinish: (() -> Void)? = nil) {
+		self.start(duration: duration, reversed: reversed, repeated: repeated, onFinish: onFinish)
+	}
 }
 
 class Playback: IPlayback {
@@ -36,6 +41,23 @@ class Playback: IPlayback {
 			selector: #selector(self.setPauseFlag),
 			name: .pauseTimers,
 			object: nil)
+	}
+	
+	convenience init(from: Double = 0.0,
+					 to: Double = 1.0,
+					 duration: TimeInterval,
+					 reversed: Bool? = nil,
+					 repeated: Bool? = false,
+					 onFinish: (() -> Void)? = nil) {
+		self.init()
+		self.setRange(
+			from: from,
+			to: to)
+		self.start(
+			duration: duration,
+			reversed: reversed,
+			repeated: repeated,
+			onFinish: onFinish)
 	}
 	
 	func setRange(from: Double, to: Double) {

@@ -44,22 +44,18 @@ extension UserBlockedNode where Self: HexNode {
 	}
 	
 	private func fadeIn() {
-		self.blockedPlayback = Playback()
-		self.blockedPlayback!.setRange(from: 0, to: 3.0)
-		self.blockedPlayback!.start(
+		self.blockedPlayback = Playback(
+			from: 0,
+			to: 3.0,
 			duration: GameConstants.CellAppearAnimationDuration,
-			reversed: false,
-			repeated: false,
 			onFinish: self.removePlayback)
 	}
 	
 	private func fadeOut() {
-		self.blockedPlayback = Playback()
-		self.blockedPlayback!.setRange(from: 3.0, to: 0.0)
-		self.blockedPlayback!.start(
+		self.blockedPlayback = Playback(
+			from: 3.0,
+			to: 0.0,
 			duration: GameConstants.CellAppearAnimationDuration,
-			reversed: false,
-			repeated: false,
 			onFinish: self.removePlaybackWithNode)
 	}
 	

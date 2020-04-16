@@ -45,14 +45,10 @@ class CollectableBtn: SKNode, AnimatedNode {
 		let step = 1.0 / Double(collectable.maxValue)
 		let start = Double(collectable.currentValue - 1) * step
 		
-		self.playback = Playback()
-		self.playback?.setRange(
+		self.playback = Playback(
 			from: start,
-			to: start + step)
-		self.playback?.start(
+			to: start + step,
 			duration: GameConstants.CollectableUpdateAnimationDuration,
-			reversed: false,
-			repeated: false,
 			onFinish: self.removeAnimation)
 	}
 	
@@ -61,14 +57,10 @@ class CollectableBtn: SKNode, AnimatedNode {
 			return
 		}
 		
-		self.playback = Playback()
-		self.playback?.setRange(
+		self.playback = Playback(
 			from: Double(collectable.maxValue),
-			to: 0.0)
-		self.playback?.start(
+			to: 0.0,
 			duration: GameConstants.CollectableUpdateAnimationDuration,
-			reversed: false,
-			repeated: false,
 			onFinish: self.removeAnimation)
 	}
 	

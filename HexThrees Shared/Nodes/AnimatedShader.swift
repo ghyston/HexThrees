@@ -37,30 +37,31 @@ extension SKShader {
 
 class AnimatedShader: SKShader {
 	convenience init(fileNamed: String) {
-		if let fileURL = Bundle.main.url(forResource: fileNamed, withExtension: "fsh") {
-			do {
-				let shaderSource = try String(contentsOf: fileURL, encoding: .utf8)
-				self.init(
-					source: shaderSource,
-					uniforms: [SKUniform(name: "uPos", float: 0.0)])
-				return
-			} catch {
-				print("load shader file failed: \(error)") // @todo: proper error handling
-			}
-		} else {
-			print("file \(fileNamed) not found") // @todo: proper error handling
+		guard let fileURL = Bundle.main.url(forResource: fileNamed, withExtension: "fsh") else {
+			assert(true, "file \(fileNamed) not found")
+			self.init()
+			return
 		}
 		
-		self.init() // @todo: this is for error case. Control flow in this function needs to be reviewed
+		do {
+			let shaderSource = try String(contentsOf: fileURL, encoding: .utf8)
+			self.init(
+				source: shaderSource,
+				uniforms: [SKUniform(name: "uPos", float: 0.0)])
+			return
+		} catch {
+			self.init()
+			assert(true, "load shader file failed: \(error)")
+		}
 	}
 	
-	func updateUniform(_ floatUPos: Float, variableName: String) {
+	func updateUniform(_ value: Float, variableName: String) {
 		let uPos = uniformNamed(variableName)
-		uPos?.floatValue = floatUPos
+		uPos?.floatValue = value
 	}
 	
-	func updateUniform(_ doubleUPos: Double, variableName: String) {
-		updateUniform(Float(doubleUPos), variableName: variableName)
+	func updateUniform(_ value: Double, variableName: String) {
+		updateUniform(Float(value), variableName: variableName)
 	}
 	
 	func updateUniform(_ floatUPos: Float) {

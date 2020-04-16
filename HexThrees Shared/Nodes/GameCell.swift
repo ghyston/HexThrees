@@ -137,12 +137,10 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 			name: UniformNames.startPoint,
 			value: startPoint)
 		
-		self.updatePlayback = Playback()
-		self.updatePlayback?.setRange(from: 0, to: 1.96)
-		self.updatePlayback!.start(
+		self.updatePlayback = Playback(
+			from: 0,
+			to: 1.96,
 			duration: GameConstants.SecondsPerCell * 1.4,
-			reversed: false,
-			repeated: false,
 			onFinish: self.finishUpdate)
 		
 		self.hexShape.fillShader = self.updateShader

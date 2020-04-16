@@ -76,12 +76,10 @@ extension BlockableNode where Self: SKNode {
 	
 	func playCircleAnimation() {
 		self.removeRollbackDelayedAction()
-		self.playback = Playback()
-		self.playback?.setRange(from: 0, to: .pi * 2.0)
-		self.playback!.start(
+		self.playback = Playback(
+			from: 0,
+			to: .pi * 2.0,
 			duration: GameConstants.StressTimerInterval,
-			reversed: false,
-			repeated: false,
 			onFinish: self.removeShaderWithDelay)
 		self.shape?.fillShader = self.circleTimerAnimatedShader
 	}
@@ -103,11 +101,8 @@ extension BlockableNode where Self: SKNode {
 	func block() {
 		self.removeRollbackDelayedAction()
 		
-		self.playback = Playback()
-		self.playback!.start(
+		self.playback = Playback(
 			duration: GameConstants.BlockAnimationDuration,
-			reversed: false,
-			repeated: false,
 			onFinish: self.setStaticBlockShader)
 		self.shape?.fillShader = self.blockingAnimatedShader
 		
@@ -115,11 +110,9 @@ extension BlockableNode where Self: SKNode {
 	}
 	
 	func unblock() {
-		self.playback = Playback()
-		self.playback!.start(
+		self.playback = Playback(
 			duration: GameConstants.BlockAnimationDuration,
 			reversed: true,
-			repeated: false,
 			onFinish: self.removeShader)
 		self.shape?.fillShader = self.blockingAnimatedShader
 		
