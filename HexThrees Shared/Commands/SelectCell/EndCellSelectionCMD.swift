@@ -10,7 +10,7 @@ import Foundation
 
 class EndCellSelectionCMD: GameCMD {
 	private func removeHighlight(node: BgCell) {
-		node.removeHighlight()
+		node.reset()
 	}
 
 	override func run() {

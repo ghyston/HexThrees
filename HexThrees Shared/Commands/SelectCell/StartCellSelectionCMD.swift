@@ -15,7 +15,7 @@ class StartCellSelectionCMD: GameCMD {
 				$0.highlight()
 			}
 			else {
-				$0.shade()
+				$0.muffle()
 			}
 		}
 

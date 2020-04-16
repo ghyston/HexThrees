@@ -14,12 +14,11 @@ protocol SelectableNode: SKNode {
 	var selectorShadeHex: SKShapeNode { get set }
 	
 	// @todo: why I cant use private set in protocols?
-	// @todo: how can I set default value in protocols?
 
 	var canBeSelected: Bool { get set }
 	func highlight()
-	func shade() // @todo: rename to dim?
-	func removeHighlight() // @todo: bad naming
+	func muffle()
+	func reset()
 }
 
 extension SelectableNode where Self: HexNode {
@@ -36,12 +35,12 @@ extension SelectableNode where Self: HexNode {
 		self.selectorHex.lineWidth = 2
 		self.selectorHex.strokeColor = .white
 		self.selectorHex.zPosition = zPositions.selectorHexShape.rawValue
-		self.selectorHex.strokeShader = shaderManager.selectableShader
+		self.selectorHex.strokeShader = shaderManager.selectableHighlightShader
 		
 		self.selectorShadeHex = SKShapeNode()
 		self.selectorShadeHex.path = self.hexShape.path
 		self.selectorShadeHex.zPosition = zPositions.selectorShadeShape.rawValue
-		self.selectorShadeHex.fillShader = shaderManager.selectableShadeShader
+		self.selectorShadeHex.fillShader = shaderManager.selectableMuffleShader
 		self.selectorShadeHex.lineWidth = 0
 	}
 	
@@ -50,11 +49,11 @@ extension SelectableNode where Self: HexNode {
 		addChild(self.selectorHex)
 	}
 	
-	func shade() {
+	func muffle() {
 		self.hexShape.addChild(self.selectorShadeHex)
 	}
 	
-	func removeHighlight() {
+	func reset() {
 		self.canBeSelected = false
 		self.selectorHex.removeFromParentWithDelay(delay: GameConstants.CellAppearAnimationDuration)
 		self.selectorShadeHex.removeFromParentWithDelay(delay: GameConstants.CellAppearAnimationDuration)
