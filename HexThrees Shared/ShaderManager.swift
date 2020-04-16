@@ -12,6 +12,7 @@ import SpriteKit
 protocol IShaderManager {
 	var selectableShader: AnimatedShader { get set }
 	var selectableShadeShader: AnimatedShader { get set }
+	var collectableButtonShader: AnimatedShader { get set }
 	
 	func updateSelectableAnimation(_ delta: TimeInterval)
 	func fadeInSelectable()
@@ -21,6 +22,7 @@ protocol IShaderManager {
 class ShaderManager: IShaderManager {
 	lazy var selectableShader = ShaderManager.loadSelectable()
 	lazy var selectableShadeShader = ShaderManager.loadSelectableShade()
+	lazy var collectableButtonShader = ShaderManager.loadCollectableButtonShader()
 	
 	private var selectorIdlePlayback: IPlayback?
 	private var selectorAppearPlayback: IPlayback?
@@ -38,13 +40,18 @@ class ShaderManager: IShaderManager {
 	private class func loadSelectable() -> AnimatedShader {
 		let shader = AnimatedShader(fileNamed: "selectable")
 		shader.addUniform(name: "u_appear", value: 0.0)
-		
 		return shader
 	}
 	
 	private class func loadSelectableShade() -> AnimatedShader {
 		let shader = AnimatedShader(fileNamed: "selectableShade")
 		shader.updateUniform(1.0)
+		return shader
+	}
+	
+	private class func loadCollectableButtonShader() -> AnimatedShader {
+		let shader = AnimatedShader(fileNamed: "collectableButton")
+		shader.attributes = [SKAttribute(name: "aPos", type: .float)]
 		return shader
 	}
 	

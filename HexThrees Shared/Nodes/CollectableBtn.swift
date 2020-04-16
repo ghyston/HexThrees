@@ -10,7 +10,6 @@ import Foundation
 import SpriteKit
 
 class CollectableBtn: SKNode, AnimatedNode {
-	private let shader: AnimatedShader
 	private var playback: IPlayback?
 	
 	let sprite: SKSpriteNode
@@ -21,15 +20,18 @@ class CollectableBtn: SKNode, AnimatedNode {
 		self.type = type
 		let spriteName = BonusFabric.spriteName(bonus: type)
 		self.sprite = SKSpriteNode(imageNamed: spriteName)
-		self.shader = AnimatedShader(fileNamed: "collectableButton")
-		self.sprite.shader = self.shader
+		
+		if let shaderManager: IShaderManager = ContainerConfig.instance.tryResolve() {
+			self.sprite.shader = shaderManager.collectableButtonShader
+		}	
+		
 		super.init()
 		addChild(self.sprite)
 	}
 	
 	func updateAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.playback?.update(delta: delta) {
-			self.shader.updateUniform(playbackValue)
+			self.sprite.setValue(SKAttributeValue(float: Float(playbackValue)), forAttribute: "aPos")
 		}
 	}
 	
