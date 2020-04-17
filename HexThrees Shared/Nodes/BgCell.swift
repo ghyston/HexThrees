@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode {
-	var playback: IPlayback?
+	var blockablePlayback: IPlayback?
 	var hexShape: SKShapeNode
 	
 	var canBeSelected: Bool = false
@@ -23,13 +23,6 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	var isBlockedFromSwipe: Bool = false
 	var userBlockedHex: SKShapeNode = SKShapeNode()
 	var blockedPlayback: IPlayback?
-	var blockedStaticShader: SKShader // @todo: make it lazy static (to init once per game)
-	var circleTimerAnimatedShader: AnimatedShader // @todo: same?
-	var blockingAnimatedShader: AnimatedShader
-	var shape: SKShapeNode?
-	var normalBgColor: vector_float3
-	var blockedBgColor: vector_float3
-	var blockLinesColor: vector_float3
 	
 	var gameCell: GameCell?
 	var bonus: BonusNode?
@@ -45,21 +38,12 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 		self.hexShape = SKShapeNode()
 		self.selectorHex = SKShapeNode()
 		self.selectorShadeHex = SKShapeNode()
-		self.blockedStaticShader = SKShader()
-		self.circleTimerAnimatedShader = AnimatedShader()
-		self.blockingAnimatedShader = AnimatedShader()
-		self.normalBgColor = vector_float3()
-		self.blockedBgColor = vector_float3()
-		self.blockLinesColor = vector_float3()
 		
 		super.init()
 		
 		self.addShape(shape: hexShape)
 		self.createSelector()
 		self.createUserBlockedHex()
-		self.loadShader(
-			shape: hexShape,
-			palette: self.pal)
 		
 		if blocked {
 			block()
@@ -93,8 +77,8 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	}
 	
 	@objc func removeShader() {
-		self.shape?.fillShader = nil
-		self.playback = nil
+		self.hexShape.fillShader = nil
+		self.blockablePlayback = nil
 	}
 	
 	func destination(to: BgCell) -> CGVector {

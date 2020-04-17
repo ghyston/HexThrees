@@ -15,106 +15,62 @@ protocol AnimatedNode {
 
 protocol BlockableNode: class {
 	var isBlocked: Bool { get set }
-	var blockedStaticShader: SKShader { get set }
-	var blockingAnimatedShader: AnimatedShader { get set }
-	var circleTimerAnimatedShader: AnimatedShader { get set }
-	var playback: IPlayback? { get set }
-	var shape: SKShapeNode? { get set }
-	
-	var normalBgColor: vector_float3 { get set }
-	var blockedBgColor: vector_float3 { get set }
-	var blockLinesColor: vector_float3 { get set }
+	var blockablePlayback: IPlayback? { get set }
 	
 	func updateBlockableAnimation(_ delta: TimeInterval)
-	func loadShader(shape: SKShapeNode, palette: IPaletteManager)
 	func removeShader()
 	func block()
 	func unblock()
 }
 
-extension BlockableNode where Self: SKNode {
-	// @todo: when we change palette, all shaders should be reloaded or color changed
-	func loadShader(shape: SKShapeNode, palette: IPaletteManager) {
-		self.shape = shape
-		self.blockedStaticShader = SKShader(fileNamed: "blockStatic2")
-		self.blockingAnimatedShader = AnimatedShader(fileNamed: "blockAnimated2")
-		self.circleTimerAnimatedShader =
-			AnimatedShader(fileNamed: "circleTimer")
-		
-		self.normalBgColor = palette.cellBgColor().toVector()
-		self.blockedBgColor = palette.cellBlockedBgColor().toVector()
-		self.blockLinesColor = palette.cellBlockingLinesColor().toVector()
-		
-		circleTimerAnimatedShader.addUniform(
-			name: "uBgColor",
-			value: self.normalBgColor)
-		
-		circleTimerAnimatedShader.addUniform(
-			name: "uBlockedColor",
-			value: self.blockedBgColor)
-		
-		blockingAnimatedShader.addUniform(
-			name: "uBgColor",
-			value: self.normalBgColor)
-		
-		blockingAnimatedShader.addUniform(
-			name: "uBlockedColor",
-			value: self.blockedBgColor)
-		
-		blockingAnimatedShader.addUniform(
-			name: "uBlockedLineColor",
-			value: self.blockLinesColor)
-		
-		blockedStaticShader.addUniform(
-			name: "uBlockedColor",
-			value: self.blockedBgColor)
-		
-		blockedStaticShader.addUniform(
-			name: "uBlockedLineColor",
-			value: self.blockLinesColor)
+// This extension is handle both animations for blocking cell and for circle timer
+extension BlockableNode where Self: HexNode, Self: SKNode {
+	
+	private func GetShaderManager() -> IShaderManager? {
+		ContainerConfig.instance.tryResolve()
 	}
 	
 	func playCircleAnimation() {
 		self.removeRollbackDelayedAction()
-		self.playback = Playback(
+		self.blockablePlayback = Playback(
 			from: 0,
 			to: .pi * 2.0,
 			duration: GameConstants.StressTimerInterval,
 			onFinish: self.removeShaderWithDelay)
-		self.shape?.fillShader = self.circleTimerAnimatedShader
+		
+		self.hexShape.fillShader = GetShaderManager()?.circleShader
 	}
 	
 	func playRollbackCircleAnimation() {
-		self.playback?.rollback(
+		self.blockablePlayback?.rollback(
 			duration: GameConstants.StressTimerRollbackInterval,
 			onFinish: self.removeShaderWithDelay)
 	}
 	
 	func updateBlockableAnimation(_ delta: TimeInterval) {
-		if let playbackValue = self.playback?.update(delta: delta) {
-			if let shader = self.shape?.fillShader as? AnimatedShader {
-				shader.updateUniform(playbackValue)
-			}
+		if let playbackValue = self.blockablePlayback?.update(delta: delta) {
+			// this should cover blocking shader as well as circle shader, I guess
+			self.hexShape.setValue(SKAttributeValue(float: Float(playbackValue)), forAttribute: "aPos")
 		}
 	}
 	
 	func block() {
 		self.removeRollbackDelayedAction()
 		
-		self.playback = Playback(
+		self.blockablePlayback = Playback(
 			duration: GameConstants.BlockAnimationDuration,
 			onFinish: self.setStaticBlockShader)
-		self.shape?.fillShader = self.blockingAnimatedShader
+		self.hexShape.fillShader = GetShaderManager()?.blockingAnimatedShader
 		
 		self.isBlocked = true
 	}
 	
 	func unblock() {
-		self.playback = Playback(
+		self.blockablePlayback = Playback(
 			duration: GameConstants.BlockAnimationDuration,
 			reversed: true,
 			onFinish: self.removeShader)
-		self.shape?.fillShader = self.blockingAnimatedShader
+		self.hexShape.fillShader = GetShaderManager()?.blockingAnimatedShader
 		
 		self.isBlocked = false
 	}
@@ -127,17 +83,15 @@ extension BlockableNode where Self: SKNode {
 	}
 	
 	private func setStaticBlockShader() {
-		self.shape?.fillShader = self.blockedStaticShader
-		self.playback = nil
+		self.hexShape.fillShader = GetShaderManager()?.blockedStaticShader
+		self.blockablePlayback = nil
 	}
 	
-	// @todo: any way to declare it in one line?
 	private func removeRollbackDelayedAction() {
 		self.removeAction(forKey: self.RollbackActionKey())
 	}
 	
-	// @todo: any way to declare it in one line?
 	private func RollbackActionKey() -> String {
-		return "rollback_action"
+		"rollback_action"
 	}
 }

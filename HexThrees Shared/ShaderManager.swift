@@ -10,23 +10,133 @@ import Foundation
 import SpriteKit
 
 protocol IShaderManager {
-	var selectableHighlightShader: AnimatedShader { get set }
-	var selectableMuffleShader: AnimatedShader { get set }
-	var collectableButtonShader: AnimatedShader { get set }
+	var selectableHighlightShader: AnimatedShader { get }
+	var selectableMuffleShader: AnimatedShader { get }
+	
+	var collectableButtonShader: AnimatedShader { get }
+	
+	var blockedStaticShader: SKShader { get }
+	var blockingAnimatedShader: AnimatedShader { get }
+	var circleShader: AnimatedShader { get }
 	
 	func updateSelectableAnimation(_ delta: TimeInterval)
 	func fadeInSelectable()
 	func fadeOutSelectable()
+	
+	func onPaletteUpdate()
 }
 
 class ShaderManager: IShaderManager {
-	lazy var selectableHighlightShader = ShaderManager.loadSelectableHighlight()
-	lazy var selectableMuffleShader = ShaderManager.loadSelectableMuffle()
-	lazy var collectableButtonShader = ShaderManager.loadCollectableButtonShader()
+	let selectableHighlightShader: AnimatedShader = {
+		let shader = AnimatedShader(fileNamed: "selectableHighlight")
+		shader.addUniform(name: "u_appear", value: 0.0)
+		return shader
+	}()
+	
+	let selectableMuffleShader: AnimatedShader = {
+		let shader = AnimatedShader(fileNamed: "selectableMuffle")
+		shader.updateUniform(1.0)
+		return shader
+	}()
+	
+	let collectableButtonShader: AnimatedShader = {
+		let shader = AnimatedShader(fileNamed: "collectableButton")
+		shader.attributes = [SKAttribute(name: "aPos", type: .float)]
+		return shader
+	}()
+	
+	var blockedStaticShader: SKShader = {
+		let shader = SKShader(fileNamed: "blockStatic2")
+		
+		shader.addUniform(
+			name: "uBlockedColor",
+			value: vector_float3())
+		
+		shader.addUniform(
+			name: "uBlockedLineColor",
+			value: vector_float3())
+		
+		return shader
+	}()
+	
+	var blockingAnimatedShader: AnimatedShader = {
+		let shader = AnimatedShader(fileNamed: "blockAnimated2")
+		
+		shader.addUniform(
+			name: "uBgColor",
+			value: vector_float3())
+		
+		shader.addUniform(
+			name: "uBlockedColor",
+			value: vector_float3())
+		
+		shader.addUniform(
+			name: "uBlockedLineColor",
+			value: vector_float3())
+		
+		shader.attributes = [SKAttribute(name: "aPos", type: .float)]
+		
+		return shader
+	}()
+	
+	var circleShader: AnimatedShader  = {
+		   let shader = AnimatedShader(fileNamed: "circleTimer")
+		   
+		   shader.addUniform(
+			   name: "uBgColor",
+			   value: vector_float3())
+		   
+		   shader.addUniform(
+			   name: "uBlockedColor",
+			   value: vector_float3())
+		
+		shader.attributes = [SKAttribute(name: "aPos", type: .float)]
+		
+			return shader
+	   }()
 	
 	private var selectorIdlePlayback: IPlayback?
 	private var selectorAppearPlayback: IPlayback?
 	private var selectorDisappearPlayback: IPlayback?
+	
+	func onPaletteUpdate() {
+		guard let palette: IPaletteManager = ContainerConfig.instance.tryResolve() else {
+			assert(true, "ShaderManager::onPaletteUpdate Palette failed to resolve")
+			return
+		}
+		
+		let normalBgColor = palette.cellBgColor().toVector()
+		let blockedBgColor = palette.cellBlockedBgColor().toVector()
+		let blockLinesColor = palette.cellBlockingLinesColor().toVector()
+		
+		self.blockedStaticShader.updateUniform(
+			name: "uBlockedColor",
+			value: blockedBgColor)
+		
+		self.blockedStaticShader.updateUniform(
+			name: "uBlockedLineColor",
+			value: blockLinesColor)
+		
+		self.blockingAnimatedShader.updateUniform(
+			name: "uBgColor",
+			value: normalBgColor)
+		
+		self.blockingAnimatedShader.updateUniform(
+			name: "uBlockedColor",
+			value: blockedBgColor)
+		
+		self.blockingAnimatedShader.updateUniform(
+			name: "uBlockedLineColor",
+			value: blockLinesColor)
+		
+		self.circleShader.updateUniform(
+			name: "uBgColor",
+			value: normalBgColor)
+		
+		self.circleShader.updateUniform(
+			name: "uBlockedColor",
+			value: blockedBgColor)
+	}
 	
 	func fadeInSelectable() {
 		self.createFadeInPlayback()
@@ -35,24 +145,6 @@ class ShaderManager: IShaderManager {
 	
 	func fadeOutSelectable() {
 		self.createFadeOutPlayback()
-	}
-	
-	private class func loadSelectableHighlight() -> AnimatedShader {
-		let shader = AnimatedShader(fileNamed: "selectableHighlight")
-		shader.addUniform(name: "u_appear", value: 0.0)
-		return shader
-	}
-	
-	private class func loadSelectableMuffle() -> AnimatedShader {
-		let shader = AnimatedShader(fileNamed: "selectableMuffle")
-		shader.updateUniform(1.0)
-		return shader
-	}
-	
-	private class func loadCollectableButtonShader() -> AnimatedShader {
-		let shader = AnimatedShader(fileNamed: "collectableButton")
-		shader.attributes = [SKAttribute(name: "aPos", type: .float)]
-		return shader
 	}
 	
 	private func createIdlePlayback() {
@@ -76,7 +168,7 @@ class ShaderManager: IShaderManager {
 			onFinish: {
 				self.selectorIdlePlayback = nil
 				self.selectorDisappearPlayback = nil
-			});
+			})
 	}
 	
 	func updateSelectableAnimation(_ delta: TimeInterval) {

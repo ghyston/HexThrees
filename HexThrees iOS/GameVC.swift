@@ -137,6 +137,9 @@ class GameVC: UIViewController {
 		
 		setNeedsStatusBarAppearanceUpdate()
 		
+		let shaderManager: IShaderManager = ContainerConfig.instance.resolve()
+		shaderManager.onPaletteUpdate()
+		
 		self.scene?.backgroundColor = pal.sceneBgColor()
 		if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
 			fieldOutine.updateColor(color: pal.fieldOutlineColor())

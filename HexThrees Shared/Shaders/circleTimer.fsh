@@ -9,7 +9,7 @@ void main()
     if(dekartPos.x < 0.0)
         angle = 6.28 - angle;
     
-    vec3 outClr = angle > uPos ?
+    vec3 outClr = angle > aPos ?
         uBgColor : uBlockedColor;
     gl_FragColor = vec4(vec3(outClr), 1.0);
 }

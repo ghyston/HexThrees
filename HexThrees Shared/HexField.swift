@@ -117,7 +117,7 @@ class HexField {
 	}
 	
 	class func cellWoShader(cell: BgCell) -> Bool {
-		return cell.shape?.fillShader == nil
+		return cell.hexShape.fillShader == nil
 	}
 	
 	class func userBlockedCell(cell: BgCell) -> Bool {
