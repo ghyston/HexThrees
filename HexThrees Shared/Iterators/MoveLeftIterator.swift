@@ -23,7 +23,7 @@ class MoveLeftIterator: BaseCellsIterator, CellsIterator {
 				let cell = getCell(x - temp, temp)
 				d += 1
 				
-				if cell.isBlocked {
+				if cell.isBlocked || cell.isBlockedFromSwipe {
 					return line
 				}
 				else {
@@ -45,7 +45,7 @@ class MoveLeftIterator: BaseCellsIterator, CellsIterator {
 				let cell = getCell(w - temp - 1, y + temp)
 				d += 1
 				
-				if cell.isBlocked {
+				if cell.isBlocked || cell.isBlockedFromSwipe {
 					return line
 				}
 				else {

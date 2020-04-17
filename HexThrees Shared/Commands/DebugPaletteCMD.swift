@@ -15,5 +15,10 @@ class DebugPaletteCMD: GameCMD {
 			self.gameModel.field[i].addGameCell(cell: newElement)
 			newElement.playAppearAnimation()
 		}
+
+		/*let el1 = GameCell(model: self.gameModel, val: 1)
+		self.gameModel.field[3].addGameCell(cell: el1)
+		el1.playAppearAnimation()
+		self.gameModel.field[9].blockFromSwipe()*/
 	}
 }
