@@ -25,12 +25,12 @@ class GameConstants {
 	
 	// Probabilities
 	static let RandomCellIsValue2Probability: Float = 0.3
-	static let BaseBonusDropProbability = 1.0 // 0.1
-	static let LockBonusProbability: Float = 0.0 // 0.5
-	static let UnlockBonusProbability: Float = 0.0 // 0.3
+	static let BaseBonusDropProbability =  0.1
+	static let LockBonusProbability: Float =  0.5
+	static let UnlockBonusProbability: Float = 0.3
 	static let LastBlockedUnlockBonusProbability: Float = 0.05
-	static let X2BonusProbability: Float = 0.0 // 0.2
-	static let X3BonusProbability: Float = 0.0 // 0.1
+	static let X2BonusProbability: Float = 0.2
+	static let X3BonusProbability: Float = 0.1
 	
 	static let CollectableUnlockCellBonusProbability: Float = 1.0
 	static let CollectableSwipeBlockBonusProbability: Float = 1.0

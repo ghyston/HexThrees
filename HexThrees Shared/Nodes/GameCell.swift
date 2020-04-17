@@ -20,42 +20,30 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	var blurFilter: CIFilter
 	var motionBlurDisabled: Bool
 	
-	var updateShader: AnimatedShader
 	var updatePlayback: Playback?
 	
 	var value: Int
 	var newParent: BgCell?
 	let pal: IPaletteManager = ContainerConfig.instance.resolve()
 	
-	struct UniformNames {
-		static let oldColor = "uOldColor"
-		static let newColor = "uNewColor"
-		static let startPoint = "uStart"
+	struct AttributeNames {
+		static let oldColor = "aOldColor"
+		static let newColor = "aNewColor"
+		static let startPoint = "aStart"
+		static let progress = "aPos"
 	}
 	
 	init(model: GameModel, val: Int) {
 		self.value = val
 		self.motionBlurDisabled = !model.motionBlurEnabled
 		let strategyValue = model.strategy[self.value]
+		self.hexShape = model.geometry.createHexCellShape()
 		
 		// this is just to put placeholders
-		self.hexShape = model.geometry.createHexCellShape()
 		self.label = SKLabelNode()
 		self.effectNode = SKEffectNode()
 		self.blurFilter = CIFilter()
 		self.prevPosition = CGPoint()
-		
-		// load shader and set default uniforms
-		self.updateShader = AnimatedShader(fileNamed: "cellUpdateValue")
-		self.updateShader.addUniform(
-			name: UniformNames.oldColor,
-			value: self.pal.color(value: 0).toVector())
-		self.updateShader.addUniform(
-			name: UniformNames.newColor,
-			value: self.pal.color(value: 0).toVector())
-		self.updateShader.addUniform(
-			name: UniformNames.startPoint,
-			value: vector_float2(0.0, 0.0))
 		
 		super.init()
 		
@@ -65,7 +53,6 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		
 		self.updateColor()
 		
-		// @todo: do I need to remove observer in destructor?
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(self.onColorChange),
@@ -108,7 +95,9 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	
 	func updateAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.updatePlayback?.update(delta: delta) {
-			self.updateShader.updateUniform(playbackValue)
+			self.hexShape.setValue(
+				SKAttributeValue(float: Float(playbackValue)),
+				forAttribute: AttributeNames.progress)
 		}
 	}
 	
@@ -127,23 +116,26 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	private func playUpdateAnimation(_ direction: SwipeDirection) {
 		let startPoint = GameCell.startUpdateAnimatonPoint(by: direction)
 		
-		self.updateShader.updateUniform(
-			name: UniformNames.oldColor,
-			value: self.pal.color(value: self.value - 1).toVector())
-		self.updateShader.updateUniform(
-			name: UniformNames.newColor,
-			value: self.pal.color(value: self.value).toVector())
-		self.updateShader.updateUniform(
-			name: UniformNames.startPoint,
-			value: startPoint)
+		self.hexShape.setValue(
+			SKAttributeValue(vectorFloat3: self.pal.color(value: self.value - 1).toVector()),
+			forAttribute: AttributeNames.oldColor)
+		
+		self.hexShape.setValue(
+			SKAttributeValue(vectorFloat3: self.pal.color(value: self.value).toVector()),
+			forAttribute: AttributeNames.newColor)
+		
+		self.hexShape.setValue(
+			SKAttributeValue(vectorFloat2: startPoint),
+			forAttribute: AttributeNames.startPoint)
 		
 		self.updatePlayback = Playback(
 			from: 0,
 			to: 1.96,
-			duration: GameConstants.SecondsPerCell * 1.4,
+			duration: GameConstants.SecondsPerCell * 2.5,
 			onFinish: self.finishUpdate)
 		
-		self.hexShape.fillShader = self.updateShader
+		let shaderManager: IShaderManager = ContainerConfig.instance.resolve()
+		self.hexShape.fillShader = shaderManager.cellUpdateShader
 		
 		let zoomIn = SKAction.scale(to: 1.3, duration: GameConstants.SecondsPerCell)
 		zoomIn.timingMode = SKActionTimingMode.easeIn

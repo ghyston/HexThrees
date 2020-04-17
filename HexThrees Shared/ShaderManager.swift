@@ -17,6 +17,7 @@ protocol IShaderManager {
 	var blockingAnimatedShader: AnimatedShader { get }
 	var circleShader: AnimatedShader { get }
 	var userBlockedShader: SKShader { get }
+	var cellUpdateShader: AnimatedShader { get }
 	
 	func updateSelectableAnimation(_ delta: TimeInterval)
 	func fadeInSelectable()
@@ -44,7 +45,7 @@ class ShaderManager: IShaderManager {
 		return shader
 	}()
 	
-	var blockedStaticShader: SKShader = {
+	let blockedStaticShader: SKShader = {
 		let shader = SKShader(fileNamed: "blockStatic2")
 		
 		shader.addUniform(
@@ -58,7 +59,7 @@ class ShaderManager: IShaderManager {
 		return shader
 	}()
 	
-	var blockingAnimatedShader: AnimatedShader = {
+	let blockingAnimatedShader: AnimatedShader = {
 		let shader = AnimatedShader(fileNamed: "blockAnimated2")
 		
 		shader.addUniform(
@@ -78,23 +79,36 @@ class ShaderManager: IShaderManager {
 		return shader
 	}()
 	
-	var circleShader: AnimatedShader  = {
-		   let shader = AnimatedShader(fileNamed: "circleTimer")
-		   
-		   shader.addUniform(
-			   name: "uBgColor",
-			   value: vector_float3())
-		   
-		   shader.addUniform(
-			   name: "uBlockedColor",
-			   value: vector_float3())
+	let circleShader: AnimatedShader = {
+		let shader = AnimatedShader(fileNamed: "circleTimer")
+		
+		shader.addUniform(
+			name: "uBgColor",
+			value: vector_float3())
+		
+		shader.addUniform(
+			name: "uBlockedColor",
+			value: vector_float3())
 		
 		shader.attributes = [SKAttribute(name: "aPos", type: .float)]
 		
-			return shader
-	   }()
+		return shader
+	}()
 	
-	var userBlockedShader = SKShader(fileNamed: "blockSwipe")
+	let userBlockedShader = SKShader(fileNamed: "blockSwipe")
+	
+	let cellUpdateShader: AnimatedShader = {
+		let shader = AnimatedShader(fileNamed: "cellUpdateValue")
+		
+		shader.attributes = [
+			SKAttribute(name: GameCell.AttributeNames.oldColor, type: .vectorFloat3),
+			SKAttribute(name: GameCell.AttributeNames.newColor, type: .vectorFloat3),
+			SKAttribute(name: GameCell.AttributeNames.startPoint, type: .vectorFloat2),
+			SKAttribute(name: GameCell.AttributeNames.progress, type: .float)
+		]
+		
+		return shader
+	}()
 	
 	private var selectorIdlePlayback: IPlayback?
 	private var selectorAppearPlayback: IPlayback?

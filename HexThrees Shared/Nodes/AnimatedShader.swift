@@ -73,3 +73,18 @@ class AnimatedShader: SKShader {
 		updateUniform(Float(doubleUPos))
 	}
 }
+
+/*class PlayableShader: AnimatedShader {
+	private var playbacks = [String: Playback]()
+	
+	func addPlayback(uniformName: String, playback: Playback) {
+		addUniform(name: uniformName, value: 0.0)
+		playbacks[uniformName] = playback
+	}
+	
+	func update(_ delta: TimeInterval) {
+		for (uniform, playback) in playbacks {
+			updateUniform(playback.update(delta: delta), variableName: uniform)
+		}
+	}
+}*/
