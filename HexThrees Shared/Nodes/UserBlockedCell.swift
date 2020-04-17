@@ -20,8 +20,10 @@ protocol UserBlockedNode: class {
 
 extension UserBlockedNode where Self: HexNode {
 	func createUserBlockedHex() {
+		let shaderManager: IShaderManager = ContainerConfig.instance.resolve()
+		
 		self.userBlockedHex.path = self.hexShape.path
-		self.userBlockedHex.strokeShader = SKShader(fileNamed: "blockSwipe")
+		self.userBlockedHex.strokeShader = shaderManager.userBlockedShader
 		self.userBlockedHex.lineWidth = 0
 		self.userBlockedHex.zPosition = zPositions.userBlockedHexShape.rawValue
 	}

@@ -12,12 +12,11 @@ import SpriteKit
 protocol IShaderManager {
 	var selectableHighlightShader: AnimatedShader { get }
 	var selectableMuffleShader: AnimatedShader { get }
-	
 	var collectableButtonShader: AnimatedShader { get }
-	
 	var blockedStaticShader: SKShader { get }
 	var blockingAnimatedShader: AnimatedShader { get }
 	var circleShader: AnimatedShader { get }
+	var userBlockedShader: SKShader { get }
 	
 	func updateSelectableAnimation(_ delta: TimeInterval)
 	func fadeInSelectable()
@@ -94,6 +93,8 @@ class ShaderManager: IShaderManager {
 		
 			return shader
 	   }()
+	
+	var userBlockedShader = SKShader(fileNamed: "blockSwipe")
 	
 	private var selectorIdlePlayback: IPlayback?
 	private var selectorAppearPlayback: IPlayback?
