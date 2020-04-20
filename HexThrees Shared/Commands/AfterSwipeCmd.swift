@@ -17,9 +17,11 @@ class AfterSwipeCmd: GameCMD {
 		UpdateBonusesCounterCMD(gameModel).run()
 		UnlockSwypeBlockedCellsCmd(gameModel).run()
 		
-		// @todo: startTimer only if there are available cells
 		if gameModel.stressTimer.isEnabled() {
-			_ = StartStressTimerCMD(gameModel).runWithDelay(delay: GameConstants.StressTimerRollbackInterval)
+			gameModel.stressTimer.startDelay(
+				timer:
+					StartStressTimerCMD(gameModel)
+						.runWithDelay(delay: GameConstants.StressTimerRollbackInterval))
 		}
 		
 		CmdFactory().AddRandomCellSkipRepeat().run()

@@ -16,12 +16,17 @@ protocol ITimerModel {
 	func fire()
 	func startNew(timer: Timer, cell: BgCell)
 	func getCell() -> BgCell?
+	
+	func startDelay(timer: Timer)
+	func cancelDelayedStart()
 }
 
 class TimerModel: ITimerModel {
 	private var enabled: Bool = false
 	private var stressTimer: Timer? // when this timer is fired, new cell appeared on field
 	private var cell: BgCell?
+	
+	private var stressTimerCmdDelay: Timer?
 	
 	func enable() {
 		enabled = true
@@ -55,5 +60,16 @@ class TimerModel: ITimerModel {
 		stop()
 		stressTimer = timer
 		self.cell = cell
+	}
+	
+	/// MARK: StressTimer delay
+	func startDelay(timer: Timer) {
+		cancelDelayedStart()
+		stressTimerCmdDelay = timer
+	}
+	
+	func cancelDelayedStart() {
+		stressTimerCmdDelay?.invalidate()
+		stressTimerCmdDelay = nil
 	}
 }

@@ -13,6 +13,8 @@ class RollbackTimerCMD: GameCMD {
 		guard gameModel.stressTimer.isEnabled() else {
 			return
 		}
+		
+		gameModel.stressTimer.cancelDelayedStart() 
 
 		self.gameModel.stressTimer.getCell()?.playRollbackCircleAnimation()
 		self.gameModel.stressTimer.stop()
