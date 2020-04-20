@@ -102,13 +102,14 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	}
 	
 	private class func startUpdateAnimatonPoint(by direction: SwipeDirection) -> vector_float2 {
+		let magic: Float = 0.9325; //because anle is not 45°, but 60° it is not 1.0. Calculations on page 129.
 		switch direction {
 		case .Right: return vector_float2(0.0, 0.5)
-		case .YDown: return vector_float2(0.0, 1.0)
-		case .XDown: return vector_float2(1.0, 1.0)
+		case .YDown: return vector_float2(0.25, magic)
+		case .XDown: return vector_float2(0.75, magic)
 		case .Left: return vector_float2(1.0, 0.5)
-		case .YUp: return vector_float2(1.0, 0.0)
-		case .XUp: return vector_float2(0.0, 0.0)
+		case .YUp: return vector_float2(0.75, 0.0675)
+		case .XUp: return vector_float2(0.25, 0.0675)
 		case .Unknown: return vector_float2(0.0, 0.0)
 		}
 	}
