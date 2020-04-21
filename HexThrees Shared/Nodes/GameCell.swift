@@ -26,11 +26,11 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	var newParent: BgCell?
 	let pal: IPaletteManager = ContainerConfig.instance.resolve()
 	
-	struct AttributeNames {
-		static let oldColor = "aOldColor"
-		static let newColor = "aNewColor"
-		static let startPoint = "aStart"
-		static let progress = "aPos"
+	struct UniformNames {
+		static let oldColor = "uOldColor"
+		static let newColor = "uNewColor"
+		static let startPoint = "uStart"
+		static let progress = "uPos"
 	}
 	
 	init(model: GameModel, val: Int) {
@@ -95,9 +95,9 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	
 	func updateAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.updatePlayback?.update(delta: delta) {
-			self.hexShape.setValue(
-				SKAttributeValue(float: Float(playbackValue)),
-				forAttribute: AttributeNames.progress)
+			if let shader: AnimatedShader = self.hexShape.fillShader as? AnimatedShader {
+				shader.updateUniform(playbackValue)
+			}
 		}
 	}
 	
@@ -117,26 +117,26 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	private func playUpdateAnimation(_ direction: SwipeDirection) {
 		let startPoint = GameCell.startUpdateAnimatonPoint(by: direction)
 		
-		self.hexShape.setValue(
-			SKAttributeValue(vectorFloat3: self.pal.color(value: self.value - 1).toVector()),
-			forAttribute: AttributeNames.oldColor)
+		let shaderManager: IShaderManager = ContainerConfig.instance.resolve()
+		let shader = shaderManager.cellUpdateShadersContainer.getFree()
 		
-		self.hexShape.setValue(
-			SKAttributeValue(vectorFloat3: self.pal.color(value: self.value).toVector()),
-			forAttribute: AttributeNames.newColor)
+		shader.updateUniform(
+			name: UniformNames.oldColor,
+			value: self.pal.color(value: self.value - 1).toVector())
+		shader.updateUniform(
+			name: UniformNames.newColor,
+			value: self.pal.color(value: self.value).toVector())
+		shader.updateUniform(
+			name: UniformNames.startPoint,
+			value: startPoint)
 		
-		self.hexShape.setValue(
-			SKAttributeValue(vectorFloat2: startPoint),
-			forAttribute: AttributeNames.startPoint)
+		self.hexShape.fillShader = shader
 		
 		self.updatePlayback = Playback(
 			from: 0,
 			to: 1.96,
 			duration: GameConstants.SecondsPerCell * 2.5,
 			onFinish: self.finishUpdate)
-		
-		let shaderManager: IShaderManager = ContainerConfig.instance.resolve()
-		self.hexShape.fillShader = shaderManager.cellUpdateShader
 		
 		let zoomIn = SKAction.scale(to: 1.3, duration: GameConstants.SecondsPerCell)
 		zoomIn.timingMode = SKActionTimingMode.easeIn
@@ -146,6 +146,11 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	}
 	
 	@objc private func finishUpdate() {
+		if let shader: AnimatedShader = self.hexShape.fillShader as? AnimatedShader {
+			let shaderManager: IShaderManager = ContainerConfig.instance.resolve()
+			shaderManager.cellUpdateShadersContainer.putBack(shader)
+		}
+		
 		self.hexShape.fillShader = nil
 		self.updatePlayback = nil
 	}

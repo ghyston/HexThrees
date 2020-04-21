@@ -143,6 +143,8 @@
 		3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */; };
 		3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */; };
 		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
+		3FF444A5244F48B800C5F5D0 /* SKShapeNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A4244F48B800C5F5D0 /* SKShapeNode.extensions.swift */; };
+		3FF444A7244F4AD500C5F5D0 /* ShaderResourceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */; };
 		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
 		3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */; };
 		3FF8B99C24406B2200703AF9 /* cellUpdateValue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */; };
@@ -300,6 +302,8 @@
 		3FEBD12C213470BC00D9FCBC /* DropRandomBonusCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropRandomBonusCMD.swift; sourceTree = "<group>"; };
 		3FEBD12E2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBonusesCounterCMD.swift; sourceTree = "<group>"; };
 		3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityDice.swift; sourceTree = "<group>"; };
+		3FF444A4244F48B800C5F5D0 /* SKShapeNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShapeNode.extensions.swift; sourceTree = "<group>"; };
+		3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderResourceContainer.swift; sourceTree = "<group>"; };
 		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
 		3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpGameCellCmd.swift; sourceTree = "<group>"; };
 		3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cellUpdateValue.fsh; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 				3F92C7D222AA347400B477A3 /* StressTimer.swift */,
 				3F75B3C722FAA982001EED4E /* Playback.swift */,
 				3F834B302446046D00A38263 /* ShaderManager.swift */,
+				3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */,
 				3FE9202620CEE646009B7370 /* CGVector.extensions.swift */,
 				3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */,
+				3FF444A4244F48B800C5F5D0 /* SKShapeNode.extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -758,6 +764,7 @@
 				3F4D675A2350556200635E5E /* CmdFactory.swift in Sources */,
 				3F083AA4234CEECF000F5B6B /* StartCellSelectionCMD.swift in Sources */,
 				3FDEF72A22B4C5BC00579A4B /* AnimatedShader.swift in Sources */,
+				3FF444A5244F48B800C5F5D0 /* SKShapeNode.extensions.swift in Sources */,
 				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
 				3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */,
 				3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */,
@@ -820,6 +827,7 @@
 				3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */,
 				3F8D11592281F0280034BC6D /* UserBlockedCell.swift in Sources */,
 				3F432D882139180E00AF3DC0 /* ApplyScoreBuffCmd.swift in Sources */,
+				3FF444A7244F4AD500C5F5D0 /* ShaderResourceContainer.swift in Sources */,
 				3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */,
 				3F95A6C920EC955C0052E1C6 /* CheckGameEndCmd.swift in Sources */,
 				3FEA7AD0218776DC007F50D8 /* FieldOutline.swift in Sources */,

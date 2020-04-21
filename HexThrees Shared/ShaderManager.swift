@@ -17,7 +17,7 @@ protocol IShaderManager {
 	var blockingAnimatedShader: AnimatedShader { get }
 	var circleShader: AnimatedShader { get }
 	var userBlockedShader: SKShader { get }
-	var cellUpdateShader: AnimatedShader { get }
+	var cellUpdateShadersContainer: ShaderResourceContainer { get }
 	
 	func updateSelectableAnimation(_ delta: TimeInterval)
 	func fadeInSelectable()
@@ -97,18 +97,21 @@ class ShaderManager: IShaderManager {
 	
 	let userBlockedShader = SKShader(fileNamed: "blockSwipe")
 	
-	let cellUpdateShader: AnimatedShader = {
+	var cellUpdateShadersContainer: ShaderResourceContainer = ShaderResourceContainer(shaderFactoryMethod: {
 		let shader = AnimatedShader(fileNamed: "cellUpdateValue")
 		
-		shader.attributes = [
-			SKAttribute(name: GameCell.AttributeNames.oldColor, type: .vectorFloat3),
-			SKAttribute(name: GameCell.AttributeNames.newColor, type: .vectorFloat3),
-			SKAttribute(name: GameCell.AttributeNames.startPoint, type: .vectorFloat2),
-			SKAttribute(name: GameCell.AttributeNames.progress, type: .float)
-		]
+		shader.addUniform(
+			name: GameCell.UniformNames.oldColor,
+			value: vector_float3(0.0, 0.0, 0.0))
+		shader.addUniform(
+			name: GameCell.UniformNames.newColor,
+			value: vector_float3(0.0, 0.0, 0.0))
+		shader.addUniform(
+			name: GameCell.UniformNames.startPoint,
+			value: vector_float2(0.0, 0.0))
 		
 		return shader
-	}()
+	})
 	
 	private var selectorIdlePlayback: IPlayback?
 	private var selectorAppearPlayback: IPlayback?
