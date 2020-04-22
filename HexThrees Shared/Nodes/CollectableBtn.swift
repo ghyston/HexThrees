@@ -45,7 +45,7 @@ class CollectableBtn: SKNode, AnimatedNode {
 			return
 		}
 		
-		let step = 1.0 / Double(collectable.maxValue)
+		let step = updated ? 1.0 / Double(collectable.maxValue) : Double(collectable.currentValue)
 		let start = updated ? Double(collectable.currentValue - 1) * step : 0.0
 		
 		let isFullScale: CGFloat = 1.2
@@ -105,7 +105,12 @@ class CollectableBtn: SKNode, AnimatedNode {
 		// First click
 		if self.gameModel.collectableBonuses[self.type]?.isFull == true {
 			if let collectableBonus = BonusFabric.collectableSelectableBonusCMD(bonus: self.type, gameModel: self.gameModel) {
+				// There are no cells, that can be selected
+				if self.gameModel.field.countBgCells(compare: collectableBonus.comparator) == 0 {
+					return
+				}
 				self.gameModel.selectedBonusType = self.type
+				
 				StartCellSelectionCMD(self.gameModel)
 					.run(
 						comparator: collectableBonus.comparator,
