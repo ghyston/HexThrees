@@ -71,10 +71,20 @@ class CollectableBtn: SKNode, AnimatedNode {
 	}
 	
 	func onClick() {
-		if self.gameModel.selectedBonusType != nil {
+		
+		// Second click
+		if self.gameModel.selectedBonusType == self.type {
+			self.gameModel.selectCMD = nil
+			self.gameModel.selectedBonusType = nil
+			EndCellSelectionCMD(self.gameModel).run()
+			return
+		}
+		// Other button already clicked
+		else if (self.gameModel.selectedBonusType != nil) {
 			return
 		}
 		
+		// First click
 		if self.gameModel.collectableBonuses[self.type]?.isFull == true {
 			if let collectableBonus = BonusFabric.collectableSelectableBonusCMD(bonus: self.type, gameModel: self.gameModel) {
 				self.gameModel.selectedBonusType = self.type
