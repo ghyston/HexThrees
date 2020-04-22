@@ -14,6 +14,7 @@ class CollectableBtn: SKNode, AnimatedNode {
 	
 	let sprite: SKSpriteNode
 	let type: BonusType
+	var updated: Bool = false // this flag shows that btn has not been updated at all
 	lazy var gameModel: GameModel = ContainerConfig.instance.resolve()
 	
 	init(type: BonusType) {
@@ -45,13 +46,30 @@ class CollectableBtn: SKNode, AnimatedNode {
 		}
 		
 		let step = 1.0 / Double(collectable.maxValue)
-		let start = Double(collectable.currentValue - 1) * step
+		let start = updated ? Double(collectable.currentValue - 1) * step : 0.0
+		
+		let isFullScale: CGFloat = 1.2
+		let updateAnimationScale: CGFloat = 1.3
+		let normalScale: CGFloat = 1.0
 		
 		self.playback = Playback(
 			from: start,
 			to: start + step,
 			duration: GameConstants.CollectableUpdateAnimationDuration,
 			onFinish: self.removeAnimation)
+		
+		if updated {
+			let zoomIn = SKAction.scale(to: updateAnimationScale, duration: GameConstants.SecondsPerCell)
+			zoomIn.timingMode = SKActionTimingMode.easeOut
+			let zoomOut = SKAction.scale(to: collectable.isFull ? isFullScale : normalScale, duration: GameConstants.SecondsPerCell)
+			zoomOut.timingMode = SKActionTimingMode.easeIn
+			self.run(SKAction.sequence([zoomIn, zoomOut]))
+		}
+		else if collectable.isFull {
+			self.run(SKAction.scale(to: isFullScale, duration: GameConstants.SecondsPerCell))
+		}
+		
+		updated = true
 	}
 	
 	func playUseAnimation() {
