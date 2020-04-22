@@ -33,6 +33,10 @@ class CheckGameEndCmd: GameCMD {
 			}
 		}
 		
+		if gameModel.collectableBonuses[.COLLECTABLE_PICK_UP]?.isFull == true {
+			return
+		}
+		
 		// thisIsTheEnd = true //my only friend
 		NotificationCenter.default.post(name: .gameOver, object: nil)
 	}
