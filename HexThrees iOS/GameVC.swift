@@ -15,6 +15,13 @@ class GameVC: UIViewController {
 	@IBOutlet var scoreLabel: UILabel!
 	@IBOutlet var scoreMultiplierLabel: UILabel!
 	
+	@IBOutlet var yUpBtn: UIButton!
+	@IBOutlet var leftBtn: UIButton!
+	@IBOutlet var xDownBtn: UIButton!
+	@IBOutlet var xUpBtn: UIButton!
+	@IBOutlet var rightBtn: UIButton!
+	@IBOutlet var yDownBtn: UIButton!
+	
 	var gameModel: GameModel?
 	var scene: GameScene?
 	
@@ -27,7 +34,8 @@ class GameVC: UIViewController {
 		hapticFeedback: HapticFeedbackStatus.Enabled,
 		strategy: .Hybrid,
 		palette: .Dark,
-		stressTimer: StressTimerStatus.Enabled)
+		stressTimer: StressTimerStatus.Enabled,
+		useButtons: UseButtonStatus.Disabled)
 	
 	let defaults = UserDefaults.standard
 	
@@ -95,7 +103,8 @@ class GameVC: UIViewController {
 			strategy: strategy,
 			motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
 			hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
-			timerEnabled: params.stressTimer == StressTimerStatus.Enabled)
+			timerEnabled: params.stressTimer == StressTimerStatus.Enabled,
+			useButtons: params.useButtons == UseButtonStatus.Enabled)
 		self.gameModel?.collectableBonuses.removeAll()
 		ContainerConfig.instance.register(self.gameModel!)
 	}
@@ -106,6 +115,7 @@ class GameVC: UIViewController {
 		let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
 		let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
 		let prefStress = StressTimerStatus(rawValue: defaults.integer(forKey: SettingsKey.StressTimer.rawValue))
+		let useButtons = UseButtonStatus(rawValue: defaults.integer(forKey: SettingsKey.UseButtons.rawValue))
 		
 		return GameParams(
 			fieldSize: (fieldSizeFromSave ?? prefFieldSize) ?? self.defaultGameParams.fieldSize,
@@ -115,7 +125,8 @@ class GameVC: UIViewController {
 			hapticFeedback: prefHapticFeedback ?? self.defaultGameParams.hapticFeedback,
 			strategy: self.defaultGameParams.strategy,
 			palette: prefPalette ?? self.defaultGameParams.palette,
-			stressTimer: prefStress ?? self.defaultGameParams.stressTimer)
+			stressTimer: prefStress ?? self.defaultGameParams.stressTimer,
+			useButtons: useButtons ?? self.defaultGameParams.useButtons)
 	}
 	
 	private func createPalette(_ palette: ColorSchemaType) {
@@ -148,6 +159,7 @@ class GameVC: UIViewController {
 	
 	// common parts between start and restart
 	private func createGame(_ settings: GameParams) {
+		self.switchButtons(hidden: settings.useButtons == UseButtonStatus.Disabled)
 		self.createPalette(settings.palette)
 		self.createModel(settings)
 		
@@ -234,6 +246,12 @@ class GameVC: UIViewController {
 			selector: #selector(self.onScoreBuffUpdate),
 			name: .scoreBuffUpdate,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.onUseButtonsChange),
+			name: .switchUseButtons,
+			object: nil)
 	}
 	
 	@objc func onGameReset(notification: Notification) {
@@ -259,6 +277,20 @@ class GameVC: UIViewController {
 			"" : "X\(multiplier)"
 	}
 	
+	@objc func onUseButtonsChange(notification: Notification) {
+		let use = notification.object as? Bool ?? false
+		switchButtons(hidden: !use)
+	}
+	
+	private func switchButtons(hidden: Bool) {
+		self.xDownBtn.isHidden = hidden
+		self.yUpBtn.isHidden = hidden
+		self.leftBtn.isHidden = hidden
+		self.xUpBtn.isHidden = hidden
+		self.rightBtn.isHidden = hidden
+		self.yDownBtn.isHidden = hidden
+	}
+	
 	@objc private func showEndGameVC() {
 		let storyboardName = "Main"
 		let endGameVcName = "GameOverVC"
@@ -270,15 +302,42 @@ class GameVC: UIViewController {
 		
 		self.present(vc, animated: true, completion: nil)
 	}
+	
+	private func handleSwipe(direction: SwipeDirection) {
+		CmdFactory().DoSwipe(direction: direction).run()
+		CmdFactory().ApplyScoreBuff().run()
+		_ = CmdFactory().AfterSwipe().runWithDelay(delay: self.gameModel!.swipeStatus.delay)
+	}
+	
+	@IBAction func onXDownBtnClick(_ sender: Any) {
+		handleSwipe(direction: .XDown);
+	}
+	
+	@IBAction func onYUpBtnClick(_ sender: Any) {
+		handleSwipe(direction: .YUp);
+	}
+	
+	@IBAction func onXUpClick(_ sender: Any) {
+		handleSwipe(direction: .XUp)
+	}
+	
+	@IBAction func onLeftBtnClick(_ sender: Any) {
+		handleSwipe(direction: .Left);
+	}
+	@IBAction func onRightClick(_ sender: Any) {
+		handleSwipe(direction: .Right)
+	}
+	
+	@IBAction func onYDownClick(_ sender: Any) {
+		handleSwipe(direction: .YDown)
+	}
 }
 
 // MARK: Gesture recognizer
 
 extension GameVC: UIGestureRecognizerDelegate {
 	@objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
-		CmdFactory().DoSwipe(direction: recognizer.direction).run()
-		CmdFactory().ApplyScoreBuff().run()
-		_ = CmdFactory().AfterSwipe().runWithDelay(delay: self.gameModel!.swipeStatus.delay)
+		handleSwipe(direction: recognizer.direction)
 	}
 	
 	// https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
@@ -305,6 +364,10 @@ extension GameVC: UIGestureRecognizerDelegate {
 		}
 		
 		if touch.view is UIButton {
+			return false
+		}
+		
+		if self.gameModel?.useButtonsEnabled == true {
 			return false
 		}
 		

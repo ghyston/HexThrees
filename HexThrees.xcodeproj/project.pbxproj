@@ -145,6 +145,8 @@
 		3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */; };
 		3FF444A5244F48B800C5F5D0 /* SKShapeNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A4244F48B800C5F5D0 /* SKShapeNode.extensions.swift */; };
 		3FF444A7244F4AD500C5F5D0 /* ShaderResourceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */; };
+		3FF444A92452BBDA00C5F5D0 /* UseButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A82452BBDA00C5F5D0 /* UseButtonStatus.swift */; };
+		3FF444AB2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */; };
 		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
 		3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */; };
 		3FF8B99C24406B2200703AF9 /* cellUpdateValue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */; };
@@ -304,6 +306,8 @@
 		3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProbabilityDice.swift; sourceTree = "<group>"; };
 		3FF444A4244F48B800C5F5D0 /* SKShapeNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKShapeNode.extensions.swift; sourceTree = "<group>"; };
 		3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderResourceContainer.swift; sourceTree = "<group>"; };
+		3FF444A82452BBDA00C5F5D0 /* UseButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseButtonStatus.swift; sourceTree = "<group>"; };
+		3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchUseButtonsCmd.swift; sourceTree = "<group>"; };
 		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
 		3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpGameCellCmd.swift; sourceTree = "<group>"; };
 		3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cellUpdateValue.fsh; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 				3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */,
 				3F2D81F621C6C1D500A48CD1 /* HapticFeedbackStatus.swift */,
 				3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */,
+				3FF444A82452BBDA00C5F5D0 /* UseButtonStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -549,6 +554,7 @@
 				3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */,
 				3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */,
 				3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */,
+				3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -735,7 +741,9 @@
 				3F8D11492270CDBB0034BC6D /* SwipeGestureNode.swift in Sources */,
 				3F834B312446046D00A38263 /* ShaderManager.swift in Sources */,
 				3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */,
+				3FF444AB2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift in Sources */,
 				3FA3A514217EF1D60005B37D /* SwitchPaletteCMD.swift in Sources */,
+				3FF444A92452BBDA00C5F5D0 /* UseButtonStatus.swift in Sources */,
 				3FAC645120B5E1240083C56C /* MoveLineCMD.swift in Sources */,
 				3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,
 				3F95A6C320E8F1610052E1C6 /* CleanGameCmd.swift in Sources */,

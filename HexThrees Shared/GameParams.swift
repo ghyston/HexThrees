@@ -17,4 +17,5 @@ struct GameParams {
 	let strategy: MergingStrategyName
 	let palette: ColorSchemaType
 	let stressTimer: StressTimerStatus
+	let useButtons: UseButtonStatus
 }

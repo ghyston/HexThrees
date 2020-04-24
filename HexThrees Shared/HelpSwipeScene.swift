@@ -21,7 +21,8 @@ class HelpSwipeScene: SKScene, HelpScene {
 			strategy: MerginStrategyFabric.createByName(.Tutorial),
 			motionBlur: false,
 			hapticFeedback: false,
-			timerEnabled: false)
+			timerEnabled: false,
+			useButtons: false)
 		
 		super.init(size: CGSize(width: 1200, height: 1200))
 		

@@ -14,6 +14,7 @@ class GameModel {
 	var geometry: FieldGeometry
 	var hapticManager: IHapticManager
 	var motionBlurEnabled: Bool
+	var useButtonsEnabled: Bool
 	
 	var stressTimer: ITimerModel
 	
@@ -37,7 +38,7 @@ class GameModel {
 		}
 	}
 	
-	init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool) {
+	init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool, useButtons: Bool) {
 		self.geometry = FieldGeometry(
 			screenWidth: screenWidth,
 			fieldSize: fieldSize)
@@ -47,6 +48,7 @@ class GameModel {
 			height: fieldSize,
 			geometry: self.geometry)
 		self.motionBlurEnabled = motionBlur
+		self.useButtonsEnabled = useButtons
 		self.hapticManager = HapticManager(enabled: hapticFeedback)
 		
 		self.stressTimer = TimerModel()

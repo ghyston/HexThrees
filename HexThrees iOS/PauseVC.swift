@@ -20,6 +20,7 @@ class PauseVC: UIViewController {
 	@IBOutlet var motionBlurSwitch: UISwitch!
 	@IBOutlet var hapticFeedbackSwitch: UISwitch!
 	@IBOutlet var timerSwitch: UISwitch!
+	@IBOutlet var useButtonsSwitch: UISwitch!
 	
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var warningLabel: UILabel!
@@ -38,6 +39,7 @@ class PauseVC: UIViewController {
 		motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
 		hapticFeedbackSwitch.isOn = gameModel?.hapticManager.isEnabled ?? false
 		timerSwitch.isOn = gameModel?.stressTimer.isEnabled() ?? false
+		useButtonsSwitch.isOn = gameModel?.useButtonsEnabled ?? false
 		
 		updateWarningLabel()
 		setupSegmentedControlDesign()
@@ -90,11 +92,6 @@ class PauseVC: UIViewController {
 			return
 		}
 		
-		let hapticFeedbackStatus = hapticFeedbackSwitch.isOn ?
-			HapticFeedbackStatus.Enabled :
-			HapticFeedbackStatus.Disabled
-		
-		defaults.set(hapticFeedbackStatus.rawValue, forKey: SettingsKey.HapticFeedback.rawValue)
 		SwitchHapticFeedbackCMD(gm).run(isOn: hapticFeedbackSwitch.isOn)
 	}
 	
@@ -103,11 +100,6 @@ class PauseVC: UIViewController {
 			return
 		}
 		
-		let motionBlurStatus = motionBlurSwitch.isOn ?
-			MotionBlurStatus.Enabled :
-			MotionBlurStatus.Disabled
-		
-		defaults.set(motionBlurStatus.rawValue, forKey: SettingsKey.MotionBlur.rawValue)
 		SwitchMotionBlurCMD(gm).run(isOn: motionBlurSwitch.isOn)
 	}
 	
@@ -158,6 +150,14 @@ class PauseVC: UIViewController {
 		
 		SwitchPaletteCMD(gm).run(newMode)
 		defaults.set(newMode.rawValue, forKey: SettingsKey.Palette.rawValue)
+	}
+	
+	@IBAction func onUseButtonsSwitch(_ sender: Any) {
+		guard let gm = gameModel else {
+			return
+		}
+		
+		SwitchUseButtonsCmd(gm).run(isOn: useButtonsSwitch.isOn)
 	}
 	
 	@IBAction func onReset(_ sender: Any) {
