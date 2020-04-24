@@ -408,7 +408,7 @@
                     <connections>
                         <outlet property="fieldSizeStepper" destination="Ti7-DF-Umr" id="iRL-s7-WUX"/>
                         <outlet property="fieldSizeValueLabel" destination="VuY-AN-XoU" id="8ra-WJ-1tq"/>
-                        <outlet property="hapticFeedbackStackView" destination="usH-gr-uDm" id="zkQ-JB-VXt"/>
+                        <outlet property="hapticFeedbackStackView" destination="usH-gr-uDm" id="joa-cx-nJZ"/>
                         <outlet property="hapticFeedbackSwitch" destination="eqg-Yd-Loy" id="Sgo-EA-QBt"/>
                         <outlet property="motionBlurSwitch" destination="26a-k9-0Nk" id="3nq-ri-MXr"/>
                         <outlet property="paletteChanger" destination="WyI-ke-nBz" id="P8O-pK-cfi"/>

@@ -113,7 +113,10 @@ class GameVC: UIViewController {
 		let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
 		let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
 		let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
-		let prefHapticFeedback = HapticFeedbackStatus(rawValue: defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
+		let prefHapticFeedback = HapticManager.isSupported()
+			? HapticFeedbackStatus(rawValue: self.defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
+			: .Disabled
+		
 		let prefStress = StressTimerStatus(rawValue: defaults.integer(forKey: SettingsKey.StressTimer.rawValue))
 		let useButtons = UseButtonStatus(rawValue: defaults.integer(forKey: SettingsKey.UseButtons.rawValue))
 		
@@ -219,7 +222,7 @@ class GameVC: UIViewController {
 	private func registerObservers() {
 		let recognizer = HexSwipeGestureRecogniser(
 			target: self,
-			action: #selector(handleSwipe(recognizer:)))
+			action: #selector(self.handleSwipe(recognizer:)))
 		recognizer.delegate = self
 		self.view.addGestureRecognizer(recognizer)
 		
@@ -279,7 +282,7 @@ class GameVC: UIViewController {
 	
 	@objc func onUseButtonsChange(notification: Notification) {
 		let use = notification.object as? Bool ?? false
-		switchButtons(hidden: !use)
+		self.switchButtons(hidden: !use)
 	}
 	
 	private func switchButtons(hidden: Bool) {
@@ -310,26 +313,27 @@ class GameVC: UIViewController {
 	}
 	
 	@IBAction func onXDownBtnClick(_ sender: Any) {
-		handleSwipe(direction: .XDown);
+		self.handleSwipe(direction: .XDown)
 	}
 	
 	@IBAction func onYUpBtnClick(_ sender: Any) {
-		handleSwipe(direction: .YUp);
+		self.handleSwipe(direction: .YUp)
 	}
 	
 	@IBAction func onXUpClick(_ sender: Any) {
-		handleSwipe(direction: .XUp)
+		self.handleSwipe(direction: .XUp)
 	}
 	
 	@IBAction func onLeftBtnClick(_ sender: Any) {
-		handleSwipe(direction: .Left);
+		self.handleSwipe(direction: .Left)
 	}
+	
 	@IBAction func onRightClick(_ sender: Any) {
-		handleSwipe(direction: .Right)
+		self.handleSwipe(direction: .Right)
 	}
 	
 	@IBAction func onYDownClick(_ sender: Any) {
-		handleSwipe(direction: .YDown)
+		self.handleSwipe(direction: .YDown)
 	}
 }
 
@@ -337,7 +341,7 @@ class GameVC: UIViewController {
 
 extension GameVC: UIGestureRecognizerDelegate {
 	@objc func handleSwipe(recognizer: HexSwipeGestureRecogniser) {
-		handleSwipe(direction: recognizer.direction)
+		self.handleSwipe(direction: recognizer.direction)
 	}
 	
 	// https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreHaptics
 
 protocol IHapticManager {
 	var isEnabled: Bool { get set }
@@ -24,6 +25,10 @@ class HapticManager: IHapticManager {
 	
 	init(enabled: Bool) {
 		self.isEnabled = enabled
+	}
+	
+	class func isSupported() -> Bool {
+		CHHapticEngine.capabilitiesForHardware().supportsHaptics
 	}
 	
 	func warmup() {

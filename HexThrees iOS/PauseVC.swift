@@ -28,6 +28,10 @@ class PauseVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		if !HapticManager.isSupported() {
+			hapticFeedbackStackView.isHidden = true
+		}
+		
 		gameModel = ContainerConfig.instance.resolve() as GameModel
 		let settingsFieldSize = defaults.integer(forKey: SettingsKey.FieldSize.rawValue)
 		
