@@ -6,6 +6,6 @@ void main()
     float defaultBW = (defaultShading.r + defaultShading.g + defaultShading.b) / 5.0;
     gl_FragColor = v_tex_coord.y < aPos ?
         defaultShading :
-        vec4(defaultBW, defaultBW, defaultBW, 1.0);
+		vec4(defaultBW, defaultBW, defaultBW, defaultShading.a);
 }
 
