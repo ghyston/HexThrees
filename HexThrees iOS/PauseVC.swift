@@ -9,6 +9,19 @@
 import Foundation
 import UIKit
 
+// copied from https://stackoverflow.com/a/49975845/1741428
+public extension UIButton {
+	func alignTextBelow(spacing: CGFloat = 6.0) {
+		if let image = imageView?.image {
+			let imageSize: CGSize = image.size
+			titleEdgeInsets = UIEdgeInsets(top: spacing, left: -imageSize.width, bottom: -imageSize.height, right: 0.0)
+			let labelString = NSString(string: titleLabel!.text!)
+			let titleSize = labelString.size(withAttributes: [NSAttributedString.Key.font: titleLabel!.font!])
+			imageEdgeInsets = UIEdgeInsets(top: -(titleSize.height + spacing), left: 0.0, bottom: 0.0, right: -titleSize.width)
+		}
+	}
+}
+
 class PauseVC: UIViewController {
 	var gameModel: GameModel?
 	let defaults = UserDefaults.standard
@@ -24,6 +37,9 @@ class PauseVC: UIViewController {
 	
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var warningLabel: UILabel!
+	
+	@IBOutlet var backButton: UIButton!
+	@IBOutlet var helpButton: UIButton!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -66,12 +82,12 @@ class PauseVC: UIViewController {
 		
 		let oldPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
 		switch oldPalette {
-		case .Gray?:
-			paletteChanger.selectedSegmentIndex = 1
-		case .Light?:
-			paletteChanger.selectedSegmentIndex = 2
 		case .Dark?:
 			paletteChanger.selectedSegmentIndex = 0
+		case .Light?:
+			paletteChanger.selectedSegmentIndex = 1
+		case .Auto?:
+			paletteChanger.selectedSegmentIndex = 2
 		default:
 			paletteChanger.selectedSegmentIndex = 0
 			return
@@ -145,14 +161,14 @@ class PauseVC: UIViewController {
 		case 0:
 			newMode = .Dark
 		case 1:
-			newMode = .Gray
-		case 2:
 			newMode = .Light
+		case 2:
+			newMode = .Auto
 		default:
 			return
 		}
 		
-		SwitchPaletteCMD(gm).run(newMode)
+		SwitchPaletteCMD(gm).run(newMode.ensureDarkMode(traitCollection))
 		defaults.set(newMode.rawValue, forKey: SettingsKey.Palette.rawValue)
 	}
 	

@@ -133,7 +133,10 @@ class GameVC: UIViewController {
 	}
 	
 	private func createPalette(_ palette: ColorSchemaType) {
-		let pal: IPaletteManager = PaletteManager(palette)
+		
+		let actualPalette = palette.ensureDarkMode(traitCollection)
+		
+		let pal: IPaletteManager = PaletteManager(actualPalette)
 		ContainerConfig.instance.register(pal)
 	}
 	
@@ -143,11 +146,6 @@ class GameVC: UIViewController {
 	
 	private func updateSceneColor() {
 		let pal: IPaletteManager = ContainerConfig.instance.resolve()
-		
-		// @todo: find, how it works, may be it would be possible to use to switch palette with animation
-		/* UIView.animate(withDuration: 1.0) {
-		 
-		 } */
 		
 		setNeedsStatusBarAppearanceUpdate()
 		
@@ -178,6 +176,12 @@ class GameVC: UIViewController {
 		let save = FileHelper.loadSave() // @todo: use FileHelper by interface ?
 		let settings = self.loadSettings(fieldSizeFromSave: save?.fieldSize)
 		self.createGame(settings)
+		
+		if settings.palette == .Dark {
+			overrideUserInterfaceStyle = .dark
+		} else if settings.palette == .Light {
+			overrideUserInterfaceStyle = .light
+		}
 		
 		// DebugPaletteCMD(self.gameModel!).run()
 		if save != nil {
@@ -273,6 +277,27 @@ class GameVC: UIViewController {
 	@objc func onColorChange(notification: Notification) {
 		self.updateSceneColor()
 	}
+	
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+        guard UIApplication.shared.applicationState == .inactive else {
+            return
+        }
+		
+		if traitCollection.userInterfaceStyle == previousTraitCollection?.userInterfaceStyle {
+			return
+		}
+		
+		if defaults.integer(forKey: SettingsKey.Palette.rawValue) == ColorSchemaType.Auto.rawValue {
+			if traitCollection.userInterfaceStyle == .dark {
+				SwitchPaletteCMD(self.gameModel!).run(.Dark)
+			}
+			else if traitCollection.userInterfaceStyle == .light {
+				SwitchPaletteCMD(self.gameModel!).run(.Light)
+			}
+		}
+    }
 	
 	@objc func onScoreBuffUpdate(notification: Notification) {
 		let multiplier = notification.object as? Int ?? 1

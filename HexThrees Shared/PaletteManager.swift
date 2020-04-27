@@ -64,40 +64,6 @@ class PaletteManager: IPaletteManager {
 					 23: SKColor(rgb: 0x243237),
 					 24: SKColor(rgb: 0x151B20)])
 		
-		let gray = ColorSchema(
-			fieldOutlineColor: .darkGray,
-			sceneBgColor: .white,
-			cellBgColor: SKColor(rgb: 0x808080),
-			cellBlockedBgColor: SKColor(rgb: 0x555555),
-			cellBlockingLinesColor: SKColor(rgb: 0xA0A0A0),
-			cellTutorialColor: .white,
-			statusBarStyle: .lightContent,
-			colors: [0: SKColor(rgb: 0xE0D688),
-					 1: SKColor(rgb: 0xDFB138),
-					 2: SKColor(rgb: 0xDE6C4C),
-					 3: SKColor(rgb: 0x647F5A),
-					 4: SKColor(rgb: 0x61709F),
-					 5: SKColor(rgb: 0xDB5784),
-					 6: SKColor(rgb: 0x92A075),
-					 7: SKColor(rgb: 0x83789F),
-					 8: SKColor(rgb: 0x79BA63),
-					 9: SKColor(rgb: 0xFF9000),
-					 10: SKColor(rgb: 0x357736),
-					 11: SKColor(rgb: 0xB24B36),
-					 12: SKColor(rgb: 0x216596),
-					 13: SKColor(rgb: 0x07BEB8),
-					 14: SKColor(rgb: 0x406C8B),
-					 15: SKColor(rgb: 0x9CEAEF),
-					 16: SKColor(rgb: 0x8DD3D8),
-					 17: SKColor(rgb: 0x7EBCC1),
-					 18: SKColor(rgb: 0x6FA5AA),
-					 19: SKColor(rgb: 0x608E93),
-					 20: SKColor(rgb: 0x51777C),
-					 21: SKColor(rgb: 0x426065),
-					 22: SKColor(rgb: 0x33494E),
-					 23: SKColor(rgb: 0x243237),
-					 24: SKColor(rgb: 0x151B20)])
-		
 		let light = ColorSchema(
 			fieldOutlineColor: .gray,
 			sceneBgColor: .white,
@@ -134,8 +100,7 @@ class PaletteManager: IPaletteManager {
 		
 		allPalettes = [
 			.Dark: dark,
-			.Light: light,
-			.Gray: gray,
+			.Light: light
 		]
 		
 		currentPalette = allPalettes[currentShema]!

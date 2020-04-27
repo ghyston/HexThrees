@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -186,7 +185,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="FBl-RZ-L9i" userLabel="SettingsVerticalStackView">
-                                <rect key="frame" x="63.5" y="79.5" width="248.5" height="508"/>
+                                <rect key="frame" x="63.5" y="145.5" width="248.5" height="376"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="caE-a7-REa" userLabel="FieldSizeVerticalStackView">
                                         <rect key="frame" x="0.0" y="0.0" width="248.5" height="54"/>
@@ -238,14 +237,14 @@
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WyI-ke-nBz">
                                                 <rect key="frame" x="0.0" y="33" width="248.5" height="36"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="QK3-Xs-h0a"/>
                                                 </constraints>
                                                 <segments>
                                                     <segment title="Dark"/>
-                                                    <segment title="Gray"/>
                                                     <segment title="Light"/>
+                                                    <segment title="Auto"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.83013153076171875" green="0.62703472375869751" blue="0.18642783164978027" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
@@ -254,7 +253,7 @@
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="aC2-aN-dib" userLabel="MotionBlurStackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aC2-aN-dib" userLabel="MotionBlurStackView">
                                         <rect key="frame" x="0.0" y="174" width="248.5" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="26a-k9-0Nk" userLabel="MotionBlurSwitch">
@@ -264,15 +263,15 @@
                                                     <action selector="onMotionBlurChanged:" destination="hfV-uc-Gim" eventType="valueChanged" id="fG1-Kn-1UR"/>
                                                 </connections>
                                             </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motion Blur" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyS-jv-4A1" userLabel="MotionBlurLabel">
-                                                <rect key="frame" x="57" y="0.0" width="191.5" height="31"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motion Blur" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyS-jv-4A1" userLabel="MotionBlurLabel">
+                                                <rect key="frame" x="69" y="0.0" width="179.5" height="31"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="usH-gr-uDm" userLabel="HapticFeedbackStackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="usH-gr-uDm" userLabel="HapticFeedbackStackView">
                                         <rect key="frame" x="0.0" y="231" width="248.5" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eqg-Yd-Loy" userLabel="HapticFeedbackSwitch">
@@ -282,15 +281,15 @@
                                                     <action selector="onHapticFeedbackChanged:" destination="hfV-uc-Gim" eventType="valueChanged" id="xvc-Mh-bc6"/>
                                                 </connections>
                                             </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haptic feedback" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cap-OM-eFS" userLabel="HapticFeedbackLabel">
-                                                <rect key="frame" x="57" y="0.0" width="191.5" height="31"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haptic feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cap-OM-eFS" userLabel="HapticFeedbackLabel">
+                                                <rect key="frame" x="69" y="0.0" width="179.5" height="31"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5e8-M5-Kpj" userLabel="TimerStackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5e8-M5-Kpj" userLabel="TimerStackView">
                                         <rect key="frame" x="0.0" y="288" width="248.5" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2j-JZ-QWi" userLabel="TimerSwitch">
@@ -300,15 +299,15 @@
                                                     <action selector="onTimerChanged:" destination="hfV-uc-Gim" eventType="valueChanged" id="qMG-gs-zip"/>
                                                 </connections>
                                             </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3e-PE-2OL" userLabel="TimerLabel">
-                                                <rect key="frame" x="57" y="0.0" width="191.5" height="31"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3e-PE-2OL" userLabel="TimerLabel">
+                                                <rect key="frame" x="69" y="0.0" width="179.5" height="31"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="O0U-kw-PJo" userLabel="UseButtonsStackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="O0U-kw-PJo" userLabel="UseButtonsStackView">
                                         <rect key="frame" x="0.0" y="345" width="248.5" height="31"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TDv-uI-0vw" userLabel="UseButtonsSwitch">
@@ -318,58 +317,74 @@
                                                     <action selector="onUseButtonsSwitch:" destination="hfV-uc-Gim" eventType="valueChanged" id="IJG-WP-87w"/>
                                                 </connections>
                                             </switch>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use buttons" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmc-EY-Mkh" userLabel="UseButtonsLabel">
-                                                <rect key="frame" x="57" y="0.0" width="191.5" height="31"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use buttons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmc-EY-Mkh" userLabel="UseButtonsLabel">
+                                                <rect key="frame" x="69" y="0.0" width="179.5" height="31"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="19"/>
                                                 <color key="textColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-sN-sor" userLabel="ResumeResetStack">
-                                        <rect key="frame" x="0.0" y="402" width="248.5" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQl-nf-Mde" userLabel="ResumeBtn">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="40"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
-                                                <state key="normal" title="Resume">
-                                                    <color key="titleColor" red="0.92482990767550532" green="0.69752255625498172" blue="0.20829165228417254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onClose:" destination="hfV-uc-Gim" eventType="touchUpInside" id="gp9-Ak-71z"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqJ-1Q-2MV" userLabel="ResetBtn">
-                                                <rect key="frame" x="128" y="0.0" width="120.5" height="40"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
-                                                <state key="normal" title="Reset">
-                                                    <color key="titleColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onReset:" destination="hfV-uc-Gim" eventType="touchUpInside" id="yHh-T9-8qS"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsf-3G-7nc" userLabel="HelpBtn">
-                                        <rect key="frame" x="0.0" y="468" width="248.5" height="40"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
-                                        <state key="normal" title="Rules">
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="3sg-Ew-H56"/>
+                                    <constraint firstItem="caE-a7-REa" firstAttribute="leading" secondItem="FBl-RZ-L9i" secondAttribute="leading" id="FUo-Xq-4A6"/>
+                                    <constraint firstAttribute="trailing" secondItem="caE-a7-REa" secondAttribute="trailing" id="l5o-tK-0cB"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3sg-Ew-H56"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                            <stackView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="n8q-sN-sor" userLabel="ResumeResetStack">
+                                <rect key="frame" x="8" y="571.5" width="359" height="46"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="IQl-nf-Mde" userLabel="ResumeBtn">
+                                        <rect key="frame" x="0.0" y="0.0" width="113.5" height="46"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="titleEdgeInsets" minX="-60" minY="50" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="26" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Back" image="chevron.left.circle.fill" catalog="system">
+                                            <color key="titleColor" red="0.92482990767550532" green="0.69752255625498172" blue="0.20829165228417254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32" scale="large" weight="semibold"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onClose:" destination="hfV-uc-Gim" eventType="touchUpInside" id="gp9-Ak-71z"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rsf-3G-7nc" userLabel="HelpBtn">
+                                        <rect key="frame" x="122.5" y="0.0" width="114" height="46"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="titleEdgeInsets" minX="-60" minY="50" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="27" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Rules" image="questionmark.circle.fill" catalog="system">
                                             <color key="titleColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32" scale="large" weight="semibold"/>
                                         </state>
                                         <connections>
                                             <segue destination="CF0-Yj-3UE" kind="presentation" id="cBh-LK-pxf"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SqJ-1Q-2MV" userLabel="ResetBtn">
+                                        <rect key="frame" x="245.5" y="0.0" width="113.5" height="46"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="titleEdgeInsets" minX="-60" minY="50" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="27" minY="-20" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Reset" image="arrow.2.circlepath.circle.fill" catalog="system">
+                                            <color key="titleColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32" scale="large" weight="semibold"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onReset:" destination="hfV-uc-Gim" eventType="touchUpInside" id="yHh-T9-8qS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="320" id="3sg-Ew-H56"/>
-                                    <constraint firstItem="caE-a7-REa" firstAttribute="leading" secondItem="FBl-RZ-L9i" secondAttribute="leading" id="FUo-Xq-4A6"/>
-                                    <constraint firstAttribute="trailing" secondItem="caE-a7-REa" secondAttribute="trailing" id="l5o-tK-0cB"/>
-                                </constraints>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.70446704929656767" blue="0.39621551166059088" alpha="0.19668794014084506" colorSpace="custom" customColorSpace="sRGB"/>
@@ -377,10 +392,13 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="4Gl-NU-dAT" firstAttribute="trailing" secondItem="FBl-RZ-L9i" secondAttribute="trailing" priority="750" constant="8" id="3sL-Wq-9yz"/>
+                            <constraint firstItem="n8q-sN-sor" firstAttribute="top" secondItem="FBl-RZ-L9i" secondAttribute="bottom" constant="50" id="41F-0W-GCr"/>
                             <constraint firstItem="dKK-fx-a3b" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Gl-NU-dAT" secondAttribute="trailing" id="5VD-gP-ISh"/>
                             <constraint firstItem="AQQ-Ih-JgP" firstAttribute="bottom" secondItem="4Gl-NU-dAT" secondAttribute="bottom" constant="-8" id="B14-yA-zKi"/>
                             <constraint firstItem="9xl-Om-N6U" firstAttribute="trailing" secondItem="yTh-tM-hbL" secondAttribute="trailing" id="ChP-NT-Hdz"/>
                             <constraint firstItem="0pp-G3-WCd" firstAttribute="leading" secondItem="4Gl-NU-dAT" secondAttribute="leading" constant="8" id="EHc-sD-OEV"/>
+                            <constraint firstItem="n8q-sN-sor" firstAttribute="leading" secondItem="4Gl-NU-dAT" secondAttribute="leading" constant="8" id="EmJ-Ya-1Kv"/>
+                            <constraint firstItem="n8q-sN-sor" firstAttribute="centerX" secondItem="4Gl-NU-dAT" secondAttribute="centerX" id="H8g-9G-BMi"/>
                             <constraint firstItem="9xl-Om-N6U" firstAttribute="leading" secondItem="yTh-tM-hbL" secondAttribute="leading" id="IUU-F6-2Kb"/>
                             <constraint firstItem="9xl-Om-N6U" firstAttribute="top" secondItem="yTh-tM-hbL" secondAttribute="top" id="K2p-Ho-j7j"/>
                             <constraint firstItem="9xl-Om-N6U" firstAttribute="bottom" secondItem="yTh-tM-hbL" secondAttribute="bottom" id="NMS-vO-0ZE"/>
@@ -406,10 +424,12 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="IQl-nf-Mde" id="Ifb-MV-Anc"/>
                         <outlet property="fieldSizeStepper" destination="Ti7-DF-Umr" id="iRL-s7-WUX"/>
                         <outlet property="fieldSizeValueLabel" destination="VuY-AN-XoU" id="8ra-WJ-1tq"/>
                         <outlet property="hapticFeedbackStackView" destination="usH-gr-uDm" id="joa-cx-nJZ"/>
                         <outlet property="hapticFeedbackSwitch" destination="eqg-Yd-Loy" id="Sgo-EA-QBt"/>
+                        <outlet property="helpButton" destination="Rsf-3G-7nc" id="d0s-08-JDT"/>
                         <outlet property="motionBlurSwitch" destination="26a-k9-0Nk" id="3nq-ri-MXr"/>
                         <outlet property="paletteChanger" destination="WyI-ke-nBz" id="P8O-pK-cfi"/>
                         <outlet property="timerSwitch" destination="v2j-JZ-QWi" id="r2H-Hz-a4h"/>
@@ -612,12 +632,15 @@
     </scenes>
     <color key="tintColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
+        <image name="arrow.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.down.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.down.right.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.up.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.up.right.circle" catalog="system" width="128" height="121"/>
+        <image name="chevron.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="questionmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

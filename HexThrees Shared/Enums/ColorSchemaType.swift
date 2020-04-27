@@ -10,7 +10,16 @@ import Foundation
 
 enum ColorSchemaType: Int {
 	case Dark = 1
-	case Gray = 2
-	case Light = 3
-	case Blue = 4
+	case Light = 2
+	case Auto = 3
+	
+	func ensureDarkMode(_ traitCollection: UITraitCollection) -> ColorSchemaType {
+		self == .Auto && traitCollection.userInterfaceStyle == .dark
+		? .Dark
+		: self == .Auto && traitCollection.userInterfaceStyle == .light
+			? .Light
+			: self;
+	}
 }
+
+
