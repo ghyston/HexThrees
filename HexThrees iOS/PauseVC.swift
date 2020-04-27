@@ -181,6 +181,26 @@ class PauseVC: UIViewController {
 	}
 	
 	@IBAction func onReset(_ sender: Any) {
+		
+		let restartAlert = UIAlertController(
+			title: "Reset",
+			message: "Do you want to start a new game?",
+			preferredStyle: UIAlertController.Style.alert)
+
+		restartAlert.addAction(UIAlertAction(
+			title: "Yes",
+			style: .destructive,
+			handler: onConfirmReset))
+		
+		restartAlert.addAction(UIAlertAction(
+			title: "Cancel",
+			style: .cancel,
+			handler: nil))
+
+		present(restartAlert, animated: true, completion: nil)
+	}
+	
+	func onConfirmReset(action: UIAlertAction) {
 		NotificationCenter.default.post(name: .resetGame, object: nil)
 		dismiss(animated: true, completion: nil)
 	}
