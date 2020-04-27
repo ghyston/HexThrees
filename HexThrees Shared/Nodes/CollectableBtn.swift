@@ -45,8 +45,9 @@ class CollectableBtn: SKNode, AnimatedNode {
 			return
 		}
 		
-		let step = updated ? 1.0 / Double(collectable.maxValue) : Double(collectable.currentValue)
-		let start = updated ? Double(collectable.currentValue - 1) * step : 0.0
+		let step: Double = 1.0 / Double(collectable.maxValue)
+		let start: Double = updated ? Double(collectable.currentValue - 1) * step : 0.0
+		let stop: Double = updated ? start + step : Double(collectable.currentValue) * step
 		
 		let isFullScale: CGFloat = 1.2
 		let updateAnimationScale: CGFloat = 1.3
@@ -54,7 +55,7 @@ class CollectableBtn: SKNode, AnimatedNode {
 		
 		self.playback = Playback(
 			from: start,
-			to: start + step,
+			to: stop,
 			duration: GameConstants.CollectableUpdateAnimationDuration,
 			onFinish: self.removeAnimation)
 		
