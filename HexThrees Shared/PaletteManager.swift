@@ -65,10 +65,10 @@ class PaletteManager: IPaletteManager {
 					 24: SKColor(rgb: 0x151B20)])
 		
 		let light = ColorSchema(
-			fieldOutlineColor: .gray,
+			fieldOutlineColor: UIColor(rgb: 0x707070),
 			sceneBgColor: .white,
-			cellBgColor: SKColor(rgb: 0x101010),
-			cellBlockedBgColor: SKColor(rgb: 0x555555),
+			cellBgColor: SKColor(rgb: 0xb0b0b0),
+			cellBlockedBgColor: SKColor(rgb: 0x808080),
 			cellBlockingLinesColor: SKColor(rgb: 0xA0A0A0),
 			cellTutorialColor: .white,
 			statusBarStyle: .default,

@@ -207,7 +207,7 @@
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" autorepeat="NO" value="3" minimumValue="3" maximumValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ti7-DF-Umr">
                                                         <rect key="frame" x="154.5" y="0.0" width="94" height="32"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="quaternaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" red="0.87984052749999997" green="0.4627117758" blue="0.2206477215" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="onFieldSizeChanged:" destination="hfV-uc-Gim" eventType="valueChanged" id="afg-3N-wI5"/>
@@ -247,6 +247,7 @@
                                                     <segment title="Auto"/>
                                                 </segments>
                                                 <color key="tintColor" red="0.83013153076171875" green="0.62703472375869751" blue="0.18642783164978027" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="selectedSegmentTintColor" systemColor="quaternaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="onPaletteChanged:" destination="hfV-uc-Gim" eventType="valueChanged" id="5ee-2s-XJb"/>
                                                 </connections>
