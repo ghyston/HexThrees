@@ -27,13 +27,12 @@ class MoveXUpIterator: BaseCellsIterator, CellsIterator {
 		}
 		
 		for _ in 0 ... x {
-			let cell = getCell(x, y)
+			defer { x -= 1 }
 			
-			x -= 1
-			
-			if cell.isBlocked || cell.isBlockedFromSwipe {
-				break
-			}
+			guard let cell = getCell(x, y),
+				!cell.isBlocked,
+				!cell.isBlockedFromSwipe
+			else { break }
 			
 			line.add(cell)
 		}

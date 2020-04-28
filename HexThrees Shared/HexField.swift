@@ -12,12 +12,12 @@ import SpriteKit
 typealias CellComparator = (_ cell: BgCell) -> Bool
 
 protocol ICellsStatisticCalculator {
-	func next(cell: BgCell)
+	func next(socket: BgCell?)
 	func clean()
 }
 
 class HexField {
-	private var bgHexes = [BgCell]()
+	private var bgHexes = [BgCell?](repeating: nil, count: 49)
 	let width: Int
 	let height: Int
 	
@@ -33,31 +33,31 @@ class HexField {
 					blocked: false,
 					coord: coord)
 				hexCell.position = geometry.ToScreenCoord(coord)
-				bgHexes.append(hexCell)
+				bgHexes[y * width + x] = hexCell
 			}
 		}
 	}
 	
 	func clean() {
 		for i in 0 ..< bgHexes.count {
-			self[i].removeAllActions()
-			self[i].removeFromParent()
+			self[i]?.removeAllActions()
+			self[i]?.removeFromParent()
 		}
 		bgHexes.removeAll()
 	}
 	
-	subscript(index: Int) -> BgCell {
+	subscript(index: Int) -> BgCell? {
 		return bgHexes[index]
 	}
 	
-	subscript(x: Int, y: Int) -> BgCell {
+	subscript(x: Int, y: Int) -> BgCell? {
 		assert(x >= 0 && x < width, "cell coordinate \(x) out of range")
 		assert(y >= 0 && y < height, "cell coordinate \(y) out of range")
 		let index = y * width + x
 		return bgHexes[index]
 	}
 	
-	func getCell(_ x: Int, _ y: Int) -> BgCell {
+	func getCell(_ x: Int, _ y: Int) -> BgCell? {
 		assert(x >= 0 && x < width, "cell coordinate \(x) out of range")
 		assert(y >= 0 && y < height, "cell coordinate \(y) out of range")
 		let index = y * width + x
@@ -65,11 +65,11 @@ class HexField {
 	}
 	
 	func getBgCells(compare: CellComparator) -> [BgCell] {
-		return bgHexes.filter(compare)
+		return bgHexes.compactMap { $0 }.filter(compare)
 	}
 	
 	func hasBgCells(compare: CellComparator) -> Bool {
-		return bgHexes.first(where: compare) != nil
+		return bgHexes.compactMap { $0 }.first(where: compare) != nil
 	}
 	
 	func getBgCellsWithPriority(
@@ -84,10 +84,19 @@ class HexField {
 	}
 	
 	func countBgCells(compare: CellComparator) -> Int {
-		return bgHexes.filter(compare).count
+		return bgHexes.compactMap { $0 }.filter(compare).count
 	}
 	
 	func executeForAll(lambda: (_: BgCell) -> Void) {
+		for i in 0 ..< bgHexes.count {
+			guard let cell = self[i] else {
+				continue
+			}
+			lambda(cell)
+		}
+	}
+	
+	func executeForEverySocket(lambda: (_: BgCell?) -> Void) {
 		for i in 0 ..< bgHexes.count {
 			lambda(self[i])
 		}
@@ -96,51 +105,37 @@ class HexField {
 	// MARK: Cell selectors
 	
 	class func freeCell(cell: BgCell) -> Bool {
-		return cell.gameCell == nil && !cell.isBlocked
+		cell.gameCell == nil && !cell.isBlocked
 	}
 	
 	class func freeCellWoBonuses(cell: BgCell) -> Bool {
-		return cell.gameCell == nil && !cell.isBlocked &&
+		cell.gameCell == nil && !cell.isBlocked &&
 			cell.bonus == nil
 	}
 	
 	class func blockedCell(cell: BgCell) -> Bool {
-		return cell.isBlocked
+		cell.isBlocked
 	}
 	
 	class func notBlockedCell(cell: BgCell) -> Bool {
-		return !cell.isBlocked
+		!cell.isBlocked
 	}
 	
 	class func cellWoBonuses(cell: BgCell) -> Bool {
-		return cell.bonus == nil
+		cell.bonus == nil
 	}
 	
 	class func cellWoShader(cell: BgCell) -> Bool {
-		return cell.hexShape.fillShader == nil
+		cell.hexShape.fillShader == nil
 	}
 	
 	class func userBlockedCell(cell: BgCell) -> Bool {
-		return cell.isBlockedFromSwipe
+		cell.isBlockedFromSwipe
 	}
 	
 	class func containGameCell(cell: BgCell) -> Bool {
-		return cell.gameCell != nil
+		cell.gameCell != nil
 	}
-	
-	//    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {
-	//        for y in 0 ..< height {
-	//            for x in 0 ..< width {
-	//                lambda(self[x, y], x, y)
-	//            }
-	//        }
-	//    }
-//
-	//    func executeForAll(lambda: (_:BgCell, _: Int) -> Void) {
-	//        for i in 0 ..< height * width {
-	//            lambda(self[i], i)
-	//        }
-	//    }
 	
 	func calculateForSiblings(coord: AxialCoord, calc: inout ICellsStatisticCalculator) {
 		calc.clean()
@@ -157,7 +152,7 @@ class HexField {
 					continue
 				}
 				
-				calc.next(cell: self[x, y])
+				calc.next(socket: self[x, y])
 			}
 		}
 	}

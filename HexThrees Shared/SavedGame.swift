@@ -10,6 +10,7 @@ import Foundation
 
 struct SavedGame: Codable {
 	struct SavedCell: Codable {
+		let exist: Bool
 		let val: Int?
 		let blocked: Bool
 		let bonusType: BonusType?

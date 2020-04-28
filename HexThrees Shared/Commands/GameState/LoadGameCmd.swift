@@ -27,14 +27,17 @@ class LoadGameCmd: GameCMD {
 		for i in 0..<gameSave.cells.count {
 			let loadedCell = gameSave.cells[i]
 			
+			//@todo: check is it actually exist
+			//@todo: skip all optionals
+			
 			if loadedCell.blocked {
-				gameModel.field[i].block()
+				gameModel.field[i]?.block()
 			}
 			else if let val = loadedCell.val {
 				let newElement = GameCell(
 					model: self.gameModel,
 					val: val)
-				gameModel.field[i].addGameCell(cell: newElement)
+				gameModel.field[i]?.addGameCell(cell: newElement)
 				newElement.playAppearAnimation()
 			}
 			else if let bonusType = loadedCell.bonusType {
@@ -44,7 +47,7 @@ class LoadGameCmd: GameCMD {
 					bonusNode.turnsCount = bonusTurns
 				}
 				
-				gameModel.field[i].addBonus(bonusNode)
+				gameModel.field[i]?.addBonus(bonusNode)
 			}
 		}
 		gameModel.score = gameSave.score

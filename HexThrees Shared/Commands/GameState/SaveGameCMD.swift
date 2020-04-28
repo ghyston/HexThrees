@@ -32,15 +32,16 @@ class SaveGameCMD: GameCMD {
 	private func retrieveSaveFromModel() -> SavedGame {
 		var cells = [SavedGame.SavedCell]()
 		
-		let saveCell: (_: BgCell) -> Void = {
+		let saveCell: (_: BgCell?) -> Void = {
 			cells.append(SavedGame.SavedCell(
-				val: $0.gameCell?.value,
-				blocked: $0.isBlocked,
-				bonusType: $0.bonus?.type,
-				bonusTurns: $0.bonus?.turnsCount))
+				exist: $0 != nil,
+				val: $0?.gameCell?.value,
+				blocked: $0?.isBlocked ?? false,
+				bonusType: $0?.bonus?.type,
+				bonusTurns: $0?.bonus?.turnsCount))
 		}
 		
-		self.gameModel.field.executeForAll(lambda: saveCell)
+		self.gameModel.field.executeForEverySocket(lambda: saveCell)
 		
 		return SavedGame(
 			cells: cells,

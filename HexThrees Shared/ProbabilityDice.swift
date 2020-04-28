@@ -45,6 +45,7 @@ class ProbabilityArray<T> {
 	}
 }
 
+// @todo: move to tests
 class ProbabilityArrayTests {
 	enum ObjectType {
 		case OutcomeOne

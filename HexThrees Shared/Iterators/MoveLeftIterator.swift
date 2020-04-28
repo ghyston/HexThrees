@@ -20,15 +20,14 @@ class MoveLeftIterator: BaseCellsIterator, CellsIterator {
 			
 			for _ in d ..< len {
 				let temp = len - d - 1
-				let cell = getCell(x - temp, temp)
-				d += 1
+				defer { d += 1 }
 				
-				if cell.isBlocked || cell.isBlockedFromSwipe {
-					return line
-				}
-				else {
-					line.add(cell)
-				}
+				guard let cell = getCell(x - temp, temp),
+					!cell.isBlocked,
+					!cell.isBlockedFromSwipe
+				else { return line }
+				
+				line.add(cell)
 			}
 			x += 1
 			d = 0
@@ -42,15 +41,14 @@ class MoveLeftIterator: BaseCellsIterator, CellsIterator {
 			
 			for _ in d ..< len {
 				let temp = len - d - 1
-				let cell = getCell(w - temp - 1, y + temp)
-				d += 1
+				defer { d += 1 }
 				
-				if cell.isBlocked || cell.isBlockedFromSwipe {
-					return line
-				}
-				else {
-					line.add(cell)
-				}
+				guard let cell = getCell(w - temp - 1, y + temp),
+					!cell.isBlocked,
+					!cell.isBlockedFromSwipe
+				else { return line }
+				
+				line.add(cell)
 			}
 			y += 1
 			d = 0
