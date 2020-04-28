@@ -170,8 +170,8 @@ class FieldGeometry {
 		let w = Float(self.cellWidth + self.gap)
 		let h = Float(self.cellHeight + self.gap * 1.732)
 		
-		let x = Float(a.c - a.r) * 0.5 * w
-		let y = Float(a.c + a.r) * (w * 0.5 + h / (2.0 * 1.732))
+		let x = Float(a.r - a.c) * 0.5 * w
+		let y = Float(a.r + a.c) * (w * 0.5 + h / (2.0 * 1.732))
 		
 		return CGPoint(
 			x: CGFloat(x),

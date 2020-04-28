@@ -25,9 +25,9 @@ class HexField {
 		self.width = width
 		self.height = height
 		
-		for i2 in 0 ..< width {
-			for i1 in 0 ..< height {
-				let coord = AxialCoord(i2, i1)
+		for y in 0 ..< height {
+			for x in 0 ..< width {
+				let coord = AxialCoord(x, y)
 				let hexCell = BgCell(
 					hexShape: geometry.createHexCellShape(),
 					blocked: false,
