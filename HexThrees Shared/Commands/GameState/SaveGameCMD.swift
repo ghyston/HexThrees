@@ -46,7 +46,7 @@ class SaveGameCMD: GameCMD {
 		return SavedGame(
 			cells: cells,
 			score: self.gameModel.score,
-			fieldSize: FieldSize(rawValue: self.gameModel.field.width)!,
+			maxFieldSize: GameConstants.MaxFieldSize,
 			bonuses: self.gameModel.collectableBonuses
 				.filter { $0.value.currentValue > 0 }
 				.mapValues { SavedGame.CollectableBonusCodable(currentValue: $0.currentValue, maxValue: $0.maxValue) })

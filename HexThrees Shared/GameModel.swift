@@ -11,7 +11,7 @@ import SpriteKit
 
 class GameModel {
 	var strategy: MergingStrategy
-	var geometry: FieldGeometry
+	var geometry: FieldGeometry?
 	var hapticManager: IHapticManager
 	var motionBlurEnabled: Bool
 	var useButtonsEnabled: Bool
@@ -38,15 +38,9 @@ class GameModel {
 		}
 	}
 	
-	init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool, useButtons: Bool) {
-		self.geometry = FieldGeometry(
-			screenWidth: screenWidth,
-			fieldSize: fieldSize)
+	init(strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool, useButtons: Bool) {
 		self.strategy = strategy
-		self.field = HexField(
-			width: fieldSize,
-			height: fieldSize,
-			geometry: self.geometry)
+		self.field = HexField()
 		self.motionBlurEnabled = motionBlur
 		self.useButtonsEnabled = useButtons
 		self.hapticManager = HapticManager(enabled: hapticFeedback)
@@ -58,15 +52,9 @@ class GameModel {
 		self.resetCollectables()
 	}
 	
-	func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
-		self.geometry = FieldGeometry(
-			screenWidth: screenWidth,
-			fieldSize: fieldSize)
+	func reset(strategy: MergingStrategy) {
 		self.strategy = strategy
-		self.field = HexField(
-			width: fieldSize,
-			height: fieldSize,
-			geometry: self.geometry)
+		self.field = HexField()
 		self.resetCollectables()
 	}
 	

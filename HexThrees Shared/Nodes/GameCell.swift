@@ -37,7 +37,7 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		self.value = val
 		self.motionBlurDisabled = !model.motionBlurEnabled
 		let strategyValue = model.strategy[self.value]
-		self.hexShape = model.geometry.createHexCellShape()
+		self.hexShape = model.geometry!.createHexCellShape()
 		
 		// this is just to put placeholders
 		self.label = SKLabelNode()

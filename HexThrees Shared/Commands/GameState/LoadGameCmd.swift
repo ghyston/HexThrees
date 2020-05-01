@@ -9,51 +9,70 @@
 import Foundation
 
 class LoadGameCmd: GameCMD {
-	private var gameSave: SavedGame?
+	private var gameSave: SavedGame
+	private var screenSize: CGSize
 	
-	func setup(_ gameSave: SavedGame) -> GameCMD {
-		self.gameSave = gameSave
-		return self
+	init(_ model: GameModel, save: SavedGame, screen screenSize: CGSize) {
+		self.gameSave = save
+		self.screenSize = screenSize
+		super.init(model)
+	}
+	
+	required init(_ gameModel: GameModel) {
+		fatalError("init(_:) has not been implemented")
 	}
 	
 	override func run() {
-		guard let gameSave = self.gameSave else {
-			return
+		// At first, we need to define geometry for loading game
+		let coords = gameSave.cells.enumerated().compactMap {
+			$1.exist ? AxialCoord($0 % 7, $0 / 7) : nil
 		}
+		let geometry = FieldGeometry(screenSize: screenSize, coords: coords)
+		gameModel.geometry = geometry
 		
-		// @todo: remove assets from final build, make soft loading,
-		assert(gameModel.field.width * gameModel.field.height == gameSave.cells.count, "on load game configs are different")
-		
+		// Load cells one by one
 		for i in 0..<gameSave.cells.count {
 			let loadedCell = gameSave.cells[i]
 			
-			//@todo: check is it actually exist
-			//@todo: skip all optionals
+			if !loadedCell.exist {
+				continue
+			}
+			
+			let x = i % GameConstants.MaxFieldSize
+			let y = i / GameConstants.MaxFieldSize
+			
+			let coord = AxialCoord(x, y)
+			let hexCell = BgCell(
+				hexShape: geometry.createHexCellShape(),
+				blocked: false,
+				coord: coord)
+			hexCell.position = geometry.ToScreenCoord(coord)
 			
 			if loadedCell.blocked {
-				gameModel.field[i]?.block()
+				hexCell.block()
 			}
 			else if let val = loadedCell.val {
 				let newElement = GameCell(
-					model: self.gameModel,
+					model: gameModel,
 					val: val)
-				gameModel.field[i]?.addGameCell(cell: newElement)
+				hexCell.addGameCell(cell: newElement)
 				newElement.playAppearAnimation()
 			}
 			else if let bonusType = loadedCell.bonusType {
-				let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: self.gameModel)
+				let bonusNode = BonusFabric.createBy(bonus: bonusType, gameModel: gameModel)
 				
 				if let bonusTurns = loadedCell.bonusTurns {
 					bonusNode.turnsCount = bonusTurns
 				}
 				
-				gameModel.field[i]?.addBonus(bonusNode)
+				hexCell.addBonus(bonusNode)
 			}
+			gameModel.field.setCell(hexCell)
 		}
 		gameModel.score = gameSave.score
 		NotificationCenter.default.post(
 			name: .updateScore,
-			object: self.gameModel.score)
+			object: gameModel.score)
 		
 		gameModel.collectableBonuses = gameSave.bonuses
 			.filter { $0.value.currentValue > 0 }

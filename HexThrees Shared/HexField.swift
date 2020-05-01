@@ -17,24 +17,32 @@ protocol ICellsStatisticCalculator {
 }
 
 class HexField {
-	private var bgHexes = [BgCell?](repeating: nil, count: 49)
-	let width: Int
-	let height: Int
+	private var bgHexes = [BgCell?](repeating: nil, count: GameConstants.MaxFieldSize * GameConstants.MaxFieldSize)
+	let width: Int = GameConstants.MaxFieldSize
+	let height: Int = GameConstants.MaxFieldSize
 	
-	init(width: Int, height: Int, geometry: FieldGeometry) {
-		self.width = width
-		self.height = height
+	func setupNewField(model: GameModel, screenSize: CGSize) {
+		var coords = [AxialCoord]()
 		
-		for y in 0 ..< height {
-			for x in 0 ..< width {
-				let coord = AxialCoord(x, y)
-				let hexCell = BgCell(
-					hexShape: geometry.createHexCellShape(),
-					blocked: false,
-					coord: coord)
-				hexCell.position = geometry.ToScreenCoord(coord)
-				bgHexes[y * width + x] = hexCell
+		let start = (GameConstants.MaxFieldSize - GameConstants.StartFieldSize) / 2
+		let end = start + GameConstants.StartFieldSize
+		
+		for y in start ..< end {
+			for x in start ..< end {
+				coords.append(AxialCoord(x, y))
 			}
+		}
+		
+		let geometry = FieldGeometry(screenSize: screenSize, coords: coords)
+		model.geometry = geometry
+		
+		for coord in coords {
+			let hexCell = BgCell(
+				hexShape: geometry.createHexCellShape(),
+				blocked: false,
+				coord: coord)
+			hexCell.position = geometry.ToScreenCoord(coord)
+			setCell(hexCell)
 		}
 	}
 	
@@ -47,14 +55,17 @@ class HexField {
 	}
 	
 	subscript(index: Int) -> BgCell? {
-		return bgHexes[index]
+		bgHexes[index]
 	}
 	
 	subscript(x: Int, y: Int) -> BgCell? {
-		assert(x >= 0 && x < width, "cell coordinate \(x) out of range")
-		assert(y >= 0 && y < height, "cell coordinate \(y) out of range")
-		let index = y * width + x
-		return bgHexes[index]
+		getCell(x, y)
+	}
+	
+	func setCell(_ cell: BgCell) {
+		let index = cell.coord.c + cell.coord.r * GameConstants.MaxFieldSize
+		assert(bgHexes[index] == nil, "BgCell already exist")
+		bgHexes[index] = cell
 	}
 	
 	func getCell(_ x: Int, _ y: Int) -> BgCell? {

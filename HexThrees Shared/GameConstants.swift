@@ -11,6 +11,8 @@ class GameConstants {
 	static let MaxBonusesOnScreen = 3
 	static let MaxBonusesOnPanel = 3
 	static let TurnsToAutoSave = 5
+	static let MaxFieldSize = 7
+	static let StartFieldSize = 3
 	
 	// Animations
 	static let SecondsPerCell = 0.20

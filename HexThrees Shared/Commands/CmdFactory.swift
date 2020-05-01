@@ -11,7 +11,6 @@ import Foundation
 protocol ICmdFactory {
 	func TouchSelectableCell() -> RunOnNodeCMD
 	func IncCollectableBonus(type: BonusType) -> GameCMD
-	func LoadGame(save: SavedGame) -> GameCMD
 	func AddRandomElements(cells: Int, blocked: Int) -> GameCMD
 	func AddRandomCellForTutorial() -> GameCMD
 	func AddRandomCellSkipRepeat() -> GameCMD
@@ -48,11 +47,6 @@ class GameCmdFactory: ICmdFactory {
 	func IncCollectableBonus(type: BonusType) -> GameCMD {
 		return IncCollectableBonusCmd(self.gameModel)
 			.setup(type)
-	}
-	
-	func LoadGame(save: SavedGame) -> GameCMD {
-		return LoadGameCmd(self.gameModel)
-			.setup(save)
 	}
 	
 	func AddRandomElements(cells: Int, blocked: Int) -> GameCMD {
