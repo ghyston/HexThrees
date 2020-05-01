@@ -12,6 +12,9 @@ class AxialCoord {
 	var c: Int = 0 // column (x, ↗️)
 	var r: Int = 0 // row (y, ↖️)
 	
+	var x: Int { c - r }
+	var y: Int { c + r }
+	
 	init(_ c: Int, _ r: Int) {
 		self.c = c
 		self.r = r

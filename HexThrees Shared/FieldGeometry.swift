@@ -10,37 +10,59 @@ import Foundation
 import SpriteKit
 
 class FieldGeometry {
-	private let gap = 5.0
-	private var fieldHalfHeight: CGFloat = 0
+	private let gap: Float = 5.0
 	
-	private let hexRad: Double
 	private let hexCellPath: CGPath
-	public let outlinePath: CGPath // @todo: make it private and put all functionaity inside
-	private let cellWidth: Double
-	private let cellHeight: Double
+	public let outlinePath: CGPath
 	
-	init(screenWidth: CGFloat, fieldSize: Int) {
+	private let hexRad: Float
+	private let cellWidth: Float
+	private let cellHeight: Float
+	private let offsetX: Float
+	private let offsetY: Float
+	
+	init(screenSize: CGSize, fieldW: Float, fieldH: Float, offsetX: Float = 0.0, offsetY: Float = 0.0) {
 		self.hexRad = FieldGeometry.calculateHexRad(
-			viewWidth: screenWidth,
-			hexCount: fieldSize,
+			viewSize: screenSize,
+			fieldHCellsCount: fieldW,
+			fieldVCellsCount: fieldH,
 			gap: self.gap)
 		
-		self.hexCellPath = FieldGeometry.createPath(rad: self.hexRad)
-		self.outlinePath = FieldGeometry.createPath(rad: self.hexRad + self.gap)
+		self.offsetX = offsetX
+		self.offsetY = offsetY
+		
+		self.hexCellPath = FieldGeometry.createPath(rad: Double(self.hexRad))
+		self.outlinePath = FieldGeometry.createPath(rad: Double(self.hexRad + self.gap))
 		
 		self.cellWidth = self.hexRad * 1.732
 		self.cellHeight = self.hexRad * 2
+	}
+	
+	convenience init(screenSize: CGSize, coords: [AxialCoord]) {
+		assert(!coords.isEmpty, "could not create field without coordinates!")
 		
-		let furthestCellCoord = self.ToScreenCoord(AxialCoord(fieldSize - 1, fieldSize - 1))
-		self.fieldHalfHeight = furthestCellCoord.y / 2.0
+		let xs = coords.map { $0.x }
+		let ys = coords.map { $0.y }
+		
+		let minX = xs.min()!
+		let maxX = xs.max()!
+		let minY = ys.min()!
+		let maxY = ys.max()!
+		
+		self.init(
+			screenSize: screenSize,
+			fieldW: Float(maxX - minX) / 2.0 + 1.0,
+			fieldH: Float(maxY - minY) / 2.0 + 1.0,
+			offsetX: Float(minX + maxX) / 2.0,
+			offsetY: Float(minY + maxY) / 2.0) // minY + fieldH - 1 simplified
 	}
 	
 	func createHexCellShape() -> SKShapeNode {
-		return self.createShape(path: self.hexCellPath)
+		self.createShape(path: self.hexCellPath)
 	}
 	
 	func createOutlineShape() -> SKShapeNode {
-		return self.createShape(path: self.outlinePath)
+		self.createShape(path: self.outlinePath)
 	}
 	
 	private func createShape(path: CGPath) -> SKShapeNode {
@@ -49,10 +71,14 @@ class FieldGeometry {
 		return hexShape
 	}
 	
-	class func calculateHexRad(viewWidth: CGFloat, hexCount: Int, gap: Double) -> Double {
-		let fieldW = Double(viewWidth * 0.9)
+	class func calculateHexRad(viewSize: CGSize, fieldHCellsCount: Float, fieldVCellsCount: Float, gap: Float) -> Float {
+		let fieldW = Float(viewSize.width * 0.9) // Here convertion is cgfloat -> float. Otherwise compiler went crazy in next lines
+		let fieldH = Float(viewSize.height * 0.8)
 		
-		return ((fieldW + gap) / Double(hexCount) - gap) / 1.732
+		let minRadByWidth = ((fieldW + gap) / fieldHCellsCount - gap) / 1.732
+		let minRadByHeight = ((fieldH + gap) / fieldVCellsCount - gap) / (2.0 * 1.732)
+		
+		return min(minRadByWidth, minRadByHeight)
 	}
 	
 	class func createGearPath(radIn: Double, radOut: Double, count: Int) -> CGPath {
@@ -166,16 +192,15 @@ class FieldGeometry {
 	}
 	
 	func ToScreenCoord(_ a: AxialCoord) -> CGPoint {
-		// @todo: there are a lot of conversations between float and double. Google difference, use only one mostly
 		let w = Float(self.cellWidth + self.gap)
 		let h = Float(self.cellHeight + self.gap * 1.732)
 		
-		let x = Float(a.r - a.c) * 0.5 * w
-		let y = Float(a.r + a.c) * (w * 0.5 + h / (2.0 * 1.732))
+		let x = (Float(a.c - a.r) - self.offsetX) * 0.5 * w
+		let y = (Float(a.c + a.r) - self.offsetY) * (w * 0.5 + h / (2.0 * 1.732))
 		
 		return CGPoint(
 			x: CGFloat(x),
-			y: CGFloat(y) - self.fieldHalfHeight)
+			y: CGFloat(y))
 	}
 	
 	func ToScreenCoord(_ a: CubeCoord) -> CGPoint {

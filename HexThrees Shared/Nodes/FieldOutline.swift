@@ -15,12 +15,16 @@ class FieldOutline: SKNode {
 	func recalculateFieldBg(model: GameModel) {
 		self.removeAllChildren()
 
-		for i2 in 0 ..< model.field.width {
-			for i1 in 0 ..< model.field.height {
-				let hexShape = model.geometry.createOutlineShape()
+		for y in 0 ..< model.field.height {
+			for x in 0 ..< model.field.width {
+				if model.field[x, y] == nil {
+					continue
+				}
+				
+				let hexShape = model.geometry!.createOutlineShape()
 				hexShape.fillColor = .darkGray
 				hexShape.lineWidth = 0
-				hexShape.position = model.geometry.ToScreenCoord(AxialCoord(i2, i1))
+				hexShape.position = model.geometry!.ToScreenCoord(AxialCoord(x, y))
 				self.addChild(hexShape)
 			}
 		}
