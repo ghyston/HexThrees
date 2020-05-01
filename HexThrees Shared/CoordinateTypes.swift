@@ -9,12 +9,12 @@
 import Foundation
 
 class AxialCoord {
-	var r: Int = 0 // row
-	var c: Int = 0 // column
+	var c: Int = 0 // column (x, ↗️)
+	var r: Int = 0 // row (y, ↖️)
 	
-	init(_ r: Int, _ c: Int) {
-		self.r = r
+	init(_ c: Int, _ r: Int) {
 		self.c = c
+		self.r = r
 	}
 	
 	init(_ cube: CubeCoord) {
