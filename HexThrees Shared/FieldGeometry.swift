@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class FieldGeometry {
-	private let gap: Float = 5.0
+	private let gap: Float = 4.0
 	
 	private let hexCellPath: CGPath
 	public let outlinePath: CGPath
@@ -39,6 +39,7 @@ class FieldGeometry {
 	}
 	
 	convenience init(screenSize: CGSize, coords: [AxialCoord]) {
+		
 		assert(!coords.isEmpty, "could not create field without coordinates!")
 		
 		let xs = coords.map { $0.x }
@@ -193,10 +194,10 @@ class FieldGeometry {
 	
 	func ToScreenCoord(_ a: AxialCoord) -> CGPoint {
 		let w = Float(self.cellWidth + self.gap)
-		let h = Float(self.cellHeight + self.gap * 1.732)
+		let h = Float(self.cellHeight + self.gap * 1.732 * 2.0)
 		
-		let x = (Float(a.c - a.r) - self.offsetX) * 0.5 * w
-		let y = (Float(a.c + a.r) - self.offsetY) * (w * 0.5 + h / (2.0 * 1.732))
+		let x = (Float(a.c - a.r) - offsetX) * 0.5 * w
+		let y = (Float(a.c + a.r) - offsetY) * (w * 0.5 + h / (2.0 * 1.732))
 		
 		return CGPoint(
 			x: CGFloat(x),
