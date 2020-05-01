@@ -42,7 +42,6 @@
 		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
 		3F29E298233126F100091D0B /* collectableButton.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F29E297233126F100091D0B /* collectableButton.fsh */; };
 		3F2D81EC21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */; };
-		3F2D81EF21C6C0C500A48CD1 /* FieldSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */; };
 		3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */; };
 		3F2D81F321C6C14100A48CD1 /* ColorSchemaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */; };
 		3F2D81F521C6C19100A48CD1 /* MergingStrategyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */; };
@@ -200,7 +199,6 @@
 		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
 		3F29E297233126F100091D0B /* collectableButton.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectableButton.fsh; sourceTree = "<group>"; };
 		3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchMotionBlurCMD.swift; sourceTree = "<group>"; };
-		3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSize.swift; sourceTree = "<group>"; };
 		3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurStatus.swift; sourceTree = "<group>"; };
 		3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemaType.swift; sourceTree = "<group>"; };
 		3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergingStrategyName.swift; sourceTree = "<group>"; };
@@ -463,7 +461,6 @@
 			children = (
 				3FE9203120D1B049009B7370 /* SwipeDirection.swift */,
 				3FAAC76A207F27E9006F5196 /* zPositions.swift */,
-				3F2D81EE21C6C0C500A48CD1 /* FieldSize.swift */,
 				3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */,
 				3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */,
 				3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */,
@@ -776,7 +773,6 @@
 				3FAC647620BCA6660083C56C /* UpdateCellCMD.swift in Sources */,
 				3F60069421B6F80300BD4DCA /* LabeledNode.swift in Sources */,
 				3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */,
-				3F2D81EF21C6C0C500A48CD1 /* FieldSize.swift in Sources */,
 				3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */,
 				3F75B3C822FAA982001EED4E /* Playback.swift in Sources */,
 				3F083AA6234DAF74000F5B6B /* TouchSelectableCellCmd.swift in Sources */,

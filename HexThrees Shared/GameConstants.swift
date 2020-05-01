@@ -41,7 +41,6 @@ class GameConstants {
 }
 
 enum SettingsKey: String {
-	case FieldSize = "field_size"
 	case Palette = "palette"
 	case MotionBlur = "motion_blur"
 	case HapticFeedback = "haptic_feedback"

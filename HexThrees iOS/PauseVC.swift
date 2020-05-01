@@ -27,8 +27,6 @@ class PauseVC: UIViewController {
 	let defaults = UserDefaults.standard
 	
 	@IBOutlet var hapticFeedbackStackView: UIStackView!
-	@IBOutlet var fieldSizeValueLabel: UILabel!
-	@IBOutlet var fieldSizeStepper: UIStepper!
 	@IBOutlet var paletteChanger: UISegmentedControl!
 	@IBOutlet var motionBlurSwitch: UISwitch!
 	@IBOutlet var hapticFeedbackSwitch: UISwitch!
@@ -36,7 +34,6 @@ class PauseVC: UIViewController {
 	@IBOutlet var useButtonsSwitch: UISwitch!
 	
 	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var warningLabel: UILabel!
 	
 	@IBOutlet var backButton: UIButton!
 	@IBOutlet var helpButton: UIButton!
@@ -49,19 +46,12 @@ class PauseVC: UIViewController {
 		}
 		
 		gameModel = ContainerConfig.instance.resolve() as GameModel
-		let settingsFieldSize = defaults.integer(forKey: SettingsKey.FieldSize.rawValue)
-		
-		fieldSizeStepper.minimumValue = Double(FieldSize.Thriple.rawValue)
-		fieldSizeStepper.maximumValue = Double(FieldSize.Pento.rawValue)
-		fieldSizeStepper.value = Double(settingsFieldSize > 0 ? settingsFieldSize : (gameModel?.field.height)!)
-		updateStepperValueLabel()
 		
 		motionBlurSwitch.isOn = gameModel?.motionBlurEnabled ?? false
 		hapticFeedbackSwitch.isOn = gameModel?.hapticManager.isEnabled ?? false
 		timerSwitch.isOn = gameModel?.stressTimer.isEnabled() ?? false
 		useButtonsSwitch.isOn = gameModel?.useButtonsEnabled ?? false
 		
-		updateWarningLabel()
 		setupSegmentedControlDesign()
 	}
 	
@@ -92,19 +82,6 @@ class PauseVC: UIViewController {
 			paletteChanger.selectedSegmentIndex = 0
 			return
 		}
-	}
-	
-	private func updateStepperValueLabel() {
-		let formatter = NumberFormatter()
-		formatter.maximumFractionDigits = 0
-		fieldSizeValueLabel.text = formatter.string(from: fieldSizeStepper.value as NSNumber)
-	}
-	
-	private func updateWarningLabel() {
-		let alpha = CGFloat(Int(fieldSizeStepper.value) == gameModel?.field.width ? 0.1 : 0.9)
-		let color = warningLabel.textColor.withAlphaComponent(alpha)
-		
-		warningLabel.textColor = color
 	}
 	
 	@IBAction func onHapticFeedbackChanged(_ sender: Any) {
@@ -143,12 +120,6 @@ class PauseVC: UIViewController {
 	
 	@IBAction func onCancel(_ sender: Any) {
 		dismiss(animated: true, completion: nil)
-	}
-	
-	@IBAction func onFieldSizeChanged(_ sender: Any) {
-		updateWarningLabel()
-		updateStepperValueLabel()
-		defaults.set(Int(fieldSizeStepper.value), forKey: SettingsKey.FieldSize.rawValue)
 	}
 	
 	@IBAction func onPaletteChanged(_ sender: Any) {
