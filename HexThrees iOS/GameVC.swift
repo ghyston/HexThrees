@@ -133,11 +133,7 @@ class GameVC: UIViewController {
 		let pal: IPaletteManager = PaletteManager(actualPalette)
 		ContainerConfig.instance.register(pal)
 	}
-	
-	private func addToScene(cell: BgCell) {
-		self.scene?.addChild(cell)
-	}
-	
+
 	private func updateSceneColor() {
 		let pal: IPaletteManager = ContainerConfig.instance.resolve()
 		
@@ -165,7 +161,7 @@ class GameVC: UIViewController {
 	
 	private func addFieldToScene() {
 		self.scene?.addFieldOutline(self.gameModel!)
-		self.gameModel?.field.executeForAll(lambda: self.addToScene)
+		self.gameModel?.field.executeForAll(lambda: { self.scene?.addChild($0) })
 		self.updateSceneColor()
 	}
 	
@@ -262,6 +258,12 @@ class GameVC: UIViewController {
 			selector: #selector(self.onUseButtonsChange),
 			name: .switchUseButtons,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.onFieldExpand),
+			name: .expandField,
+			object: nil)
 	}
 	
 	@objc func onGameReset(notification: Notification) {
@@ -310,6 +312,14 @@ class GameVC: UIViewController {
 	@objc func onUseButtonsChange(notification: Notification) {
 		let use = notification.object as? Bool ?? false
 		self.switchButtons(hidden: !use)
+	}
+	
+	@objc func onFieldExpand(notification: Notification) {
+		guard let hexCell = notification.object as? BgCell else {
+			assert(true, "field expand notification with empty object")
+			return
+		}
+		self.scene?.addChild(hexCell)
 	}
 	
 	private func switchButtons(hidden: Bool) {

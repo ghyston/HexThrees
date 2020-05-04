@@ -33,6 +33,7 @@ class GameConstants {
 	static let LastBlockedUnlockBonusProbability: Float = 0.05
 	static let X2BonusProbability: Float = 0.2
 	static let X3BonusProbability: Float = 0.1
+	static let ExpandFieldProbability: Float = 10.0 //@todo: should not be linear
 	
 	static let CollectableUnlockCellBonusProbability: Float = 1.0
 	static let CollectableSwipeBlockBonusProbability: Float = 1.0

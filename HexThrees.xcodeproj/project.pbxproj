@@ -146,6 +146,7 @@
 		3FF444A7244F4AD500C5F5D0 /* ShaderResourceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */; };
 		3FF444A92452BBDA00C5F5D0 /* UseButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444A82452BBDA00C5F5D0 /* UseButtonStatus.swift */; };
 		3FF444AB2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */; };
+		3FF444AD2457258F00C5F5D0 /* ExpandFieldCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF444AC2457258E00C5F5D0 /* ExpandFieldCmd.swift */; };
 		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
 		3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */; };
 		3FF8B99C24406B2200703AF9 /* cellUpdateValue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */; };
@@ -306,6 +307,7 @@
 		3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderResourceContainer.swift; sourceTree = "<group>"; };
 		3FF444A82452BBDA00C5F5D0 /* UseButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseButtonStatus.swift; sourceTree = "<group>"; };
 		3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchUseButtonsCmd.swift; sourceTree = "<group>"; };
+		3FF444AC2457258E00C5F5D0 /* ExpandFieldCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandFieldCmd.swift; sourceTree = "<group>"; };
 		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
 		3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpGameCellCmd.swift; sourceTree = "<group>"; };
 		3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cellUpdateValue.fsh; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 				3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */,
 				3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */,
 				3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */,
+				3FF444AC2457258E00C5F5D0 /* ExpandFieldCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				3FEBD12921346BDD00D9FCBC /* BonusFabric.swift in Sources */,
 				3FEBD12F2135BA4F00D9FCBC /* UpdateBonusesCounterCMD.swift in Sources */,
 				3FA3A21421ED288D00111471 /* HapticManager.swift in Sources */,
+				3FF444AD2457258F00C5F5D0 /* ExpandFieldCmd.swift in Sources */,
 				3FB7039D20D967AF009718F3 /* LineCellsContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

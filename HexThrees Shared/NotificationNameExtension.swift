@@ -20,4 +20,5 @@ extension NSNotification.Name {
 	static let pauseTimers = Notification.Name(rawValue: "pause_timers")
 	static let updateCollectables = Notification.Name(rawValue: "update_collectables")
 	static let useCollectables = Notification.Name(rawValue: "use_collectables")
+	static let expandField = Notification.Name(rawValue: "expand_field")
 }

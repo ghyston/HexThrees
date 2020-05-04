@@ -9,11 +9,25 @@
 import Foundation
 import SpriteKit
 
+//note: socket is plave for bgCell
 typealias CellComparator = (_ cell: BgCell) -> Bool
+typealias SocketComparator = (_ socket: BgCell?) -> Bool
 
 protocol ICellsStatisticCalculator {
 	func next(socket: BgCell?)
 	func clean()
+}
+
+class EmptyCellNearbyFinder: ICellsStatisticCalculator {
+	var emptyCellExist: Bool = false
+	
+	func next(socket: BgCell?) {
+		emptyCellExist = emptyCellExist || socket == nil
+	}
+	
+	func clean() {
+		emptyCellExist = false
+	}
 }
 
 class HexField {
@@ -80,7 +94,24 @@ class HexField {
 	}
 	
 	func hasBgCells(compare: CellComparator) -> Bool {
-		return bgHexes.compactMap { $0 }.first(where: compare) != nil
+		bgHexes.compactMap { $0 }.contains(where: compare)
+	}
+	
+	func getSockets(compare: SocketComparator) -> [AxialCoord] {
+		var result = [AxialCoord]()
+		for y in 0 ..< height {
+			for x in 0 ..< width {
+				if compare(bgHexes[y * width + x]) {
+					result.append(AxialCoord(x, y))
+				}
+			}
+		}
+		
+		return result
+	}
+	
+	func hasSockets(compare: SocketComparator) -> Bool {
+		bgHexes.contains(where: compare)
 	}
 	
 	func getBgCellsWithPriority(
@@ -146,6 +177,10 @@ class HexField {
 	
 	class func containGameCell(cell: BgCell) -> Bool {
 		cell.gameCell != nil
+	}
+	
+	class func isNotSet(socket: BgCell?) -> Bool {
+		socket == nil
 	}
 	
 	func calculateForSiblings(coord: AxialCoord, calc: inout ICellsStatisticCalculator) {

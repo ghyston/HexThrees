@@ -36,6 +36,10 @@ class DropRandomBonusCMD: GameCMD {
 		bonusTypes.add(.X2_POINTS, GameConstants.X2BonusProbability)
 		bonusTypes.add(.X3_POINTS, GameConstants.X3BonusProbability)
 		
+		if gameModel.field.hasSockets(compare: HexField.isNotSet) { //@todo: check for boundaries etc
+			bonusTypes.add(.EXPAND_FIELD, GameConstants.ExpandFieldProbability)
+		}
+		
 		let blockedCellsCount = self.gameModel.field.countBgCells(compare: { $0.isBlocked })
 		if blockedCellsCount > 1 {
 			bonusTypes.add(.UNLOCK_CELL, GameConstants.UnlockBonusProbability)

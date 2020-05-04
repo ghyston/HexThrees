@@ -17,6 +17,7 @@ enum BonusType: Int, Codable {
 	case COLLECTABLE_PAUSE_TIMER
 	case COLLECTABLE_SWIPE_BLOCK
 	case COLLECTABLE_PICK_UP
+	case EXPAND_FIELD
 }
 
 struct CollectableBonusModel {
@@ -69,6 +70,8 @@ class BonusFabric {
 			return createCollectableSwipeBlockBonus(gameModel: gameModel)
 		case .COLLECTABLE_PICK_UP:
 			return createColletablePickUpBonus(gameModel: gameModel)
+		case .EXPAND_FIELD:
+			return createExpandFieldBonus(gameModel: gameModel)
 		}
 	}
 	
@@ -112,6 +115,8 @@ class BonusFabric {
 			return "block_swipe"
 		case .COLLECTABLE_PICK_UP:
 			return "bonus_collectable"
+		case .EXPAND_FIELD:
+			return "expand_field"
 		}
 	}
 	
@@ -177,5 +182,13 @@ class BonusFabric {
 			spriteName: spriteName(bonus: .COLLECTABLE_PICK_UP),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_PICK_UP))
+	}
+	
+	class func createExpandFieldBonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
+			type: .EXPAND_FIELD,
+			spriteName: spriteName(bonus: .EXPAND_FIELD),
+			turnsToDispose: GameConstants.BonusTurnsLifetime,
+			onPick: ExpandFieldCmd(gameModel))
 	}
 }
