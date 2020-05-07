@@ -9,25 +9,13 @@
 import Foundation
 import SpriteKit
 
-//note: socket is plave for bgCell
+//note: socket is place for bgCell
 typealias CellComparator = (_ cell: BgCell) -> Bool
 typealias SocketComparator = (_ socket: BgCell?) -> Bool
 
 protocol ICellsStatisticCalculator {
 	func next(socket: BgCell?)
 	func clean()
-}
-
-class EmptyCellNearbyFinder: ICellsStatisticCalculator {
-	var emptyCellExist: Bool = false
-	
-	func next(socket: BgCell?) {
-		emptyCellExist = emptyCellExist || socket == nil
-	}
-	
-	func clean() {
-		emptyCellExist = false
-	}
 }
 
 class HexField {
@@ -58,6 +46,10 @@ class HexField {
 			hexCell.position = geometry.ToScreenCoord(coord)
 			setCell(hexCell)
 		}
+	}
+	
+	func coordinates() -> [AxialCoord] {
+		bgHexes.compactMap { $0?.coord }
 	}
 	
 	func clean() {
@@ -112,6 +104,10 @@ class HexField {
 	
 	func hasSockets(compare: SocketComparator) -> Bool {
 		bgHexes.contains(where: compare)
+	}
+	
+	func countSockets(compare: SocketComparator) -> Int {
+		bgHexes.filter(compare).count
 	}
 	
 	func getBgCellsWithPriority(
@@ -194,12 +190,41 @@ class HexField {
 		for x in xMin ... xMax {
 			for y in yMin ... yMax {
 				// here skipping self cell and corner cells (because of hex geometry)
-				if (x == coord.c && y == coord.r) || x == y {
+				if (x == coord.c && y == coord.r) ||
+					(x - xMin) == (y - yMin) {
 					continue
 				}
 				
 				calc.next(socket: self[x, y])
 			}
 		}
+	}
+	
+	//@todo: copypaste from calculateForSiblings
+	func getSiblings(coord: AxialCoord, compare: CellComparator) -> [BgCell] {
+		let xMin = max(coord.c - 1, 0)
+		let xMax = min(coord.c + 1, width - 1)
+		let yMin = max(coord.r - 1, 0)
+		let yMax = min(coord.r + 1, height - 1)
+		
+		var neighbors = [BgCell]()
+		
+		for x in xMin ... xMax {
+			for y in yMin ... yMax {
+				// here skipping self cell and corner cells (because of hex geometry)
+				if (x == coord.c && y == coord.r) ||
+					(x - xMin) == (y - yMin) {
+					continue
+				}
+				
+				guard let cell = self[x,y] else {
+					continue
+				}
+
+				neighbors.append(cell)
+			}
+		}
+		
+		return neighbors.filter(compare)
 	}
 }
