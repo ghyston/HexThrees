@@ -35,7 +35,7 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 		
 		// we need to set them to something in order to call super init
 		// @todo: crap, just find a way to refactor this!!
-		self.hexShape = SKShapeNode()
+		self.hexShape = hexShape
 		self.selectorHex = SKShapeNode()
 		self.selectorShadeHex = SKShapeNode()
 		
@@ -92,5 +92,18 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	func updateAnimation(_ delta: TimeInterval) {
 		updateBlockableAnimation(delta)
 		updateUserBlockedOutline(delta)
+	}
+	
+	
+	func updateShape(scale: CGFloat, coordinates: CGPoint, path: CGPath) {
+		let duration = 1.0 //@todo: use constants
+		
+		self.xScale = 1.0 / scale
+		self.yScale = 1.0 / scale
+		self.hexShape.path = path
+		self.gameCell?.hexShape.path = path
+		
+		self.run(SKAction.scale(to: 1.0, duration: duration))
+		self.run(SKAction.move(to: coordinates, duration: duration))
 	}
 }

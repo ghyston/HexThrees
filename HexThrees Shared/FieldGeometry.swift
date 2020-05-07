@@ -12,12 +12,12 @@ import SpriteKit
 class FieldGeometry {
 	private let gap: Float = 4.0
 	
-	private let hexCellPath: CGPath
+	public let hexCellPath: CGPath
 	public let outlinePath: CGPath
 	
 	private let hexRad: Float
-	private let cellWidth: Float
-	private let cellHeight: Float
+	private let cellWidth: Float //@todo: computable
+	private let cellHeight: Float //@todo: computable
 	private let offsetX: Float
 	private let offsetY: Float
 	
@@ -58,10 +58,22 @@ class FieldGeometry {
 			offsetY: Float(minY + maxY) / 2.0) // minY + fieldH - 1 simplified
 	}
 	
+	//@todo: Comparable?
+	func compare(to geometry: FieldGeometry) -> Bool {
+		geometry.hexRad == hexRad &&
+		geometry.offsetX == offsetX &&
+		geometry.offsetY == offsetY
+	}
+	
+	func hexScale(to geometry: FieldGeometry) -> Float {
+		geometry.hexRad / hexRad
+	}
+	
 	func createHexCellShape() -> SKShapeNode {
 		self.createShape(path: self.hexCellPath)
 	}
 	
+	//@todo: is it still used?
 	func createOutlineShape() -> SKShapeNode {
 		self.createShape(path: self.outlinePath)
 	}

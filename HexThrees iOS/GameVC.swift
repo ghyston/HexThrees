@@ -133,7 +133,7 @@ class GameVC: UIViewController {
 		let pal: IPaletteManager = PaletteManager(actualPalette)
 		ContainerConfig.instance.register(pal)
 	}
-
+	
 	private func updateSceneColor() {
 		let pal: IPaletteManager = ContainerConfig.instance.resolve()
 		
@@ -148,7 +148,7 @@ class GameVC: UIViewController {
 		}
 	}
 	
-	//@todo: I'm not proud of my next 100+ lines about create/start/restart, but these parts changes too often to make them clear
+	// @todo: I'm not proud of my next 100+ lines about create/start/restart, but these parts changes too often to make them clear
 	// common parts between start and restart
 	private func createGame(_ settings: GameParams) {
 		self.switchButtons(hidden: settings.useButtons == UseButtonStatus.Disabled)
@@ -180,10 +180,10 @@ class GameVC: UIViewController {
 		if let save = save {
 			LoadGameCmd(self.gameModel!, save: save, screen: view.frame.size).run()
 		} else {
-			createNewGame(settings)
+			self.createNewGame(settings)
 		}
 		
-		addFieldToScene()
+		self.addFieldToScene()
 		
 		// Delay one second because random cells appers with random delay
 		_ = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
@@ -211,8 +211,8 @@ class GameVC: UIViewController {
 		self.createGame(settings)
 		// @todo: do we need to recheck style appearence?
 		
-		createNewGame(settings)
-		addFieldToScene()
+		self.createNewGame(settings)
+		self.addFieldToScene()
 		
 		NotificationCenter.default.post(
 			name: .updateScore,
@@ -319,7 +319,42 @@ class GameVC: UIViewController {
 			assert(true, "field expand notification with empty object")
 			return
 		}
-		self.scene?.addChild(hexCell)
+		
+		guard let oldGeometry = self.gameModel?.geometry else {
+			assert(true, "seriously?? 😤")
+			return
+		}
+		
+		self.scene?.addChild(hexCell) // @todo: add nice animation and stuff
+		self.scene?.addFieldOutlineCell(where: hexCell.coord, using: oldGeometry) // @todo: some animation?
+		
+		// @todo: move to separate command?
+		guard let coords = self.gameModel?.field.coordinates() else {
+			assert(true, "field expand coords are undefined")
+			return
+		}
+		
+		let newGeometry = FieldGeometry(
+			screenSize: view.frame.size,
+			coords: coords)
+		
+		if newGeometry.compare(to: oldGeometry) {
+			return
+		}
+		
+		let scale = CGFloat(oldGeometry.hexScale(to: newGeometry))
+		let path = newGeometry.hexCellPath
+		self.gameModel?.geometry = newGeometry
+		
+		self.gameModel?.field.executeForAll(lambda: { (bgCell: BgCell) in
+			let coordinates = newGeometry.ToScreenCoord(bgCell.coord)
+			bgCell.updateShape(
+				scale: scale,
+				coordinates: coordinates,
+				path: path)
+		})
+		
+		self.scene?.scaleFieldOutline(by: scale, self.gameModel!)
 	}
 	
 	private func switchButtons(hidden: Bool) {
