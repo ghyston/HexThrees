@@ -191,7 +191,7 @@ class HexField {
 			for y in yMin ... yMax {
 				// here skipping self cell and corner cells (because of hex geometry)
 				if (x == coord.c && y == coord.r) ||
-					(x - xMin) == (y - yMin) {
+					(x - y) == (coord.c - coord.r) {
 					continue
 				}
 				
@@ -213,7 +213,7 @@ class HexField {
 			for y in yMin ... yMax {
 				// here skipping self cell and corner cells (because of hex geometry)
 				if (x == coord.c && y == coord.r) ||
-					(x - xMin) == (y - yMin) {
+					(x - y) == (coord.c - coord.r) {
 					continue
 				}
 				
