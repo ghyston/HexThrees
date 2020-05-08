@@ -21,13 +21,18 @@ class ExpandFieldCalculator: ICellsStatisticCalculator {
 	}
 	
 	func probability() -> Float {
-		totalCells == 0 ? 0.0 : Float(potentialParentCells) / Float(totalCells)
+		totalCells == 0 ? 0.0 : pow(Float(potentialParentCells) / Float(totalCells), 2)
 	}
 	
 	func clean() {
 		potentialParentCells = 0
 		totalCells = 0
 	}
+}
+
+struct ExpandFieldNotification {
+	let hexCell: BgCell
+	let fromPosition: CGPoint
 }
 
 class ExpandFieldCmd : GameCMD {
@@ -63,12 +68,16 @@ class ExpandFieldCmd : GameCMD {
 			coord: emptySocketCoord)
 		
 		let newPosition = geometry.ToScreenCoord(emptySocketCoord)
-		hexCell.position = parent.randomElement()?.position ?? newPosition
-		let moveAction = SKAction.move(to: newPosition, duration: 1.0) //@todo: correct expand duration
+		let oldPosition = parent.randomElement()?.position ?? newPosition
+		hexCell.position = oldPosition
+		let moveAction = SKAction.move(to: newPosition, duration: GameConstants.ExpandFieldAnimationDuration)
 		hexCell.run(moveAction)
 		
 		self.gameModel.field.setCell(hexCell)
-		NotificationCenter.default.post(name: .expandField, object: hexCell)
+		
+		let notification = ExpandFieldNotification(
+			hexCell: hexCell, fromPosition: oldPosition)
+		NotificationCenter.default.post(name: .expandField, object: notification)
 		
 		//@todo: move here logic from GameVC
 	}

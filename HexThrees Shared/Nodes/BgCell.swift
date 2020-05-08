@@ -96,14 +96,14 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	
 	
 	func updateShape(scale: CGFloat, coordinates: CGPoint, path: CGPath) {
-		let duration = 1.0 //@todo: use constants
+		let duration = GameConstants.ExpandFieldAnimationDuration
 		
 		self.xScale = 1.0 / scale
 		self.yScale = 1.0 / scale
 		self.hexShape.path = path
 		self.gameCell?.hexShape.path = path
 		
-		self.run(SKAction.scale(to: 1.0, duration: duration))
-		self.run(SKAction.move(to: coordinates, duration: duration))
+		self.run(SKAction.scale(to: 1.0, duration: duration).with(mode: SKActionTimingMode.easeIn))
+		self.run(SKAction.move(to: coordinates, duration: duration).with(mode: SKActionTimingMode.easeIn))
 	}
 }

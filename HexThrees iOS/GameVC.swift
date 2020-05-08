@@ -315,18 +315,26 @@ class GameVC: UIViewController {
 	}
 	
 	@objc func onFieldExpand(notification: Notification) {
-		guard let hexCell = notification.object as? BgCell else {
+		guard let expandNotification = notification.object as? ExpandFieldNotification else {
 			assert(true, "field expand notification with empty object")
 			return
 		}
+		
+		let hexCell = expandNotification.hexCell
 		
 		guard let oldGeometry = self.gameModel?.geometry else {
 			assert(true, "seriously?? 😤")
 			return
 		}
 		
-		self.scene?.addChild(hexCell) // @todo: add nice animation and stuff
-		self.scene?.addFieldOutlineCell(where: hexCell.coord, using: oldGeometry) // @todo: some animation?
+		let pal: IPaletteManager = ContainerConfig.instance.resolve()
+		
+		self.scene?.addChild(hexCell)
+		self.scene?.addFieldOutlineCell(
+			where: hexCell.coord,
+			startPos: expandNotification.fromPosition,
+			color: pal.fieldOutlineColor(),
+			using: oldGeometry)
 		
 		// @todo: move to separate command?
 		guard let coords = self.gameModel?.field.coordinates() else {

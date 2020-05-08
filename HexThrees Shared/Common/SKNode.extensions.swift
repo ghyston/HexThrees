@@ -23,3 +23,10 @@ extension SKNode {
 		self.parent?.run(SKAction.sequence([delay, delete]))
 	}
 }
+
+extension SKAction {
+	func with(mode: SKActionTimingMode) -> SKAction {
+		self.timingMode = mode
+		return self
+	}
+}

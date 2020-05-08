@@ -38,8 +38,8 @@ class GameScene: SKScene {
 		return fieldBg
 	}
 	
-	func addFieldOutlineCell(where coords: AxialCoord, using geometry: FieldGeometry) {
-		fieldOutline.addFieldOutlineCell(where: coords, using: geometry)
+	func addFieldOutlineCell(where coords: AxialCoord, startPos: CGPoint, color: SKColor, using geometry: FieldGeometry) {
+		fieldOutline.addFieldOutlineCell(where: coords, startPos: startPos, color: color, using: geometry)
 	}
 	
 	func addFieldOutline(_ model: GameModel) {

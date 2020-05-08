@@ -138,10 +138,8 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 			duration: GameConstants.SecondsPerCell * 2.5,
 			onFinish: self.finishUpdate)
 		
-		let zoomIn = SKAction.scale(to: 1.3, duration: GameConstants.SecondsPerCell)
-		zoomIn.timingMode = SKActionTimingMode.easeIn
-		let zoomOut = SKAction.scale(to: 1.0, duration: GameConstants.SecondsPerCell)
-		zoomOut.timingMode = SKActionTimingMode.easeIn
+		let zoomIn = SKAction.scale(to: 1.3, duration: GameConstants.SecondsPerCell).with(mode: SKActionTimingMode.easeIn)
+		let zoomOut = SKAction.scale(to: 1.0, duration: GameConstants.SecondsPerCell).with(mode: SKActionTimingMode.easeIn)
 		self.run(SKAction.sequence([zoomIn, zoomOut]))
 	}
 	

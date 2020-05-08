@@ -9,8 +9,8 @@
 import Foundation
 import SpriteKit
 
-class FieldOutlineHex : SKShapeNode {
-	let coord : AxialCoord
+class FieldOutlineHex: SKShapeNode {
+	let coord: AxialCoord
 	
 	init(coord: AxialCoord, using geometry: FieldGeometry) {
 		self.coord = coord
@@ -21,14 +21,14 @@ class FieldOutlineHex : SKShapeNode {
 	}
 	
 	func updateShape(scale: CGFloat, using geometry: FieldGeometry) {
-		let duration = 1.0 //@todo: use constants
+		let duration = GameConstants.ExpandFieldAnimationDuration
 		
 		self.xScale = 1.0 / scale
 		self.yScale = 1.0 / scale
 		self.path = geometry.outlinePath
 		
-		self.run(SKAction.scale(to: 1.0, duration: duration))
-		self.run(SKAction.move(to: geometry.ToScreenCoord(self.coord), duration: duration))
+		self.run(SKAction.scale(to: 1.0, duration: duration).with(mode: SKActionTimingMode.easeIn))
+		self.run(SKAction.move(to: geometry.ToScreenCoord(self.coord), duration: duration).with(mode: SKActionTimingMode.easeIn))
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -38,10 +38,10 @@ class FieldOutlineHex : SKShapeNode {
 
 class FieldOutline: SKNode {
 	static let defaultNodeName = "fieldBg"
-
+	
 	func recalculateFieldBg(model: GameModel) {
 		self.removeAllChildren()
-
+		
 		for y in 0 ..< model.field.height {
 			for x in 0 ..< model.field.width {
 				if model.field[x, y] == nil {
@@ -57,14 +57,22 @@ class FieldOutline: SKNode {
 		}
 	}
 	
-	func addFieldOutlineCell(where coord: AxialCoord, using geometry: FieldGeometry) {
+	func addFieldOutlineCell(where coord: AxialCoord, startPos: CGPoint, color: SKColor, using geometry: FieldGeometry) {
 		let hexShape = FieldOutlineHex(
 			coord: coord,
 			using: geometry)
-		hexShape.fillColor = .darkGray
+		hexShape.fillColor = color
+		
+		let oldPos = hexShape.position
+		hexShape.position = startPos
+		hexShape.run(SKAction
+			.move(
+				to: oldPos,
+				duration: GameConstants.ExpandFieldAnimationDuration)
+			.with(mode: SKActionTimingMode.easeIn))
 		self.addChild(hexShape)
 	}
-
+	
 	func updateColor(color: SKColor) {
 		for child in children {
 			if let shape = child as? SKShapeNode {
