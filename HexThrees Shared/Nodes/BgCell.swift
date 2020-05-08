@@ -9,10 +9,11 @@
 import Foundation
 import SpriteKit
 
-class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode {
+class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode, LifeTimeable {
 	var blockablePlayback: IPlayback?
 	var hexShape: SKShapeNode
 	
+	var lifetime: Int = 0
 	var canBeSelected: Bool = false
 	var selectorHex: SKShapeNode
 	var selectorShadeHex: SKShapeNode

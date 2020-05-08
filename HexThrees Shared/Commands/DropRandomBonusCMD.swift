@@ -15,7 +15,10 @@ class DropRandomBonusCMD: GameCMD {
 		GameConstants.StartFieldSize * GameConstants.StartFieldSize
 	
 	override func run() {
-		guard let randomFreeCell = self.gameModel.field.getBgCells(compare: HexField.freeCellWoBonuses).randomElement() else {
+		guard let randomFreeCell = self.gameModel.field.getBgCellsWithPriority(
+			required: HexField.freeCellWoBonuses,
+			priority: HexField.oldCell)
+			.randomElement() else {
 			return
 		}
 		

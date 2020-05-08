@@ -77,6 +77,7 @@
 		3F7E694F226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */; };
 		3F7F65D821BEE83E0070C1E8 /* SKNode.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */; };
 		3F81B67424655D1100071127 /* ExpandHexFieldCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */; };
+		3F81B67624656AB400071127 /* Lifetimeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F81B67524656AB400071127 /* Lifetimeable.swift */; };
 		3F834B312446046D00A38263 /* ShaderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F834B302446046D00A38263 /* ShaderManager.swift */; };
 		3F8D11492270CDBB0034BC6D /* SwipeGestureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D11482270CDBB0034BC6D /* SwipeGestureNode.swift */; };
 		3F8D114E2280A8C40034BC6D /* HelpPagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8D114C2280A8C40034BC6D /* HelpPagesVC.swift */; };
@@ -236,6 +237,7 @@
 		3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellForTutorialCMD.swift; sourceTree = "<group>"; };
 		3F7F65D721BEE83E0070C1E8 /* SKNode.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNode.extensions.swift; sourceTree = "<group>"; };
 		3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandHexFieldCmd.swift; sourceTree = "<group>"; };
+		3F81B67524656AB400071127 /* Lifetimeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifetimeable.swift; sourceTree = "<group>"; };
 		3F834B302446046D00A38263 /* ShaderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShaderManager.swift; sourceTree = "<group>"; };
 		3F8D11482270CDBB0034BC6D /* SwipeGestureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGestureNode.swift; sourceTree = "<group>"; };
 		3F8D114C2280A8C40034BC6D /* HelpPagesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPagesVC.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				3F75B3C722FAA982001EED4E /* Playback.swift */,
 				3F834B302446046D00A38263 /* ShaderManager.swift */,
 				3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */,
+				3F81B67524656AB400071127 /* Lifetimeable.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				3FE9203220D1B049009B7370 /* SwipeDirection.swift in Sources */,
 				3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */,
 				3FE9202720CEE646009B7370 /* CGVector.extensions.swift in Sources */,
+				3F81B67624656AB400071127 /* Lifetimeable.swift in Sources */,
 				3F8D114E2280A8C40034BC6D /* HelpPagesVC.swift in Sources */,
 				3F7E694D226F024700E1D570 /* IteratorFabric.swift in Sources */,
 				3F555CEF2091AE49003C67A7 /* BgCell.swift in Sources */,

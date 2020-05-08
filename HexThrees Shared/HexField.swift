@@ -167,6 +167,10 @@ class HexField {
 		cell.hexShape.fillShader == nil
 	}
 	
+	class func oldCell(cell: BgCell) -> Bool {
+		cell.isOld()
+	}
+	
 	class func userBlockedCell(cell: BgCell) -> Bool {
 		cell.isBlockedFromSwipe
 	}

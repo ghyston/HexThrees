@@ -28,6 +28,8 @@ class AfterSwipeCmd: GameCMD {
 		DropRandomBonusCMD(gameModel).run()
 		CheckGameEndCmd(gameModel).run()
 		
+		self.gameModel.field.executeForAll { $0.incLifetime() }
+		
 		gameModel.turnsWithoutSave += 1
 		if gameModel.turnsWithoutSave > GameConstants.TurnsToAutoSave {
 			SaveGameCMD(gameModel).run()

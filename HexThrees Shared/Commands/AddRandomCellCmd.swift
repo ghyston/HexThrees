@@ -15,7 +15,7 @@ class AddRandomCellCmd: GameCMD {
 	override func run() {
 		let cells = self.gameModel.field.getBgCellsWithPriority(
 			required: HexField.freeCell,
-			priority: HexField.freeCellWoBonuses, HexField.cellWoShader)
+			priority: HexField.freeCellWoBonuses, HexField.cellWoShader, HexField.oldCell)
 		
 		guard let bgCell = cells.randomElement() else {
 			return
