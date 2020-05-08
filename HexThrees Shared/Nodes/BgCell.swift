@@ -103,6 +103,9 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 		self.yScale = 1.0 / scale
 		self.hexShape.path = path
 		self.gameCell?.hexShape.path = path
+		self.selectorHex.path = path
+		self.selectorShadeHex.path = path
+		self.userBlockedHex.path = path
 		
 		self.run(SKAction.scale(to: 1.0, duration: duration).with(mode: SKActionTimingMode.easeIn))
 		self.run(SKAction.move(to: coordinates, duration: duration).with(mode: SKActionTimingMode.easeIn))
