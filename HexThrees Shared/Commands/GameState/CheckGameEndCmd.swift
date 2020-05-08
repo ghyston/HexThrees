@@ -33,6 +33,11 @@ class CheckGameEndCmd: GameCMD {
 			}
 		}
 		
+		if gameModel.collectableBonuses[.COLLECTABLE_UNLOCK_CELL]?.isFull == true &&
+			gameModel.field.hasBgCells(compare: HexField.blockedCell) {
+			return
+		}
+		
 		if gameModel.collectableBonuses[.COLLECTABLE_PICK_UP]?.isFull == true {
 			return
 		}
