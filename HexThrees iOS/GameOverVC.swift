@@ -9,10 +9,10 @@
 import Foundation
 
 class GameOverVC: UIViewController {
-	var gameModel: GameModel?
 	
 	@IBOutlet var popupView: UIView!
 	@IBOutlet var ScoreLabel: UILabel!
+	@IBOutlet var scoreDescription: UILabel!
 	
 	@IBAction func onResetGame(_ sender: Any) {
 		NotificationCenter.default.post(name: .resetGame, object: nil)
@@ -23,7 +23,20 @@ class GameOverVC: UIViewController {
 		super.viewDidLoad()
 		popupView.layer.cornerRadius = 20
 		
-		gameModel = ContainerConfig.instance.resolve() as GameModel
-		ScoreLabel.text = "\(gameModel!.score)"
+		let gameModel = ContainerConfig.instance.resolve() as GameModel
+		let prevRecord = UserDefaults.standard.integer(forKey: SettingsKey.BestScore.rawValue)
+		let currentScore = gameModel.score
+		if prevRecord < currentScore {
+			UserDefaults.standard.set(currentScore, forKey: SettingsKey.BestScore.rawValue)
+			scoreDescription.text = "New Record!" //@todo: translate
+		}
+		else {
+			scoreDescription.text = "Your score:" //@todo: translate
+		}
+		
+		
+		
+		
+		ScoreLabel.text = "\(currentScore)"
 	}
 }

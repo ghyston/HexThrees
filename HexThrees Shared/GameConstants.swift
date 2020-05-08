@@ -49,4 +49,5 @@ enum SettingsKey: String {
 	case HapticFeedback = "haptic_feedback"
 	case StressTimer = "stress_timer"
 	case UseButtons = "use_buttons"
+	case BestScore = "best_score"
 }

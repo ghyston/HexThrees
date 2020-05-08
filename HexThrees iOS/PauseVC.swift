@@ -34,6 +34,7 @@ class PauseVC: UIViewController {
 	@IBOutlet var useButtonsSwitch: UISwitch!
 	
 	@IBOutlet var titleLabel: UILabel!
+	@IBOutlet var bestScoreLabel: UILabel!
 	
 	@IBOutlet var backButton: UIButton!
 	@IBOutlet var helpButton: UIButton!
@@ -53,6 +54,11 @@ class PauseVC: UIViewController {
 		useButtonsSwitch.isOn = gameModel?.useButtonsEnabled ?? false
 		
 		setupSegmentedControlDesign()
+		
+		let bestScore = UserDefaults.standard.integer(forKey: SettingsKey.BestScore.rawValue)
+		if bestScore > 0 {
+			bestScoreLabel.text = "Best score: \(bestScore)" // @todo: localize!
+		}
 	}
 	
 	@IBAction func onSwipeRight(_ sender: UISwipeGestureRecognizer) {
@@ -152,12 +158,11 @@ class PauseVC: UIViewController {
 	}
 	
 	@IBAction func onReset(_ sender: Any) {
-		
 		let restartAlert = UIAlertController(
 			title: "Reset",
 			message: "Do you want to start a new game?",
 			preferredStyle: UIAlertController.Style.alert)
-
+		
 		restartAlert.addAction(UIAlertAction(
 			title: "Yes",
 			style: .destructive,
@@ -167,7 +172,7 @@ class PauseVC: UIViewController {
 			title: "Cancel",
 			style: .cancel,
 			handler: nil))
-
+		
 		present(restartAlert, animated: true, completion: nil)
 	}
 	
