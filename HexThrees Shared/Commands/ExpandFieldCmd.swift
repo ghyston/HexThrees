@@ -34,8 +34,8 @@ class ExpandFieldCmd : GameCMD {
 	override func run() {
 		
 		let emptySockets = self.gameModel.field.getSockets(compare: HexField.isNotSet)
-		var dice = ProbabilityArray<AxialCoord>() //@todo: try to let it
-		var calc = ExpandFieldCalculator() //@todo: try to let it
+		let dice = ProbabilityArray<AxialCoord>()
+		let calc = ExpandFieldCalculator()
 		var icalc: ICellsStatisticCalculator = calc
 		
 		for socketCoord in emptySockets {
