@@ -28,15 +28,26 @@ class GameScene: SKScene {
 		self.panel = buttons
 	}
 	
-	func addFieldOutline(_ model: GameModel) {
+	public var fieldOutline: FieldOutline {
 		let existingBg = childNode(withName: FieldOutline.defaultNodeName)
 		let fieldBg = existingBg as? FieldOutline ?? FieldOutline()
 		if existingBg == nil {
 			fieldBg.name = FieldOutline.defaultNodeName
 			addChild(fieldBg)
 		}
-		
-		fieldBg.recalculateFieldBg(model: model)
+		return fieldBg
+	}
+	
+	func addFieldOutlineCell(where coords: AxialCoord, startPos: CGPoint, color: SKColor, using geometry: FieldGeometry) {
+		fieldOutline.addFieldOutlineCell(where: coords, startPos: startPos, color: color, using: geometry)
+	}
+	
+	func addFieldOutline(_ model: GameModel) {
+		fieldOutline.recalculateFieldBg(model: model)
+	}
+	
+	func scaleFieldOutline(by scale: CGFloat, _ model: GameModel) {
+		fieldOutline.updateGeometry(by: scale, using: model.geometry!)
 	}
 	
 	override func didMove(to view: SKView) {}

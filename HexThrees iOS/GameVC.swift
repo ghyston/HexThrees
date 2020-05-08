@@ -27,7 +27,6 @@ class GameVC: UIViewController {
 	
 	// @todo: disable haptic and blur models olther than (?) 6s/SE
 	let defaultGameParams = GameParams(
-		fieldSize: FieldSize.Quaddro,
 		randomElementsCount: 4,
 		blockedCellsCount: 2,
 		motionBlur: MotionBlurStatus.Enabled,
@@ -95,11 +94,9 @@ class GameVC: UIViewController {
 	
 	private func createModel(_ params: GameParams) {
 		let strategy = MerginStrategyFabric.createByName(params.strategy)
-		strategy.prefilValues(maxIndex: params.fieldSize.cellsCount)
+		strategy.prefilValues(maxIndex: GameConstants.MaxFieldSize * GameConstants.MaxFieldSize)
 		
 		self.gameModel = GameModel(
-			screenWidth: view.frame.width,
-			fieldSize: params.fieldSize.rawValue,
 			strategy: strategy,
 			motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
 			hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
@@ -109,9 +106,8 @@ class GameVC: UIViewController {
 		ContainerConfig.instance.register(self.gameModel!)
 	}
 	
-	private func loadSettings(fieldSizeFromSave: FieldSize?) -> GameParams {
+	private func loadSettings() -> GameParams {
 		let prefPalette = ColorSchemaType(rawValue: defaults.integer(forKey: SettingsKey.Palette.rawValue))
-		let prefFieldSize = FieldSize(rawValue: defaults.integer(forKey: SettingsKey.FieldSize.rawValue))
 		let prefMotionBlur = MotionBlurStatus(rawValue: defaults.integer(forKey: SettingsKey.MotionBlur.rawValue))
 		let prefHapticFeedback = HapticManager.isSupported()
 			? HapticFeedbackStatus(rawValue: self.defaults.integer(forKey: SettingsKey.HapticFeedback.rawValue))
@@ -121,7 +117,6 @@ class GameVC: UIViewController {
 		let useButtons = UseButtonStatus(rawValue: defaults.integer(forKey: SettingsKey.UseButtons.rawValue))
 		
 		return GameParams(
-			fieldSize: (fieldSizeFromSave ?? prefFieldSize) ?? self.defaultGameParams.fieldSize,
 			randomElementsCount: self.defaultGameParams.randomElementsCount,
 			blockedCellsCount: self.defaultGameParams.blockedCellsCount,
 			motionBlur: prefMotionBlur ?? self.defaultGameParams.motionBlur,
@@ -133,15 +128,10 @@ class GameVC: UIViewController {
 	}
 	
 	private func createPalette(_ palette: ColorSchemaType) {
-		
 		let actualPalette = palette.ensureDarkMode(traitCollection)
 		
 		let pal: IPaletteManager = PaletteManager(actualPalette)
 		ContainerConfig.instance.register(pal)
-	}
-	
-	private func addToScene(cell: BgCell) {
-		self.scene?.addChild(cell)
 	}
 	
 	private func updateSceneColor() {
@@ -153,11 +143,12 @@ class GameVC: UIViewController {
 		shaderManager.onPaletteUpdate()
 		
 		self.scene?.backgroundColor = pal.sceneBgColor()
-		if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
+		if let fieldOutine = self.scene?.fieldOutline {
 			fieldOutine.updateColor(color: pal.fieldOutlineColor())
 		}
 	}
 	
+	// @todo: I'm not proud of my next 100+ lines about create/start/restart, but these parts changes too often to make them clear
 	// common parts between start and restart
 	private func createGame(_ settings: GameParams) {
 		self.switchButtons(hidden: settings.useButtons == UseButtonStatus.Disabled)
@@ -166,15 +157,17 @@ class GameVC: UIViewController {
 		
 		let cmdFactory: ICmdFactory = GameCmdFactory(self.gameModel!)
 		ContainerConfig.instance.register(cmdFactory)
-		
+	}
+	
+	private func addFieldToScene() {
 		self.scene?.addFieldOutline(self.gameModel!)
-		self.gameModel?.field.executeForAll(lambda: self.addToScene)
+		self.gameModel?.field.executeForAll(lambda: { self.scene?.addChild($0) })
 		self.updateSceneColor()
 	}
 	
 	private func startGame() {
 		let save = FileHelper.loadSave() // @todo: use FileHelper by interface ?
-		let settings = self.loadSettings(fieldSizeFromSave: save?.fieldSize)
+		let settings = self.loadSettings()
 		self.createGame(settings)
 		
 		if settings.palette == .Dark {
@@ -184,15 +177,13 @@ class GameVC: UIViewController {
 		}
 		
 		// DebugPaletteCMD(self.gameModel!).run()
-		if save != nil {
-			CmdFactory().LoadGame(save: save!).run()
+		if let save = save {
+			LoadGameCmd(self.gameModel!, save: save, screen: view.frame.size).run()
 		} else {
-			CmdFactory()
-				.AddRandomElements(
-					cells: settings.randomElementsCount,
-					blocked: settings.blockedCellsCount)
-				.run()
+			self.createNewGame(settings)
 		}
+		
+		self.addFieldToScene()
 		
 		// Delay one second because random cells appers with random delay
 		_ = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
@@ -200,20 +191,28 @@ class GameVC: UIViewController {
 		for bonus in self.gameModel!.collectableBonuses {
 			NotificationCenter.default.post(name: .updateCollectables, object: bonus.key)
 		}
-		
-		// self.scene!.addTestNode()
 	}
 	
-	private func restartGame() {
-		CmdFactory().CleanGame().run()
-		let settings = self.loadSettings(fieldSizeFromSave: nil)
-		self.createGame(settings)
+	private func createNewGame(_ settings: GameParams) {
+		self.gameModel!.field.setupNewField(
+			model: self.gameModel!,
+			screenSize: view.frame.size)
 		
 		CmdFactory()
 			.AddRandomElements(
 				cells: settings.randomElementsCount,
 				blocked: settings.blockedCellsCount)
 			.run()
+	}
+	
+	private func restartGame() {
+		CmdFactory().CleanGame().run()
+		let settings = self.loadSettings()
+		self.createGame(settings)
+		// @todo: do we need to recheck style appearence?
+		
+		self.createNewGame(settings)
+		self.addFieldToScene()
 		
 		NotificationCenter.default.post(
 			name: .updateScore,
@@ -259,6 +258,12 @@ class GameVC: UIViewController {
 			selector: #selector(self.onUseButtonsChange),
 			name: .switchUseButtons,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.onFieldExpand),
+			name: .expandField,
+			object: nil)
 	}
 	
 	@objc func onGameReset(notification: Notification) {
@@ -279,25 +284,24 @@ class GameVC: UIViewController {
 	}
 	
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        guard UIApplication.shared.applicationState == .inactive else {
-            return
-        }
+		super.traitCollectionDidChange(previousTraitCollection)
+		
+		guard UIApplication.shared.applicationState == .inactive else {
+			return
+		}
 		
 		if traitCollection.userInterfaceStyle == previousTraitCollection?.userInterfaceStyle {
 			return
 		}
 		
-		if defaults.integer(forKey: SettingsKey.Palette.rawValue) == ColorSchemaType.Auto.rawValue {
+		if self.defaults.integer(forKey: SettingsKey.Palette.rawValue) == ColorSchemaType.Auto.rawValue {
 			if traitCollection.userInterfaceStyle == .dark {
 				SwitchPaletteCMD(self.gameModel!).run(.Dark)
-			}
-			else if traitCollection.userInterfaceStyle == .light {
+			} else if traitCollection.userInterfaceStyle == .light {
 				SwitchPaletteCMD(self.gameModel!).run(.Light)
 			}
 		}
-    }
+	}
 	
 	@objc func onScoreBuffUpdate(notification: Notification) {
 		let multiplier = notification.object as? Int ?? 1
@@ -308,6 +312,14 @@ class GameVC: UIViewController {
 	@objc func onUseButtonsChange(notification: Notification) {
 		let use = notification.object as? Bool ?? false
 		self.switchButtons(hidden: !use)
+	}
+	
+	@objc func onFieldExpand(notification: Notification) {
+		let cmd = ExpandHexFieldCmd(self.gameModel!)
+		cmd.setup(
+				viewSize: view.frame.size,
+				scene: self.scene!)
+		cmd.run()
 	}
 	
 	private func switchButtons(hidden: Bool) {

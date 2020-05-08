@@ -25,5 +25,5 @@ class BaseCellsIterator {
 		self.gameModel = gameModel
 	}
 	
-	internal func getCell(_ x: Int, _ y: Int) -> BgCell { self.gameModel.field[x, y] }
+	internal func getCell(_ x: Int, _ y: Int) -> BgCell? { self.gameModel.field[x, y] }
 }

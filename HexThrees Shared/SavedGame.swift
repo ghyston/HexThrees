@@ -10,6 +10,7 @@ import Foundation
 
 struct SavedGame: Codable {
 	struct SavedCell: Codable {
+		let exist: Bool
 		let val: Int?
 		let blocked: Bool
 		let bonusType: BonusType?
@@ -23,6 +24,6 @@ struct SavedGame: Codable {
 	
 	let cells: [SavedCell]
 	let score: Int
-	let fieldSize: FieldSize // @todo: save and check for validation on load!
+	let maxFieldSize: Int
 	let bonuses: [BonusType: CollectableBonusCodable]
 }

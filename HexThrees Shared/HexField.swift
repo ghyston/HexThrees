@@ -9,55 +9,72 @@
 import Foundation
 import SpriteKit
 
+//note: socket is place for bgCell
 typealias CellComparator = (_ cell: BgCell) -> Bool
+typealias SocketComparator = (_ socket: BgCell?) -> Bool
 
 protocol ICellsStatisticCalculator {
-	func next(cell: BgCell)
+	func next(socket: BgCell?)
 	func clean()
 }
 
 class HexField {
-	private var bgHexes = [BgCell]()
-	let width: Int
-	let height: Int
+	private var bgHexes = [BgCell?](repeating: nil, count: GameConstants.MaxFieldSize * GameConstants.MaxFieldSize)
+	let width: Int = GameConstants.MaxFieldSize
+	let height: Int = GameConstants.MaxFieldSize
 	
-	init(width: Int, height: Int, geometry: FieldGeometry) {
-		self.width = width
-		self.height = height
+	func setupNewField(model: GameModel, screenSize: CGSize) {
+		var coords = [AxialCoord]()
 		
-		for y in 0 ..< height {
-			for x in 0 ..< width {
-				let coord = AxialCoord(x, y)
-				let hexCell = BgCell(
-					hexShape: geometry.createHexCellShape(),
-					blocked: false,
-					coord: coord)
-				hexCell.position = geometry.ToScreenCoord(coord)
-				bgHexes.append(hexCell)
+		let start = (GameConstants.MaxFieldSize - GameConstants.StartFieldSize) / 2
+		let end = start + GameConstants.StartFieldSize
+		
+		for y in start ..< end {
+			for x in start ..< end {
+				coords.append(AxialCoord(x, y))
 			}
 		}
+		
+		let geometry = FieldGeometry(screenSize: screenSize, coords: coords)
+		model.geometry = geometry
+		
+		for coord in coords {
+			let hexCell = BgCell(
+				hexShape: geometry.createHexCellShape(),
+				blocked: false,
+				coord: coord)
+			hexCell.position = geometry.ToScreenCoord(coord)
+			setCell(hexCell)
+		}
+	}
+	
+	func coordinates() -> [AxialCoord] {
+		bgHexes.compactMap { $0?.coord }
 	}
 	
 	func clean() {
 		for i in 0 ..< bgHexes.count {
-			self[i].removeAllActions()
-			self[i].removeFromParent()
+			self[i]?.removeAllActions()
+			self[i]?.removeFromParent()
 		}
 		bgHexes.removeAll()
 	}
 	
-	subscript(index: Int) -> BgCell {
-		return bgHexes[index]
+	subscript(index: Int) -> BgCell? {
+		bgHexes[index]
 	}
 	
-	subscript(x: Int, y: Int) -> BgCell {
-		assert(x >= 0 && x < width, "cell coordinate \(x) out of range")
-		assert(y >= 0 && y < height, "cell coordinate \(y) out of range")
-		let index = y * width + x
-		return bgHexes[index]
+	subscript(x: Int, y: Int) -> BgCell? {
+		getCell(x, y)
 	}
 	
-	func getCell(_ x: Int, _ y: Int) -> BgCell {
+	func setCell(_ cell: BgCell) {
+		let index = cell.coord.c + cell.coord.r * GameConstants.MaxFieldSize
+		assert(bgHexes[index] == nil, "BgCell already exist")
+		bgHexes[index] = cell
+	}
+	
+	func getCell(_ x: Int, _ y: Int) -> BgCell? {
 		assert(x >= 0 && x < width, "cell coordinate \(x) out of range")
 		assert(y >= 0 && y < height, "cell coordinate \(y) out of range")
 		let index = y * width + x
@@ -65,11 +82,32 @@ class HexField {
 	}
 	
 	func getBgCells(compare: CellComparator) -> [BgCell] {
-		return bgHexes.filter(compare)
+		return bgHexes.compactMap { $0 }.filter(compare)
 	}
 	
 	func hasBgCells(compare: CellComparator) -> Bool {
-		return bgHexes.first(where: compare) != nil
+		bgHexes.compactMap { $0 }.contains(where: compare)
+	}
+	
+	func getSockets(compare: SocketComparator) -> [AxialCoord] {
+		var result = [AxialCoord]()
+		for y in 0 ..< height {
+			for x in 0 ..< width {
+				if compare(bgHexes[y * width + x]) {
+					result.append(AxialCoord(x, y))
+				}
+			}
+		}
+		
+		return result
+	}
+	
+	func hasSockets(compare: SocketComparator) -> Bool {
+		bgHexes.contains(where: compare)
+	}
+	
+	func countSockets(compare: SocketComparator) -> Int {
+		bgHexes.filter(compare).count
 	}
 	
 	func getBgCellsWithPriority(
@@ -84,10 +122,19 @@ class HexField {
 	}
 	
 	func countBgCells(compare: CellComparator) -> Int {
-		return bgHexes.filter(compare).count
+		return bgHexes.compactMap { $0 }.filter(compare).count
 	}
 	
 	func executeForAll(lambda: (_: BgCell) -> Void) {
+		for i in 0 ..< bgHexes.count {
+			guard let cell = self[i] else {
+				continue
+			}
+			lambda(cell)
+		}
+	}
+	
+	func executeForEverySocket(lambda: (_: BgCell?) -> Void) {
 		for i in 0 ..< bgHexes.count {
 			lambda(self[i])
 		}
@@ -96,51 +143,45 @@ class HexField {
 	// MARK: Cell selectors
 	
 	class func freeCell(cell: BgCell) -> Bool {
-		return cell.gameCell == nil && !cell.isBlocked
+		cell.gameCell == nil && !cell.isBlocked
 	}
 	
 	class func freeCellWoBonuses(cell: BgCell) -> Bool {
-		return cell.gameCell == nil && !cell.isBlocked &&
+		cell.gameCell == nil && !cell.isBlocked &&
 			cell.bonus == nil
 	}
 	
 	class func blockedCell(cell: BgCell) -> Bool {
-		return cell.isBlocked
+		cell.isBlocked
 	}
 	
 	class func notBlockedCell(cell: BgCell) -> Bool {
-		return !cell.isBlocked
+		!cell.isBlocked
 	}
 	
 	class func cellWoBonuses(cell: BgCell) -> Bool {
-		return cell.bonus == nil
+		cell.bonus == nil
 	}
 	
 	class func cellWoShader(cell: BgCell) -> Bool {
-		return cell.hexShape.fillShader == nil
+		cell.hexShape.fillShader == nil
+	}
+	
+	class func oldCell(cell: BgCell) -> Bool {
+		cell.isOld()
 	}
 	
 	class func userBlockedCell(cell: BgCell) -> Bool {
-		return cell.isBlockedFromSwipe
+		cell.isBlockedFromSwipe
 	}
 	
 	class func containGameCell(cell: BgCell) -> Bool {
-		return cell.gameCell != nil
+		cell.gameCell != nil
 	}
 	
-	//    func executeForAll(lambda: (_:BgCell, _: Int, _: Int) -> Void) {
-	//        for y in 0 ..< height {
-	//            for x in 0 ..< width {
-	//                lambda(self[x, y], x, y)
-	//            }
-	//        }
-	//    }
-//
-	//    func executeForAll(lambda: (_:BgCell, _: Int) -> Void) {
-	//        for i in 0 ..< height * width {
-	//            lambda(self[i], i)
-	//        }
-	//    }
+	class func isNotSet(socket: BgCell?) -> Bool {
+		socket == nil
+	}
 	
 	func calculateForSiblings(coord: AxialCoord, calc: inout ICellsStatisticCalculator) {
 		calc.clean()
@@ -153,12 +194,41 @@ class HexField {
 		for x in xMin ... xMax {
 			for y in yMin ... yMax {
 				// here skipping self cell and corner cells (because of hex geometry)
-				if (x == coord.c && y == coord.r) || x == y {
+				if (x == coord.c && y == coord.r) ||
+					(x - y) == (coord.c - coord.r) {
 					continue
 				}
 				
-				calc.next(cell: self[x, y])
+				calc.next(socket: self[x, y])
 			}
 		}
+	}
+	
+	//@todo: copypaste from calculateForSiblings
+	func getSiblings(coord: AxialCoord, compare: CellComparator) -> [BgCell] {
+		let xMin = max(coord.c - 1, 0)
+		let xMax = min(coord.c + 1, width - 1)
+		let yMin = max(coord.r - 1, 0)
+		let yMax = min(coord.r + 1, height - 1)
+		
+		var neighbors = [BgCell]()
+		
+		for x in xMin ... xMax {
+			for y in yMin ... yMax {
+				// here skipping self cell and corner cells (because of hex geometry)
+				if (x == coord.c && y == coord.r) ||
+					(x - y) == (coord.c - coord.r) {
+					continue
+				}
+				
+				guard let cell = self[x,y] else {
+					continue
+				}
+
+				neighbors.append(cell)
+			}
+		}
+		
+		return neighbors.filter(compare)
 	}
 }

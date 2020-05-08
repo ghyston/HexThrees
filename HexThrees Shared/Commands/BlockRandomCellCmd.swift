@@ -12,7 +12,12 @@ class EmptyCellDistributionCalculator: ICellsStatisticCalculator {
 	var openCells: Int = 0
 	var gameCells: Int = 0
 	
-	func next(cell: BgCell) {
+	func next(socket: BgCell?) {
+		
+		guard let cell = socket else {
+			return
+		}
+		
 		if cell.isBlocked {
 			return
 		}
@@ -44,9 +49,8 @@ class BlockRandomCellCmd: GameCMD {
 			required: HexField.freeCell,
 			priority: HexField.cellWoBonuses, HexField.cellWoShader)
 		
-		// @todo: fix it somehow
-		var dice = ProbabilityArray<BgCell>()
-		var calc = EmptyCellDistributionCalculator()
+		let dice = ProbabilityArray<BgCell>()
+		let calc = EmptyCellDistributionCalculator()
 		var icalc: ICellsStatisticCalculator = calc
 		// for some reason I cannot do &(calc as ICellsStatisticCalculator)
 		

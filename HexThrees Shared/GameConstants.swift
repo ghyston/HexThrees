@@ -11,6 +11,8 @@ class GameConstants {
 	static let MaxBonusesOnScreen = 3
 	static let MaxBonusesOnPanel = 3
 	static let TurnsToAutoSave = 5
+	static let MaxFieldSize = 7
+	static let StartFieldSize = 3
 	
 	// Animations
 	static let SecondsPerCell = 0.20
@@ -22,15 +24,18 @@ class GameConstants {
 	static let BlockAnimationDuration = 1.0
 	static let CellAppearAnimationDuration = 0.5
 	static let CollectableUpdateAnimationDuration = 0.7
+	static let ExpandFieldAnimationDuration = 1.0
 	
 	// Probabilities
 	static let RandomCellIsValue2Probability: Float = 0.3
-	static let BaseBonusDropProbability =  0.1
+	static let BaseBonusDropProbability =  10.1 //@todo: 0.1
 	static let LockBonusProbability: Float =  0.5
 	static let UnlockBonusProbability: Float = 0.3
 	static let LastBlockedUnlockBonusProbability: Float = 0.05
 	static let X2BonusProbability: Float = 0.2
 	static let X3BonusProbability: Float = 0.1
+	static let ExpandFieldOriginalProbability: Float = 10.0 //@todo: 0.5?
+	static let ExpandFieldDropProbability: Float = 0.1 //@todo: 0.2?
 	
 	static let CollectableUnlockCellBonusProbability: Float = 1.0
 	static let CollectableSwipeBlockBonusProbability: Float = 1.0
@@ -39,7 +44,6 @@ class GameConstants {
 }
 
 enum SettingsKey: String {
-	case FieldSize = "field_size"
 	case Palette = "palette"
 	case MotionBlur = "motion_blur"
 	case HapticFeedback = "haptic_feedback"

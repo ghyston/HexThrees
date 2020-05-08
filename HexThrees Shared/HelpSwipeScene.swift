@@ -16,13 +16,16 @@ class HelpSwipeScene: SKScene, HelpScene {
 	
 	required init(frameSize: CGSize) {
 		model = GameModel(
-			screenWidth: frameSize.width * 0.9,
-			fieldSize: FieldSize.Quaddro.rawValue,
 			strategy: MerginStrategyFabric.createByName(.Tutorial),
 			motionBlur: false,
 			hapticFeedback: false,
 			timerEnabled: false,
 			useButtons: false)
+		
+		model.geometry = FieldGeometry(
+			screenSize: frameSize, //@todo: * 0.9
+			fieldW: 4,
+			fieldH: 4)
 		
 		super.init(size: CGSize(width: 1200, height: 1200))
 		

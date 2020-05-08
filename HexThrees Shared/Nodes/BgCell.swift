@@ -9,10 +9,11 @@
 import Foundation
 import SpriteKit
 
-class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode {
+class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, UserBlockedNode, AnimatedNode, LifeTimeable {
 	var blockablePlayback: IPlayback?
 	var hexShape: SKShapeNode
 	
+	var lifetime: Int = 0
 	var canBeSelected: Bool = false
 	var selectorHex: SKShapeNode
 	var selectorShadeHex: SKShapeNode
@@ -35,7 +36,7 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 		
 		// we need to set them to something in order to call super init
 		// @todo: crap, just find a way to refactor this!!
-		self.hexShape = SKShapeNode()
+		self.hexShape = hexShape
 		self.selectorHex = SKShapeNode()
 		self.selectorShadeHex = SKShapeNode()
 		
@@ -92,5 +93,18 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 	func updateAnimation(_ delta: TimeInterval) {
 		updateBlockableAnimation(delta)
 		updateUserBlockedOutline(delta)
+	}
+	
+	
+	func updateShape(scale: CGFloat, coordinates: CGPoint, path: CGPath) {
+		let duration = GameConstants.ExpandFieldAnimationDuration
+		
+		self.xScale = 1.0 / scale
+		self.yScale = 1.0 / scale
+		self.hexShape.path = path
+		self.gameCell?.hexShape.path = path
+		
+		self.run(SKAction.scale(to: 1.0, duration: duration).with(mode: SKActionTimingMode.easeIn))
+		self.run(SKAction.move(to: coordinates, duration: duration).with(mode: SKActionTimingMode.easeIn))
 	}
 }

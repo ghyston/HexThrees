@@ -9,7 +9,6 @@
 import Foundation
 
 struct GameParams {
-	let fieldSize: FieldSize
 	let randomElementsCount: Int
 	let blockedCellsCount: Int
 	let motionBlur: MotionBlurStatus

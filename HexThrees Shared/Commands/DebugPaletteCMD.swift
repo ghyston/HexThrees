@@ -22,19 +22,19 @@ class DebugPaletteCMD: GameCMD {
 		self.gameModel.field[9].blockFromSwipe()*/
 		
 		let el1 = GameCell(model: self.gameModel, val: 0)
-		self.gameModel.field[0].addGameCell(cell: el1)
+		self.gameModel.field[0]?.addGameCell(cell: el1)
 		el1.playAppearAnimation()
 		
 		let el2 = GameCell(model: self.gameModel, val: 0)
-		self.gameModel.field[3].addGameCell(cell: el2)
+		self.gameModel.field[3]?.addGameCell(cell: el2)
 		el2.playAppearAnimation()
 		
 		let el3 = GameCell(model: self.gameModel, val: 5)
-		self.gameModel.field[4].addGameCell(cell: el3)
+		self.gameModel.field[4]?.addGameCell(cell: el3)
 		el3.playAppearAnimation()
 		
 		let el4 = GameCell(model: self.gameModel, val: 5)
-		self.gameModel.field[5].addGameCell(cell: el4)
+		self.gameModel.field[5]?.addGameCell(cell: el4)
 		el4.playAppearAnimation()
 	}
 }

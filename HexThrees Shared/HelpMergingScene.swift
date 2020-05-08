@@ -22,13 +22,16 @@ class HelpMergingScene: SKScene, HelpScene {
 		hybridStartegy.prefilValues(maxIndex: 5)
 		
 		let model = GameModel(
-			screenWidth: frameSize.width * 0.8,
-			fieldSize: FieldSize.Quaddro.rawValue,
 			strategy: hybridStartegy,
 			motionBlur: false,
 			hapticFeedback: false,
 			timerEnabled: false,
 			useButtons: false)
+		
+		model.geometry = FieldGeometry(
+			screenSize: frameSize,  //@todo: * 0.8
+			fieldW: 4,
+			fieldH: 4)
 		
 		var posY: CGFloat = frameSize.height / 2.0
 		let startY = posY
