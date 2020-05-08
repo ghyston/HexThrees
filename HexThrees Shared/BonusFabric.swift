@@ -189,6 +189,6 @@ class BonusFabric {
 			type: .EXPAND_FIELD,
 			spriteName: spriteName(bonus: .EXPAND_FIELD),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
-			onPick: ExpandFieldCmd(gameModel))
+			onPick: TriggerFieldExpansionCmd(gameModel))
 	}
 }

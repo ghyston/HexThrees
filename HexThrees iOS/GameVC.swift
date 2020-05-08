@@ -143,7 +143,7 @@ class GameVC: UIViewController {
 		shaderManager.onPaletteUpdate()
 		
 		self.scene?.backgroundColor = pal.sceneBgColor()
-		if let fieldOutine = self.scene?.childNode(withName: FieldOutline.defaultNodeName) as? FieldOutline {
+		if let fieldOutine = self.scene?.fieldOutline {
 			fieldOutine.updateColor(color: pal.fieldOutlineColor())
 		}
 	}
@@ -315,54 +315,11 @@ class GameVC: UIViewController {
 	}
 	
 	@objc func onFieldExpand(notification: Notification) {
-		guard let expandNotification = notification.object as? ExpandFieldNotification else {
-			assert(true, "field expand notification with empty object")
-			return
-		}
-		
-		let hexCell = expandNotification.hexCell
-		
-		guard let oldGeometry = self.gameModel?.geometry else {
-			assert(true, "seriously?? 😤")
-			return
-		}
-		
-		let pal: IPaletteManager = ContainerConfig.instance.resolve()
-		
-		self.scene?.addChild(hexCell)
-		self.scene?.addFieldOutlineCell(
-			where: hexCell.coord,
-			startPos: expandNotification.fromPosition,
-			color: pal.fieldOutlineColor(),
-			using: oldGeometry)
-		
-		// @todo: move to separate command?
-		guard let coords = self.gameModel?.field.coordinates() else {
-			assert(true, "field expand coords are undefined")
-			return
-		}
-		
-		let newGeometry = FieldGeometry(
-			screenSize: view.frame.size,
-			coords: coords)
-		
-		if newGeometry.compare(to: oldGeometry) {
-			return
-		}
-		
-		let scale = CGFloat(oldGeometry.hexScale(to: newGeometry))
-		let path = newGeometry.hexCellPath
-		self.gameModel?.geometry = newGeometry
-		
-		self.gameModel?.field.executeForAll(lambda: { (bgCell: BgCell) in
-			let coordinates = newGeometry.ToScreenCoord(bgCell.coord)
-			bgCell.updateShape(
-				scale: scale,
-				coordinates: coordinates,
-				path: path)
-		})
-		
-		self.scene?.scaleFieldOutline(by: scale, self.gameModel!)
+		let cmd = ExpandHexFieldCmd(self.gameModel!)
+		cmd.setup(
+				viewSize: view.frame.size,
+				scene: self.scene!)
+		cmd.run()
 	}
 	
 	private func switchButtons(hidden: Bool) {

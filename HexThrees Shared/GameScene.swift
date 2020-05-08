@@ -28,7 +28,7 @@ class GameScene: SKScene {
 		self.panel = buttons
 	}
 	
-	private var fieldOutline: FieldOutline {
+	public var fieldOutline: FieldOutline {
 		let existingBg = childNode(withName: FieldOutline.defaultNodeName)
 		let fieldBg = existingBg as? FieldOutline ?? FieldOutline()
 		if existingBg == nil {
