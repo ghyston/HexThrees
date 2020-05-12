@@ -23,30 +23,7 @@ class HelpPagesVC: UIPageViewController, UIPageViewControllerDataSource, UIPageV
 	
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		configureBackButton() // this is called here because before safe insects are unknown
 		configureRulesLabel()
-	}
-	
-	func configureBackButton() {
-		let cornerRadius: CGFloat = 20
-		let btnHeight = UIScreen.main.bounds.height * 0.075 +
-			view.safeAreaInsets.bottom * 0.5 + cornerRadius
-		let btnWidth = UIScreen.main.bounds.width * 0.3 + cornerRadius
-		
-		let btn = UIButton(frame: CGRect(
-			x: -cornerRadius,
-			y: UIScreen.main.bounds.maxY - btnHeight + cornerRadius,
-			width: btnWidth,
-			height: btnHeight))
-		
-		btn.layer.cornerRadius = cornerRadius
-		btn.setTitleColor(.white, for: .normal)
-		btn.setTitle("Back", for: .normal)
-		btn.titleLabel?.font = UIFont(name: "Futura-Medium", size: 24)
-		btn.titleEdgeInsets.bottom = cornerRadius
-		btn.backgroundColor = .gray
-		btn.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-		view.addSubview(btn)
 	}
 	
 	func configureRulesLabel() {
@@ -56,7 +33,7 @@ class HelpPagesVC: UIPageViewController, UIPageViewControllerDataSource, UIPageV
 			y: view.safeAreaInsets.top + 5,
 			width: UIScreen.main.bounds.width / 2 - 40,
 			height: 65))
-		lbl.text = "rules: "
+		lbl.text = "rules: " //@todo: translate
 		lbl.textColor = UIColor(red: 151, green: 38, blue: 53) // #todo: move to palette?
 		lbl.font = UIFont(name: "Futura-Medium", size: 48)
 		lbl.textAlignment = .right
