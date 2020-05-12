@@ -11,6 +11,7 @@ import SpriteKit
 
 class HelpMergingScene: SKScene, HelpScene {
 	var swipeGestureNode: SwipeGestureNode?
+	var prevInterval: TimeInterval?
 	
 	required init(frameSize: CGSize) {
 		super.init(size: frameSize)
@@ -77,7 +78,7 @@ class HelpMergingScene: SKScene, HelpScene {
 		swipeGestureNode?.repeatIndefinitely(
 			startDelay: GameConstants.HelpVCAnimationDelay * 0.5,
 			duration: GameConstants.HelpVCAnimationDelay,
-			pause: GameConstants.HelpVCAnimationDelay * 1.5)
+			pause: GameConstants.HelpVCAnimationDelay * 0.5)
 		
 		addChild(swipeGestureNode!)
 		
@@ -146,5 +147,21 @@ class HelpMergingScene: SKScene, HelpScene {
 	
 	override func update(_ currentTime: TimeInterval) {
 		swipeGestureNode?.update()
+		
+		//@todo: copypaste!
+		
+		if prevInterval == nil {
+			prevInterval = currentTime
+		}
+		
+		let delta = currentTime - prevInterval!
+		prevInterval = currentTime
+		
+		let updateNode: (_: SKNode) -> Void = {
+			($0 as? MotionBlurNode)?.updateMotionBlur(delta)
+			($0 as? AnimatedNode)?.updateAnimation(delta)
+		}
+		
+		runForAllSubnodes(lambda: updateNode)
 	}
 }

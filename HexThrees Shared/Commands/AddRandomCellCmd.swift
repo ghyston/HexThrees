@@ -22,7 +22,7 @@ class AddRandomCellCmd: GameCMD {
 		}
 		
 		AddGameCellCmd(self.gameModel)
-			.setup(addTo: bgCell)
+			.setup(addTo: bgCell, isTutorial)
 			.run()
 		
 		/* if self.gameModel.stressTimer.isEnabled() && autoRepeat{

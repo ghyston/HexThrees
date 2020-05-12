@@ -23,11 +23,11 @@ class HexField {
 	let width: Int = GameConstants.MaxFieldSize
 	let height: Int = GameConstants.MaxFieldSize
 	
-	func setupNewField(model: GameModel, screenSize: CGSize) {
+	func setupNewField(model: GameModel, screenSize: CGSize, fieldSize: Int = GameConstants.StartFieldSize) {
 		var coords = [AxialCoord]()
 		
-		let start = (GameConstants.MaxFieldSize - GameConstants.StartFieldSize) / 2
-		let end = start + GameConstants.StartFieldSize
+		let start = (GameConstants.MaxFieldSize - fieldSize) / 2
+		let end = start + fieldSize
 		
 		for y in start ..< end {
 			for x in start ..< end {

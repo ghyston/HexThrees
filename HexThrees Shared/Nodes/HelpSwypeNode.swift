@@ -20,13 +20,11 @@ class HelpSwipeNode: SKNode {
 		
 		addChild(self.fieldOutline)
 		
-		let addToScene: (_: BgCell) -> Void = { self.scene?.addChild($0) }
+		let addToScene: (_: BgCell) -> Void = { self.addChild($0) }
 		model.field.executeForAll(lambda: addToScene)
 		
 		for _ in 0 ... 4 {
-			CmdFactory()
-				.AddRandomCellForTutorial()
-				.run()
+			AddRandomCellCmd(model).forTutorial().run()
 		}
 	}
 	

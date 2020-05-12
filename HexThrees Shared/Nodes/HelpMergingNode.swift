@@ -16,6 +16,7 @@ class HelpMergingNode: SKNode {
 	let valueLeft: Int
 	let valueRight: Int
 	let xPos: CGFloat
+	let updateDelay: Double
 	
 	init(model: GameModel, width: CGFloat, valueLeft: Int, valueRight: Int) {
 		self.leftNode = GameCell(model: model, val: valueLeft)
@@ -24,6 +25,9 @@ class HelpMergingNode: SKNode {
 		self.valueLeft = valueLeft
 		self.valueRight = valueRight
 		self.xPos = width / 4.0
+		
+		let cellW = CGFloat(model.geometry?.cellWidth ?? 0.0)
+		self.updateDelay = GameConstants.HelpVCAnimationDelay * 2.0 * Double(cellW / width)
 		
 		super.init()
 		
@@ -54,7 +58,7 @@ class HelpMergingNode: SKNode {
 		self.rightNode.updateValue(
 			value: self.rightNode.value + 1,
 			strategy: self.model.strategy,
-			direction: .Left)
+			direction: .Right)
 	}
 	
 	@objc private func moveAnimation() {
@@ -69,14 +73,18 @@ class HelpMergingNode: SKNode {
 		
 		let startDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (randomDelay + 0.5))
 		let animation = SKAction.perform(#selector(HelpMergingNode.moveAnimation), onTarget: self)
-		let updatedelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay)
+		
 		let updateRight = SKAction.perform(#selector(HelpMergingNode.updateRight), onTarget: self)
 		let resetDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (1.5 - randomDelay))
 		let reset = SKAction.perform(#selector(HelpMergingNode.resetNodes), onTarget: self)
 		let startAgain = SKAction.perform(#selector(HelpMergingNode.startAgain), onTarget: self)
-		let sequence = SKAction.sequence([startDelay, animation, updatedelay, updateRight, resetDelay, reset, startAgain])
+		let sequence = SKAction.sequence([startDelay, animation, resetDelay, reset, startAgain])
+		
+		let updatedelay = SKAction.wait(forDuration: self.updateDelay)
+		let updateSequence = SKAction.sequence([startDelay, updatedelay, updateRight])
 		
 		self.run(sequence)
+		self.run(updateSequence)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

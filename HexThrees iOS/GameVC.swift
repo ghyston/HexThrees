@@ -344,7 +344,7 @@ class GameVC: UIViewController {
 	}
 	
 	private func handleSwipe(direction: SwipeDirection) {
-		CmdFactory().DoSwipe(direction: direction).run()
+		DoSwipeCmd(self.gameModel!).setup(direction: direction).run()
 		CmdFactory().ApplyScoreBuff().run()
 		_ = CmdFactory().AfterSwipe().runWithDelay(delay: self.gameModel!.swipeStatus.delay)
 	}

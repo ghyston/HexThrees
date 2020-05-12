@@ -12,14 +12,11 @@ protocol ICmdFactory {
 	func TouchSelectableCell() -> RunOnNodeCMD
 	func IncCollectableBonus(type: BonusType) -> GameCMD
 	func AddRandomElements(cells: Int, blocked: Int) -> GameCMD
-	func AddRandomCellForTutorial() -> GameCMD
 	func AddRandomCellSkipRepeat() -> GameCMD
 	func AddGameCell(addTo: BgCell) -> GameCMD
 	func BlockRandomCell() -> GameCMD
 	func CheckGameEnd() -> GameCMD
 	func CleanGame() -> GameCMD
-	
-	func DoSwipe(direction: SwipeDirection) -> GameCMD
 	func ApplyScoreBuff() -> GameCMD
 	func AfterSwipe() -> GameCMD
 }
@@ -53,10 +50,6 @@ class GameCmdFactory: ICmdFactory {
 		return AddRandomElementsCmd(self.gameModel).setup(cells, blocked)
 	}
 	
-	func AddRandomCellForTutorial() -> GameCMD {
-		return AddRandomCellCmd(self.gameModel).forTutorial()
-	}
-	
 	func AddRandomCellSkipRepeat() -> GameCMD {
 		return AddRandomCellCmd(self.gameModel).skipRepeat()
 	}
@@ -76,11 +69,6 @@ class GameCmdFactory: ICmdFactory {
 	
 	func CleanGame() -> GameCMD {
 		return CleanGameCmd(self.gameModel)
-	}
-	
-	func DoSwipe(direction: SwipeDirection) -> GameCMD {
-		return DoSwipeCmd(self.gameModel)
-			.setup(direction: direction)
 	}
 	
 	func ApplyScoreBuff() -> GameCMD {

@@ -10,9 +10,11 @@ import Foundation
 
 class AddGameCellCmd: GameCMD {
 	var bgCell: BgCell?
+	var isTutorial: Bool = false
 	
-	func setup(addTo bgCell: BgCell) -> GameCMD {
+	func setup(addTo bgCell: BgCell, _ isTutorial: Bool = false) -> GameCMD {
 		self.bgCell = bgCell
+		self.isTutorial = isTutorial
 		return self
 	}
 	
@@ -27,6 +29,10 @@ class AddGameCellCmd: GameCMD {
 			val: Float.random < GameConstants.RandomCellIsValue2Probability ? 1 : 0)
 		// @todo: overexposition self settings
 		newElement.motionBlurDisabled = !self.gameModel.motionBlurEnabled
+		
+		if isTutorial {
+			newElement.updateColorForTutorial()
+		}
 		
 		bgCell.addGameCell(cell: newElement)
 		newElement.playAppearAnimation()

@@ -22,10 +22,10 @@ class HelpSwipeScene: SKScene, HelpScene {
 			timerEnabled: false,
 			useButtons: false)
 		
-		model.geometry = FieldGeometry(
-			screenSize: frameSize, //@todo: * 0.9
-			fieldW: 4,
-			fieldH: 4)
+		model.field.setupNewField(
+			model: model,
+			screenSize: frameSize,
+			fieldSize: 4)
 		
 		super.init(size: CGSize(width: 1200, height: 1200))
 		
@@ -55,14 +55,14 @@ class HelpSwipeScene: SKScene, HelpScene {
 		
 		while !allDirections.isEmpty {
 			let direction = allDirections.popLast()!
-			guard let iterator = IteratorFabric.create(model, direction) else {
+			guard let iterator = IteratorFabric.create(model, direction.inverse()) else {
 				continue
 			}
 			
 			while let line = iterator.next() {
 				if line.check(strategy: model.strategy) {
-					CmdFactory().DoSwipe(direction: direction.inverse()).run()
-					showSwipeGestureNode(direction.inverse())
+					DoSwipeCmd(self.model).setup(direction: direction).run()
+					showSwipeGestureNode(direction)
 					return
 				}
 			}

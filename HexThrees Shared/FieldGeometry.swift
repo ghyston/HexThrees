@@ -14,10 +14,10 @@ class FieldGeometry {
 	
 	public let hexCellPath: CGPath
 	public let outlinePath: CGPath
+	public let cellWidth: Float
+	public let cellHeight: Float
 	
 	private let hexRad: Float
-	private let cellWidth: Float //@todo: computable
-	private let cellHeight: Float //@todo: computable
 	private let offsetX: Float
 	private let offsetY: Float
 	
