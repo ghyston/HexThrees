@@ -176,8 +176,15 @@ class GameVC: UIViewController {
 			overrideUserInterfaceStyle = .light
 		}
 		
+		let tutorialShown = defaults.bool(forKey: SettingsKey.TutorialShown.rawValue)
+		
 		// DebugPaletteCMD(self.gameModel!).run()
-		if let save = save {
+		
+		if !tutorialShown {
+			createTutorialGame()
+			TutorialStep1Cmd(self.gameModel!).run()
+		}
+		else if let save = save {
 			LoadGameCmd(self.gameModel!, save: save, screen: view.frame.size).run()
 		} else {
 			self.createNewGame(settings)
@@ -191,6 +198,12 @@ class GameVC: UIViewController {
 		for bonus in self.gameModel!.collectableBonuses {
 			NotificationCenter.default.post(name: .updateCollectables, object: bonus.key)
 		}
+	}
+	
+	private func createTutorialGame() {
+		self.gameModel!.field.setupNewField(
+			model: self.gameModel!,
+			screenSize: view.frame.size)
 	}
 	
 	private func createNewGame(_ settings: GameParams) {
@@ -344,6 +357,10 @@ class GameVC: UIViewController {
 	}
 	
 	private func handleSwipe(direction: SwipeDirection) {
+		guard self.gameModel!.swipeStatus.isAllowed(direction) else {
+			return
+		}
+		
 		DoSwipeCmd(self.gameModel!).setup(direction: direction).run()
 		CmdFactory().ApplyScoreBuff().run()
 		_ = CmdFactory().AfterSwipe().runWithDelay(delay: self.gameModel!.swipeStatus.delay)

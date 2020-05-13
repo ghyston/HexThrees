@@ -97,6 +97,7 @@
 		3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */; };
 		3F95A6CD20EFFF900052E1C6 /* LoadGameCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CC20EFFF900052E1C6 /* LoadGameCmd.swift */; };
 		3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */; };
+		3FA30C10246C27E500B37CAC /* TutorialStep1CMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */; };
 		3FA3A21221ED05D500111471 /* ImpactHapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21121ED05D500111471 /* ImpactHapticFeedback.swift */; };
 		3FA3A21421ED288D00111471 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21321ED288D00111471 /* HapticManager.swift */; };
 		3FA3A21621ED2B4C00111471 /* SelectHapticFeedbackCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21521ED2B4C00111471 /* SelectHapticFeedbackCMD.swift */; };
@@ -257,6 +258,7 @@
 		3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6CC20EFFF900052E1C6 /* LoadGameCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameCmd.swift; sourceTree = "<group>"; };
 		3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGame.swift; sourceTree = "<group>"; };
+		3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStep1CMD.swift; sourceTree = "<group>"; };
 		3FA3A21121ED05D500111471 /* ImpactHapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactHapticFeedback.swift; sourceTree = "<group>"; };
 		3FA3A21321ED288D00111471 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3FA3A21521ED2B4C00111471 /* SelectHapticFeedbackCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHapticFeedbackCMD.swift; sourceTree = "<group>"; };
@@ -561,6 +563,7 @@
 				3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */,
 				3FF444AC2457258E00C5F5D0 /* TriggerFieldExpansionCmd.swift */,
 				3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */,
+				3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -825,6 +828,7 @@
 				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,
 				3FA3A21621ED2B4C00111471 /* SelectHapticFeedbackCMD.swift in Sources */,
 				3FEA7AD22188385A007F50D8 /* AddRandomElementsCmd.swift in Sources */,
+				3FA30C10246C27E500B37CAC /* TutorialStep1CMD.swift in Sources */,
 				3FA3A21221ED05D500111471 /* ImpactHapticFeedback.swift in Sources */,
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
 				3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */,

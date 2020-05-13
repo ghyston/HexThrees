@@ -50,4 +50,5 @@ enum SettingsKey: String {
 	case StressTimer = "stress_timer"
 	case UseButtons = "use_buttons"
 	case BestScore = "best_score"
+	case TutorialShown = "tutorial_shown"
 }
