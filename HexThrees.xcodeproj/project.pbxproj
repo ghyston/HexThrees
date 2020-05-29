@@ -54,6 +54,10 @@
 		3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */; };
 		3F45A13B232AB20A00157EDB /* blockStatic2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F45A13A232AB20A00157EDB /* blockStatic2.fsh */; };
 		3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F45A13C232AB82500157EDB /* blockAnimated2.fsh */; };
+		3F4677332481127E0086B511 /* TutorialStepHighlightFirstCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4677322481127E0086B511 /* TutorialStepHighlightFirstCellCmd.swift */; };
+		3F4677352481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4677342481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift */; };
+		3F467737248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467736248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift */; };
+		3F467739248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467738248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift */; };
 		3F4D675A2350556200635E5E /* CmdFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D67592350556200635E5E /* CmdFactory.swift */; };
 		3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81B20E57F3100971892 /* PauseVC.swift */; };
 		3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA82120E5FA2800971892 /* ContainerConfig.swift */; };
@@ -97,7 +101,7 @@
 		3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */; };
 		3F95A6CD20EFFF900052E1C6 /* LoadGameCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CC20EFFF900052E1C6 /* LoadGameCmd.swift */; };
 		3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */; };
-		3FA30C10246C27E500B37CAC /* TutorialStep1CMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */; };
+		3FA30C10246C27E500B37CAC /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA30C0F246C27E500B37CAC /* TutorialManager.swift */; };
 		3FA30C15246EA71D00B37CAC /* tutorialHighlight.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FA30C14246EA71D00B37CAC /* tutorialHighlight.fsh */; };
 		3FA3A21221ED05D500111471 /* ImpactHapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21121ED05D500111471 /* ImpactHapticFeedback.swift */; };
 		3FA3A21421ED288D00111471 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21321ED288D00111471 /* HapticManager.swift */; };
@@ -217,6 +221,10 @@
 		3F45A136232A1BB500157EDB /* PauseTimerCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseTimerCMD.swift; sourceTree = "<group>"; };
 		3F45A13A232AB20A00157EDB /* blockStatic2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockStatic2.fsh; sourceTree = "<group>"; };
 		3F45A13C232AB82500157EDB /* blockAnimated2.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockAnimated2.fsh; sourceTree = "<group>"; };
+		3F4677322481127E0086B511 /* TutorialStepHighlightFirstCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepHighlightFirstCellCmd.swift; sourceTree = "<group>"; };
+		3F4677342481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepMoveFirstCellCmd.swift; sourceTree = "<group>"; };
+		3F467736248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepHighlightSecondCellCmd.swift; sourceTree = "<group>"; };
+		3F467738248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepMoveFirstCellAgainCmd.swift; sourceTree = "<group>"; };
 		3F4D67592350556200635E5E /* CmdFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdFactory.swift; sourceTree = "<group>"; };
 		3F4FA81B20E57F3100971892 /* PauseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseVC.swift; sourceTree = "<group>"; };
 		3F4FA82120E5FA2800971892 /* ContainerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerConfig.swift; sourceTree = "<group>"; };
@@ -260,7 +268,7 @@
 		3F95A6CA20EFFA970052E1C6 /* SaveGameCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveGameCMD.swift; sourceTree = "<group>"; };
 		3F95A6CC20EFFF900052E1C6 /* LoadGameCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameCmd.swift; sourceTree = "<group>"; };
 		3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGame.swift; sourceTree = "<group>"; };
-		3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStep1CMD.swift; sourceTree = "<group>"; };
+		3FA30C0F246C27E500B37CAC /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		3FA30C14246EA71D00B37CAC /* tutorialHighlight.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = tutorialHighlight.fsh; sourceTree = "<group>"; };
 		3FA3A21121ED05D500111471 /* ImpactHapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactHapticFeedback.swift; sourceTree = "<group>"; };
 		3FA3A21321ED288D00111471 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
@@ -400,6 +408,7 @@
 				3FEBD1322137D08900D9FCBC /* ProbabilityDice.swift */,
 				3FA3A50F21770F610005B37D /* ColorSchemas.swift */,
 				3F11087C2190B591007743DF /* FileHelper.swift */,
+				3FA30C0F246C27E500B37CAC /* TutorialManager.swift */,
 				3FA3A21321ED288D00111471 /* HapticManager.swift */,
 				3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */,
 				3F92C7D222AA347400B477A3 /* StressTimer.swift */,
@@ -497,6 +506,17 @@
 			path = GameState;
 			sourceTree = "<group>";
 		};
+		3F467731248112620086B511 /* EmbarkingTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				3F4677322481127E0086B511 /* TutorialStepHighlightFirstCellCmd.swift */,
+				3F4677342481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift */,
+				3F467736248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift */,
+				3F467738248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift */,
+			);
+			path = EmbarkingTutorial;
+			sourceTree = "<group>";
+		};
 		3F60069021B6F7C800BD4DCA /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +555,7 @@
 		3FAC644920B5DD7E0083C56C /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				3F467731248112620086B511 /* EmbarkingTutorial */,
 				3F321932234E519800526D96 /* GameState */,
 				3F083AA7234DAF88000F5B6B /* SelectCell */,
 				3F643DD9229ABBA600446DBC /* Timer */,
@@ -569,7 +590,6 @@
 				3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */,
 				3FF444AC2457258E00C5F5D0 /* TriggerFieldExpansionCmd.swift */,
 				3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */,
-				3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -779,7 +799,9 @@
 				3F11E62E234BA188003294EC /* SelectableNode.swift in Sources */,
 				3FAC647020BC89530083C56C /* RemoveCellCMD.swift in Sources */,
 				3F29E294232F5DAA00091D0B /* IncCollectableBonusCmd.swift in Sources */,
+				3F4677352481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift in Sources */,
 				3FAC647320BCA52B0083C56C /* GameConstants.swift in Sources */,
+				3F4677332481127E0086B511 /* TutorialStepHighlightFirstCellCmd.swift in Sources */,
 				3FB703A020DA1B69009718F3 /* BlockRandomCellCmd.swift in Sources */,
 				3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */,
 				3FFEB9A9247C2D4E009A0336 /* GameScene.Tutorial.swift in Sources */,
@@ -797,6 +819,7 @@
 				3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */,
 				3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */,
 				3F75B3C822FAA982001EED4E /* Playback.swift in Sources */,
+				3F467737248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift in Sources */,
 				3F083AA6234DAF74000F5B6B /* TouchSelectableCellCmd.swift in Sources */,
 				3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */,
 				3F06487821611AA6005461C7 /* MoveLeftIterator.swift in Sources */,
@@ -827,6 +850,7 @@
 				3F06487A2161343B005461C7 /* MoveRightIterator.swift in Sources */,
 				3FEBD1332137D08900D9FCBC /* ProbabilityDice.swift in Sources */,
 				3F13AF8D221D3F260086194E /* ScoreNode.swift in Sources */,
+				3F467739248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift in Sources */,
 				3F2D81F521C6C19100A48CD1 /* MergingStrategyName.swift in Sources */,
 				3F60069821B6F85100BD4DCA /* BonusableNode.swift in Sources */,
 				3FA3A51021770F610005B37D /* ColorSchemas.swift in Sources */,
@@ -836,7 +860,7 @@
 				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,
 				3FA3A21621ED2B4C00111471 /* SelectHapticFeedbackCMD.swift in Sources */,
 				3FEA7AD22188385A007F50D8 /* AddRandomElementsCmd.swift in Sources */,
-				3FA30C10246C27E500B37CAC /* TutorialStep1CMD.swift in Sources */,
+				3FA30C10246C27E500B37CAC /* TutorialManager.swift in Sources */,
 				3FA3A21221ED05D500111471 /* ImpactHapticFeedback.swift in Sources */,
 				3FAC647F20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift in Sources */,
 				3F432D82213912FE00AF3DC0 /* AddScoreBaffCMD.swift in Sources */,
