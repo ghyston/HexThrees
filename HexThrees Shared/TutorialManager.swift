@@ -8,22 +8,21 @@
 
 import Foundation
 
-enum TutorialNodeNames : String {
+enum TutorialNodeNames: String {
 	case Description = "description_label"
 	case FirstCell = "first_cell"
 	case SecondCell = "second_cell"
 }
 
 class TutorialManager {
-	
-	enum Steps {
+	enum Steps: Int {
 		case HiglightFirstCell
 		case MoveFirstCell
 		case HighlightSecondCell
 		case MoveFirstCellAgain
 	}
 	
-	private (set) var current: Steps?
+	private(set) var current: Steps?
 	
 	func inProgress() -> Bool {
 		current != nil
@@ -34,25 +33,10 @@ class TutorialManager {
 	}
 	
 	func triggerForStep(model: GameModel, steps: Steps...) -> Bool {
-		for step in steps {
-			// @todo: if cast to int and if current - step = 1
-			if step == .MoveFirstCell && current == .HiglightFirstCell {
-				next()
-				cmdForCurrentStep(model: model)?.run()
-				return true
-			}
-			
-			if step == .HighlightSecondCell && current == .MoveFirstCell {
-				next()
-				cmdForCurrentStep(model: model)?.run()
-				return true
-			}
-			
-			if step == .MoveFirstCellAgain && current == .HighlightSecondCell {
-				next()
-				cmdForCurrentStep(model: model)?.run()
-				return true
-			}
+		if steps.contains(where: { $0.rawValue - 1 == current?.rawValue }) {
+			next()
+			cmdForCurrentStep(model: model)?.run()
+			return true
 		}
 		return false
 	}
@@ -76,7 +60,7 @@ class TutorialManager {
 		}
 	}
 	
-	//@todo: enum it ++!
+	// @todo: enum it ++!
 	func next() {
 		switch current {
 		case .HiglightFirstCell:
@@ -92,7 +76,6 @@ class TutorialManager {
 	
 	func alreadyRun() -> Bool {
 		false
-		//UserDefaults.standard.bool(forKey: SettingsKey.TutorialShown.rawValue)
+		// UserDefaults.standard.bool(forKey: SettingsKey.TutorialShown.rawValue)
 	}
-	
 }
