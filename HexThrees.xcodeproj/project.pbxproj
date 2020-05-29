@@ -98,6 +98,7 @@
 		3F95A6CD20EFFF900052E1C6 /* LoadGameCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CC20EFFF900052E1C6 /* LoadGameCmd.swift */; };
 		3F95A6CF20F005EE0052E1C6 /* SavedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */; };
 		3FA30C10246C27E500B37CAC /* TutorialStep1CMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */; };
+		3FA30C15246EA71D00B37CAC /* tutorialHighlight.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FA30C14246EA71D00B37CAC /* tutorialHighlight.fsh */; };
 		3FA3A21221ED05D500111471 /* ImpactHapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21121ED05D500111471 /* ImpactHapticFeedback.swift */; };
 		3FA3A21421ED288D00111471 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21321ED288D00111471 /* HapticManager.swift */; };
 		3FA3A21621ED2B4C00111471 /* SelectHapticFeedbackCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA3A21521ED2B4C00111471 /* SelectHapticFeedbackCMD.swift */; };
@@ -153,6 +154,7 @@
 		3FF8B996243CD99B00703AF9 /* collectibleButtonDisabled.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */; };
 		3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */; };
 		3FF8B99C24406B2200703AF9 /* cellUpdateValue.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */; };
+		3FFEB9A9247C2D4E009A0336 /* GameScene.Tutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFEB9A8247C2D4E009A0336 /* GameScene.Tutorial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,6 +261,7 @@
 		3F95A6CC20EFFF900052E1C6 /* LoadGameCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameCmd.swift; sourceTree = "<group>"; };
 		3F95A6CE20F005EE0052E1C6 /* SavedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGame.swift; sourceTree = "<group>"; };
 		3FA30C0F246C27E500B37CAC /* TutorialStep1CMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStep1CMD.swift; sourceTree = "<group>"; };
+		3FA30C14246EA71D00B37CAC /* tutorialHighlight.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = tutorialHighlight.fsh; sourceTree = "<group>"; };
 		3FA3A21121ED05D500111471 /* ImpactHapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImpactHapticFeedback.swift; sourceTree = "<group>"; };
 		3FA3A21321ED288D00111471 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		3FA3A21521ED2B4C00111471 /* SelectHapticFeedbackCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHapticFeedbackCMD.swift; sourceTree = "<group>"; };
@@ -317,6 +320,7 @@
 		3FF8B995243CD99B00703AF9 /* collectibleButtonDisabled.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectibleButtonDisabled.fsh; sourceTree = "<group>"; };
 		3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickUpGameCellCmd.swift; sourceTree = "<group>"; };
 		3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = cellUpdateValue.fsh; sourceTree = "<group>"; };
+		3FFEB9A8247C2D4E009A0336 /* GameScene.Tutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.Tutorial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -379,6 +383,7 @@
 				3F555CE5208E7AA5003C67A7 /* MergingStrategies.swift */,
 				3F432D852139174A00AF3DC0 /* ScoreBuff.swift */,
 				3F06B34B207C81E000C8315A /* GameScene.swift */,
+				3FFEB9A8247C2D4E009A0336 /* GameScene.Tutorial.swift */,
 				3F8D11542280A9AE0034BC6D /* HelpMergingScene.swift */,
 				3F8D11552280A9AE0034BC6D /* HelpSwipeScene.swift */,
 				3FAC647220BCA52B0083C56C /* GameConstants.swift */,
@@ -461,6 +466,7 @@
 				3FD8329124372C8600902B7C /* selectableHighlight.fsh */,
 				3FD8329324377AB300902B7C /* selectableMuffle.fsh */,
 				3FF8B99B24406B2200703AF9 /* cellUpdateValue.fsh */,
+				3FA30C14246EA71D00B37CAC /* tutorialHighlight.fsh */,
 			);
 			path = Shaders;
 			sourceTree = "<group>";
@@ -700,6 +706,7 @@
 			files = (
 				3F45A13D232AB82500157EDB /* blockAnimated2.fsh in Resources */,
 				3FB703A920DAE7A6009718F3 /* View.xib in Resources */,
+				3FA30C15246EA71D00B37CAC /* tutorialHighlight.fsh in Resources */,
 				3FD9C6B3231ECA2600137319 /* blockAnimated.fsh in Resources */,
 				3FD8329424377AB300902B7C /* selectableMuffle.fsh in Resources */,
 				3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */,
@@ -775,6 +782,7 @@
 				3FAC647320BCA52B0083C56C /* GameConstants.swift in Sources */,
 				3FB703A020DA1B69009718F3 /* BlockRandomCellCmd.swift in Sources */,
 				3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */,
+				3FFEB9A9247C2D4E009A0336 /* GameScene.Tutorial.swift in Sources */,
 				3FAAC76B207F27E9006F5196 /* zPositions.swift in Sources */,
 				3F2D81F321C6C14100A48CD1 /* ColorSchemaType.swift in Sources */,
 				3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */,

@@ -10,11 +10,13 @@ import Foundation
 
 class AddGameCellCmd: GameCMD {
 	var bgCell: BgCell?
-	var isTutorial: Bool = false
+	var isTutorial: Bool = false // @todo: wrong meaning, this is actually should be named like "isSwiipingHelpScene"
+	var predefinedValue: Int?
 	
-	func setup(addTo bgCell: BgCell, _ isTutorial: Bool = false) -> GameCMD {
+	func setup(addTo bgCell: BgCell, isTutorial: Bool = false, value: Int? = nil) -> GameCMD {
 		self.bgCell = bgCell
 		self.isTutorial = isTutorial
+		self.predefinedValue = value
 		return self
 	}
 	
@@ -26,11 +28,11 @@ class AddGameCellCmd: GameCMD {
 		
 		let newElement = GameCell(
 			model: self.gameModel,
-			val: Float.random < GameConstants.RandomCellIsValue2Probability ? 1 : 0)
+			val: self.predefinedValue ?? (Float.random < GameConstants.RandomCellIsValue2Probability ? 1 : 0))
 		// @todo: overexposition self settings
 		newElement.motionBlurDisabled = !self.gameModel.motionBlurEnabled
 		
-		if isTutorial {
+		if self.isTutorial {
 			newElement.updateColorForTutorial()
 		}
 		

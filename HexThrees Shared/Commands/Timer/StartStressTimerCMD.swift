@@ -10,7 +10,6 @@ import Foundation
 
 class StartStressTimerCMD: GameCMD {
 	override func run() {
-		
 		gameModel.stressTimer.cancelDelayedStart()
 		
 		guard gameModel.stressTimer.isEnabled() else {

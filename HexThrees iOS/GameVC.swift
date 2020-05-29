@@ -176,13 +176,13 @@ class GameVC: UIViewController {
 			overrideUserInterfaceStyle = .light
 		}
 		
-		let tutorialShown = defaults.bool(forKey: SettingsKey.TutorialShown.rawValue)
-		
 		// DebugPaletteCMD(self.gameModel!).run()
+		let tutorialManager = self.gameModel!.tutorialManager
 		
-		if !tutorialShown {
+		if !tutorialManager.alreadyRun() {
 			createTutorialGame()
-			TutorialStep1Cmd(self.gameModel!).run()
+			tutorialManager.start()
+			tutorialManager.cmdForCurrentStep(model: self.gameModel!)!.run()
 		}
 		else if let save = save {
 			LoadGameCmd(self.gameModel!, save: save, screen: view.frame.size).run()
@@ -360,6 +360,8 @@ class GameVC: UIViewController {
 		guard self.gameModel!.swipeStatus.isAllowed(direction) else {
 			return
 		}
+		
+		// @todo: call to tutorial manager
 		
 		DoSwipeCmd(self.gameModel!).setup(direction: direction).run()
 		CmdFactory().ApplyScoreBuff().run()
