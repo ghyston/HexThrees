@@ -26,6 +26,7 @@ class GameConstants {
 	static let CollectableUpdateAnimationDuration = 0.7
 	static let ExpandFieldAnimationDuration = 1.0
 	static let TutorialTextAppearDuration = 0.4
+	static let TutorialNodesAppearDuration = 0.6
 	
 	// Probabilities
 	static let RandomCellIsValue2Probability: Float = 0.3

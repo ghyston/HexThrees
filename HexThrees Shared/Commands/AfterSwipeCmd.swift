@@ -19,7 +19,7 @@ class AfterSwipeCmd: GameCMD {
 		
 		if self.gameModel.tutorialManager.triggerForStep(
 			model: gameModel,
-			steps: .HighlightSecondCell) {
+			steps: .HighlightSecondCell, .Last) {
 			return
 		}
 		

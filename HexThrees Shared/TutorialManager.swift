@@ -20,6 +20,11 @@ class TutorialManager {
 		case MoveFirstCell
 		case HighlightSecondCell
 		case MoveFirstCellAgain
+		case Last
+		
+		static postfix func ++(l: inout Steps) {
+			l = Steps(rawValue: l.rawValue + 1) ?? .Last
+		}
 	}
 	
 	private(set) var current: Steps?
@@ -32,17 +37,17 @@ class TutorialManager {
 		current = .HiglightFirstCell
 	}
 	
+	func finish() {
+		current = nil
+	}
+	
 	func triggerForStep(model: GameModel, steps: Steps...) -> Bool {
 		if steps.contains(where: { $0.rawValue - 1 == current?.rawValue }) {
-			next()
+			current?++
 			cmdForCurrentStep(model: model)?.run()
 			return true
 		}
 		return false
-	}
-	
-	func finish() {
-		UserDefaults.standard.set(true, forKey: SettingsKey.TutorialShown.rawValue)
 	}
 	
 	func cmdForCurrentStep(model: GameModel) -> GameCMD? {
@@ -55,22 +60,12 @@ class TutorialManager {
 			return TutorialStepHighlightSecondCellCmd(model)
 		case .MoveFirstCellAgain:
 			return TutorialStepMoveFirstCellAgainCmd(model)
+			
+		/* add new steps here */
+		case .Last:
+			return TutorialLastStepCmd(model)
 		default:
 			return nil
-		}
-	}
-	
-	// @todo: enum it ++!
-	func next() {
-		switch current {
-		case .HiglightFirstCell:
-			current = .MoveFirstCell
-		case .MoveFirstCell:
-			current = .HighlightSecondCell
-		case .HighlightSecondCell:
-			current = .MoveFirstCellAgain
-		default:
-			finish()
 		}
 	}
 	

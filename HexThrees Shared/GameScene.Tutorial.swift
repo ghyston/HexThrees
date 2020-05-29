@@ -34,6 +34,12 @@ extension GameScene {
 			selector: #selector(onUpdateDescription),
 			name: .updateSceneDescription,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onCleanScene),
+			name: .cleanTutorialScene,
+			object: nil)
 	}
 	
 	struct HighlightCircleDto {
@@ -79,6 +85,15 @@ extension GameScene {
 		addDescription(text: dexription)
 	}
 	
+	@objc func onCleanScene(notification: Notification) {
+		removeAllHighlightCircles()
+		prepareLabel()?.removeFromParentWithDelay(delay: GameConstants.CellAppearAnimationDuration)
+		run(SKAction.sequence([
+			SKAction.wait(forDuration: GameConstants.TutorialTextAppearDuration), // gray layer needs to be removed before all circles will dissapear
+			SKAction.run { self.removeGreyLayer() }
+		]))
+	}
+	
 	private func addHighlightCircle(where coord: CGPoint, radius: CGFloat, name: String) {
 		let isFirst = greyLayer == nil
 		
@@ -96,7 +111,10 @@ extension GameScene {
 		circleShape.xScale = scale
 		circleShape.yScale = scale
 		
-		circleShape.run(SKAction.scale(to: 1.0, duration: 1.0).with(mode: .easeOut))
+		circleShape
+			.run(SKAction
+				.scale(to: 1.0, duration: GameConstants.TutorialNodesAppearDuration)
+				.with(mode: .easeOut))
 	}
 	
 	private func moveHighlightCircle(to coord: CGPoint, name: String) {
@@ -104,7 +122,7 @@ extension GameScene {
 			.childNode(withName: name)?
 			.run(SKAction.move(
 				to: coord,
-				duration: 1.0)
+				duration: GameConstants.TutorialNodesAppearDuration)
 				.with(mode: .easeOut))
 	}
 	
@@ -115,7 +133,7 @@ extension GameScene {
 		
 		for child in greyLayer.children {
 			let removeAction = SKAction.perform(#selector(SKNode.removeFromParent), onTarget: child)
-			let scaleAction = SKAction.scale(to: 5.0, duration: 1.0).with(mode: .easeOut)
+			let scaleAction = SKAction.scale(to: 5.0, duration: GameConstants.TutorialTextAppearDuration).with(mode: .easeOut)
 			child.run(SKAction.sequence([scaleAction, removeAction]))
 		}
 	}
@@ -163,13 +181,14 @@ extension GameScene {
 		let label = prepareLabel() ?? createLabel()
 		
 		var actions = [
-			SKAction.run { label.text = text }, //@todo: how is this possible, do we have memleak here?
-			SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration)]
+			SKAction.run { label.text = text }, // @todo: how is this possible, do we have memleak here?
+			SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration)
+		]
 		
 		if label.hasActions() {
 			actions.insert(SKAction.wait(forDuration: GameConstants.TutorialTextAppearDuration), at: 0)
 		}
-
+		
 		label.run(SKAction.sequence(actions))
 	}
 	
@@ -182,7 +201,6 @@ extension GameScene {
 	}
 	
 	private func createLabel() -> SKLabelNode {
-		
 		let label = SKLabelNode(fontNamed: "Futura Medium")
 		label.fontSize = 35
 		label.fontColor = SKColor(rgb: 0xECB235)
@@ -195,7 +213,5 @@ extension GameScene {
 		return label
 	}
 	
-	private func removeDescription() {
-		
-	}
+	private func removeDescription() {}
 }

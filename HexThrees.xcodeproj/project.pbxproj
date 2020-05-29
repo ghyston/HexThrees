@@ -58,6 +58,7 @@
 		3F4677352481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4677342481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift */; };
 		3F467737248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467736248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift */; };
 		3F467739248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467738248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift */; };
+		3F46773B2481184A0086B511 /* TutorialLastStepCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F46773A2481184A0086B511 /* TutorialLastStepCmd.swift */; };
 		3F4D675A2350556200635E5E /* CmdFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D67592350556200635E5E /* CmdFactory.swift */; };
 		3F4FA81C20E57F3100971892 /* PauseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA81B20E57F3100971892 /* PauseVC.swift */; };
 		3F4FA82320E5FA2900971892 /* ContainerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4FA82120E5FA2800971892 /* ContainerConfig.swift */; };
@@ -225,6 +226,7 @@
 		3F4677342481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepMoveFirstCellCmd.swift; sourceTree = "<group>"; };
 		3F467736248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepHighlightSecondCellCmd.swift; sourceTree = "<group>"; };
 		3F467738248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialStepMoveFirstCellAgainCmd.swift; sourceTree = "<group>"; };
+		3F46773A2481184A0086B511 /* TutorialLastStepCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialLastStepCmd.swift; sourceTree = "<group>"; };
 		3F4D67592350556200635E5E /* CmdFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CmdFactory.swift; sourceTree = "<group>"; };
 		3F4FA81B20E57F3100971892 /* PauseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseVC.swift; sourceTree = "<group>"; };
 		3F4FA82120E5FA2800971892 /* ContainerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerConfig.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				3F4677342481129E0086B511 /* TutorialStepMoveFirstCellCmd.swift */,
 				3F467736248112C20086B511 /* TutorialStepHighlightSecondCellCmd.swift */,
 				3F467738248112E20086B511 /* TutorialStepMoveFirstCellAgainCmd.swift */,
+				3F46773A2481184A0086B511 /* TutorialLastStepCmd.swift */,
 			);
 			path = EmbarkingTutorial;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
 				3F8D11532280A9410034BC6D /* HelpMergingNode.swift in Sources */,
+				3F46773B2481184A0086B511 /* TutorialLastStepCmd.swift in Sources */,
 				3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */,
 				3F064876215D4180005461C7 /* CellsIterator.swift in Sources */,
 				3F11E630234BA4F1003294EC /* UnlockCellCMD.swift in Sources */,

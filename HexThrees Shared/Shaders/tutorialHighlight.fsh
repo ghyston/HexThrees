@@ -9,9 +9,8 @@ void main()
 		texture.b = 0.0;
 	}
 	else {
-		texture.a = 0.7;
-	}
-		
+		texture.a = 0.6;
+	}		
 	
 	gl_FragColor = texture;
 }
