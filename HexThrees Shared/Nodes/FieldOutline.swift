@@ -53,6 +53,7 @@ class FieldOutline: SKNode {
 					using: model.geometry!)
 				hexShape.fillColor = .darkGray
 				self.addChild(hexShape)
+				hexShape.playAppearAnimation(duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.7 ... 1.3))
 			}
 		}
 	}

@@ -88,11 +88,6 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		self.updateColor(fillColor: self.pal.cellTutorialColor(), strokeColor: .white)
 	}
 	
-	func playAppearAnimation() {
-		self.setScale(0.01)
-		self.run(SKAction.scale(to: 1.0, duration: GameConstants.CellAppearAnimationDuration))
-	}
-	
 	func updateAnimation(_ delta: TimeInterval) {
 		if let playbackValue = self.updatePlayback?.update(delta: delta) {
 			if let shader: AnimatedShader = self.hexShape.fillShader as? AnimatedShader {

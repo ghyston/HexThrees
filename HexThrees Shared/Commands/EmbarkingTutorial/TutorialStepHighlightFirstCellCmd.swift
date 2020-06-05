@@ -20,7 +20,7 @@ class TutorialStepHighlightFirstCellCmd: GameCMD {
 		let addHighlishDto = GameScene.HighlightCircleDto(
 			coord: bgCell.position,
 			rad: CGFloat(self.gameModel.geometry?.cellHeight ?? 50.0),
-			delay: nil,
+			delay: GameConstants.CellAppearAnimationDuration,
 			name: TutorialNodeNames.FirstCell)
 		NotificationCenter.default.post(name: .addSceneHighlight, object: [addHighlishDto])
 		NotificationCenter.default.post(name: .updateSceneDescription, object: "swipe right ➡️") //@todo: translate

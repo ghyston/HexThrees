@@ -61,11 +61,11 @@ extension GameScene {
 		}
 		
 		for dto in highlightCircleDtos {
-			// @todo: check delay here
 			addHighlightCircle(
 				where: dto.coord,
 				radius: dto.rad,
-				name: dto.name.rawValue)
+				name: dto.name.rawValue,
+				delay: dto.delay ?? 0.0)
 		}
 	}
 	
@@ -108,7 +108,7 @@ extension GameScene {
 		]))
 	}
 	
-	private func addHighlightCircle(where coord: CGPoint, radius: CGFloat, name: String) {
+	private func addHighlightCircle(where coord: CGPoint, radius: CGFloat, name: String, delay: TimeInterval) {
 		let isFirst = greyLayer == nil
 		
 		createGreyLayer()
@@ -125,10 +125,13 @@ extension GameScene {
 		circleShape.xScale = scale
 		circleShape.yScale = scale
 		
+		let delayAction = SKAction.wait(forDuration: delay)
+		let scaleAction = SKAction
+			.scale(to: 1.0, duration: GameConstants.TutorialNodesAppearDuration)
+			.with(mode: .easeOut)
+		
 		circleShape
-			.run(SKAction
-				.scale(to: 1.0, duration: GameConstants.TutorialNodesAppearDuration)
-				.with(mode: .easeOut))
+			.run(SKAction.sequence([delayAction, scaleAction]))
 	}
 	
 	private func moveHighlightCircle(to coord: CGPoint, name: String) {

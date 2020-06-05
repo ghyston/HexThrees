@@ -160,7 +160,12 @@ class GameVC: UIViewController {
 	
 	private func addFieldToScene() {
 		self.scene?.addFieldOutline(self.gameModel!)
-		self.gameModel?.field.executeForAll(lambda: { self.scene?.addChild($0) })
+		self.gameModel?.field.executeForAll(lambda: {
+			self.scene?.addChild($0)
+			$0.playAppearAnimation(
+				duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.5 ... 1.2),
+				delay: GameConstants.CellAppearAnimationDuration * 0.5)
+		})
 		self.updateSceneColor()
 	}
 	
