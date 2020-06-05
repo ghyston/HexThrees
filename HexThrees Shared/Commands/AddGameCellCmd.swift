@@ -36,6 +36,8 @@ class AddGameCellCmd: GameCMD {
 			newElement.updateColorForTutorial()
 		}
 		
+		gameModel.tutorialManager.timerFailed()
+		
 		bgCell.addGameCell(cell: newElement)
 		newElement.playAppearAnimation()
 		

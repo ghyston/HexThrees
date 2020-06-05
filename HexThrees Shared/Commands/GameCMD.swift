@@ -27,7 +27,7 @@ struct CmdParam {}
 
 class GameCMD: CMD {
 	let gameModel: GameModel
-	required init(_ gameModel: GameModel) {
+	init(_ gameModel: GameModel) {
 		self.gameModel = gameModel
 	}
 

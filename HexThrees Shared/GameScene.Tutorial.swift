@@ -40,6 +40,12 @@ extension GameScene {
 			selector: #selector(onCleanScene),
 			name: .cleanTutorialScene,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onRemoveHighlight),
+			name: .removeSceneHighlight,
+			object: nil)
 	}
 	
 	struct HighlightCircleDto {
@@ -75,6 +81,14 @@ extension GameScene {
 	
 	@objc func onResetHighlight(notification: Notification) {
 		removeAllHighlightCircles()
+	}
+	
+	@objc func onRemoveHighlight(notification: Notification) {
+		guard let nodeName = notification.object as? TutorialNodeNames else {
+			return
+		}
+		
+		shrinkAndRemoveHighlight(name: nodeName.rawValue)
 	}
 	
 	@objc func onUpdateDescription(notification: Notification) {
@@ -136,6 +150,16 @@ extension GameScene {
 			let scaleAction = SKAction.scale(to: 5.0, duration: GameConstants.TutorialTextAppearDuration).with(mode: .easeOut)
 			child.run(SKAction.sequence([scaleAction, removeAction]))
 		}
+	}
+	
+	private func shrinkAndRemoveHighlight(name: String) {
+		guard let node = greyLayer?.childNode(withName: name) else {
+			return
+		}
+		
+		let removeAction = SKAction.perform(#selector(SKNode.removeFromParent), onTarget: node)
+		let scaleAction = SKAction.scale(to: 0.01, duration: GameConstants.TutorialTextAppearDuration).with(mode: .easeOut)
+		node.run(SKAction.sequence([scaleAction, removeAction]))
 	}
 	
 	private func createGreyLayer() {
@@ -204,7 +228,7 @@ extension GameScene {
 		let label = SKLabelNode(fontNamed: "Futura Medium")
 		label.fontSize = 35
 		label.fontColor = SKColor(rgb: 0xECB235)
-		label.position.y = -size.height / 3.0
+		label.position.y = -size.height / 2.5
 		label.zPosition = zPositions.tutorialDescription.rawValue
 		label.name = TutorialNodeNames.Description.rawValue
 		addChild(label)

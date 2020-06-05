@@ -14,7 +14,7 @@ class SwipeStatus {
 	
 	private(set) var isSomethingChanged: Bool = false
 	private(set) var delay: Double = 0.0
-	private(set) var allowedDirection: SwipeDirection?
+	private(set) var allowedDirections: [SwipeDirection]?
 	
 	func start() {
 		inProgress = true
@@ -47,16 +47,16 @@ class SwipeStatus {
 		self.delay = max(delay, self.delay)
 	}
 	
-	func restrictDirections(to direction: SwipeDirection) {
-		self.allowedDirection = direction
+	func restrictDirections(to directions: SwipeDirection... ) {
+		self.allowedDirections = directions
 	}
 	
 	func removeDriectionRestrictions() {
-		self.allowedDirection = nil
+		self.allowedDirections = nil
 	}
 	
 	func isAllowed(_ direction: SwipeDirection) -> Bool {
-		self.allowedDirection == nil || self.allowedDirection == direction
+		self.allowedDirections?.contains(direction) ?? true
 	}
 }
 

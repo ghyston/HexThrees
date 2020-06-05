@@ -25,14 +25,13 @@ class GameVC: UIViewController {
 	var gameModel: GameModel?
 	var scene: GameScene?
 	
-	// @todo: disable haptic and blur models olther than (?) 6s/SE
 	let defaultGameParams = GameParams(
 		randomElementsCount: 4,
 		blockedCellsCount: 2,
 		motionBlur: MotionBlurStatus.Enabled,
 		hapticFeedback: HapticFeedbackStatus.Enabled,
 		strategy: .Hybrid,
-		palette: .Dark,
+		palette: .Light,
 		stressTimer: StressTimerStatus.Enabled,
 		useButtons: UseButtonStatus.Disabled)
 	
@@ -180,11 +179,9 @@ class GameVC: UIViewController {
 		let tutorialManager = self.gameModel!.tutorialManager
 		
 		if !tutorialManager.alreadyRun() {
-			createTutorialGame()
-			tutorialManager.start()
-			tutorialManager.cmdForCurrentStep(model: self.gameModel!)!.run()
-		}
-		else if let save = save {
+			self.createTutorialGame()
+			tutorialManager.start(model: self.gameModel!)
+		} else if let save = save {
 			LoadGameCmd(self.gameModel!, save: save, screen: view.frame.size).run()
 		} else {
 			self.createNewGame(settings)
@@ -330,8 +327,8 @@ class GameVC: UIViewController {
 	@objc func onFieldExpand(notification: Notification) {
 		let cmd = ExpandHexFieldCmd(self.gameModel!)
 		cmd.setup(
-				viewSize: view.frame.size,
-				scene: self.scene!)
+			viewSize: view.frame.size,
+			scene: self.scene!)
 		cmd.run()
 	}
 	
@@ -402,41 +399,39 @@ extension GameVC: UIGestureRecognizerDelegate {
 	
 	// https://stackoverflow.com/questions/4825199/gesture-recognizer-and-button-actions
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+		guard let model = self.gameModel,
+			let scene = self.scene else {
+			return false
+		}
+		
+		if model.tutorialManager.triggerForStep(
+			model: model,
+			steps: .ShowTimer, .Last) {
+			return false
+		}
+		
 		// @todo: check performance here. May be compare with existing button instead of casting?
-		if let scene = self.scene {
-			let nodes = scene.nodes(at: touch.location(in: scene))
-			for node in nodes {
-				if let button = node as? CollectableBtn {
-					button.onClick()
-					return false
-				}
-				
-				if let bgCell = node as? BgCell {
-					if bgCell.canBeSelected {
-						CmdFactory()
-							.TouchSelectableCell()
-							.setup(node: bgCell)
-							.run()
-						return false
-					}
-				}
-			}
-		}
-		
-		if touch.view is UIButton {
-			return false
-		}
-		
-		if self.gameModel?.useButtonsEnabled == true {
-			return false
-		}
-		
-		if let swipeStatus = self.gameModel?.swipeStatus {
-			if swipeStatus.isInProgressOrLocked() {
+		let nodes = scene.nodes(at: touch.location(in: scene))
+		for node in nodes {
+			if let button = node as? CollectableBtn {
+				button.onClick()
 				return false
 			}
+			
+			if let bgCell = node as? BgCell {
+				if bgCell.canBeSelected {
+					CmdFactory()
+						.TouchSelectableCell()
+						.setup(node: bgCell)
+						.run()
+					return false
+				}
+			}
 		}
 		
-		return true
+		// List of resaons, why swipe connot be proceded
+		return !(touch.view is UIButton ||
+			model.useButtonsEnabled ||
+			model.swipeStatus.isInProgressOrLocked())
 	}
 }

@@ -30,12 +30,12 @@ extension BlockableNode where Self: HexNode, Self: SKNode {
 		ContainerConfig.instance.tryResolve()
 	}
 	
-	func playCircleAnimation() {
+	func playCircleAnimation(durationMultiplier: Double = 1.0) {
 		self.removeRollbackDelayedAction()
 		self.blockablePlayback = Playback(
 			from: 0,
 			to: .pi * 2.0,
-			duration: GameConstants.StressTimerInterval,
+			duration: GameConstants.StressTimerInterval * durationMultiplier,
 			onFinish: self.removeShaderWithDelay)
 		
 		self.hexShape.fillShader = GetShaderManager()?.circleShader

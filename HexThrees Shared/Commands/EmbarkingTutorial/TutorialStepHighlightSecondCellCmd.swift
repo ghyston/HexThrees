@@ -25,7 +25,6 @@ class TutorialStepHighlightSecondCellCmd: GameCMD {
 			name: TutorialNodeNames.SecondCell)
 		
 		NotificationCenter.default.post(name: .addSceneHighlight, object: [highlightDto])
-		NotificationCenter.default.post(name: .updateSceneDescription, object: "swipe up-left\nto combine cells ↖︎")
-		//@todo: add swipe node
+		NotificationCenter.default.post(name: .updateSceneDescription, object: "swipe up-left\nto combine cells ↖️")
 	}
 }
