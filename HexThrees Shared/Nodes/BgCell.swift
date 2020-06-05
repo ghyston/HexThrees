@@ -95,7 +95,6 @@ class BgCell: SKNode, HexNode, SelectableNode, BlockableNode, BonusableNode, Use
 		updateUserBlockedOutline(delta)
 	}
 	
-	
 	func updateShape(scale: CGFloat, coordinates: CGPoint, path: CGPath) {
 		let duration = GameConstants.ExpandFieldAnimationDuration
 		

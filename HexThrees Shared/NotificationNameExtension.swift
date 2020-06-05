@@ -21,4 +21,11 @@ extension NSNotification.Name {
 	static let updateCollectables = Notification.Name(rawValue: "update_collectables")
 	static let useCollectables = Notification.Name(rawValue: "use_collectables")
 	static let expandField = Notification.Name(rawValue: "expand_field")
+	
+	static let addSceneHighlight = Notification.Name(rawValue: "add_scene_highlight")
+	static let removeSceneHighlight = Notification.Name(rawValue: "remove_scene_highlight")
+	static let resetSceneHighlight = Notification.Name(rawValue: "reset_scene_highlight")
+	static let moveSceneHighlight = Notification.Name(rawValue: "move_scene_highlight")
+	static let updateSceneDescription = Notification.Name(rawValue: "update_scene_description")
+	static let cleanTutorialScene = Notification.Name(rawValue: "clean_tutorial_scene")
 }

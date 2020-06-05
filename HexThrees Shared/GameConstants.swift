@@ -25,6 +25,8 @@ class GameConstants {
 	static let CellAppearAnimationDuration = 0.5
 	static let CollectableUpdateAnimationDuration = 0.7
 	static let ExpandFieldAnimationDuration = 1.0
+	static let TutorialTextAppearDuration = 0.4
+	static let TutorialNodesAppearDuration = 0.6
 	
 	// Probabilities
 	static let RandomCellIsValue2Probability: Float = 0.3
@@ -50,4 +52,5 @@ enum SettingsKey: String {
 	case StressTimer = "stress_timer"
 	case UseButtons = "use_buttons"
 	case BestScore = "best_score"
+	case TutorialShown = "tutorial_shown"
 }

@@ -22,6 +22,20 @@ extension SKNode {
 		let delete = SKAction.perform(#selector(SKNode.removeFromParent), onTarget: self)
 		self.parent?.run(SKAction.sequence([delay, delete]))
 	}
+	
+	func playAppearAnimation(duration: TimeInterval = GameConstants.CellAppearAnimationDuration, delay: TimeInterval? = nil) {
+		self.setScale(0.01)
+		let scaleAction = SKAction.scale(to: 1.0, duration: duration)
+		scaleAction.timingMode = .easeInEaseOut
+		
+		guard let delayVal = delay else {
+			self.run(scaleAction)
+			return
+		}
+		
+		let delayAction = SKAction.wait(forDuration: delayVal)
+		self.run(SKAction.sequence([delayAction, scaleAction]))
+	}
 }
 
 extension SKAction {

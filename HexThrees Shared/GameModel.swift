@@ -13,6 +13,8 @@ class GameModel {
 	var strategy: MergingStrategy
 	var geometry: FieldGeometry?
 	var hapticManager: IHapticManager
+	var tutorialManager = TutorialManager()
+	
 	var motionBlurEnabled: Bool
 	var useButtonsEnabled: Bool
 	

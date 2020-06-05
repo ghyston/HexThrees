@@ -17,6 +17,12 @@ class AfterSwipeCmd: GameCMD {
 		UpdateBonusesCounterCMD(gameModel).run()
 		UnlockSwypeBlockedCellsCmd(gameModel).run()
 		
+		if self.gameModel.tutorialManager.triggerForStep(
+			model: gameModel,
+			steps: .HighlightSecondCell, .EveryTurnDescription, .HighlightBonus, .KeepSwiping) {
+			return
+		}
+		
 		if gameModel.stressTimer.isEnabled() {
 			gameModel.stressTimer.startDelay(
 				timer:

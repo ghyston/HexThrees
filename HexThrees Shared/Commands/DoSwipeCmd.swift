@@ -36,6 +36,10 @@ class DoSwipeCmd: GameCMD {
 		os_signpost(.end, log: .gestures, name: "moveLine")
 		
 		if gameModel.swipeStatus.isSomethingChanged {
+			_ = gameModel.tutorialManager.triggerForStep(
+				model: gameModel,
+				param: direction,
+				steps: .MoveFirstCell, .MoveFirstCellAgain, .AvoidTimer, .MoveToPickBonus)
 			RollbackTimerCMD(gameModel).run()
 		}
 		

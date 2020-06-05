@@ -18,10 +18,6 @@ class LoadGameCmd: GameCMD {
 		super.init(model)
 	}
 	
-	required init(_ gameModel: GameModel) {
-		fatalError("init(_:) has not been implemented")
-	}
-	
 	override func run() {
 		// At first, we need to define geometry for loading game
 		let coords = gameSave.cells.enumerated().compactMap {

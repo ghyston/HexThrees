@@ -13,6 +13,9 @@ class GameScene: SKScene {
 	var panel: CollectableButtonsPanel?
 	var shaderManager: IShaderManager?
 	
+	var overlay: SKSpriteNode?
+	var greyLayer: SKSpriteNode?
+	
 	override init(size: CGSize) {
 		super.init(size: size)
 		print("GameScene::init size:\(size)")
@@ -26,6 +29,7 @@ class GameScene: SKScene {
 		addChild(buttons)
 		
 		self.panel = buttons
+		addCallbacks()
 	}
 	
 	public var fieldOutline: FieldOutline {
@@ -72,6 +76,7 @@ class GameScene: SKScene {
 		}
 		
 		runForAllSubnodes(lambda: updateNode)
+		drawOverlay()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

@@ -33,9 +33,9 @@ class GameCmdFactory: ICmdFactory {
 		self.gameModel = model
 	}
 	
-	func create<T: GameCMD>(t: T.Type) -> T {
+	/*func create<T: GameCMD>(t: T.Type) -> T {
 		return T(self.gameModel)
-	}
+	}*/
 	
 	func TouchSelectableCell() -> RunOnNodeCMD {
 		return TouchSelectableCellCmd(self.gameModel)
