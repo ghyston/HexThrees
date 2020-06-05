@@ -26,13 +26,14 @@ class BonusNode: SKNode {
 		self.type = type
 		
 		self.sprite = SKSpriteNode(imageNamed: spriteName)
+		self.sprite.zPosition = 1
 		self.command = onPick
 		self.turnsCount = turnsToDispose
 		
 		// @todo: all labels should be created through fabric or by name from scenefile?
 		self.countLabel = SKLabelNode()
 		self.countLabel.fontSize = 12.0
-		self.countLabel.fontName = "Chalkduster"
+		self.countLabel.fontName = "Futura"
 		self.countLabel.fontColor = .white // @todo: use palette manager
 		self.countLabel.verticalAlignmentMode = SKLabelVerticalAlignmentMode.center
 		
@@ -43,6 +44,7 @@ class BonusNode: SKNode {
 		self.circle.position = CGPoint(
 			x: Double((self.sprite.size.width - radius) / 2.0),
 			y: Double((-self.sprite.size.height + radius) / 2.0))
+		self.circle.zPosition = 2
 		
 		super.init()
 		
