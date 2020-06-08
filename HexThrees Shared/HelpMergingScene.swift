@@ -27,7 +27,8 @@ class HelpMergingScene: SKScene, HelpScene {
 			motionBlur: false,
 			hapticFeedback: false,
 			timerEnabled: false,
-			useButtons: false)
+			useButtons: false,
+			purchased: true)
 		
 		model.geometry = FieldGeometry(
 			screenSize: frameSize,  //@todo: * 0.8

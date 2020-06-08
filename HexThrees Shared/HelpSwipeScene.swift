@@ -20,7 +20,8 @@ class HelpSwipeScene: SKScene, HelpScene {
 			motionBlur: false,
 			hapticFeedback: false,
 			timerEnabled: false,
-			useButtons: false)
+			useButtons: false,
+			purchased: true)
 		
 		model.field.setupNewField(
 			model: model,

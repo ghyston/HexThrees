@@ -13,6 +13,7 @@ class GameConstants {
 	static let TurnsToAutoSave = 5
 	static let MaxFieldSize = 7
 	static let StartFieldSize = 3
+	static let FreeVersionValueLimit = 5
 	
 	// Animations
 	static let SecondsPerCell = 0.20
@@ -53,4 +54,5 @@ enum SettingsKey: String {
 	case UseButtons = "use_buttons"
 	case BestScore = "best_score"
 	case TutorialShown = "tutorial_shown"
+	case Purchased = "purchased"
 }

@@ -136,6 +136,8 @@
 		3FB703B220E168EE009718F3 /* GameParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB703B120E168EE009718F3 /* GameParams.swift */; };
 		3FC380D2248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D1248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift */; };
 		3FC380D4248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */; };
+		3FC380D6248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */; };
+		3FC380D8248AA51400EEF6F3 /* DoPurchaseCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D7248AA51400EEF6F3 /* DoPurchaseCmd.swift */; };
 		3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8328B2436335300902B7C /* blockSwipe.fsh */; };
 		3FD8328E243634D400902B7C /* SwipeBlockCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */; };
 		3FD832902436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */; };
@@ -311,6 +313,8 @@
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
 		3FC380D1248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialAvoidTimerCmd.swift; sourceTree = "<group>"; };
 		3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialKeepSwipingCmd.swift; sourceTree = "<group>"; };
+		3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPurchasePopupCmd.swift; sourceTree = "<group>"; };
+		3FC380D7248AA51400EEF6F3 /* DoPurchaseCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoPurchaseCmd.swift; sourceTree = "<group>"; };
 		3FD8328B2436335300902B7C /* blockSwipe.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockSwipe.fsh; sourceTree = "<group>"; };
 		3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBlockCmd.swift; sourceTree = "<group>"; };
 		3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockSwypeBlockedCellsCmd.swift; sourceTree = "<group>"; };
@@ -611,6 +615,8 @@
 				3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */,
 				3FF444AC2457258E00C5F5D0 /* TriggerFieldExpansionCmd.swift */,
 				3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */,
+				3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */,
+				3FC380D7248AA51400EEF6F3 /* DoPurchaseCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -807,6 +813,7 @@
 				3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,
 				3F3DDAB124851EEF00417C3D /* TutorialShowTimerCmd.swift in Sources */,
 				3F95A6C320E8F1610052E1C6 /* CleanGameCmd.swift in Sources */,
+				3FC380D8248AA51400EEF6F3 /* DoPurchaseCmd.swift in Sources */,
 				3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */,
 				3FA3A50B2175A6E90005B37D /* GameOverVC.swift in Sources */,
 				3F2D81F721C6C1D500A48CD1 /* HapticFeedbackStatus.swift in Sources */,
@@ -909,6 +916,7 @@
 				3FF444A7244F4AD500C5F5D0 /* ShaderResourceContainer.swift in Sources */,
 				3FEBD12D213470BC00D9FCBC /* DropRandomBonusCMD.swift in Sources */,
 				3F95A6C920EC955C0052E1C6 /* CheckGameEndCmd.swift in Sources */,
+				3FC380D6248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift in Sources */,
 				3FEA7AD0218776DC007F50D8 /* FieldOutline.swift in Sources */,
 				3F06487E21613891005461C7 /* MoveXDownIterator.swift in Sources */,
 				3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */,

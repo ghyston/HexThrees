@@ -122,7 +122,11 @@ class HexField {
 	}
 	
 	func countBgCells(compare: CellComparator) -> Int {
-		return bgHexes.compactMap { $0 }.filter(compare).count
+		bgHexes.compactMap { $0 }.filter(compare).count
+	}
+	
+	func maxValue() -> Int {
+		bgHexes.compactMap {$0?.gameCell?.value }.max() ?? 0
 	}
 	
 	func executeForAll(lambda: (_: BgCell) -> Void) {

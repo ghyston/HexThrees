@@ -33,7 +33,8 @@ class GameVC: UIViewController {
 		strategy: .Hybrid,
 		palette: .Light,
 		stressTimer: StressTimerStatus.Enabled,
-		useButtons: UseButtonStatus.Disabled)
+		useButtons: UseButtonStatus.Disabled,
+		purchased: false)
 	
 	let defaults = UserDefaults.standard
 	
@@ -100,7 +101,8 @@ class GameVC: UIViewController {
 			motionBlur: params.motionBlur == MotionBlurStatus.Enabled,
 			hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
 			timerEnabled: params.stressTimer == StressTimerStatus.Enabled,
-			useButtons: params.useButtons == UseButtonStatus.Enabled)
+			useButtons: params.useButtons == UseButtonStatus.Enabled,
+			purchased: params.purchased)
 		self.gameModel?.collectableBonuses.removeAll()
 		ContainerConfig.instance.register(self.gameModel!)
 	}
@@ -123,7 +125,8 @@ class GameVC: UIViewController {
 			strategy: self.defaultGameParams.strategy,
 			palette: prefPalette ?? self.defaultGameParams.palette,
 			stressTimer: prefStress ?? self.defaultGameParams.stressTimer,
-			useButtons: useButtons ?? self.defaultGameParams.useButtons)
+			useButtons: useButtons ?? self.defaultGameParams.useButtons,
+			purchased: defaults.bool(forKey: SettingsKey.Purchased.rawValue))
 	}
 	
 	private func createPalette(_ palette: ColorSchemaType) {
@@ -195,10 +198,16 @@ class GameVC: UIViewController {
 		self.addFieldToScene()
 		
 		// Delay one second because random cells appers with random delay
-		_ = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
+		let gameEndCheck = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
 		
 		for bonus in self.gameModel!.collectableBonuses {
 			NotificationCenter.default.post(name: .updateCollectables, object: bonus.key)
+		}
+		
+		if self.gameModel!.freeLimitReached() {
+			gameEndCheck.invalidate()
+			_ = ShowPurchasePopupCmd(gameModel!).runWithDelay(delay: 1.0)
+			return
 		}
 	}
 	
@@ -279,6 +288,12 @@ class GameVC: UIViewController {
 			selector: #selector(self.onFieldExpand),
 			name: .expandField,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.onFreeLimitReached),
+			name: .freeLimitReached,
+			object: nil)
 	}
 	
 	@objc func onGameReset(notification: Notification) {
@@ -356,6 +371,40 @@ class GameVC: UIViewController {
 		vc.modalTransitionStyle = .crossDissolve
 		
 		self.present(vc, animated: true, completion: nil)
+	}
+	
+	@objc private func onFreeLimitReached() {
+		let limitAlert = UIAlertController(
+			title: "Purchase",
+			message: "You reached limit of free HexTrees version. Would you like to unlock full version?",
+			preferredStyle: UIAlertController.Style.alert)
+		
+		limitAlert.addAction(UIAlertAction(
+			title: "Reset game",
+			style: .destructive,
+			handler: onConfirmReset))
+		
+		limitAlert.addAction(UIAlertAction(
+			title: "Unlock full version",
+			style: .cancel,
+			handler: onPurchase))
+		
+		/*limitAlert.addAction(UIAlertAction(
+			title: "Restore purchases",
+			style: .cancel,
+			handler: nil))*/
+		
+		present(limitAlert, animated: true, completion: nil)
+	}
+	
+	private func onConfirmReset(action: UIAlertAction) {
+		restartGame()
+	}
+	
+	//@todo: implement it actually
+	//@todo: where restore purchases should be possible?
+	private func onPurchase(action: UIAlertAction) {
+		DoPurchaseCmd(self.gameModel!).run()
 	}
 	
 	private func handleSwipe(direction: SwipeDirection) {

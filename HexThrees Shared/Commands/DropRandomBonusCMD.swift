@@ -69,7 +69,7 @@ class DropRandomBonusCMD: GameCMD {
 			}
 		}
 		
-		if self.gameModel.collectableBonuses.count < GameConstants.MaxBonusesOnPanel {
+		if self.gameModel.purchased && self.gameModel.collectableBonuses.count < GameConstants.MaxBonusesOnPanel {
 			if self.gameModel.collectableBonuses[.COLLECTABLE_UNLOCK_CELL] == nil,
 				blockedCellsCount > 1 {
 				bonusTypes.add(.COLLECTABLE_UNLOCK_CELL, GameConstants.CollectableUnlockCellBonusProbability)

@@ -23,6 +23,11 @@ class AfterSwipeCmd: GameCMD {
 			return
 		}
 		
+		if self.gameModel.freeLimitReached() {
+			ShowPurchasePopupCmd(gameModel).run()
+			return
+		}
+		
 		if gameModel.stressTimer.isEnabled() {
 			gameModel.stressTimer.startDelay(
 				timer:

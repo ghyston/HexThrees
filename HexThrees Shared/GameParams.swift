@@ -17,4 +17,5 @@ struct GameParams {
 	let palette: ColorSchemaType
 	let stressTimer: StressTimerStatus
 	let useButtons: UseButtonStatus
+	let purchased: Bool
 }

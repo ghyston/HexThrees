@@ -17,6 +17,7 @@ class GameModel {
 	
 	var motionBlurEnabled: Bool
 	var useButtonsEnabled: Bool
+	var purchased: Bool
 	
 	var stressTimer: ITimerModel
 	
@@ -40,12 +41,17 @@ class GameModel {
 		}
 	}
 	
-	init(strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool, useButtons: Bool) {
+	func freeLimitReached() -> Bool {
+		!purchased && field.maxValue() >= GameConstants.FreeVersionValueLimit
+	}
+	
+	init(strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool, useButtons: Bool, purchased: Bool) {
 		self.strategy = strategy
 		self.field = HexField()
 		self.motionBlurEnabled = motionBlur
 		self.useButtonsEnabled = useButtons
 		self.hapticManager = HapticManager(enabled: hapticFeedback)
+		self.purchased = purchased
 		
 		self.stressTimer = TimerModel()
 		if timerEnabled {
