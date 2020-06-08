@@ -35,6 +35,7 @@ class PauseVC: UIViewController {
 	
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var bestScoreLabel: UILabel!
+	@IBOutlet var versionLabel: UILabel!
 	
 	@IBOutlet var backButton: UIButton!
 	@IBOutlet var helpButton: UIButton!
@@ -59,6 +60,11 @@ class PauseVC: UIViewController {
 		if bestScore > 0 {
 			bestScoreLabel.text = "Best score: \(bestScore)" // @todo: localize!
 		}
+		
+		
+		let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+		let isTrial = gameModel?.purchased == true ? "" : "Trial"
+		versionLabel.text = "\(isTrial) v.\(versionNumber)"
 	}
 	
 	@IBAction func onSwipeRight(_ sender: UISwipeGestureRecognizer) {
