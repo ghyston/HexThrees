@@ -10,10 +10,6 @@ import Foundation
 import SpriteKit
 
 class ScoreLabel: UILabel {
-	enum UpdateSpeed: Int {
-		case regular = 1
-		case fast = 3
-	}
 	
 	var previousValue: Int = 0
 	var nextValue: Int = 0
@@ -32,7 +28,7 @@ class ScoreLabel: UILabel {
 		
 		if let gameModel = ContainerConfig.instance.tryResolve() as GameModel? {
 			self.nextValue = gameModel.score
-			self.scheduleNext(.fast)
+			self.scheduleNext()
 		}
 		
 		NotificationCenter.default.addObserver(
@@ -47,22 +43,29 @@ class ScoreLabel: UILabel {
 		let isFinished = self.nextValue == self.currentValue
 		self.nextValue = notification.object as? Int ?? 0
 		
+		// if score is descreased, do not run timers, just update value
+		if self.nextValue < self.currentValue {
+			self.currentValue = self.nextValue
+		}
+		
 		if isFinished {
-			self.scheduleNext(.fast)
+			self.scheduleNext()
 		}
 	}
 	
-	func scheduleNext(_ speed: UpdateSpeed) {
-		if self.currentValue == self.nextValue {
+	func scheduleNext() {
+		if self.currentValue >= self.nextValue {
 			return
 		}
 		
-		self.currentValue = min(self.currentValue + speed.rawValue, self.nextValue)
+		let diff = Double(self.nextValue - self.currentValue)
+		let period: Double = 0.2 / diff
+		let diffPerFrame = Int((diff * 0.03).rounded(.up))
 		
-		// @todo: does it really neccesarry to use DispatchQueue for calculation score? Update from scene with time delta will be more appliable. However, if it is using not in scene UI 🤔
-		let period: Double = 0.2 / Double(self.nextValue - self.currentValue)
+		self.currentValue = min(self.currentValue + diffPerFrame, self.nextValue)
+		
 		DispatchQueue.main.asyncAfter(deadline: .now() + period) {
-			self.scheduleNext(speed)
+			self.scheduleNext()
 		}
 	}
 }

@@ -405,6 +405,7 @@ class GameVC: UIViewController {
 	//@todo: where restore purchases should be possible?
 	private func onPurchase(action: UIAlertAction) {
 		DoPurchaseCmd(self.gameModel!).run()
+		CheckGameEndCmd(self.gameModel!).run()
 	}
 	
 	private func handleSwipe(direction: SwipeDirection) {
