@@ -601,7 +601,7 @@
             <point key="canvasLocation" x="1080.8" y="-600.44977511244383"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.94901960780000005" green="0.69803921570000005" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.32156862745098036" green="0.32549019607843138" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="arrow.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.down.left.circle" catalog="system" width="128" height="121"/>

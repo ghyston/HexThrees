@@ -104,19 +104,19 @@ class BonusFabric {
 		case .BLOCK_CELL:
 			return "bonus_lock"
 		case .X2_POINTS:
-			return "bonus_x2"
+			return "double_score"
 		case .X3_POINTS:
-			return "bonus_x2"
+			return "triple_score"
 		case .COLLECTABLE_UNLOCK_CELL:
 			return "bonus_unlock"
 		case .COLLECTABLE_PAUSE_TIMER:
-			return "cat_shit"
+			return "pause_0"
 		case .COLLECTABLE_SWIPE_BLOCK:
-			return "block_swipe"
+			return ["block_0", "block_1", "block_2", "block_3"].randomElement()!
 		case .COLLECTABLE_PICK_UP:
 			return "bonus_collectable"
 		case .EXPAND_FIELD:
-			return "expand_field"
+			return ["expand_0", "expand_1", "expand_2"].randomElement()!
 		}
 	}
 	

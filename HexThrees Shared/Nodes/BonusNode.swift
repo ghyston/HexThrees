@@ -25,7 +25,18 @@ class BonusNode: SKNode {
 	init(type: BonusType, spriteName: String, turnsToDispose: Int, onPick: GameCMD) {
 		self.type = type
 		
-		self.sprite = SKSpriteNode(imageNamed: spriteName)
+		
+		// @todo: this is hardcoded to check sprites
+		/*if type == .EXPAND_FIELD || type == .COLLECTABLE_PAUSE_TIMER || type == .COLLECTABLE_SWIPE_BLOCK {*/
+			self.sprite = SKSpriteNode(imageNamed: ["frame_0", "frame_1", "frame_2", "frame_3"].randomElement()!)
+			
+			let bonusSprite = SKSpriteNode(imageNamed: spriteName)
+			bonusSprite.zPosition = 2
+			self.sprite.addChild(bonusSprite)
+		/*} else {
+			self.sprite = SKSpriteNode(imageNamed: spriteName)
+		}*/
+		
 		self.sprite.zPosition = 1
 		self.command = onPick
 		self.turnsCount = turnsToDispose
@@ -42,9 +53,9 @@ class BonusNode: SKNode {
 		self.circle.fillColor = .red // @todo: use palette manager
 		self.circle.strokeColor = .red // @todo: use palette manager
 		self.circle.position = CGPoint(
-			x: Double((self.sprite.size.width - radius) / 2.0),
+			x: Double((-self.sprite.size.width + radius) / 2.0),
 			y: Double((-self.sprite.size.height + radius) / 2.0))
-		self.circle.zPosition = 2
+		self.circle.zPosition = 3
 		
 		super.init()
 		
