@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class FieldGeometry {
+class FieldGeometry : Equatable {
 	private let gap: Float = 4.0
 	
 	public let hexCellPath: CGPath
@@ -41,7 +41,6 @@ class FieldGeometry {
 	}
 	
 	convenience init(screenSize: CGSize, coords: [AxialCoord]) {
-		
 		assert(!coords.isEmpty, "could not create field without coordinates!")
 		
 		let xs = coords.map { $0.x }
@@ -60,15 +59,14 @@ class FieldGeometry {
 			offsetY: Float(minY + maxY) / 2.0) // minY + fieldH - 1 simplified
 	}
 	
-	//@todo: Comparable?
-	func compare(to geometry: FieldGeometry) -> Bool {
-		geometry.hexRad == hexRad &&
-		geometry.offsetX == offsetX &&
-		geometry.offsetY == offsetY
+	static func == (lhs: FieldGeometry, rhs: FieldGeometry) -> Bool {
+		lhs.hexRad == rhs.hexRad &&
+		lhs.offsetX == rhs.offsetX &&
+		lhs.offsetY == rhs.offsetY
 	}
 	
 	func hexScale(to geometry: FieldGeometry) -> Float {
-		geometry.hexRad / hexRad
+		geometry.hexRad / self.hexRad
 	}
 	
 	func createHexCellShape() -> SKShapeNode {
@@ -77,11 +75,6 @@ class FieldGeometry {
 	
 	func createBgCellShape() -> SKShapeNode {
 		self.createShape(path: self.bgHexCellPath)
-	}
-	
-	//@todo: is it still used?
-	func createOutlineShape() -> SKShapeNode {
-		self.createShape(path: self.outlinePath)
 	}
 	
 	private func createShape(path: CGPath) -> SKShapeNode {
@@ -214,8 +207,8 @@ class FieldGeometry {
 		let w = Float(self.cellWidth + self.gap)
 		let h = Float(self.cellHeight + self.gap * 1.732 * 2.0)
 		
-		let x = (Float(a.c - a.r) - offsetX) * 0.5 * w
-		let y = (Float(a.c + a.r) - offsetY) * (w * 0.5 + h / (2.0 * 1.732))
+		let x = (Float(a.c - a.r) - self.offsetX) * 0.5 * w
+		let y = (Float(a.c + a.r) - self.offsetY) * (w * 0.5 + h / (2.0 * 1.732))
 		
 		return CGPoint(
 			x: CGFloat(x),

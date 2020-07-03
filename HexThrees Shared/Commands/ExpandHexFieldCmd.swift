@@ -99,7 +99,7 @@ class ExpandHexFieldCmd : GameCMD {
 			screenSize: viewSize!,
 			coords: self.gameModel.field.coordinates())
 		
-		if newGeometry.compare(to: oldGeometry) {
+		if newGeometry == oldGeometry {
 			return
 		}
 		
