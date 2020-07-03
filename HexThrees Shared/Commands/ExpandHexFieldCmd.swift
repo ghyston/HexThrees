@@ -68,7 +68,7 @@ class ExpandHexFieldCmd : GameCMD {
 		
 		// Create new BgCell
 		let hexCell = BgCell(
-			hexShape: oldGeometry.createHexCellShape(),
+			hexShape: oldGeometry.createBgCellShape(),
 			blocked: false,
 			coord: emptySocketCoord)
 		

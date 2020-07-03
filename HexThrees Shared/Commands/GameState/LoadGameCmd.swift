@@ -39,7 +39,7 @@ class LoadGameCmd: GameCMD {
 			
 			let coord = AxialCoord(x, y)
 			let hexCell = BgCell(
-				hexShape: geometry.createHexCellShape(),
+				hexShape: geometry.createBgCellShape(),
 				blocked: false,
 				coord: coord)
 			hexCell.position = geometry.ToScreenCoord(coord)

@@ -146,6 +146,7 @@ extension GameScene {
 	private func removeAllHighlightCircles() {
 		guard let greyLayer = greyLayer else {
 			assert(false, "Grey layer not exist")
+			return
 		}
 		
 		for child in greyLayer.children {

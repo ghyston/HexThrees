@@ -14,6 +14,7 @@ class FieldGeometry {
 	
 	public let hexCellPath: CGPath
 	public let outlinePath: CGPath
+	public let bgHexCellPath: CGPath
 	public let cellWidth: Float
 	public let cellHeight: Float
 	
@@ -32,6 +33,7 @@ class FieldGeometry {
 		self.offsetY = offsetY
 		
 		self.hexCellPath = FieldGeometry.createPath(rad: Double(self.hexRad))
+		self.bgHexCellPath = FieldGeometry.createPath(rad: Double(self.hexRad - 1.0))
 		self.outlinePath = FieldGeometry.createPath(rad: Double(self.hexRad + self.gap))
 		
 		self.cellWidth = self.hexRad * 1.732
@@ -71,6 +73,10 @@ class FieldGeometry {
 	
 	func createHexCellShape() -> SKShapeNode {
 		self.createShape(path: self.hexCellPath)
+	}
+	
+	func createBgCellShape() -> SKShapeNode {
+		self.createShape(path: self.bgHexCellPath)
 	}
 	
 	//@todo: is it still used?
