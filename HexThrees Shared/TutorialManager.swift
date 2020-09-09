@@ -10,6 +10,8 @@ import Foundation
 
 enum TutorialNodeNames: String {
 	case Description = "description_label"
+	case DescriptionBg = "description_bg"
+	case WelcomeHighlight = "welcome_highlight"
 	case FirstCell = "first_cell"
 	case SecondCell = "second_cell"
 	case BonusCell = "bonus_cell"
@@ -18,6 +20,7 @@ enum TutorialNodeNames: String {
 
 class TutorialManager {
 	enum Steps: Int {
+		case Welcome
 		case HiglightFirstCell
 		case MoveFirstCell
 		case HighlightSecondCell
@@ -44,7 +47,7 @@ class TutorialManager {
 	}
 	
 	func start(model: GameModel) {
-		current = .HiglightFirstCell
+		current = .Welcome
 		cmdForCurrentStep(model, nil)?.run()
 	}
 	
@@ -70,6 +73,8 @@ class TutorialManager {
 	
 	private func cmdForCurrentStep(_ model: GameModel, _ param: Any?) -> GameCMD? {
 		switch current {
+		case .Welcome:
+			return TutorialStepWelcomeCmd(model)
 		case .HiglightFirstCell:
 			return TutorialStepHighlightFirstCellCmd(model)
 		case .MoveFirstCell:

@@ -29,4 +29,5 @@ extension NSNotification.Name {
 	static let moveSceneHighlight = Notification.Name(rawValue: "move_scene_highlight")
 	static let updateSceneDescription = Notification.Name(rawValue: "update_scene_description")
 	static let cleanTutorialScene = Notification.Name(rawValue: "clean_tutorial_scene")
+	static let createTutorialGrayLayer = Notification.Name(rawValue: "create_tutorial_gray_layer")
 }

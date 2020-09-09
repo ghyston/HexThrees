@@ -81,6 +81,7 @@
 		3F708D9F23262882008B95F1 /* AddGameCellCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708D9E23262882008B95F1 /* AddGameCellCmd.swift */; };
 		3F708DA1232810DF008B95F1 /* HexFieldSelectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F708DA0232810DF008B95F1 /* HexFieldSelectorTest.swift */; };
 		3F75B3C822FAA982001EED4E /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75B3C722FAA982001EED4E /* Playback.swift */; };
+		3F7907152508C863009E4531 /* TutorialWelcomeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7907142508C863009E4531 /* TutorialWelcomeStep.swift */; };
 		3F7E694B226EFF9700E1D570 /* LineCellsContainerChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */; };
 		3F7E694D226F024700E1D570 /* IteratorFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694C226F024700E1D570 /* IteratorFabric.swift */; };
 		3F7E694F226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */; };
@@ -257,6 +258,7 @@
 		3F708D9E23262882008B95F1 /* AddGameCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameCellCmd.swift; sourceTree = "<group>"; };
 		3F708DA0232810DF008B95F1 /* HexFieldSelectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexFieldSelectorTest.swift; sourceTree = "<group>"; };
 		3F75B3C722FAA982001EED4E /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
+		3F7907142508C863009E4531 /* TutorialWelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialWelcomeStep.swift; sourceTree = "<group>"; };
 		3F7E694A226EFF9700E1D570 /* LineCellsContainerChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineCellsContainerChecker.swift; sourceTree = "<group>"; };
 		3F7E694C226F024700E1D570 /* IteratorFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IteratorFabric.swift; sourceTree = "<group>"; };
 		3F7E694E226F19C100E1D570 /* AddRandomCellForTutorialCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellForTutorialCMD.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				3F46773A2481184A0086B511 /* TutorialLastStepCmd.swift */,
 				3FC380D1248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift */,
 				3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */,
+				3F7907142508C863009E4531 /* TutorialWelcomeStep.swift */,
 			);
 			path = EmbarkingTutorial;
 			sourceTree = "<group>";
@@ -910,6 +913,7 @@
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,
 				3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */,
 				3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */,
+				3F7907152508C863009E4531 /* TutorialWelcomeStep.swift in Sources */,
 				3F8D11592281F0280034BC6D /* UserBlockedCell.swift in Sources */,
 				3F3DDAAF24851BAF00417C3D /* TutorialMoveToPickBonusCmd.swift in Sources */,
 				3F432D882139180E00AF3DC0 /* ApplyScoreBuffCmd.swift in Sources */,

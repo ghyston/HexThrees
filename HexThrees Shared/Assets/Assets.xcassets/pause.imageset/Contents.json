@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "pickup.png",
+      "filename" : "pause.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "pickup-1.png",
+      "filename" : "pause-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

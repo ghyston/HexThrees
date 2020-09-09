@@ -46,6 +46,12 @@ extension GameScene {
 			selector: #selector(onRemoveHighlight),
 			name: .removeSceneHighlight,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onCreateGrayLayer),
+			name: .createTutorialGrayLayer,
+			object: nil)
 	}
 	
 	struct HighlightCircleDto {
@@ -53,6 +59,17 @@ extension GameScene {
 		let rad: CGFloat
 		let delay: Double?
 		let name: TutorialNodeNames
+	}
+	
+	enum TextDescriptionPos {
+		case Top
+		case Bottom
+	}
+	
+	struct TextDescriptionDto {
+		let text: String?
+		let attrText: NSMutableAttributedString?
+		let yPos: TextDescriptionPos
 	}
 	
 	@objc func onAddHighlightCircle(notification: Notification) {
@@ -79,6 +96,10 @@ extension GameScene {
 			name: dto.name.rawValue)
 	}
 	
+	@objc func onCreateGrayLayer(notification: Notification){
+		createGreyLayer()
+	}
+	
 	@objc func onResetHighlight(notification: Notification) {
 		removeAllHighlightCircles()
 	}
@@ -92,15 +113,17 @@ extension GameScene {
 	}
 	
 	@objc func onUpdateDescription(notification: Notification) {
-		guard let dexription = notification.object as? String else {
-			return
+		if let descriptionDto = notification.object as? TextDescriptionDto {
+			addDescription(textDto: descriptionDto)
 		}
-		
-		addDescription(text: dexription)
+		else if let description = notification.object as? String {
+			addDescription(textDto: TextDescriptionDto(text: description, attrText: nil, yPos: .Bottom))
+		}
 	}
 	
 	@objc func onCleanScene(notification: Notification) {
 		removeAllHighlightCircles()
+		removeOldLabelBg()
 		prepareLabel()?.removeFromParentWithDelay(delay: GameConstants.CellAppearAnimationDuration)
 		run(SKAction.sequence([
 			SKAction.wait(forDuration: GameConstants.TutorialTextAppearDuration), // gray layer needs to be removed before all circles will dissapear
@@ -205,11 +228,27 @@ extension GameScene {
 				size: size))
 	}
 	
-	private func addDescription(text: String) {
+	private func addDescription(textDto: TextDescriptionDto) {
+		removeOldLabelBg()
 		let label = prepareLabel() ?? createLabel()
 		
+		var yPos : CGFloat {
+			switch textDto.yPos {
+			case .Bottom:
+				return -size.height / 2.5
+			case .Top:
+				return size.height / 4.0
+			}
+		}
+		
 		var actions = [
-			SKAction.run { label.text = text }, // @todo: how is this possible, do we have memleak here?
+			SKAction.run { label.position.y = yPos },
+			SKAction.run {
+				label.attributedText = textDto.attrText
+				label.text = textDto.text
+				
+				self.createLabelBg(label: label, yPos: yPos) //@todo: memleak?
+			},
 			SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration)
 		]
 		
@@ -220,24 +259,56 @@ extension GameScene {
 		label.run(SKAction.sequence(actions))
 	}
 	
+	private func removeOldLabelBg() {
+		guard let labelBg = childNode(withName: TutorialNodeNames.DescriptionBg.rawValue) as? SKShapeNode else {
+			return
+		}
+		
+		labelBg.name = nil
+		let fadeOut = SKAction.fadeOut(withDuration: GameConstants.TutorialTextAppearDuration)
+		let remove = SKAction.run { self.removeFromParent() }
+		labelBg.run(SKAction.sequence([fadeOut, remove]))
+	}
+	
 	private func prepareLabel() -> SKLabelNode? {
 		guard let label = childNode(withName: TutorialNodeNames.Description.rawValue) as? SKLabelNode else {
 			return nil
 		}
 		label.run(SKAction.fadeOut(withDuration: GameConstants.TutorialTextAppearDuration))
+		
 		return label
+	}
+	
+	private func createLabelBg(label: SKLabelNode, yPos: CGFloat) {
+		let frameoverlap : CGFloat = 1.1
+		let newBg = SKShapeNode(
+			rectOf: CGSize(
+				width: frameoverlap * label.frame.width,
+				height: frameoverlap * label.frame.height),
+			cornerRadius: 10.0)
+		newBg.name = TutorialNodeNames.DescriptionBg.rawValue
+		newBg.zPosition = zPositions.tutorialDescriptionBg.rawValue
+		newBg.position.y = yPos + label.frame.height * 0.5
+		newBg.fillColor = UIColor(white: 0.5, alpha: 0.65)
+		newBg.lineWidth = 0.0
+		newBg.alpha = 0.0
+		newBg.run(SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration))
+		
+		addChild(newBg)
 	}
 	
 	private func createLabel() -> SKLabelNode {
 		let label = SKLabelNode(fontNamed: "Futura Medium")
 		label.fontSize = 35
+		
 		label.fontColor = SKColor(rgb: 0xECB235)
-		label.position.y = -size.height / 2.5
 		label.zPosition = zPositions.tutorialDescription.rawValue
 		label.name = TutorialNodeNames.Description.rawValue
-		addChild(label)
+		
 		label.alpha = 0.0
 		label.numberOfLines = 2
+		
+		addChild(label)
 		return label
 	}
 	
