@@ -348,7 +348,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="titleEdgeInsets" minX="-60" minY="50" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="27" minY="-20" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Reset" image="arrow.2.circlepath.circle.fill" catalog="system">
+                                        <state key="normal" title="Reset" image="arrow.triangle.2.circlepath.circle.fill" catalog="system">
                                             <color key="titleColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32" scale="large" weight="semibold"/>
                                         </state>
@@ -604,11 +604,11 @@
     </scenes>
     <color key="tintColor" red="0.32156862745098036" green="0.32549019607843138" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
-        <image name="arrow.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.down.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.down.right.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.triangle.2.circlepath.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrow.up.left.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.up.right.circle" catalog="system" width="128" height="121"/>
         <image name="chevron.left.circle.fill" catalog="system" width="128" height="121"/>

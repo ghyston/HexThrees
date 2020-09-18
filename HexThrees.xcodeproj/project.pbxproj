@@ -1094,7 +1094,7 @@
 				INFOPLIST_FILE = "HexThrees iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.examples.HexThrees;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.HexThrees;
 				PRODUCT_NAME = HexThrees;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "HexThrees iOS/HexThrees iOS-Bridging-Header.h";
@@ -1115,7 +1115,7 @@
 				INFOPLIST_FILE = "HexThrees iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.examples.HexThrees;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.HexThrees;
 				PRODUCT_NAME = HexThrees;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "HexThrees iOS/HexThrees iOS-Bridging-Header.h";
