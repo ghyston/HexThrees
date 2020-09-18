@@ -461,7 +461,7 @@ extension GameVC: UIGestureRecognizerDelegate {
 		
 		if model.tutorialManager.triggerForStep(
 			model: model,
-			steps: .ShowTimer, .Last) {
+			steps: .HiglightFirstCell, .ShowTimer, .Last) {
 			return false
 		}
 		

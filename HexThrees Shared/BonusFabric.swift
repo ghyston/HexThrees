@@ -100,23 +100,23 @@ class BonusFabric {
 	class func spriteName(bonus type: BonusType) -> String {
 		switch type {
 		case .UNLOCK_CELL:
-			return "bonus_unlock"
+			return "unlock"
 		case .BLOCK_CELL:
-			return "bonus_lock"
+			return "lock"
 		case .X2_POINTS:
-			return "double_score"
+			return "doubleScore"
 		case .X3_POINTS:
-			return "triple_score"
+			return "tripleScore"
 		case .COLLECTABLE_UNLOCK_CELL:
-			return "bonus_unlock"
+			return "unlock"
 		case .COLLECTABLE_PAUSE_TIMER:
-			return "pause_0"
+			return "pause"
 		case .COLLECTABLE_SWIPE_BLOCK:
-			return ["block_0", "block_1", "block_2", "block_3"].randomElement()!
+			return "blockSwipe"
 		case .COLLECTABLE_PICK_UP:
-			return "bonus_collectable"
+			return "pickup"
 		case .EXPAND_FIELD:
-			return ["expand_0", "expand_1", "expand_2"].randomElement()!
+			return "expand"
 		}
 	}
 	
