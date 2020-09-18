@@ -253,8 +253,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "updateSceneColor()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -357,7 +357,7 @@
             endingLineNumber = "72">
             <Locations>
                <Location
-                  uuid = "FDF33637-C2A6-4EC7-9005-7586A2890602 - 516ad074aefb756f"
+                  uuid = "FDF33637-C2A6-4EC7-9005-7586A2890602 - 768b3c73d123e8cc"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -373,7 +373,7 @@
                   offsetFromSymbolStart = "460">
                </Location>
                <Location
-                  uuid = "FDF33637-C2A6-4EC7-9005-7586A2890602 - 1fd1be1ecb9afced"
+                  uuid = "FDF33637-C2A6-4EC7-9005-7586A2890602 - 38305219b4426129"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -776,8 +776,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "260"
             endingLineNumber = "260"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "registerObservers()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1232,8 +1232,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "createModel(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1296,8 +1296,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "312"
             endingLineNumber = "312"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "onColorChange(notification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1312,8 +1312,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "313"
             endingLineNumber = "313"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "onColorChange(notification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1492,7 +1492,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "85A861A5-649A-4A6A-988D-D1852D4D2EF6 - 64b3f1ae2e4c477d"
+                  uuid = "85A861A5-649A-4A6A-988D-D1852D4D2EF6 - dd45bd459f7d7f9c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1507,7 +1507,7 @@
                   offsetFromSymbolStart = "31">
                </Location>
                <Location
-                  uuid = "85A861A5-649A-4A6A-988D-D1852D4D2EF6 - 68e43c3bb2c044d0"
+                  uuid = "85A861A5-649A-4A6A-988D-D1852D4D2EF6 - d11270d003f17c31"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1536,8 +1536,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
             endingLineNumber = "207"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "startGame()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1552,8 +1552,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "209"
             endingLineNumber = "209"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "startGame()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1568,8 +1568,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "377"
             endingLineNumber = "377"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "onFreeLimitReached()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1584,8 +1584,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "397"
             endingLineNumber = "397"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "onFreeLimitReached()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1703,17 +1703,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CB7B528A-2ABE-4673-A110-547897F06362"
+            uuid = "CF833D13-94AA-4621-9872-C07BA5A034F5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HexThrees Shared/Nodes/BonusNode.swift"
+            filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "createPalette(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
