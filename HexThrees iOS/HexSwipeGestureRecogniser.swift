@@ -12,6 +12,7 @@ import UIKit
 
 extension OSLog {
 	static let gestures: OSLog = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "gestures")
+	static let motionBlur: OSLog = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "motionBlur")
 }
 
 class HexSwipeGestureRecogniser: UIGestureRecognizer {

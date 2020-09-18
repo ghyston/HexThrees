@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import os
 
 protocol MotionBlurNode: class {
 	var effectNode: SKEffectNode { get set }
@@ -36,6 +37,7 @@ extension MotionBlurNode where Self: SKNode {
 			return
 		}
 		
+		os_signpost(.begin, log: .motionBlur, name: "startBlur")
 		effectNode.filter = blurFilter
 		blurFilter.setValue(0, forKey: kCIInputRadiusKey)
 		prevPosition = nil
@@ -46,6 +48,7 @@ extension MotionBlurNode where Self: SKNode {
 		effectNode.filter = nil
 		prevPosition = nil
 		prevDelta = nil
+		os_signpost(.begin, log: .motionBlur, name: "endBlur")
 	}
 	
 	func updateMotionBlur(_ deltaTime: TimeInterval) {
@@ -58,6 +61,7 @@ extension MotionBlurNode where Self: SKNode {
 			prevDelta = deltaTime
 			return
 		}
+		os_signpost(.begin, log: .motionBlur, name: "updateBlur")
 		
 		let diff = CGVector(from: self.prevPosition!, to: self.position)
 		self.prevPosition = self.position

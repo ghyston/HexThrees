@@ -24,18 +24,7 @@ class BonusNode: SKNode {
 	
 	init(type: BonusType, spriteName: String, turnsToDispose: Int, onPick: GameCMD) {
 		self.type = type
-		
-		
-		// @todo: this is hardcoded to check sprites
-		/*if type == .EXPAND_FIELD || type == .COLLECTABLE_PAUSE_TIMER || type == .COLLECTABLE_SWIPE_BLOCK {*/
-			self.sprite = SKSpriteNode(imageNamed: ["frame_0", "frame_1", "frame_2", "frame_3"].randomElement()!)
-			
-			let bonusSprite = SKSpriteNode(imageNamed: spriteName)
-			bonusSprite.zPosition = 2
-			self.sprite.addChild(bonusSprite)
-		/*} else {
-			self.sprite = SKSpriteNode(imageNamed: spriteName)
-		}*/
+		self.sprite = SKSpriteNode(imageNamed: spriteName)
 		
 		self.sprite.zPosition = 1
 		self.command = onPick
