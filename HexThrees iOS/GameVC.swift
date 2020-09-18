@@ -31,7 +31,7 @@ class GameVC: UIViewController {
 		motionBlur: MotionBlurStatus.Enabled,
 		hapticFeedback: HapticFeedbackStatus.Enabled,
 		strategy: .Hybrid,
-		palette: .Light,
+		palette: .Auto,
 		stressTimer: StressTimerStatus.Enabled,
 		useButtons: UseButtonStatus.Disabled,
 		purchased: false)
