@@ -227,6 +227,24 @@ class GameVC: UIViewController {
 				cells: settings.randomElementsCount,
 				blocked: settings.blockedCellsCount)
 			.run()
+		/*
+		// commented code below shows all bonus acions
+		// set fieldsize on setupNewField and block loadGame
+		let bonuses = [
+			16: BonusType.UNLOCK_CELL,
+			17: BonusType.BLOCK_CELL,
+			18: BonusType.X2_POINTS,
+			23: BonusType.X3_POINTS,
+			24: BonusType.COLLECTABLE_UNLOCK_CELL,
+			25: BonusType.COLLECTABLE_PAUSE_TIMER,
+			30: BonusType.COLLECTABLE_SWIPE_BLOCK,
+			31: BonusType.COLLECTABLE_PICK_UP,
+			32: BonusType.EXPAND_FIELD
+		]
+		
+		for bonus in bonuses {
+			self.gameModel?.field[bonus.key]?.addBonus(BonusFabric.createBy(bonus: bonus.value, gameModel: self.gameModel!))
+		}*/
 	}
 	
 	private func restartGame() {

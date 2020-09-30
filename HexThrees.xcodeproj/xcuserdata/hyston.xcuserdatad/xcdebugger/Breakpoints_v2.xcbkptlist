@@ -774,8 +774,8 @@
             timestampString = "590518726.621691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "registerObservers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1290,8 +1290,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "onColorChange(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1306,8 +1306,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "onColorChange(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1544,8 +1544,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "394"
-            endingLineNumber = "394"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
             landmarkName = "onFreeLimitReached()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1560,8 +1560,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
             landmarkName = "onFreeLimitReached()"
             landmarkType = "7">
          </BreakpointContent>
