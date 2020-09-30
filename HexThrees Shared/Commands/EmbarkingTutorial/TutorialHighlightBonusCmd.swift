@@ -21,7 +21,7 @@ class TutorialHighlightBonusCmd: GameCMD {
 		guard let bgNode = self.gameModel.field[3, 3] else {
 			return
 		}
-		let bonusNode = BonusFabric.createExpandFieldBonus(gameModel: gameModel)
+		let bonusNode = BonusFabric.createBy(bonus: .EXPAND_FIELD, gameModel: gameModel)
 		bgNode.addBonus(bonusNode)
 		
 		let highlightDto = GameScene.HighlightCircleDto(

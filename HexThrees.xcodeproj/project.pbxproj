@@ -38,6 +38,7 @@
 		3F21DF4C20C8F8A600A979D5 /* CoordinateTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */; };
 		3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5120C9989D00A979D5 /* PaletteManager.swift */; };
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
+		3F28467C251511FF00911A90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F28467B251511FF00911A90 /* StoreKit.framework */; };
 		3F29E294232F5DAA00091D0B /* IncCollectableBonusCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */; };
 		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
 		3F29E298233126F100091D0B /* collectableButton.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F29E297233126F100091D0B /* collectableButton.fsh */; };
@@ -215,6 +216,7 @@
 		3F21DF4B20C8F8A600A979D5 /* CoordinateTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTypes.swift; sourceTree = "<group>"; };
 		3F21DF5120C9989D00A979D5 /* PaletteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteManager.swift; sourceTree = "<group>"; };
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
+		3F28467B251511FF00911A90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 		3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncCollectableBonusCmd.swift; sourceTree = "<group>"; };
 		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
 		3F29E297233126F100091D0B /* collectableButton.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectableButton.fsh; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F28467C251511FF00911A90 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +395,7 @@
 				3F06B353207C81E000C8315A /* HexThrees iOS */,
 				3FD9C6A123158FB000137319 /* HexThreesTests */,
 				3F06B352207C81E000C8315A /* Products */,
+				3F28467A251511FF00911A90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -498,6 +502,14 @@
 				3FA30C14246EA71D00B37CAC /* tutorialHighlight.fsh */,
 			);
 			path = Shaders;
+			sourceTree = "<group>";
+		};
+		3F28467A251511FF00911A90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F28467B251511FF00911A90 /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		3F2D81ED21C6C0B500A48CD1 /* Enums */ = {

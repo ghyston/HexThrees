@@ -18,6 +18,8 @@ class FieldGeometry : Equatable {
 	public let cellWidth: Float
 	public let cellHeight: Float
 	
+	public var iconSize: CGFloat { CGFloat(hexRad * 1.2) }
+	
 	private let hexRad: Float
 	private let offsetX: Float
 	private let offsetY: Float
