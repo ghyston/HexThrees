@@ -185,14 +185,14 @@
                                 <color key="highlightedColor" red="0.92482990769999995" green="0.69752255630000004" blue="0.20829165229999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v.0.1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQQ-Ih-JgP" userLabel="VersionLabel">
-                                <rect key="frame" x="329" y="746" width="38" height="24"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
+                                <rect key="frame" x="335.66666666666669" y="751.66666666666663" width="31.333333333333314" height="18.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="15"/>
                                 <color key="textColor" red="0.81015151739120483" green="0.44182246923446655" blue="0.23322972655296326" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made by Hyston" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pp-G3-WCd" userLabel="MadeByLabel">
-                                <rect key="frame" x="8" y="746" width="94.333333333333329" height="24"/>
-                                <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="15"/>
+                                <rect key="frame" x="8" y="751.66666666666663" width="76" height="18.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="15"/>
                                 <color key="textColor" red="0.87984052748911923" green="0.46271177578383565" blue="0.22064772149241815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>

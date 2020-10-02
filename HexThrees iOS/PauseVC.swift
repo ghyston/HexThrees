@@ -62,9 +62,10 @@ class PauseVC: UIViewController {
 		}
 		
 		
-		let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+		let bundleShortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+		let bundleVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "" //build number
 		let isTrial = gameModel?.purchased == true ? "" : "Trial"
-		versionLabel.text = "\(isTrial) v.\(versionNumber)"
+		versionLabel.text = "\(isTrial) v.\(bundleShortVersion) \(bundleVersion)"
 	}
 	
 	@IBAction func onSwipeRight(_ sender: UISwipeGestureRecognizer) {
