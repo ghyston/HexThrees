@@ -123,8 +123,8 @@ extension GameScene {
 	
 	@objc func onCleanScene(notification: Notification) {
 		removeAllHighlightCircles()
-		removeOldLabelBg()
 		prepareLabel()?.removeFromParentWithDelay(delay: GameConstants.CellAppearAnimationDuration)
+		removeOldLabelBg()
 		run(SKAction.sequence([
 			SKAction.wait(forDuration: GameConstants.TutorialTextAppearDuration), // gray layer needs to be removed before all circles will dissapear
 			SKAction.run { self.removeGreyLayer() }
@@ -264,10 +264,11 @@ extension GameScene {
 			return
 		}
 		
+		labelBg.removeAllActions()
+		labelBg.run(SKAction.fadeOut(withDuration: GameConstants.TutorialTextAppearDuration))
+		labelBg.removeFromParentWithDelay(delay: GameConstants.TutorialTextAppearDuration)
 		labelBg.name = nil
-		let fadeOut = SKAction.fadeOut(withDuration: GameConstants.TutorialTextAppearDuration)
-		let remove = SKAction.run { self.removeFromParent() }
-		labelBg.run(SKAction.sequence([fadeOut, remove]))
+		removeOldLabelBg() // make it recursive in case that there are more than one bg label
 	}
 	
 	private func prepareLabel() -> SKLabelNode? {

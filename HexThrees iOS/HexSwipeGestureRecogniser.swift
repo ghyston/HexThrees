@@ -33,7 +33,7 @@ class HexSwipeGestureRecogniser: UIGestureRecognizer {
 		if let touch = touches.first {
 			self.firstPoint = touch.location(in: self.view)
 			self.lastPoint = self.firstPoint
-			os_log("touch begin x:%f y: %f", log: .gestures, type: .info, self.firstPoint.x, self.firstPoint.y)
+			//os_log("touch begin x:%f y: %f", log: .gestures, type: .info, self.firstPoint.x, self.firstPoint.y)
 		}
 	}
 	
@@ -43,26 +43,26 @@ class HexSwipeGestureRecogniser: UIGestureRecognizer {
 		}
 		
 		let currentPoint = touch.location(in: self.view)
-		os_log("touch move x:%f y: %f", log: .gestures, type: .info, currentPoint.x, currentPoint.y)
+		//os_log("touch move x:%f y: %f", log: .gestures, type: .info, currentPoint.x, currentPoint.y)
 		
 		let diff = CGVector(from: lastPoint, to: currentPoint)
 		if diff.squareLen() < self.squareDistanceToDetect {
-			os_log("diff too small %f", log: .gestures, type: .info, diff.squareLen())
+			//os_log("diff too small %f", log: .gestures, type: .info, diff.squareLen())
 			return
 		}
 		
 		let direction = self.getDirection(vector: diff)
-		os_log("direction is: %s", log: .gestures, type: .info, String(describing: direction))
+		//os_log("direction is: %s", log: .gestures, type: .info, String(describing: direction))
 		
 		if self.direction != .Unknown, self.direction != direction {
-			os_log("direction changed", log: .gestures, type: .info)
+			//os_log("direction changed", log: .gestures, type: .info)
 			self.reset() // @todo: detect, what will happen here
 			return
 		}
 		
 		let sqrLenFromFirstTouch = CGVector(from: currentPoint, to: firstPoint).squareLen()
 		if sqrLenFromFirstTouch > self.distanceToSwype {
-			os_log("touch detected %f %s", log: .gestures, type: .info, sqrLenFromFirstTouch, String(describing: direction))
+			//os_log("touch detected %f %s", log: .gestures, type: .info, sqrLenFromFirstTouch, String(describing: direction))
 			self.state = .ended
 		}
 		
@@ -71,12 +71,12 @@ class HexSwipeGestureRecogniser: UIGestureRecognizer {
 	}
 	
 	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		os_log("touch ended", log: .gestures, type: .info)
+		//os_log("touch ended", log: .gestures, type: .info)
 		os_signpost(.end, log: .gestures, name: "swipe")
 	}
 	
 	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-		os_log("touch cancelled", log: .gestures, type: .info)
+		//os_log("touch cancelled", log: .gestures, type: .info)
 		os_signpost(.end, log: .gestures, name: "swipe")
 	}
 	

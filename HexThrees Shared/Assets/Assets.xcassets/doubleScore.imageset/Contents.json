@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "doubleScore.png",
+      "filename" : "doubleScore_x2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "doubleScore-1.png",
+      "filename" : "doubleScore_x3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

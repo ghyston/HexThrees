@@ -52,27 +52,32 @@ class BonusFabric {
 		}
 	}
 	
+	private static let factoryMethods = [
+		BonusType.UNLOCK_CELL: 				createUnlockBonus,
+		BonusType.BLOCK_CELL: 				createLockBonus,
+		BonusType.X2_POINTS: 				createX2Bonus,
+		BonusType.X3_POINTS: 				createX3Bonus,
+		BonusType.COLLECTABLE_UNLOCK_CELL:	createCollectableUnlockCellBonus,
+		BonusType.COLLECTABLE_PAUSE_TIMER:	createCollectablePauseTimerBonus,
+		BonusType.COLLECTABLE_SWIPE_BLOCK:	createCollectableSwipeBlockBonus,
+		BonusType.COLLECTABLE_PICK_UP: 		createColletablePickUpBonus,
+		BonusType.EXPAND_FIELD: 			createExpandFieldBonus
+	]
+	
+	private static let iconNames : [BonusType: String] = [
+		.UNLOCK_CELL: 				"key",
+		.BLOCK_CELL: 				"lock",
+		.X2_POINTS: 				"doubleScore",
+		.X3_POINTS: 				"tripleScore",
+		.COLLECTABLE_UNLOCK_CELL:	"key",
+		.COLLECTABLE_PAUSE_TIMER:	"pause",
+		.COLLECTABLE_SWIPE_BLOCK:	"block",
+		.COLLECTABLE_PICK_UP:		"pickup",
+		.EXPAND_FIELD: 				"expand"
+	]
+	
 	class func createBy(bonus type: BonusType, gameModel: GameModel) -> BonusNode {
-		switch type {
-		case .UNLOCK_CELL:
-			return createUnlockBonus(gameModel: gameModel)
-		case .BLOCK_CELL:
-			return createLockBonus(gameModel: gameModel)
-		case .X2_POINTS:
-			return createX2Bonus(gameModel: gameModel)
-		case .X3_POINTS:
-			return createX3Bonus(gameModel: gameModel)
-		case .COLLECTABLE_UNLOCK_CELL:
-			return createCollectableUnlockCellBonus(gameModel: gameModel)
-		case .COLLECTABLE_PAUSE_TIMER:
-			return createCollectablePauseTimerBonus(gameModel: gameModel)
-		case .COLLECTABLE_SWIPE_BLOCK:
-			return createCollectableSwipeBlockBonus(gameModel: gameModel)
-		case .COLLECTABLE_PICK_UP:
-			return createColletablePickUpBonus(gameModel: gameModel)
-		case .EXPAND_FIELD:
-			return createExpandFieldBonus(gameModel: gameModel)
-		}
+		factoryMethods[type]!(gameModel).scale(hexRad: gameModel.geometry!.iconSize)
 	}
 	
 	class func collectableSelectableBonusCMD(bonus type: BonusType, gameModel: GameModel) -> (comparator: (_: BgCell) -> Bool, cmd: RunOnNodeCMD)? {
@@ -98,85 +103,66 @@ class BonusFabric {
 	}
 	
 	class func spriteName(bonus type: BonusType) -> String {
-		switch type {
-		case .UNLOCK_CELL:
-			return "unlock"
-		case .BLOCK_CELL:
-			return "lock"
-		case .X2_POINTS:
-			return "doubleScore"
-		case .X3_POINTS:
-			return "tripleScore"
-		case .COLLECTABLE_UNLOCK_CELL:
-			return "unlock"
-		case .COLLECTABLE_PAUSE_TIMER:
-			return "pause"
-		case .COLLECTABLE_SWIPE_BLOCK:
-			return "blockSwipe"
-		case .COLLECTABLE_PICK_UP:
-			return "pickup"
-		case .EXPAND_FIELD:
-			return "expand"
-		}
+		iconNames[type]!
 	}
 	
-	class func createUnlockBonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createUnlockBonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .UNLOCK_CELL,
 			spriteName: spriteName(bonus: .UNLOCK_CELL),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: UnlockRandomCellCMD(gameModel))
 	}
 	
-	class func createLockBonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createLockBonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .BLOCK_CELL,
 			spriteName: spriteName(bonus: .BLOCK_CELL),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: BlockRandomCellCmd(gameModel))
 	}
 	
-	class func createX2Bonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createX2Bonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .X2_POINTS,
 			spriteName: spriteName(bonus: .X2_POINTS),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: AddScoreBaffCMD(gameModel).setup(factor: 2))
 	}
 	
-	class func createX3Bonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createX3Bonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .X3_POINTS,
 			spriteName: spriteName(bonus: .X3_POINTS),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: AddScoreBaffCMD(gameModel).setup(factor: 3))
 	}
 	
-	class func createCollectableUnlockCellBonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createCollectableUnlockCellBonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .COLLECTABLE_UNLOCK_CELL,
 			spriteName: spriteName(bonus: .COLLECTABLE_UNLOCK_CELL),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_UNLOCK_CELL))
 	}
 	
-	class func createCollectablePauseTimerBonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createCollectablePauseTimerBonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .COLLECTABLE_PAUSE_TIMER,
 			spriteName: spriteName(bonus: .COLLECTABLE_PAUSE_TIMER),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_PAUSE_TIMER))
 	}
 	
-	class func createCollectableSwipeBlockBonus(gameModel: GameModel) -> BonusNode {
-		return BonusNode(
+	private class func createCollectableSwipeBlockBonus(gameModel: GameModel) -> BonusNode {
+		BonusNode(
 			type: .COLLECTABLE_SWIPE_BLOCK,
 			spriteName: spriteName(bonus: .COLLECTABLE_SWIPE_BLOCK),
 			turnsToDispose: GameConstants.BonusTurnsLifetime,
 			onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_SWIPE_BLOCK))
 	}
 	
-	class func createColletablePickUpBonus(gameModel: GameModel) -> BonusNode {
+	private class func createColletablePickUpBonus(gameModel: GameModel) -> BonusNode {
 		BonusNode(
 			type: .COLLECTABLE_PICK_UP,
 			spriteName: spriteName(bonus: .COLLECTABLE_PICK_UP),
@@ -184,7 +170,7 @@ class BonusFabric {
 			onPick: CmdFactory().IncCollectableBonus(type: .COLLECTABLE_PICK_UP))
 	}
 	
-	class func createExpandFieldBonus(gameModel: GameModel) -> BonusNode {
+	private class func createExpandFieldBonus(gameModel: GameModel) -> BonusNode {
 		BonusNode(
 			type: .EXPAND_FIELD,
 			spriteName: spriteName(bonus: .EXPAND_FIELD),
