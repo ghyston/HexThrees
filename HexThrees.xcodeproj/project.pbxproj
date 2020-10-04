@@ -39,6 +39,7 @@
 		3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5120C9989D00A979D5 /* PaletteManager.swift */; };
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
 		3F28467C251511FF00911A90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F28467B251511FF00911A90 /* StoreKit.framework */; };
+		3F28469625277F7700911A90 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28469525277F7700911A90 /* IAPHelper.swift */; };
 		3F29E294232F5DAA00091D0B /* IncCollectableBonusCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */; };
 		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
 		3F29E298233126F100091D0B /* collectableButton.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F29E297233126F100091D0B /* collectableButton.fsh */; };
@@ -217,6 +218,7 @@
 		3F21DF5120C9989D00A979D5 /* PaletteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteManager.swift; sourceTree = "<group>"; };
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
 		3F28467B251511FF00911A90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		3F28469525277F7700911A90 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncCollectableBonusCmd.swift; sourceTree = "<group>"; };
 		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
 		3F29E297233126F100091D0B /* collectableButton.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectableButton.fsh; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				3FAC647E20BF16DB0083C56C /* HexSwipeGestureRecogniser.swift */,
 				3FAC648120BF18C40083C56C /* HexThrees iOS-Bridging-Header.h */,
 				3FB703A820DAE7A6009718F3 /* View.xib */,
+				3F28469525277F7700911A90 /* IAPHelper.swift */,
 			);
 			path = "HexThrees iOS";
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
+				3F28469625277F7700911A90 /* IAPHelper.swift in Sources */,
 				3F8D11532280A9410034BC6D /* HelpMergingNode.swift in Sources */,
 				3F46773B2481184A0086B511 /* TutorialLastStepCmd.swift in Sources */,
 				3F45A137232A1BB500157EDB /* PauseTimerCMD.swift in Sources */,

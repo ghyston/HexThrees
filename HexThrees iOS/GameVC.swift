@@ -9,6 +9,7 @@
 
 import GameplayKit
 import SpriteKit
+import StoreKit
 import UIKit
 
 class GameVC: UIViewController {
@@ -59,6 +60,15 @@ class GameVC: UIViewController {
 		
 		self.registerObservers()
 		self.startGame()
+		
+		IAPHelper.shared.getProducts(withHandler: onProductsUpdated)
+	}
+	
+	func onProductsUpdated(result: Result<[SKProduct], IAPHelper.IAPHelperError>) {
+		switch result {
+			case .success(let products): print("products: \(products)")
+			case .failure(let error): print("error! \(error)")
+		}
 	}
 	
 	override func viewDidLayoutSubviews() {
