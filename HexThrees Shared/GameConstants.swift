@@ -17,6 +17,7 @@ class GameConstants {
 	
 	// Animations
 	static let SecondsPerCell = 0.20
+	static let BounceCellAnimationDuration = 0.12
 	static let BonusAnimationDuration = 0.5
 	static let GameOverScreenDelay = 1.2
 	static let StressTimerInterval = 6.0

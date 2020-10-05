@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class FieldGeometry : Equatable {
-	private let gap: Float = 4.0
+	public let gap: Float = 4.0
 	
 	public let hexCellPath: CGPath
 	public let outlinePath: CGPath

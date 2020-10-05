@@ -36,4 +36,23 @@ enum SwipeDirection: CaseIterable {
 				return .Unknown
 		}
 	}
+	
+	func angle() -> Double {
+		switch self {
+			case .XUp:
+				return .pi / 3.0
+			case .XDown:
+				return .pi * (4.0 / 3.0)
+			case .YUp:
+				return .pi * (2.0 / 3.0)
+			case .YDown:
+				return .pi * (5.0 / 3.0)
+			case .Left:
+				return .pi
+			case .Right:
+				return 0.0
+			default:
+				return 0.0
+		}
+	}
 }
