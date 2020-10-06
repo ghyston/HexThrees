@@ -15,6 +15,7 @@ class GameScene: SKScene {
 	
 	var overlay: SKSpriteNode?
 	var greyLayer: SKSpriteNode?
+	var tutorialSwipe: SwipeGestureNode?
 	
 	override init(size: CGSize) {
 		super.init(size: size)
@@ -61,6 +62,8 @@ class GameScene: SKScene {
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
+		tutorialSwipe?.update()
+		
 		if prevInterval == nil {
 			prevInterval = currentTime
 		}

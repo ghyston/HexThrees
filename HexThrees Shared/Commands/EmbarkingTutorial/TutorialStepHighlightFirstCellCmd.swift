@@ -24,5 +24,6 @@ class TutorialStepHighlightFirstCellCmd: GameCMD {
 			name: TutorialNodeNames.FirstCell)
 		NotificationCenter.default.post(name: .addSceneHighlight, object: [addHighlishDto])
 		NotificationCenter.default.post(name: .updateSceneDescription, object: "swipe right ➡️") //@todo: translate
+		NotificationCenter.default.post(name: .addTutorialSwipeNode, object: SwipeDirection.Right)
 	}
 }

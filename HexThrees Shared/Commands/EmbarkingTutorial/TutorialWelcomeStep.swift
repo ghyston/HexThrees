@@ -38,7 +38,8 @@ class TutorialStepWelcomeCmd: GameCMD {
 		let textDto = GameScene.TextDescriptionDto(
 			text: nil,
 			attrText: attrString,
-			yPos: GameScene.TextDescriptionPos.Top)
+			yPos: GameScene.TextDescriptionPos.Top,
+			pulsing: true)
 		
 		NotificationCenter.default.post(
 			name: .updateSceneDescription,

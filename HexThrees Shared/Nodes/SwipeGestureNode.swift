@@ -23,11 +23,8 @@ class SwipeGestureNode: SKNode {
 		let path = CGMutablePath()
 		shape = SKShapeNode(path: path)
 		shape.strokeColor = .red
-		
-		// @todo: try to use this
-		// shape.lineJoin
-		// shape.lineJoin
-		shape.lineWidth = 2 // @todo: what is length then?
+
+		shape.lineWidth = 2
 		shape.glowWidth = 2
 		shape.lineCap = .round
 		

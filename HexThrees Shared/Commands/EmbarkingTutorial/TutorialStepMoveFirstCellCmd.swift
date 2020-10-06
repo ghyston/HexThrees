@@ -16,5 +16,6 @@ class TutorialStepMoveFirstCellCmd: GameCMD {
 			delay: nil,
 			name: TutorialNodeNames.FirstCell)
 		NotificationCenter.default.post(name: .moveSceneHighlight, object: moveHighlightDto)
+		NotificationCenter.default.post(name: .removeTutorialSwipeNode, object: nil)
 	}
 }
