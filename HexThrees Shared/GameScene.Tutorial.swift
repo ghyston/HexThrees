@@ -318,7 +318,7 @@ extension GameScene {
 	
 	private func createLabel() -> SKLabelNode {
 		let label = SKLabelNode(fontNamed: "Futura Medium")
-		label.fontSize = 35
+		label.fontSize = 37
 		
 		label.fontColor = SKColor(rgb: 0xECB235)
 		label.zPosition = zPositions.tutorialDescription.rawValue
