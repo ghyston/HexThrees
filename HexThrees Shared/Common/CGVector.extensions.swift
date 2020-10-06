@@ -14,6 +14,10 @@ extension CGVector {
 	}
 
 	func squareLen() -> CGFloat {
-		return pow(self.dx, 2) + pow(self.dy, 2)
+		pow(self.dx, 2) + pow(self.dy, 2)
+	}
+	
+	func invert() -> CGVector {
+		CGVector(dx: -dx, dy: -dy)
 	}
 }

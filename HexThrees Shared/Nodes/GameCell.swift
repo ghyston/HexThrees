@@ -160,6 +160,16 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		self.run(SKAction.sequence([delayStopBlur, delete]))
 	}
 	
+	func playBounceAnimation(diff: CGVector, duration: Double) {
+		let moveThereAnimation = SKAction.move(by: diff, duration: duration)
+		moveThereAnimation.timingMode = SKActionTimingMode.easeOut
+		
+		let moveBackAnimation = SKAction.move(by: diff.invert(), duration: duration)
+		moveBackAnimation.timingMode = SKActionTimingMode.easeOut
+		self.run(SKAction.sequence([moveThereAnimation, moveBackAnimation]))
+		
+	}
+	
 	@objc func stopBlurDelayed() {
 		self.stopBlur()
 	}
