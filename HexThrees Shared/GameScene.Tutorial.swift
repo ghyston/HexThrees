@@ -248,7 +248,7 @@ extension GameScene {
 				label.attributedText = textDto.attrText
 				label.text = textDto.text
 				
-				self.createLabelBg(label: label, yPos: yPos) //@todo: memleak?
+				self.createLabelBg(label: label, yPos: yPos, pulse: textDto.pulsing)
 			},
 			SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration)
 		]
@@ -261,12 +261,16 @@ extension GameScene {
 		
 		label.removeAction(forKey: TutorialNodeNames.PulsingActionName.rawValue)
 		if textDto.pulsing {
-			let delta = 0.07
-			let zoomIn = SKAction.scale(to: CGFloat(1.0 + delta), duration: 2.0)
-			let zoomOut = SKAction.scale(to: CGFloat(1.0 - delta), duration: 2.0)
-			let foreva = SKAction.repeatForever(SKAction.sequence([zoomIn, zoomOut]))
-			label.run(foreva, withKey: TutorialNodeNames.PulsingActionName.rawValue)
+			label.run(pulseAction(), withKey: TutorialNodeNames.PulsingActionName.rawValue)
 		}
+	}
+	
+	private func pulseAction() -> SKAction {
+		let delta = 0.07
+		let zoomIn = SKAction.scale(to: CGFloat(1.0 + delta), duration: 2.0)
+		let zoomOut = SKAction.scale(to: CGFloat(1.0 - delta), duration: 2.0)
+		return SKAction.repeatForever(SKAction.sequence([zoomIn, zoomOut]))
+		
 	}
 	
 	private func removeOldLabelBg() {
@@ -290,7 +294,7 @@ extension GameScene {
 		return label
 	}
 	
-	private func createLabelBg(label: SKLabelNode, yPos: CGFloat) {
+	private func createLabelBg(label: SKLabelNode, yPos: CGFloat, pulse: Bool) {
 		let frameoverlap : CGFloat = 1.1
 		let newBg = SKShapeNode(
 			rectOf: CGSize(
@@ -304,6 +308,10 @@ extension GameScene {
 		newBg.lineWidth = 0.0
 		newBg.alpha = 0.0
 		newBg.run(SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration))
+		
+		if pulse {
+			newBg.run(pulseAction())
+		}
 		
 		addChild(newBg)
 	}
