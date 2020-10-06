@@ -70,6 +70,7 @@ extension GameScene {
 		let text: String?
 		let attrText: NSMutableAttributedString?
 		let yPos: TextDescriptionPos
+		let pulsing: Bool
 	}
 	
 	@objc func onAddHighlightCircle(notification: Notification) {
@@ -117,7 +118,7 @@ extension GameScene {
 			addDescription(textDto: descriptionDto)
 		}
 		else if let description = notification.object as? String {
-			addDescription(textDto: TextDescriptionDto(text: description, attrText: nil, yPos: .Bottom))
+			addDescription(textDto: TextDescriptionDto(text: description, attrText: nil, yPos: .Bottom, pulsing: false))
 		}
 	}
 	
@@ -257,6 +258,15 @@ extension GameScene {
 		}
 		
 		label.run(SKAction.sequence(actions))
+		
+		label.removeAction(forKey: TutorialNodeNames.PulsingActionName.rawValue)
+		if textDto.pulsing {
+			let delta = 0.07
+			let zoomIn = SKAction.scale(to: CGFloat(1.0 + delta), duration: 2.0)
+			let zoomOut = SKAction.scale(to: CGFloat(1.0 - delta), duration: 2.0)
+			let foreva = SKAction.repeatForever(SKAction.sequence([zoomIn, zoomOut]))
+			label.run(foreva, withKey: TutorialNodeNames.PulsingActionName.rawValue)
+		}
 	}
 	
 	private func removeOldLabelBg() {
