@@ -28,6 +28,7 @@ class GameConstants {
 	static let ExpandFieldAnimationDuration = 1.0
 	static let TutorialTextAppearDuration = 0.4
 	static let TutorialNodesAppearDuration = 0.6
+	static let TutorialHightlightMoveDuration = 1.0
 	
 	// Probabilities
 	static let RandomCellIsValue2Probability: Float = 0.3

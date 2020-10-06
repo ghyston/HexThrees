@@ -212,7 +212,7 @@ extension GameScene {
 			.childNode(withName: name)?
 			.run(SKAction.move(
 				to: coord,
-				duration: GameConstants.TutorialNodesAppearDuration)
+				duration: GameConstants.TutorialHightlightMoveDuration)
 				.with(mode: .easeOut))
 	}
 	
