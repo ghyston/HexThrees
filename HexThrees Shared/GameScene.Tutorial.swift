@@ -52,6 +52,19 @@ extension GameScene {
 			selector: #selector(onCreateGrayLayer),
 			name: .createTutorialGrayLayer,
 			object: nil)
+		
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onAddTutorialSwipeNode),
+			name: .addTutorialSwipeNode,
+			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onRemoveTutrorialSwipeNode),
+			name: .removeTutorialSwipeNode,
+			object: nil)
 	}
 	
 	struct HighlightCircleDto {
@@ -130,6 +143,42 @@ extension GameScene {
 			SKAction.wait(forDuration: GameConstants.TutorialTextAppearDuration), // gray layer needs to be removed before all circles will dissapear
 			SKAction.run { self.removeGreyLayer() }
 		]))
+	}
+	
+	@objc func onAddTutorialSwipeNode(notification: Notification) {
+		
+		let offsetY: CGFloat = -size.height / 4
+		let x = size.width / 3
+		var from: CGPoint
+		var to: CGPoint
+		
+		let dir = notification.object as? SwipeDirection ?? .Unknown
+		
+		switch dir {
+		case .Right:
+			from = CGPoint(x: -x, y: offsetY)
+			to = CGPoint(x: x, y: offsetY)
+		case .YUp:
+			from = CGPoint(x: x, y: -offsetY / 2.0)
+			to = CGPoint(x: 0.0, y: -offsetY / 2.0 + x * 1.732)
+		default:
+			from = CGPoint(x: 0, y: 0)
+			to = CGPoint(x: 0, y: 0)
+		}
+		
+		self.tutorialSwipe = SwipeGestureNode(
+			from: from,
+			to: to)
+		self.tutorialSwipe!.repeatIndefinitely(
+			startDelay: GameConstants.HelpVCAnimationDelay * 0.5,
+			duration: GameConstants.HelpVCAnimationDelay,
+			pause: GameConstants.HelpVCAnimationDelay * 0.5)
+		self.tutorialSwipe?.zPosition = zPositions.helpGesture.rawValue
+		addChild(self.tutorialSwipe!)
+	}
+	
+	@objc func onRemoveTutrorialSwipeNode(notification: Notification){
+		self.tutorialSwipe?.removeFromParent()
 	}
 	
 	private func addHighlightCircle(where coord: CGPoint, radius: CGFloat, name: String, delay: TimeInterval) {
