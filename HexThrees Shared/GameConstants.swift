@@ -17,6 +17,7 @@ class GameConstants {
 	
 	// Animations
 	static let SecondsPerCell = 0.20
+	static let BounceCellAnimationDuration = 0.12
 	static let BonusAnimationDuration = 0.5
 	static let GameOverScreenDelay = 1.2
 	static let StressTimerInterval = 6.0
@@ -28,6 +29,7 @@ class GameConstants {
 	static let ExpandFieldAnimationDuration = 1.0
 	static let TutorialTextAppearDuration = 0.4
 	static let TutorialNodesAppearDuration = 0.6
+	static let TutorialHightlightMoveDuration = 1.0
 	
 	// Probabilities
 	static let RandomCellIsValue2Probability: Float = 0.3

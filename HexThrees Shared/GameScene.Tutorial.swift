@@ -52,6 +52,19 @@ extension GameScene {
 			selector: #selector(onCreateGrayLayer),
 			name: .createTutorialGrayLayer,
 			object: nil)
+		
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onAddTutorialSwipeNode),
+			name: .addTutorialSwipeNode,
+			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onRemoveTutrorialSwipeNode),
+			name: .removeTutorialSwipeNode,
+			object: nil)
 	}
 	
 	struct HighlightCircleDto {
@@ -70,6 +83,7 @@ extension GameScene {
 		let text: String?
 		let attrText: NSMutableAttributedString?
 		let yPos: TextDescriptionPos
+		let pulsing: Bool
 	}
 	
 	@objc func onAddHighlightCircle(notification: Notification) {
@@ -117,7 +131,7 @@ extension GameScene {
 			addDescription(textDto: descriptionDto)
 		}
 		else if let description = notification.object as? String {
-			addDescription(textDto: TextDescriptionDto(text: description, attrText: nil, yPos: .Bottom))
+			addDescription(textDto: TextDescriptionDto(text: description, attrText: nil, yPos: .Bottom, pulsing: false))
 		}
 	}
 	
@@ -129,6 +143,42 @@ extension GameScene {
 			SKAction.wait(forDuration: GameConstants.TutorialTextAppearDuration), // gray layer needs to be removed before all circles will dissapear
 			SKAction.run { self.removeGreyLayer() }
 		]))
+	}
+	
+	@objc func onAddTutorialSwipeNode(notification: Notification) {
+		
+		let offsetY: CGFloat = -size.height / 4
+		let x = size.width / 3
+		var from: CGPoint
+		var to: CGPoint
+		
+		let dir = notification.object as? SwipeDirection ?? .Unknown
+		
+		switch dir {
+		case .Right:
+			from = CGPoint(x: -x, y: offsetY)
+			to = CGPoint(x: x, y: offsetY)
+		case .YUp:
+			from = CGPoint(x: x, y: -offsetY / 2.0)
+			to = CGPoint(x: 0.0, y: -offsetY / 2.0 + x * 1.732)
+		default:
+			from = CGPoint(x: 0, y: 0)
+			to = CGPoint(x: 0, y: 0)
+		}
+		
+		self.tutorialSwipe = SwipeGestureNode(
+			from: from,
+			to: to)
+		self.tutorialSwipe!.repeatIndefinitely(
+			startDelay: GameConstants.HelpVCAnimationDelay * 0.5,
+			duration: GameConstants.HelpVCAnimationDelay,
+			pause: GameConstants.HelpVCAnimationDelay * 0.5)
+		self.tutorialSwipe?.zPosition = zPositions.helpGesture.rawValue
+		addChild(self.tutorialSwipe!)
+	}
+	
+	@objc func onRemoveTutrorialSwipeNode(notification: Notification){
+		self.tutorialSwipe?.removeFromParent()
 	}
 	
 	private func addHighlightCircle(where coord: CGPoint, radius: CGFloat, name: String, delay: TimeInterval) {
@@ -162,7 +212,7 @@ extension GameScene {
 			.childNode(withName: name)?
 			.run(SKAction.move(
 				to: coord,
-				duration: GameConstants.TutorialNodesAppearDuration)
+				duration: GameConstants.TutorialHightlightMoveDuration)
 				.with(mode: .easeOut))
 	}
 	
@@ -247,7 +297,7 @@ extension GameScene {
 				label.attributedText = textDto.attrText
 				label.text = textDto.text
 				
-				self.createLabelBg(label: label, yPos: yPos) //@todo: memleak?
+				self.createLabelBg(label: label, yPos: yPos, pulse: textDto.pulsing)
 			},
 			SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration)
 		]
@@ -257,6 +307,19 @@ extension GameScene {
 		}
 		
 		label.run(SKAction.sequence(actions))
+		
+		label.removeAction(forKey: TutorialNodeNames.PulsingActionName.rawValue)
+		if textDto.pulsing {
+			label.run(pulseAction(), withKey: TutorialNodeNames.PulsingActionName.rawValue)
+		}
+	}
+	
+	private func pulseAction() -> SKAction {
+		let delta = 0.07
+		let zoomIn = SKAction.scale(to: CGFloat(1.0 + delta), duration: 2.0)
+		let zoomOut = SKAction.scale(to: CGFloat(1.0 - delta), duration: 2.0)
+		return SKAction.repeatForever(SKAction.sequence([zoomIn, zoomOut]))
+		
 	}
 	
 	private func removeOldLabelBg() {
@@ -280,7 +343,7 @@ extension GameScene {
 		return label
 	}
 	
-	private func createLabelBg(label: SKLabelNode, yPos: CGFloat) {
+	private func createLabelBg(label: SKLabelNode, yPos: CGFloat, pulse: Bool) {
 		let frameoverlap : CGFloat = 1.1
 		let newBg = SKShapeNode(
 			rectOf: CGSize(
@@ -295,12 +358,16 @@ extension GameScene {
 		newBg.alpha = 0.0
 		newBg.run(SKAction.fadeIn(withDuration: GameConstants.TutorialTextAppearDuration))
 		
+		if pulse {
+			newBg.run(pulseAction())
+		}
+		
 		addChild(newBg)
 	}
 	
 	private func createLabel() -> SKLabelNode {
 		let label = SKLabelNode(fontNamed: "Futura Medium")
-		label.fontSize = 35
+		label.fontSize = 37
 		
 		label.fontColor = SKColor(rgb: 0xECB235)
 		label.zPosition = zPositions.tutorialDescription.rawValue

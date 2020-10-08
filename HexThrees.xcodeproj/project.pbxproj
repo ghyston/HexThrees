@@ -39,6 +39,7 @@
 		3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5120C9989D00A979D5 /* PaletteManager.swift */; };
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
 		3F28467C251511FF00911A90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F28467B251511FF00911A90 /* StoreKit.framework */; };
+		3F28469F252BB69500911A90 /* BounceCellSpriteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */; };
 		3F28469625277F7700911A90 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28469525277F7700911A90 /* IAPHelper.swift */; };
 		3F29E294232F5DAA00091D0B /* IncCollectableBonusCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */; };
 		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
@@ -218,6 +219,7 @@
 		3F21DF5120C9989D00A979D5 /* PaletteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteManager.swift; sourceTree = "<group>"; };
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
 		3F28467B251511FF00911A90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceCellSpriteCMD.swift; sourceTree = "<group>"; };
 		3F28469525277F7700911A90 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
 		3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncCollectableBonusCmd.swift; sourceTree = "<group>"; };
 		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				3FAC646920BC84980083C56C /* SwitchParentsCMD.swift */,
 				3FAC646C20BC85320083C56C /* MoveCellSpriteCMD.swift */,
 				3FAC645020B5E1240083C56C /* MoveLineCMD.swift */,
+				3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */,
 			);
 			path = MoveCells;
 			sourceTree = "<group>";
@@ -912,6 +915,7 @@
 				3FB4CC9C243B5EF200720FC3 /* CollectableButtonsPanel.swift in Sources */,
 				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,
 				3FA3A21621ED2B4C00111471 /* SelectHapticFeedbackCMD.swift in Sources */,
+				3F28469F252BB69500911A90 /* BounceCellSpriteCMD.swift in Sources */,
 				3FEA7AD22188385A007F50D8 /* AddRandomElementsCmd.swift in Sources */,
 				3FA30C10246C27E500B37CAC /* TutorialManager.swift in Sources */,
 				3FA3A21221ED05D500111471 /* ImpactHapticFeedback.swift in Sources */,

@@ -16,6 +16,7 @@ enum TutorialNodeNames: String {
 	case SecondCell = "second_cell"
 	case BonusCell = "bonus_cell"
 	case TimerCell = "timer_cell"
+	case PulsingActionName = "pulsing_description"
 }
 
 class TutorialManager {

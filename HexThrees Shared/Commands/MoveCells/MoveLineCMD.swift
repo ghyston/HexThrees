@@ -27,14 +27,15 @@ class MoveLineCMD: GameCMD {
 	}
 	
 	private func processCell(counter: Int) {
+		func notEmpty(cell: BgCell) -> Bool {
+			cell.gameCell != nil
+		}
+		
 		// end of algorithm : last cell achieved
 		if counter >= cells.count {
 			return
 		}
-		
-		func notEmpty(cell: BgCell) -> Bool {
-			return cell.gameCell != nil
-		}
+
 		
 		// end of algorithm : no more cells with values
 		guard let first = cells.findNext(
@@ -80,7 +81,16 @@ class MoveLineCMD: GameCMD {
 	}
 	
 	private func moveCell(from: Int, to: Int) {
+		let fromCell = cells[from]
+		let toCell = cells[to]
+		
 		if from == to {
+			BounceCellSpriteCMD(gameModel)
+				.run(
+					cell: fromCell.gameCell!,
+					direction: direction,
+					gapCount: from,
+					duration: GameConstants.BounceCellAnimationDuration)
 			return
 		}
 		
@@ -89,9 +99,6 @@ class MoveLineCMD: GameCMD {
 		cells.cellsAvailableForMove(from, to)
 		
 		pickUpBonuses(from, to)
-		
-		let fromCell = cells[from]
-		let toCell = cells[to]
 		
 		SwitchParentsCMD(gameModel).run(from: fromCell, to: toCell)
 		

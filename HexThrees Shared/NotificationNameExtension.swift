@@ -30,4 +30,6 @@ extension NSNotification.Name {
 	static let updateSceneDescription = Notification.Name(rawValue: "update_scene_description")
 	static let cleanTutorialScene = Notification.Name(rawValue: "clean_tutorial_scene")
 	static let createTutorialGrayLayer = Notification.Name(rawValue: "create_tutorial_gray_layer")
+	static let addTutorialSwipeNode = Notification.Name(rawValue: "add_tutorial_swipe_node")
+	static let removeTutorialSwipeNode = Notification.Name(rawValue: "remove_tutorial_swipe_node")
 }
