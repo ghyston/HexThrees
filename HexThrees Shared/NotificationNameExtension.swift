@@ -32,4 +32,13 @@ extension NSNotification.Name {
 	static let createTutorialGrayLayer = Notification.Name(rawValue: "create_tutorial_gray_layer")
 	static let addTutorialSwipeNode = Notification.Name(rawValue: "add_tutorial_swipe_node")
 	static let removeTutorialSwipeNode = Notification.Name(rawValue: "remove_tutorial_swipe_node")
+	
+	static let showSpinner = Notification.Name(rawValue: "show_spinner")
+	static let hideSpinner = Notification.Name(rawValue: "hide_spinner")
+	
+	static let purchaseSuccessfull = Notification.Name(rawValue: "purchase_successfull")
+	static let purchaseDeffered = Notification.Name(rawValue: "purchase_deffered")
+	static let restoreSuccessfull = Notification.Name(rawValue: "restore_successfull")
+	static let purchaiseFailed = Notification.Name(rawValue: "purchaise_failed")
+	static let productNotFound = Notification.Name(rawValue: "product_not_found")
 }

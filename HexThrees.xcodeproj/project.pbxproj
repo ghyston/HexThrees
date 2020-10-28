@@ -39,11 +39,12 @@
 		3F21DF5220C9989D00A979D5 /* PaletteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5120C9989D00A979D5 /* PaletteManager.swift */; };
 		3F21DF5520C9DE8600A979D5 /* Random.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */; };
 		3F28467C251511FF00911A90 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F28467B251511FF00911A90 /* StoreKit.framework */; };
-		3F28469F252BB69500911A90 /* BounceCellSpriteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */; };
 		3F28469625277F7700911A90 /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28469525277F7700911A90 /* IAPHelper.swift */; };
+		3F28469F252BB69500911A90 /* BounceCellSpriteCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */; };
 		3F29E294232F5DAA00091D0B /* IncCollectableBonusCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */; };
 		3F29E296232F5EBC00091D0B /* CollectableBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F29E295232F5EBC00091D0B /* CollectableBtn.swift */; };
 		3F29E298233126F100091D0B /* collectableButton.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3F29E297233126F100091D0B /* collectableButton.fsh */; };
+		3F2B66FE2536415E00CB7625 /* RestorePurchaseCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B66FD2536415E00CB7625 /* RestorePurchaseCmd.swift */; };
 		3F2D81EC21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */; };
 		3F2D81F121C6C12600A48CD1 /* MotionBlurStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */; };
 		3F2D81F321C6C14100A48CD1 /* ColorSchemaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */; };
@@ -141,7 +142,9 @@
 		3FC380D2248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D1248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift */; };
 		3FC380D4248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */; };
 		3FC380D6248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */; };
-		3FC380D8248AA51400EEF6F3 /* DoPurchaseCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D7248AA51400EEF6F3 /* DoPurchaseCmd.swift */; };
+		3FC380D8248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D7248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift */; };
+		3FD21DF22548276D00F65A23 /* RequestStoreProductCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD21DF12548276D00F65A23 /* RequestStoreProductCMD.swift */; };
+		3FD21DFE2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD21DFD2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift */; };
 		3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8328B2436335300902B7C /* blockSwipe.fsh */; };
 		3FD8328E243634D400902B7C /* SwipeBlockCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */; };
 		3FD832902436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */; };
@@ -219,11 +222,12 @@
 		3F21DF5120C9989D00A979D5 /* PaletteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaletteManager.swift; sourceTree = "<group>"; };
 		3F21DF5420C9DE8600A979D5 /* Random.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.extensions.swift; sourceTree = "<group>"; };
 		3F28467B251511FF00911A90 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
-		3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceCellSpriteCMD.swift; sourceTree = "<group>"; };
 		3F28469525277F7700911A90 /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		3F28469E252BB69400911A90 /* BounceCellSpriteCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceCellSpriteCMD.swift; sourceTree = "<group>"; };
 		3F29E293232F5DAA00091D0B /* IncCollectableBonusCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncCollectableBonusCmd.swift; sourceTree = "<group>"; };
 		3F29E295232F5EBC00091D0B /* CollectableBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableBtn.swift; sourceTree = "<group>"; };
 		3F29E297233126F100091D0B /* collectableButton.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = collectableButton.fsh; sourceTree = "<group>"; };
+		3F2B66FD2536415E00CB7625 /* RestorePurchaseCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePurchaseCmd.swift; sourceTree = "<group>"; };
 		3F2D81EB21C50EC600A48CD1 /* SwitchMotionBlurCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchMotionBlurCMD.swift; sourceTree = "<group>"; };
 		3F2D81F021C6C12600A48CD1 /* MotionBlurStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionBlurStatus.swift; sourceTree = "<group>"; };
 		3F2D81F221C6C14100A48CD1 /* ColorSchemaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemaType.swift; sourceTree = "<group>"; };
@@ -322,7 +326,9 @@
 		3FC380D1248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialAvoidTimerCmd.swift; sourceTree = "<group>"; };
 		3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialKeepSwipingCmd.swift; sourceTree = "<group>"; };
 		3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPurchasePopupCmd.swift; sourceTree = "<group>"; };
-		3FC380D7248AA51400EEF6F3 /* DoPurchaseCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoPurchaseCmd.swift; sourceTree = "<group>"; };
+		3FC380D7248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFullVersionCmd.swift; sourceTree = "<group>"; };
+		3FD21DF12548276D00F65A23 /* RequestStoreProductCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStoreProductCMD.swift; sourceTree = "<group>"; };
+		3FD21DFD2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalizeSuccPurchaseCMD.swift; sourceTree = "<group>"; };
 		3FD8328B2436335300902B7C /* blockSwipe.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockSwipe.fsh; sourceTree = "<group>"; };
 		3FD8328D243634D400902B7C /* SwipeBlockCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBlockCmd.swift; sourceTree = "<group>"; };
 		3FD8328F2436388700902B7C /* UnlockSwypeBlockedCellsCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnlockSwypeBlockedCellsCmd.swift; sourceTree = "<group>"; };
@@ -517,6 +523,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3F2B66FA25363ED100CB7625 /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */,
+				3FC380D7248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift */,
+				3F2B66FD2536415E00CB7625 /* RestorePurchaseCmd.swift */,
+				3FD21DF12548276D00F65A23 /* RequestStoreProductCMD.swift */,
+				3FD21DFD2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift */,
+			);
+			path = Purchase;
+			sourceTree = "<group>";
+		};
 		3F2D81ED21C6C0B500A48CD1 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -600,6 +618,7 @@
 		3FAC644920B5DD7E0083C56C /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				3F2B66FA25363ED100CB7625 /* Purchase */,
 				3F467731248112620086B511 /* EmbarkingTutorial */,
 				3F321932234E519800526D96 /* GameState */,
 				3F083AA7234DAF88000F5B6B /* SelectCell */,
@@ -635,8 +654,6 @@
 				3FF444AA2452E3AD00C5F5D0 /* SwitchUseButtonsCmd.swift */,
 				3FF444AC2457258E00C5F5D0 /* TriggerFieldExpansionCmd.swift */,
 				3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */,
-				3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */,
-				3FC380D7248AA51400EEF6F3 /* DoPurchaseCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -834,7 +851,7 @@
 				3F95A6BD20E8E4E90052E1C6 /* NotificationNameExtension.swift in Sources */,
 				3F3DDAB124851EEF00417C3D /* TutorialShowTimerCmd.swift in Sources */,
 				3F95A6C320E8F1610052E1C6 /* CleanGameCmd.swift in Sources */,
-				3FC380D8248AA51400EEF6F3 /* DoPurchaseCmd.swift in Sources */,
+				3FC380D8248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift in Sources */,
 				3F95A6CB20EFFA970052E1C6 /* SaveGameCMD.swift in Sources */,
 				3FA3A50B2175A6E90005B37D /* GameOverVC.swift in Sources */,
 				3F2D81F721C6C1D500A48CD1 /* HapticFeedbackStatus.swift in Sources */,
@@ -849,6 +866,7 @@
 				3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
 				3F3DDAA92485007D00417C3D /* TutorialEveryTurnDescriptionCmd.swift in Sources */,
 				3F21DF4920C8F79600A979D5 /* SKColor.extensions.swift in Sources */,
+				3F2B66FE2536415E00CB7625 /* RestorePurchaseCmd.swift in Sources */,
 				3F11E62E234BA188003294EC /* SelectableNode.swift in Sources */,
 				3FAC647020BC89530083C56C /* RemoveCellCMD.swift in Sources */,
 				3F29E294232F5DAA00091D0B /* IncCollectableBonusCmd.swift in Sources */,
@@ -912,6 +930,7 @@
 				3FA3A51021770F610005B37D /* ColorSchemas.swift in Sources */,
 				3FB703A320DA1C93009718F3 /* UnlockRandomCellCMD.swift in Sources */,
 				3F8D11522280A9410034BC6D /* HelpSwypeNode.swift in Sources */,
+				3FD21DF22548276D00F65A23 /* RequestStoreProductCMD.swift in Sources */,
 				3FB4CC9C243B5EF200720FC3 /* CollectableButtonsPanel.swift in Sources */,
 				3F064871215B9070005461C7 /* MoveYDownIterator.swift in Sources */,
 				3FA3A21621ED2B4C00111471 /* SelectHapticFeedbackCMD.swift in Sources */,
@@ -926,6 +945,7 @@
 				3F11087D2190B591007743DF /* FileHelper.swift in Sources */,
 				3F06487C21613827005461C7 /* MoveXUpIterator.swift in Sources */,
 				3F555CE6208E7AA5003C67A7 /* MergingStrategies.swift in Sources */,
+				3FD21DFE2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift in Sources */,
 				3F708D9D2326259F008B95F1 /* AddCellByTimerCMD.swift in Sources */,
 				3F06B357207C81E000C8315A /* GameVC.swift in Sources */,
 				3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */,

@@ -12,27 +12,53 @@ import StoreKit
 typealias ProductIdentifier = String
 
 class IAPHelper: NSObject {
-	private let fullVersionIdentifier = "com.hyston.hexthrees.iap.fullversion"
+	private let fullVersionIdentifier = "com.hyston.HexThrees.fullversioniap"
+	
+	private var fullVersionProduct: SKProduct?
 	
 	static let shared = IAPHelper()
 	
-	private override init() {}
-	
-	enum IAPHelperError: Error {
-		case noProductIDsFound
-		case noProductsFound
-		case paymentWasCancelled
-		case productRequestFailed
+	func canBePurchased() -> Bool {
+		SKPaymentQueue.canMakePayments()
 	}
 	
-	var onReceiveProductsHandler: ((Result<[SKProduct], IAPHelperError>) -> Void)?
+	func productIsSet() -> Bool {
+		fullVersionProduct != nil
+	}
 	
-	func getProducts(withHandler productsReceiveHandler: @escaping (_ result: Result<[SKProduct], IAPHelperError>) -> Void) {
-		onReceiveProductsHandler = productsReceiveHandler
+	private override init() {}
+	
+	func updateProducts() {
+		if !SKPaymentQueue.canMakePayments() {
+			return
+		}
 
-		let request = SKProductsRequest(productIdentifiers: Set([fullVersionIdentifier]))
+		let identifiers = [fullVersionIdentifier]
+		let request = SKProductsRequest(productIdentifiers: Set(identifiers))
 		request.delegate = self
 		request.start()
+	}
+	
+	func buy() {
+		guard let product = fullVersionProduct else {
+			handleProductNotFound()
+			return
+		}
+		
+		let payment = SKMutablePayment(product: product)
+		SKPaymentQueue.default().add(payment)
+	}
+	
+	func restore() {
+		SKPaymentQueue.default().restoreCompletedTransactions()
+	}
+	
+	func getFullVersionPriceFormatted() -> String? {
+		guard let product = fullVersionProduct else {
+			return nil
+		}
+		
+		return getPriceFormatted(for: product)
 	}
 	
 	private func getPriceFormatted(for product: SKProduct) -> String? {
@@ -43,25 +69,60 @@ class IAPHelper: NSObject {
 	}
 }
 
-extension IAPHelper: SKProductsRequestDelegate {
-	func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-		onReceiveProductsHandler?(response.products.count > 0
-									? .success(response.products)
-									: .failure(.noProductsFound))
+// MARK: Purchase handlers
+extension IAPHelper {
+	
+	fileprivate func handlePurchased(_ transaction: SKPaymentTransaction) {
+		broadcast(.purchaseSuccessfull)
+		SKPaymentQueue.default().finishTransaction(transaction)
 	}
 	
-	func request(_ request: SKRequest, didFailWithError error: Error) {
-		onReceiveProductsHandler?(.failure(.productRequestFailed))
+	fileprivate func handleFailed(_ transaction: SKPaymentTransaction) {
+		broadcast(.purchaiseFailed)
+		SKPaymentQueue.default().finishTransaction(transaction)
+	}
+	
+	fileprivate func handleRestored(_ transaction: SKPaymentTransaction) {
+		broadcast(.restoreSuccessfull)
+		SKPaymentQueue.default().finishTransaction(transaction)
+	}
+	
+	fileprivate func handleDeffered(_ transaction: SKPaymentTransaction) {
+		broadcast(.purchaseDeffered)
+	}
+	
+	fileprivate func handleProductNotFound() {
+		broadcast(.productNotFound)
+	}
+	
+	private func broadcast(_ name: NSNotification.Name) {
+		DispatchQueue.main.async {
+			NotificationCenter.default.post(
+				name: name,
+				object: nil)
+		}
 	}
 }
 
-extension IAPHelper.IAPHelperError: LocalizedError {
-	var errorDescription: String? {
-		switch self {
-		case .noProductIDsFound: return "No In-App Purchase product identifiers were found."
-		case .noProductsFound: return "No In-App Purchases were found."
-		case .productRequestFailed: return "Unable to fetch available In-App Purchase products at the moment."
-		case .paymentWasCancelled: return "In-App Purchase process was cancelled."
+// MARK: SKProductsRequestDelegate
+extension IAPHelper: SKProductsRequestDelegate {
+	func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+		self.fullVersionProduct = response.products.first {$0.productIdentifier == fullVersionIdentifier}
+	}
+}
+
+// MARK: SKPaymentTransactionObserver
+extension IAPHelper: SKPaymentTransactionObserver {
+	func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+		for transaction in transactions {
+			switch transaction.transactionState {
+			case .purchasing: break;
+			case .deferred: handleDeffered(transaction)
+			case .purchased: handlePurchased(transaction)
+			case .failed: handleFailed(transaction)
+			case .restored: handleRestored(transaction)
+			@unknown default: fatalError("Unknown payment transaction case.")
+			}
 		}
 	}
 }

@@ -65,6 +65,18 @@ extension GameScene {
 			selector: #selector(onRemoveTutrorialSwipeNode),
 			name: .removeTutorialSwipeNode,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onShowSpinner),
+			name: .showSpinner,
+			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(onHideSpinner),
+			name: .hideSpinner,
+			object: nil)
 	}
 	
 	struct HighlightCircleDto {
@@ -85,6 +97,8 @@ extension GameScene {
 		let yPos: TextDescriptionPos
 		let pulsing: Bool
 	}
+	
+// MARK: Callbacks
 	
 	@objc func onAddHighlightCircle(notification: Notification) {
 		guard let highlightCircleDtos = notification.object as? [HighlightCircleDto] else {
@@ -180,6 +194,44 @@ extension GameScene {
 	@objc func onRemoveTutrorialSwipeNode(notification: Notification){
 		self.tutorialSwipe?.removeFromParent()
 	}
+
+	@objc func onShowSpinner(notification: Notification) {
+		createGreyLayer()
+		
+		/*let effectNode = SKEffectNode()
+		let blurFilter = CIFilter(name: "CIZoomBlur")!
+		blurFilter.setValue(10.0, forKey: kCIInputRadiusKey)
+		blurFilter.setValue(CGPoint(x: 0.5, y: 0.5), forKeyPath: kCIInputCenterKey)
+		effectNode.filter = blurFilter*/
+		
+		let spinnerShape = notification.object as! SKShapeNode
+		spinnerShape.fillColor = .lightGray
+		
+		let innerPart = SKShapeNode(path: spinnerShape.path!)
+		innerPart.setScale(0.8)
+		innerPart.fillColor = .white
+		innerPart.strokeColor = .darkGray
+		
+		let innerRotateAction = SKAction.rotate(byAngle: .pi * 2, duration: 0.5)
+		let innerInfinity = SKAction.repeatForever(innerRotateAction)
+		innerPart.run(innerInfinity)
+		
+		spinnerShape.addChild(innerPart)
+		
+		let rotateAction = SKAction.rotate(byAngle: .pi * 2, duration: 2.0)
+		let infinity = SKAction.repeatForever(rotateAction)
+		spinnerShape.run(infinity)
+		spinnerShape.zPosition = zPositions.loadingSpinner.rawValue
+		spinnerShape.name = TutorialNodeNames.LoadingSpinner.rawValue
+		addChild(spinnerShape)
+	}
+	
+	@objc func onHideSpinner(notification: Notification) {
+		removeGreyLayer()
+		childNode(withName: TutorialNodeNames.LoadingSpinner.rawValue)?.removeFromParent()
+	}
+	
+	// MARK: Helper functions
 	
 	private func addHighlightCircle(where coord: CGPoint, radius: CGFloat, name: String, delay: TimeInterval) {
 		let isFirst = greyLayer == nil

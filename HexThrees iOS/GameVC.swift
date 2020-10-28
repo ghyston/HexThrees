@@ -9,7 +9,6 @@
 
 import GameplayKit
 import SpriteKit
-import StoreKit
 import UIKit
 
 class GameVC: UIViewController {
@@ -60,15 +59,6 @@ class GameVC: UIViewController {
 		
 		self.registerObservers()
 		self.startGame()
-		
-		IAPHelper.shared.getProducts(withHandler: onProductsUpdated)
-	}
-	
-	func onProductsUpdated(result: Result<[SKProduct], IAPHelper.IAPHelperError>) {
-		switch result {
-			case .success(let products): print("products: \(products)")
-			case .failure(let error): print("error! \(error)")
-		}
 	}
 	
 	override func viewDidLayoutSubviews() {
@@ -166,6 +156,7 @@ class GameVC: UIViewController {
 		self.switchButtons(hidden: settings.useButtons == UseButtonStatus.Disabled)
 		self.createPalette(settings.palette)
 		self.createModel(settings)
+		self.loadStoreProducts()
 		
 		let cmdFactory: ICmdFactory = GameCmdFactory(self.gameModel!)
 		ContainerConfig.instance.register(cmdFactory)
@@ -219,6 +210,10 @@ class GameVC: UIViewController {
 			_ = ShowPurchasePopupCmd(gameModel!).runWithDelay(delay: 1.0)
 			return
 		}
+	}
+	
+	private func loadStoreProducts() {
+		RequestStoreProductCMD(self.gameModel!).run()
 	}
 	
 	private func createTutorialGame() {
@@ -322,6 +317,24 @@ class GameVC: UIViewController {
 			selector: #selector(self.onFreeLimitReached),
 			name: .freeLimitReached,
 			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.onPurchaseSuccessfull),
+			name: .purchaseSuccessfull,
+			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.onPurchaseFailed),
+			name: .purchaiseFailed,
+			object: nil)
+		
+		NotificationCenter.default.addObserver(
+			self,
+			selector: #selector(self.showProductNotFoundPopup),
+			name: .productNotFound,
+			object: nil)
 	}
 	
 	@objc func onGameReset(notification: Notification) {
@@ -402,38 +415,21 @@ class GameVC: UIViewController {
 	}
 	
 	@objc private func onFreeLimitReached() {
-		let limitAlert = UIAlertController(
-			title: "Purchase",
-			message: "You reached limit of free HexTrees version. Would you like to unlock full version?",
-			preferredStyle: UIAlertController.Style.alert)
+		guard !gameModel!.purchased else {
+			return
+		}
 		
-		limitAlert.addAction(UIAlertAction(
-			title: "Reset game",
-			style: .destructive,
-			handler: onConfirmReset))
+		guard IAPHelper.shared.canBePurchased() else {
+			showUnableToPurchasePopup()
+			return
+		}
 		
-		limitAlert.addAction(UIAlertAction(
-			title: "Unlock full version",
-			style: .cancel,
-			handler: onPurchase))
+		guard IAPHelper.shared.productIsSet() else {
+			showProductNotFoundPopup()
+			return
+		}
 		
-		/*limitAlert.addAction(UIAlertAction(
-			title: "Restore purchases",
-			style: .cancel,
-			handler: nil))*/
-		
-		present(limitAlert, animated: true, completion: nil)
-	}
-	
-	private func onConfirmReset(action: UIAlertAction) {
-		restartGame()
-	}
-	
-	//@todo: implement it actually
-	//@todo: where restore purchases should be possible?
-	private func onPurchase(action: UIAlertAction) {
-		DoPurchaseCmd(self.gameModel!).run()
-		CheckGameEndCmd(self.gameModel!).run()
+		showPurchasePopup()
 	}
 	
 	private func handleSwipe(direction: SwipeDirection) {
@@ -470,6 +466,146 @@ class GameVC: UIViewController {
 	
 	@IBAction func onYDownClick(_ sender: Any) {
 		self.handleSwipe(direction: .YDown)
+	}
+}
+
+// MARK: Purchasement UI
+
+extension GameVC {
+	private func showPurchasePopup() {
+		let limitAlert = UIAlertController(
+			title: "Purchase",
+			message: "You reached limit of free HexTrees version. Would you like to unlock full version?",
+			preferredStyle: UIAlertController.Style.alert)
+		
+		limitAlert.addAction(UIAlertAction(
+			title: "Reset game",
+			style: .destructive,
+			handler: onConfirmReset))
+		
+		let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
+		
+		limitAlert.addAction(UIAlertAction(
+			title: "Unlock full version for \(price)",
+			style: .default,
+			handler: onPurchaseClick))
+		
+		limitAlert.addAction(UIAlertAction(
+			title: "Restore purchases",
+			style: .default,
+			handler: onRestoreClick))
+		
+		present(limitAlert, animated: true, completion: nil)
+	}
+	
+	private func showUnableToPurchasePopup() {
+		let alert = UIAlertController(
+			title: "Purchase",
+			message: "In-app purchases are not allowed",
+			preferredStyle: UIAlertController.Style.alert)
+		
+		alert.addAction(UIAlertAction(
+			title: "Reset game",
+			style: .destructive,
+			handler: onConfirmReset))
+		
+		present(alert, animated: true, completion: nil)
+	}
+	
+	@objc private func showProductNotFoundPopup() {
+		let alert = UIAlertController(
+			title: "Purchase",
+			message: "AppStore full version product not found",
+			preferredStyle: UIAlertController.Style.alert)
+		
+		alert.addAction(UIAlertAction(
+			title: "Reset game",
+			style: .destructive,
+			handler: onConfirmReset))
+		
+		present(alert, animated: true, completion: nil)
+	}
+	
+	private func onConfirmReset(action: UIAlertAction) {
+		restartGame()
+	}
+	
+	private func onPurchaseClick(action: UIAlertAction) {
+		startLoadingSpinner()
+		PurchaseFullVersionCmd(self.gameModel!).run()
+	}
+	
+	private func onRestoreClick(action: UIAlertAction) {
+		RestorePurchaseCmd(self.gameModel!).run()
+		CheckGameEndCmd(self.gameModel!).run()
+	}
+	
+	@objc private func onPurchaseSuccessfull() {
+		onHappyPurchase(customerMessage: "Thank you for purchaising HexThrees!")
+	}
+	
+	@objc private func onRestoreSuccessfull() {
+		onHappyPurchase(customerMessage: "Full version restored successfully")
+	}
+	
+	@objc private func onPurchaseFailed() {
+		onSadPurchase(customerMessage: "Purchaise failed")
+	}
+	
+	@objc func onPurchaseDeferred() {
+		onSadPurchase(customerMessage: "Purchaise is deffered")
+	}
+	
+	private func onHappyPurchase(customerMessage: String) {
+		FinalizeSuccPurchaseCMD(gameModel!).run()
+		let alert = UIAlertController(
+			title: "Full version",
+			message: customerMessage,
+			preferredStyle: UIAlertController.Style.alert)
+		
+		alert.addAction(UIAlertAction(
+			title: "Continue to play",
+			style: .default,
+			handler: onContinuePlay))
+		
+		present(alert, animated: true, completion: nil)
+	}
+	
+	private func onSadPurchase(customerMessage: String) {
+		stopLoadingSpinner()
+		let alert = UIAlertController(
+			title: "Purchase",
+			message: customerMessage,
+			preferredStyle: UIAlertController.Style.alert)
+		
+		alert.addAction(UIAlertAction(
+			title: "Reset game",
+			style: .destructive,
+			handler: onConfirmReset))
+		
+		alert.addAction(UIAlertAction(
+			title: "Try again",
+			style: .default,
+			handler: onPurchaseClick))
+		
+		present(alert, animated: true, completion: nil)
+	}
+	
+	private func onContinuePlay(action: UIAlertAction) {
+		self.gameModel!.swipeStatus.unlockSwipes()
+		CheckGameEndCmd(self.gameModel!).run()
+	}
+	
+	private func startLoadingSpinner() {
+		NotificationCenter.default.post(
+			name: .showSpinner,
+			object: gameModel!.geometry?.createBgCellShape())
+	}
+	
+	private func stopLoadingSpinner() {
+		NotificationCenter.default.post(
+			name: .hideSpinner,
+			object: nil)
 	}
 }
 
