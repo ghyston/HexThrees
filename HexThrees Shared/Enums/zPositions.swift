@@ -22,5 +22,6 @@ enum zPositions: CGFloat {
 	case tutorialHighlight = 50
 	case tutorialDescriptionBg = 55
 	case tutorialDescription = 60
+	case loadingSpinner = 66
 	case helpGesture = 100
 }

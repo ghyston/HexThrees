@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DoPurchaseCmd : GameCMD {
+class PurchaseFullVersionCmd : GameCMD {
 	override func run() {
 		self.gameModel.purchased = true
 		//UserDefaults.standard.set(true, forKey: SettingsKey.Purchased.rawValue) //@todo: uncomment it after testing

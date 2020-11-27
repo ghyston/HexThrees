@@ -251,8 +251,8 @@
             timestampString = "590518726.6207809"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "updateSceneColor()"
             landmarkType = "7">
          </BreakpointContent>
@@ -774,8 +774,8 @@
             timestampString = "590518726.621691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "registerObservers()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1226,8 +1226,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "createModel(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1290,8 +1290,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "onColorChange(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1306,8 +1306,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "331"
-            endingLineNumber = "331"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "onColorChange(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1512,8 +1512,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "startGame()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1528,8 +1528,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "startGame()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1544,8 +1544,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "onFreeLimitReached()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1560,8 +1560,8 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "415"
-            endingLineNumber = "415"
+            startingLineNumber = "425"
+            endingLineNumber = "425"
             landmarkName = "onFreeLimitReached()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1688,10 +1688,73 @@
             filePath = "HexThrees iOS/GameVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "createPalette(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5BAA1FEA-64B6-4A5D-B32A-31EE1BA4C825"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HexThrees iOS/GameVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "onProductsUpdated(result:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5BAA1FEA-64B6-4A5D-B32A-31EE1BA4C825 - d554e392ad50e702"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HexThrees.GameVC.onProductsUpdated(result: Swift.Result&lt;Swift.Array&lt;__C.SKProduct&gt;, HexThrees.IAPHelper.IAPHelperError&gt;) -&gt; ()"
+                  moduleName = "HexThrees"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hyston/Projects/Games/HexThrees/HexThrees%20iOS/GameVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "108">
+               </Location>
+               <Location
+                  uuid = "5BAA1FEA-64B6-4A5D-B32A-31EE1BA4C825 - d554e392ad50e702"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HexThrees.GameVC.onProductsUpdated(result: Swift.Result&lt;Swift.Array&lt;__C.SKProduct&gt;, HexThrees.IAPHelper.IAPHelperError&gt;) -&gt; ()"
+                  moduleName = "HexThrees"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hyston/Projects/Games/HexThrees/HexThrees%20iOS/GameVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "5BAA1FEA-64B6-4A5D-B32A-31EE1BA4C825 - d554e392ad50e702"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HexThrees.GameVC.onProductsUpdated(result: Swift.Result&lt;Swift.Array&lt;__C.SKProduct&gt;, HexThrees.IAPHelper.IAPHelperError&gt;) -&gt; ()"
+                  moduleName = "HexThrees"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hyston/Projects/Games/HexThrees/HexThrees%20iOS/GameVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "156">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
