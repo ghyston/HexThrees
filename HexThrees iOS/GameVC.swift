@@ -563,6 +563,7 @@ extension GameVC {
 	}
 	
 	private func onHappyPurchase(customerMessage: String) {
+        stopLoadingSpinner()
 		FinalizeSuccPurchaseCMD(gameModel!).run()
 		let alert = UIAlertController(
 			title: "Full version",

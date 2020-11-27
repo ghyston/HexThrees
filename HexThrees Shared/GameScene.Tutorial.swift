@@ -198,27 +198,21 @@ extension GameScene {
 	@objc func onShowSpinner(notification: Notification) {
 		createGreyLayer()
 		
-		/*let effectNode = SKEffectNode()
-		let blurFilter = CIFilter(name: "CIZoomBlur")!
-		blurFilter.setValue(10.0, forKey: kCIInputRadiusKey)
-		blurFilter.setValue(CGPoint(x: 0.5, y: 0.5), forKeyPath: kCIInputCenterKey)
-		effectNode.filter = blurFilter*/
-		
 		let spinnerShape = notification.object as! SKShapeNode
 		spinnerShape.fillColor = .lightGray
 		
 		let innerPart = SKShapeNode(path: spinnerShape.path!)
-		innerPart.setScale(0.8)
+		innerPart.setScale(0.75)
 		innerPart.fillColor = .white
 		innerPart.strokeColor = .darkGray
 		
-		let innerRotateAction = SKAction.rotate(byAngle: .pi * 2, duration: 0.5)
+		let innerRotateAction = SKAction.rotate(byAngle: .pi * 2, duration: 1.8)
 		let innerInfinity = SKAction.repeatForever(innerRotateAction)
 		innerPart.run(innerInfinity)
 		
 		spinnerShape.addChild(innerPart)
 		
-		let rotateAction = SKAction.rotate(byAngle: .pi * 2, duration: 2.0)
+		let rotateAction = SKAction.rotate(byAngle: .pi * 2, duration: 2.5)
 		let infinity = SKAction.repeatForever(rotateAction)
 		spinnerShape.run(infinity)
 		spinnerShape.zPosition = zPositions.loadingSpinner.rawValue
