@@ -323,6 +323,12 @@ class GameVC: UIViewController {
 			selector: #selector(self.onPurchaseSuccessfull),
 			name: .purchaseSuccessfull,
 			object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.onRestoreSuccessfull),
+            name: .restoreSuccessfull,
+            object: nil)
 		
 		NotificationCenter.default.addObserver(
 			self,
@@ -536,8 +542,8 @@ extension GameVC {
 	}
 	
 	private func onRestoreClick(action: UIAlertAction) {
+        startLoadingSpinner()
 		RestorePurchaseCmd(self.gameModel!).run()
-		CheckGameEndCmd(self.gameModel!).run()
 	}
 	
 	@objc private func onPurchaseSuccessfull() {
