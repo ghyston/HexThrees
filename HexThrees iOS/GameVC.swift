@@ -561,7 +561,7 @@ extension GameVC {
 	}
 	
     @objc private func onRestoreFailed() {
-        onSadPurchase(customerMessage: "Restore failed")
+        onSadRestore()
     }
     
 	@objc private func onPurchaseFailed() {
@@ -607,6 +607,33 @@ extension GameVC {
 		
 		present(alert, animated: true, completion: nil)
 	}
+    
+    private func onSadRestore() {
+        stopLoadingSpinner()
+        let alert = UIAlertController(
+            title: "Restore",
+            message: "Restoring purchases failed",
+            preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(
+            title: "Try again",
+            style: .default,
+            handler: onRestoreClick))
+        
+        let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
+        
+        alert.addAction(UIAlertAction(
+            title: "Unlock full version for \(price)",
+            style: .default,
+            handler: onPurchaseClick))
+        
+        alert.addAction(UIAlertAction(
+            title: "Reset game",
+            style: .destructive,
+            handler: onConfirmReset))
+        
+        present(alert, animated: true, completion: nil)
+    }
 	
 	private func onContinuePlay(action: UIAlertAction) {
 		self.gameModel!.swipeStatus.unlockSwipes()

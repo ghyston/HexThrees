@@ -15,6 +15,13 @@ class IAPHelper: NSObject {
 	private let fullVersionIdentifier = "com.hyston.HexThrees.fullversioniap"
 	
 	private var fullVersionProduct: SKProduct?
+    
+    enum RestoringState {
+        case Default
+        case RestoreRequested
+        case RestoreReceived
+    }
+    private var restoredState: RestoringState = .Default;
 	
 	static let shared = IAPHelper()
 	
@@ -50,6 +57,7 @@ class IAPHelper: NSObject {
 	}
 	
 	func restore() {
+        restoredState = .RestoreRequested
 		SKPaymentQueue.default().restoreCompletedTransactions()
 	}
 	
@@ -67,42 +75,37 @@ class IAPHelper: NSObject {
 		formatter.locale = product.priceLocale
 		return formatter.string(from: product.price)
 	}
+    
+    private func isFullVersionProduct(_ transaction: SKPaymentTransaction) -> Bool {
+        transaction.payment.productIdentifier == fullVersionIdentifier
+    }
 }
 
 // MARK: Purchase handlers
 extension IAPHelper {
-	
-	fileprivate func handlePurchased(_ transaction: SKPaymentTransaction) {
-		broadcast(.purchaseSuccessfull)
-		SKPaymentQueue.default().finishTransaction(transaction)
-	}
-	
-	fileprivate func handleFailed(_ transaction: SKPaymentTransaction) {
-		broadcast(.purchaiseFailed)
-		SKPaymentQueue.default().finishTransaction(transaction)
-	}
-	
-	fileprivate func handleRestored(_ transaction: SKPaymentTransaction) {
-        handleRestored()
-		SKPaymentQueue.default().finishTransaction(transaction)
-	}
     
-    fileprivate func handleRestored() {
-        broadcast(.restoreSuccessfull)
+    fileprivate func handle(_ transaction: SKPaymentTransaction, callback: (() -> Void)? = nil, broadcastName: NSNotification.Name, finishTransaction: Bool) {
+        if isFullVersionProduct(transaction){
+            broadcast(broadcastName)
+            callback?();
+        }
+        if finishTransaction {
+            SKPaymentQueue.default().finishTransaction(transaction)
+        }
     }
     
-    fileprivate func handleRestoreFailed() {
-        broadcast(.restoreFailed)
+    fileprivate func handleProductNotFound() {
+        broadcast(.productNotFound)
     }
-	
-	fileprivate func handleDeffered(_ transaction: SKPaymentTransaction) {
-		broadcast(.purchaseDeffered)
-	}
-	
-	fileprivate func handleProductNotFound() {
-		broadcast(.productNotFound)
-	}
-	
+    
+    fileprivate func restoreReceived() {
+        restoredState = .RestoreReceived
+    }
+    
+    fileprivate func finishRestore() {
+        restoredState = .Default
+    }
+    
 	private func broadcast(_ name: NSNotification.Name) {
 		DispatchQueue.main.async {
 			NotificationCenter.default.post(
@@ -122,23 +125,28 @@ extension IAPHelper: SKProductsRequestDelegate {
 // MARK: SKPaymentTransactionObserver
 extension IAPHelper: SKPaymentTransactionObserver {
 	func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-		for transaction in transactions {
+        
+        for transaction in transactions {
 			switch transaction.transactionState {
 			case .purchasing: break;
-			case .deferred: handleDeffered(transaction)
-			case .purchased: handlePurchased(transaction)
-			case .failed: handleFailed(transaction)
-			case .restored: handleRestored(transaction)
+            case .deferred: handle(transaction, broadcastName: .purchaseDeffered, finishTransaction: false)
+            case .purchased: handle(transaction, broadcastName: .purchaseSuccessfull, finishTransaction: true)
+            case .failed: handle(transaction, broadcastName: .purchaiseFailed, finishTransaction: true)
+            case .restored: handle(transaction, callback: restoreReceived, broadcastName: .restoreSuccessfull, finishTransaction: true)
 			@unknown default: fatalError("Unknown payment transaction case.")
 			}
 		}
 	}
     
     func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        handleRestoreFailed()
+        broadcast(.restoreFailed)
+        finishRestore()
     }
     
     func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        handleRestored()
+        if (restoredState == .RestoreRequested) {
+            broadcast(.restoreFailed)
+        }
+        finishRestore()
     }
 }
