@@ -39,6 +39,7 @@ extension NSNotification.Name {
 	static let purchaseSuccessfull = Notification.Name(rawValue: "purchase_successfull")
 	static let purchaseDeffered = Notification.Name(rawValue: "purchase_deffered")
 	static let restoreSuccessfull = Notification.Name(rawValue: "restore_successfull")
+    static let restoreFailed = Notification.Name(rawValue: "restore_failed")
 	static let purchaiseFailed = Notification.Name(rawValue: "purchaise_failed")
 	static let productNotFound = Notification.Name(rawValue: "product_not_found")
 }

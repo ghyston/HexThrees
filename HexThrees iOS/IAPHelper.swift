@@ -83,9 +83,17 @@ extension IAPHelper {
 	}
 	
 	fileprivate func handleRestored(_ transaction: SKPaymentTransaction) {
-		broadcast(.restoreSuccessfull)
+        handleRestored()
 		SKPaymentQueue.default().finishTransaction(transaction)
 	}
+    
+    fileprivate func handleRestored() {
+        broadcast(.restoreSuccessfull)
+    }
+    
+    fileprivate func handleRestoreFailed() {
+        broadcast(.restoreFailed)
+    }
 	
 	fileprivate func handleDeffered(_ transaction: SKPaymentTransaction) {
 		broadcast(.purchaseDeffered)
@@ -125,4 +133,12 @@ extension IAPHelper: SKPaymentTransactionObserver {
 			}
 		}
 	}
+    
+    func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        handleRestoreFailed()
+    }
+    
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        handleRestored()
+    }
 }

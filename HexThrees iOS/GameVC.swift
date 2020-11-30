@@ -329,6 +329,12 @@ class GameVC: UIViewController {
             selector: #selector(self.onRestoreSuccessfull),
             name: .restoreSuccessfull,
             object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.onRestoreFailed),
+            name: .restoreFailed,
+            object: nil)
 		
 		NotificationCenter.default.addObserver(
 			self,
@@ -554,6 +560,10 @@ extension GameVC {
 		onHappyPurchase(customerMessage: "Full version restored successfully")
 	}
 	
+    @objc private func onRestoreFailed() {
+        onSadPurchase(customerMessage: "Restore failed")
+    }
+    
 	@objc private func onPurchaseFailed() {
 		onSadPurchase(customerMessage: "Purchaise failed")
 	}
