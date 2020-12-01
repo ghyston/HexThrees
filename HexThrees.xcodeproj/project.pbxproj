@@ -323,6 +323,7 @@
 		3FB703A820DAE7A6009718F3 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		3FB703AE20E16613009718F3 /* FieldGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldGeometry.swift; sourceTree = "<group>"; };
 		3FB703B120E168EE009718F3 /* GameParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameParams.swift; sourceTree = "<group>"; };
+		3FC13E3F25763BC70061A3DF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		3FC380D1248A43CF00EEF6F3 /* TutorialAvoidTimerCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialAvoidTimerCmd.swift; sourceTree = "<group>"; };
 		3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialKeepSwipingCmd.swift; sourceTree = "<group>"; };
 		3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPurchasePopupCmd.swift; sourceTree = "<group>"; };
@@ -772,6 +773,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 3F06B343207C81E000C8315A;
 			productRefGroup = 3F06B352207C81E000C8315A /* Products */;
@@ -998,6 +1000,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3F06B359207C81E000C8315A /* Base */,
+				3FC13E3F25763BC70061A3DF /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1017,6 +1020,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1074,6 +1078,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
