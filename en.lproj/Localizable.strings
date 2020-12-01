@@ -1,0 +1,38 @@
+"tutorial.welcome" = "Welcome to \n";
+"tutorial.welcome.gameName" = "HexThrees";
+"tutorial.welcome.sign" = "!";
+"tutorial.firstSwipe" = "swipe right ➡️";
+"tutorial.swipeUpLeft" = "swipe up-left ↖️\nto combine cells";
+"tutorial.newCells" = "new cell appear\nevery swipe";
+"tutorial.keepSwipeToStop" = "keep swiping ↙️↘️\nto stop timer";
+"tutorial.swipeLeft" = "swipe left ⬅️\nto collect bonus";
+"tutorial.swipeRight" = "swipe right ➡️\nto collect bonus";
+"tutorial.swipeNowhere" = "swipe\nto collect bonus";
+"tutorial.enjoy" = "enjoy the game! 😃";
+
+"pause.bestScore" = "Best score: %d";
+"pause.restartTitle" = "Reset";
+"pause.restartDescription" = "Do you want to start a new game?";
+
+"rules.title" = "rules: ";
+"gameOver.newRecord" = "New Record!";
+"gameOver.yourScore" = "Your score:";
+
+"common.yes" = "Yes";
+"common.cancel" = "Cancel";
+
+"purchase.title" = "Purchase";
+"purchase.message" = "You reached limit of free HexTrees version 😔\nWould you like to unlock full version?";
+"purchase.option.reset" = "Reset game";
+"purchase.option.buy" = "Unlock full version for %@";
+"purchase.option.restore" = "Restore purchases";
+"purchase.notAllowed" = "In-app purchases are not allowed";
+"purchase.productNotFound" = "AppStore full version product not found";
+"purchase.thankYou" = "Thank you for purchaising HexThrees! 🤩";
+"purchase.restoredSucc" = "Full version restored successfully";
+"purchase.purchaseFeiled" = "Purchaise failed";
+"purchase.purchaseDeffered" = "Purchaise is deffered";
+"purchase.tryAgain" = "Try again";
+"purchase.restore.title" = "Restore";
+"purchase.restore.failed" = "Restoring purchases failed";
+"purchase.option.continueToPlay" = "Continue to play";

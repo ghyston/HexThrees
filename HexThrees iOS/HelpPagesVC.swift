@@ -33,7 +33,7 @@ class HelpPagesVC: UIPageViewController, UIPageViewControllerDataSource, UIPageV
 			y: view.safeAreaInsets.top + 5,
 			width: UIScreen.main.bounds.width / 2 - 40,
 			height: 65))
-		lbl.text = "rules: " //@todo: translate
+        lbl.text = "rules.title".localized()
 		lbl.textColor = UIColor(red: 151, green: 38, blue: 53) // #todo: move to palette?
 		lbl.font = UIFont(name: "Futura-Medium", size: 48)
 		lbl.textAlignment = .right

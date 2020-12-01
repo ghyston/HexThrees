@@ -486,24 +486,24 @@ class GameVC: UIViewController {
 extension GameVC {
 	private func showPurchasePopup() {
 		let limitAlert = UIAlertController(
-			title: "Purchase",
-			message: "You reached limit of free HexTrees version. Would you like to unlock full version?",
+			title: "purchase.title".localized(),
+            message: "purchase.message".localized(),
 			preferredStyle: UIAlertController.Style.alert)
 		
 		limitAlert.addAction(UIAlertAction(
-			title: "Reset game",
+            title: "purchase.option.reset".localized(),
 			style: .destructive,
 			handler: onConfirmReset))
 		
 		let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
 		
 		limitAlert.addAction(UIAlertAction(
-			title: "Unlock full version for \(price)",
+            title: "purchase.option.buy".localizedWithFormat(arguments: price),
 			style: .default,
 			handler: onPurchaseClick))
 		
 		limitAlert.addAction(UIAlertAction(
-			title: "Restore purchases",
+            title: "purchase.option.restore".localized(),
 			style: .default,
 			handler: onRestoreClick))
 		
@@ -512,12 +512,12 @@ extension GameVC {
 	
 	private func showUnableToPurchasePopup() {
 		let alert = UIAlertController(
-			title: "Purchase",
-			message: "In-app purchases are not allowed",
+            title: "purchase.title".localized(),
+            message: "purchase.notAllowed".localized(),
 			preferredStyle: UIAlertController.Style.alert)
 		
 		alert.addAction(UIAlertAction(
-			title: "Reset game",
+            title: "purchase.option.reset".localized(),
 			style: .destructive,
 			handler: onConfirmReset))
 		
@@ -526,12 +526,12 @@ extension GameVC {
 	
 	@objc private func showProductNotFoundPopup() {
 		let alert = UIAlertController(
-			title: "Purchase",
-			message: "AppStore full version product not found",
+			title: "purchase.title".localized(),
+            message: "purchase.productNotFound".localized(),
 			preferredStyle: UIAlertController.Style.alert)
 		
 		alert.addAction(UIAlertAction(
-			title: "Reset game",
+			title: "purchase.option.reset".localized(),
 			style: .destructive,
 			handler: onConfirmReset))
 		
@@ -553,11 +553,11 @@ extension GameVC {
 	}
 	
 	@objc private func onPurchaseSuccessfull() {
-		onHappyPurchase(customerMessage: "Thank you for purchaising HexThrees!")
+        onHappyPurchase(customerMessage: "purchase.thankYou".localized())
 	}
 	
 	@objc private func onRestoreSuccessfull() {
-		onHappyPurchase(customerMessage: "Full version restored successfully")
+        onHappyPurchase(customerMessage: "purchase.restoredSucc".localized())
 	}
 	
     @objc private func onRestoreFailed() {
@@ -565,23 +565,23 @@ extension GameVC {
     }
     
 	@objc private func onPurchaseFailed() {
-		onSadPurchase(customerMessage: "Purchaise failed")
+        onSadPurchase(customerMessage: "purchase.purchaseFeiled".localized())
 	}
 	
 	@objc func onPurchaseDeferred() {
-		onSadPurchase(customerMessage: "Purchaise is deffered")
+        onSadPurchase(customerMessage: "purchase.purchaseDeffered".localized())
 	}
 	
 	private func onHappyPurchase(customerMessage: String) {
         stopLoadingSpinner()
 		FinalizeSuccPurchaseCMD(gameModel!).run()
 		let alert = UIAlertController(
-			title: "Full version",
+			title: "",
 			message: customerMessage,
 			preferredStyle: UIAlertController.Style.alert)
 		
 		alert.addAction(UIAlertAction(
-			title: "Continue to play",
+            title: "purchase.option.continueToPlay".localized(),
 			style: .default,
 			handler: onContinuePlay))
 		
@@ -591,17 +591,17 @@ extension GameVC {
 	private func onSadPurchase(customerMessage: String) {
 		stopLoadingSpinner()
 		let alert = UIAlertController(
-			title: "Purchase",
+			title: "purchase.title".localized(),
 			message: customerMessage,
 			preferredStyle: UIAlertController.Style.alert)
 		
 		alert.addAction(UIAlertAction(
-			title: "Reset game",
+			title: "purchase.option.reset".localized(),
 			style: .destructive,
 			handler: onConfirmReset))
 		
 		alert.addAction(UIAlertAction(
-			title: "Try again",
+            title: "purchase.tryAgain".localized(),
 			style: .default,
 			handler: onPurchaseClick))
 		
@@ -611,24 +611,24 @@ extension GameVC {
     private func onSadRestore() {
         stopLoadingSpinner()
         let alert = UIAlertController(
-            title: "Restore",
-            message: "Restoring purchases failed",
+            title: "purchase.restore.title".localized(),
+            message: "purchase.restore.failed".localized(),
             preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction(UIAlertAction(
-            title: "Try again",
+            title: "purchase.tryAgain".localized(),
             style: .default,
             handler: onRestoreClick))
         
         let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
         
         alert.addAction(UIAlertAction(
-            title: "Unlock full version for \(price)",
+            title: "purchase.option.buy".localizedWithFormat(arguments: price),
             style: .default,
             handler: onPurchaseClick))
         
         alert.addAction(UIAlertAction(
-            title: "Reset game",
+            title: "purchase.option.reset".localized(),
             style: .destructive,
             handler: onConfirmReset))
         

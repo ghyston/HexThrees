@@ -3,49 +3,49 @@
 "0pp-G3-WCd.text" = "Made by Hyston";
 
 /* Class = "UILabel"; text = "Your score:"; ObjectID = "2LF-Zk-0kX"; */
-"2LF-Zk-0kX.text" = "Your score:";
+"2LF-Zk-0kX.text" = "Ваш результат:";
 
 /* Class = "UILabel"; text = "Color:"; ObjectID = "5OS-7n-f3c"; */
-"5OS-7n-f3c.text" = "Color:";
+"5OS-7n-f3c.text" = "Оформление:";
 
 /* Class = "UILabel"; text = "v.0.1.0"; ObjectID = "AQQ-Ih-JgP"; */
 "AQQ-Ih-JgP.text" = "v.0.1.0";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "Bh0-gG-QuT"; */
-"Bh0-gG-QuT.normalTitle" = "Reset";
+"Bh0-gG-QuT.normalTitle" = "Новая\nигра";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "IQl-nf-Mde"; */
-"IQl-nf-Mde.normalTitle" = "Back";
+"IQl-nf-Mde.normalTitle" = "Назад";
 
 /* Class = "UILabel"; text = "000"; ObjectID = "Llv-3h-4gE"; */
 "Llv-3h-4gE.text" = "000";
 
 /* Class = "UILabel"; text = "Use buttons"; ObjectID = "Lmc-EY-Mkh"; */
-"Lmc-EY-Mkh.text" = "Use buttons";
+"Lmc-EY-Mkh.text" = "Кнопки";
 
 /* Class = "UIButton"; normalTitle = "Rules"; ObjectID = "Rsf-3G-7nc"; */
-"Rsf-3G-7nc.normalTitle" = "Rules";
+"Rsf-3G-7nc.normalTitle" = "Правила";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "SqJ-1Q-2MV"; */
-"SqJ-1Q-2MV.normalTitle" = "Reset";
+"SqJ-1Q-2MV.normalTitle" = "Заново";
 
 /* Class = "UISegmentedControl"; WyI-ke-nBz.segmentTitles[0] = "Dark"; ObjectID = "WyI-ke-nBz"; */
-"WyI-ke-nBz.segmentTitles[0]" = "Dark";
+"WyI-ke-nBz.segmentTitles[0]" = "Темное";
 
 /* Class = "UISegmentedControl"; WyI-ke-nBz.segmentTitles[1] = "Light"; ObjectID = "WyI-ke-nBz"; */
-"WyI-ke-nBz.segmentTitles[1]" = "Light";
+"WyI-ke-nBz.segmentTitles[1]" = "Светлое";
 
 /* Class = "UISegmentedControl"; WyI-ke-nBz.segmentTitles[2] = "Auto"; ObjectID = "WyI-ke-nBz"; */
-"WyI-ke-nBz.segmentTitles[2]" = "Auto";
+"WyI-ke-nBz.segmentTitles[2]" = "Авто";
 
 /* Class = "UILabel"; text = "Haptic feedback"; ObjectID = "cap-OM-eFS"; */
-"cap-OM-eFS.text" = "Haptic feedback";
+"cap-OM-eFS.text" = "Тактильная связь";
 
 /* Class = "UILabel"; text = "Motion Blur"; ObjectID = "pyS-jv-4A1"; */
-"pyS-jv-4A1.text" = "Motion Blur";
+"pyS-jv-4A1.text" = "Размытие движения";
 
 /* Class = "UILabel"; text = "Timer"; ObjectID = "w3e-PE-2OL"; */
-"w3e-PE-2OL.text" = "Timer";
+"w3e-PE-2OL.text" = "Таймер";
 
 /* Class = "UILabel"; text = "0"; ObjectID = "xhO-Ei-8ab"; */
 "xhO-Ei-8ab.text" = "0";

@@ -11,6 +11,6 @@ import Foundation
 class TutorialEveryTurnDescriptionCmd : GameCMD {
 	override func run() {
 		NotificationCenter.default.post(name: .removeSceneHighlight, object: TutorialNodeNames.SecondCell)
-		NotificationCenter.default.post(name: .updateSceneDescription, object: "new cell appear\nevery swipe")
+        NotificationCenter.default.post(name: .updateSceneDescription, object: "tutorial.newCells".localized())
 	}
 }

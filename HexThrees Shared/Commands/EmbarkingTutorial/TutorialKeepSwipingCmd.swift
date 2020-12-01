@@ -10,6 +10,6 @@ import Foundation
 
 class TutorialKeepSwipingCmd : GameCMD {
 	override func run() {
-		NotificationCenter.default.post(name: .updateSceneDescription, object: "enjoy the game! 😃")
+        NotificationCenter.default.post(name: .updateSceneDescription, object: "tutorial.enjoy".localized())
 	}
 }
