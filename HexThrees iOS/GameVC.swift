@@ -329,6 +329,12 @@ class GameVC: UIViewController {
             selector: #selector(self.onRestoreSuccessfull),
             name: .restoreSuccessfull,
             object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.onRestoreFailed),
+            name: .restoreFailed,
+            object: nil)
 		
 		NotificationCenter.default.addObserver(
 			self,
@@ -554,6 +560,10 @@ extension GameVC {
 		onHappyPurchase(customerMessage: "Full version restored successfully")
 	}
 	
+    @objc private func onRestoreFailed() {
+        onSadRestore()
+    }
+    
 	@objc private func onPurchaseFailed() {
 		onSadPurchase(customerMessage: "Purchaise failed")
 	}
@@ -597,6 +607,33 @@ extension GameVC {
 		
 		present(alert, animated: true, completion: nil)
 	}
+    
+    private func onSadRestore() {
+        stopLoadingSpinner()
+        let alert = UIAlertController(
+            title: "Restore",
+            message: "Restoring purchases failed",
+            preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(
+            title: "Try again",
+            style: .default,
+            handler: onRestoreClick))
+        
+        let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
+        
+        alert.addAction(UIAlertAction(
+            title: "Unlock full version for \(price)",
+            style: .default,
+            handler: onPurchaseClick))
+        
+        alert.addAction(UIAlertAction(
+            title: "Reset game",
+            style: .destructive,
+            handler: onConfirmReset))
+        
+        present(alert, animated: true, completion: nil)
+    }
 	
 	private func onContinuePlay(action: UIAlertAction) {
 		self.gameModel!.swipeStatus.unlockSwipes()
