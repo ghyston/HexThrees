@@ -15,8 +15,13 @@
 "pause.restartDescription" = "Начать новую игру?";
 
 "rules.title" = "правила: ";
+"rules.fibonacci" = "Фибоначчи";
+"rules.powerOf2" = "Степень двойки";
+"rules.merging" = "Объединение";
+"rules.swiping" = "Перемещение";
+
 "gameOver.newRecord" = "Новый Рекорд!";
-"gameOver.yourScore" = "Ваш результат:";
+"gameOver.yourScore" = "Результат:";
 
 "common.yes" = "Да";
 "common.cancel" = "Отмена";

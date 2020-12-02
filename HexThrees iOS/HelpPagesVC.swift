@@ -36,7 +36,9 @@ class HelpPagesVC: UIPageViewController, UIPageViewControllerDataSource, UIPageV
         lbl.text = "rules.title".localized()
 		lbl.textColor = UIColor(red: 151, green: 38, blue: 53) // #todo: move to palette?
 		lbl.font = UIFont(name: "Futura-Medium", size: 48)
+        lbl.adjustsFontSizeToFitWidth = true
 		lbl.textAlignment = .right
+        lbl.baselineAdjustment = .alignCenters
 		view.addSubview(lbl)
 	}
 	

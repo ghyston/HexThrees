@@ -435,7 +435,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-SI-SNB" userLabel="Merging">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-SI-SNB" userLabel="Merging">
                                 <rect key="frame" x="162.5" y="5" width="212.5" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -461,6 +461,9 @@
                             <constraint firstItem="j9H-SI-SNB" firstAttribute="trailing" secondItem="r6l-vV-hEJ" secondAttribute="trailing" id="nfC-ML-HOa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ruleName" destination="j9H-SI-SNB" id="kwH-bR-Ye1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hUa-Nd-hKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -474,7 +477,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-99-4GO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="clip" numberOfLines="2" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnH-99-4GO">
                                 <rect key="frame" x="162.5" y="5" width="204.5" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -500,6 +503,9 @@
                             <constraint firstItem="HnH-99-4GO" firstAttribute="leading" secondItem="cYM-w1-DN0" secondAttribute="centerX" constant="-25" id="d0V-gH-Gje"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ruleName" destination="HnH-99-4GO" id="AI2-fu-vaY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgQ-Hj-GIJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

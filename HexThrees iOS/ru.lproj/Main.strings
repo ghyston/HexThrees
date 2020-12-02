@@ -3,7 +3,7 @@
 "0pp-G3-WCd.text" = "Made by Hyston";
 
 /* Class = "UILabel"; text = "Your score:"; ObjectID = "2LF-Zk-0kX"; */
-"2LF-Zk-0kX.text" = "Ваш результат:";
+"2LF-Zk-0kX.text" = "Результат:";
 
 /* Class = "UILabel"; text = "Color:"; ObjectID = "5OS-7n-f3c"; */
 "5OS-7n-f3c.text" = "Оформление:";
@@ -12,7 +12,7 @@
 "AQQ-Ih-JgP.text" = "v.0.1.0";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "Bh0-gG-QuT"; */
-"Bh0-gG-QuT.normalTitle" = "Новая\nигра";
+"Bh0-gG-QuT.normalTitle" = "Начать заново";
 
 /* Class = "UIButton"; normalTitle = "Back"; ObjectID = "IQl-nf-Mde"; */
 "IQl-nf-Mde.normalTitle" = "Назад";
@@ -49,3 +49,7 @@
 
 /* Class = "UILabel"; text = "0"; ObjectID = "xhO-Ei-8ab"; */
 "xhO-Ei-8ab.text" = "0";
+
+/* Class = "UILabel"; text = "Merging"; ObjectID = "HnH-99-4GO"; */
+"HnH-99-4GO.text" = "Мердж";
+

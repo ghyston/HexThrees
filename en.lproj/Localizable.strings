@@ -15,6 +15,10 @@
 "pause.restartDescription" = "Do you want to start a new game?";
 
 "rules.title" = "rules: ";
+"rules.fibonacci" = "Fibonacci";
+"rules.powerOf2" = "Power of 2";
+"rules.merging" = "Merging";
+"rules.swiping" = "Swiping";
 "gameOver.newRecord" = "New Record!";
 "gameOver.yourScore" = "Your score:";
 

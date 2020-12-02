@@ -300,6 +300,7 @@
 		3FA3A50A2175A6E90005B37D /* GameOverVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverVC.swift; sourceTree = "<group>"; };
 		3FA3A50F21770F610005B37D /* ColorSchemas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemas.swift; sourceTree = "<group>"; };
 		3FA3A513217EF1D60005B37D /* SwitchPaletteCMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchPaletteCMD.swift; sourceTree = "<group>"; };
+		3FA5208C2577824E00BB03C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3FAAC76A207F27E9006F5196 /* zPositions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zPositions.swift; sourceTree = "<group>"; };
 		3FAC644A20B5DDAD0083C56C /* AddRandomCellCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRandomCellCmd.swift; sourceTree = "<group>"; };
 		3FAC644D20B5DE010083C56C /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -1002,6 +1003,7 @@
 			children = (
 				3F06B359207C81E000C8315A /* Base */,
 				3FC13E5125763FB20061A3DF /* ru */,
+				3FA5208C2577824E00BB03C6 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
