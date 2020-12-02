@@ -92,7 +92,7 @@ class PauseVC: UIViewController {
 		case .Auto?:
 			paletteChanger.selectedSegmentIndex = 2
 		default:
-			paletteChanger.selectedSegmentIndex = 0
+			paletteChanger.selectedSegmentIndex = 2
 			return
 		}
 	}
