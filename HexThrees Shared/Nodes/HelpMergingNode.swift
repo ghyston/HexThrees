@@ -69,16 +69,18 @@ class HelpMergingNode: SKNode {
 	}
 	
 	@objc private func startAgain() {
+        
+        self.removeAllActions()
 		let randomDelay = Double.random / 2
 		
 		let startDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (randomDelay + 0.5))
 		let animation = SKAction.perform(#selector(HelpMergingNode.moveAnimation), onTarget: self)
 		
 		let updateRight = SKAction.perform(#selector(HelpMergingNode.updateRight), onTarget: self)
-		let resetDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (1.5 - randomDelay))
+		let resetDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay * (1.8 - randomDelay))
 		let reset = SKAction.perform(#selector(HelpMergingNode.resetNodes), onTarget: self)
 		let startAgain = SKAction.perform(#selector(HelpMergingNode.startAgain), onTarget: self)
-		let sequence = SKAction.sequence([startDelay, animation, resetDelay, reset, startAgain])
+		let sequence = SKAction.sequence([reset, startDelay, animation, resetDelay, startAgain])
 		
 		let updatedelay = SKAction.wait(forDuration: self.updateDelay)
 		let updateSequence = SKAction.sequence([startDelay, updatedelay, updateRight])

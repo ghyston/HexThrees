@@ -45,15 +45,15 @@ class HelpSwipeScene: SKScene, HelpScene {
 		swipeNodeBoundaries = node.calculateAccumulatedFrame()
 		addChild(node)
 		
-		startAnimation()
+		runAnimation()
 	}
 	
-	private func startAnimation() {
+	@objc private func runAnimation() {
 		let startDelay = SKAction.wait(forDuration: GameConstants.HelpVCAnimationDelay)
 		let animation = SKAction.perform(#selector(HelpSwipeScene.doRandomSwipe), onTarget: self)
-		let sequence = SKAction.sequence([startDelay, animation])
-		let repeatAction = SKAction.repeatForever(sequence)
-		run(repeatAction)
+        let runAgain = SKAction.perform(#selector(HelpSwipeScene.runAnimation), onTarget: self)
+		let sequence = SKAction.sequence([startDelay, animation, runAgain])
+		run(sequence)
 	}
 	
 	@objc private func doRandomSwipe() {
