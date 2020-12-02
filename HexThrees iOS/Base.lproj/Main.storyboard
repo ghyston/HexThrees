@@ -457,7 +457,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="j9H-SI-SNB" firstAttribute="top" secondItem="r6l-vV-hEJ" secondAttribute="top" constant="5" id="9mv-0n-Pej"/>
-                            <constraint firstItem="j9H-SI-SNB" firstAttribute="leading" secondItem="r6l-vV-hEJ" secondAttribute="centerX" constant="-25" id="IPM-7J-t8A"/>
+                            <constraint firstItem="j9H-SI-SNB" firstAttribute="leading" secondItem="vjy-nN-b3P" secondAttribute="centerX" constant="-25" id="IPM-7J-t8A"/>
                             <constraint firstItem="j9H-SI-SNB" firstAttribute="trailing" secondItem="r6l-vV-hEJ" secondAttribute="trailing" id="nfC-ML-HOa"/>
                         </constraints>
                     </view>

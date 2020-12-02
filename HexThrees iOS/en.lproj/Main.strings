@@ -24,7 +24,7 @@
 "Lfp-zH-DOu.normalTitle" = "Settings";
 
 /* Class = "UILabel"; text = "Score"; ObjectID = "Llv-3h-4gE"; */
-"Llv-3h-4gE.text" = "Score";
+"Llv-3h-4gE.text" = "000";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "SqJ-1Q-2MV"; */
 "SqJ-1Q-2MV.normalTitle" = "Reset";
