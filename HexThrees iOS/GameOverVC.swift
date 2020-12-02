@@ -28,14 +28,11 @@ class GameOverVC: UIViewController {
 		let currentScore = gameModel.score
 		if prevRecord < currentScore {
 			UserDefaults.standard.set(currentScore, forKey: SettingsKey.BestScore.rawValue)
-			scoreDescription.text = "New Record!" //@todo: translate
+            scoreDescription.text = "gameOver.newRecord".localized()
 		}
 		else {
-			scoreDescription.text = "Your score:" //@todo: translate
+            scoreDescription.text = "gameOver.yourScore".localized()
 		}
-		
-		
-		
 		
 		ScoreLabel.text = "\(currentScore)"
 	}

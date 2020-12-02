@@ -12,6 +12,10 @@ import SpriteKit
 class HelpMergingScene: SKScene, HelpScene {
 	var swipeGestureNode: SwipeGestureNode?
 	var prevInterval: TimeInterval?
+    
+    func ruleName() -> String {
+        "rules.merging".localized()
+    }
 	
 	required init(frameSize: CGSize) {
 		super.init(size: frameSize)
@@ -53,7 +57,7 @@ class HelpMergingScene: SKScene, HelpScene {
 			up: pointsToPath.first!,
 			down: pointsToPath.last!,
 			isArrow: false,
-			text: "Fibonacci")
+            text: "rules.fibonacci".localized())
 		
 		posY -= 20
 		
@@ -68,7 +72,7 @@ class HelpMergingScene: SKScene, HelpScene {
 			up: pointsToPath.first!,
 			down: pointsToPath.last!,
 			isArrow: true,
-			text: "Power of 2")
+            text: "rules.powerOf2".localized())
 		
 		posY = pointsToPath.last!.y
 		posY -= 30

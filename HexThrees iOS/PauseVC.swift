@@ -58,7 +58,7 @@ class PauseVC: UIViewController {
 		
 		let bestScore = UserDefaults.standard.integer(forKey: SettingsKey.BestScore.rawValue)
 		if bestScore > 0 {
-			bestScoreLabel.text = "Best score: \(bestScore)" // @todo: localize!
+            bestScoreLabel.text = "pause.bestScore".localizedWithFormat(arguments: bestScore)
 		}
 		
 		
@@ -166,17 +166,17 @@ class PauseVC: UIViewController {
 	
 	@IBAction func onReset(_ sender: Any) {
 		let restartAlert = UIAlertController(
-			title: "Reset",
-			message: "Do you want to start a new game?",
+            title: "",//pause.restartTitle".localized(),
+            message: "pause.restartDescription".localized(),
 			preferredStyle: UIAlertController.Style.alert)
 		
 		restartAlert.addAction(UIAlertAction(
-			title: "Yes",
+            title: "common.yes".localized(),
 			style: .destructive,
 			handler: onConfirmReset))
 		
 		restartAlert.addAction(UIAlertAction(
-			title: "Cancel",
+            title: "common.cancel".localized(),
 			style: .cancel,
 			handler: nil))
 		

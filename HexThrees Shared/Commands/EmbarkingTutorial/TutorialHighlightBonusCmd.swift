@@ -40,11 +40,11 @@ class TutorialHighlightBonusCmd: GameCMD {
 	private func descriptionText() -> String {
 		switch direction {
 		case .Left:
-			return "swipe left ⬅️\nto collect bonus"
+            return "tutorial.swipeLeft".localized()
 		case .Right:
-			return "swipe right ➡️\nto collect bonus"
+            return "tutorial.swipeRight".localized()
 		default:
-			return "swipe\nto collect bonus" // actually, should never happen
+            return "tutorial.swipeNowhere".localized() // actually, should never happen
 		}
 	}
 }

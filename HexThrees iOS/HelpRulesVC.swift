@@ -11,9 +11,11 @@ import SpriteKit
 
 protocol HelpScene: SKScene {
 	init(frameSize: CGSize)
+    func ruleName() -> String
 }
 
 class HelpRulesVC<SceneClass: HelpScene>: UIViewController {
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -21,13 +23,28 @@ class HelpRulesVC<SceneClass: HelpScene>: UIViewController {
 
 		let scene = SceneClass(frameSize: skView.frame.size)
 
+        if let label = getLabel() {
+            label.text = scene.ruleName()
+            label.adjustsFontSizeToFitWidth = true
+        }
+        
 		skView.presentScene(scene)
 		skView.ignoresSiblingOrder = true
 		skView.showsFPS = false
 		skView.showsNodeCount = false
 	}
+    
+    func getLabel() -> UILabel? { nil }
 }
 
-class HelpSwipeRulesVC: HelpRulesVC<HelpSwipeScene> {}
+class HelpSwipeRulesVC: HelpRulesVC<HelpSwipeScene> {
+    @IBOutlet weak var ruleName: UILabel!
+    
+    override func getLabel() -> UILabel? { ruleName }
+}
 
-class HelpMergeRulesVC: HelpRulesVC<HelpMergingScene> {}
+class HelpMergeRulesVC: HelpRulesVC<HelpMergingScene> {
+    @IBOutlet weak var ruleName: UILabel!
+    
+    override func getLabel() -> UILabel? { ruleName }
+}

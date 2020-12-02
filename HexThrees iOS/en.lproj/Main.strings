@@ -1,0 +1,48 @@
+
+/* Class = "UIButton"; disabledTitle = "Settings"; ObjectID = "4z6-ze-onZ"; */
+"4z6-ze-onZ.disabledTitle" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "4z6-ze-onZ"; */
+"4z6-ze-onZ.normalTitle" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Resume"; ObjectID = "7bj-vp-IYg"; */
+"7bj-vp-IYg.normalTitle" = "Resume";
+
+/* Class = "UIButton"; normalTitle = "Load"; ObjectID = "7gU-iR-Hhj"; */
+"7gU-iR-Hhj.normalTitle" = "Load";
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "Bh0-gG-QuT"; */
+"Bh0-gG-QuT.normalTitle" = "Reset";
+
+/* Class = "UIButton"; normalTitle = "Resume"; ObjectID = "IQl-nf-Mde"; */
+"IQl-nf-Mde.normalTitle" = "Resume";
+
+/* Class = "UIButton"; disabledTitle = "Settings"; ObjectID = "Lfp-zH-DOu"; */
+"Lfp-zH-DOu.disabledTitle" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "Lfp-zH-DOu"; */
+"Lfp-zH-DOu.normalTitle" = "Settings";
+
+/* Class = "UILabel"; text = "Score"; ObjectID = "Llv-3h-4gE"; */
+"Llv-3h-4gE.text" = "000";
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "SqJ-1Q-2MV"; */
+"SqJ-1Q-2MV.normalTitle" = "Reset";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "UTc-VO-JH8"; */
+"UTc-VO-JH8.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aX0-LU-E1n"; */
+"aX0-LU-E1n.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Menu"; ObjectID = "jGh-UP-E6f"; */
+"jGh-UP-E6f.normalTitle" = "Menu";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "st2-NY-bBa"; */
+"st2-NY-bBa.normalTitle" = "Save";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "suL-2U-1oo"; */
+"suL-2U-1oo.normalTitle" = "Save";
+
+/* Class = "UILabel"; text = "Merging"; ObjectID = "HnH-99-4GO"; */
+"HnH-99-4GO.text" = "Merging";

@@ -15,12 +15,16 @@ class TutorialStepWelcomeCmd: GameCMD {
 			name: .createTutorialGrayLayer,
 			object: nil)
 		
-		let welcomeText = "Welcome to \nHexThrees!" //@todo: translate
+        let welcomeBeginText = "tutorial.welcome".localized()
+        let welcomeGameNameText = "tutorial.welcome.gameName".localized()
+        let welcomeSignText = "tutorial.welcome.sign".localized()
+        let welcomeText = welcomeBeginText + welcomeGameNameText + welcomeSignText
+        
 		let attrString = NSMutableAttributedString(string: welcomeText)
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.alignment = .center
 		let allRange = NSRange(location: 0, length: welcomeText.count)
-		let titleRange = NSRange(location: 12, length: 9)
+        let titleRange = NSRange(location: welcomeBeginText.count, length: welcomeGameNameText.count)
 		let smallFont = UIFont(name: "Futura", size: 25)
 		let bigFont = UIFont(name: "Futura", size: 35)
 		

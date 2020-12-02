@@ -27,16 +27,19 @@ class HelpPagesVC: UIPageViewController, UIPageViewControllerDataSource, UIPageV
 	}
 	
 	func configureRulesLabel() {
-		let lbl = UILabel(frame: CGRect(
+        
+        let lbl = UILabel(frame: CGRect(
 			x: 0,
 			// y: view.safeAreaLayoutGuide.layoutFrame.height / 2 - 5,
 			y: view.safeAreaInsets.top + 5,
-			width: UIScreen.main.bounds.width / 2 - 40,
+            width: view.bounds.width / 2 - 40,
 			height: 65))
-		lbl.text = "rules: " //@todo: translate
+        lbl.text = "rules.title".localized()
 		lbl.textColor = UIColor(red: 151, green: 38, blue: 53) // #todo: move to palette?
 		lbl.font = UIFont(name: "Futura-Medium", size: 48)
+        lbl.adjustsFontSizeToFitWidth = true
 		lbl.textAlignment = .right
+        lbl.baselineAdjustment = .alignCenters
 		view.addSubview(lbl)
 	}
 	

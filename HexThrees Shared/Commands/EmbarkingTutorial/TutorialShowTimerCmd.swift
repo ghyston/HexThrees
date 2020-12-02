@@ -23,7 +23,7 @@ class TutorialShowTimerCmd : GameCMD {
 				.runWithDelay(delay: GameConstants.StressTimerInterval * slowerThanUsual),
 			cell: bgCell)
 		
-		NotificationCenter.default.post(name: .updateSceneDescription, object: "keep swiping ↙️↘️\nto stop timer")
+        NotificationCenter.default.post(name: .updateSceneDescription, object: "tutorial.keepSwipeToStop".localized())
 		
 		let highlightDto = GameScene.HighlightCircleDto(
 			coord: bgCell.position,

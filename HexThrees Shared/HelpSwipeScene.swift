@@ -10,6 +10,11 @@ import Foundation
 import SpriteKit
 
 class HelpSwipeScene: SKScene, HelpScene {
+    
+    func ruleName() -> String {
+        "rules.swiping".localized()
+    }
+    
 	let model: GameModel
 	weak var swipeGestureNode: SwipeGestureNode?
 	var swipeNodeBoundaries = CGRect(x: 0, y: 0, width: 0, height: 0)
