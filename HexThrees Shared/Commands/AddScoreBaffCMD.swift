@@ -9,26 +9,23 @@
 import Foundation
 
 class AddScoreBaffCMD: GameCMD {
-    
-    let factor: Int
-    
-    init(_ gameModel: GameModel, factor: Int) {
-        
-        self.factor = factor
-        super.init(gameModel)
-    }
-    
-    override func run() {
-        
-        self.gameModel.scoreBuffs.append(
-            ScoreBuff(
-                turnsToApply: 3,
-                factor: self.factor))
-        
-        self.gameModel.recalculateScoreBaff()
-        
-        NotificationCenter.default.post(
-            name: .scoreBuffUpdate,
-            object: self.gameModel.scoreMultiplier)
-    }
+	private var factor: Int = 0
+	
+	func setup(factor: Int) -> GameCMD {
+		self.factor = factor
+		return self
+	}
+	
+	override func run() {
+		self.gameModel.scoreBuffs.append(
+			ScoreBuff(
+				turnsToApply: 3,
+				factor: self.factor))
+		
+		self.gameModel.recalculateScoreBaff()
+		
+		NotificationCenter.default.post(
+			name: .scoreBuffUpdate,
+			object: self.gameModel.scoreMultiplier)
+	}
 }

@@ -7,25 +7,54 @@
 //
 
 class GameConstants {
-    
-    static let SecondsPerCell = 0.15
-    
-    static let BonusAnimationDuration = 0.5
-    static let BonusTurnsLifetime = 2
-    static let BaseBonusDropProbability = 0.5//0.1
-    static let MaxBonusesOnScreen = 3
-    static let GameOverScreenDelay = 1.2
-    
-    static let LockBonusProbability: Float = 0.0//0.5
-    static let UnlockBonusProbability: Float = 0.3
-    static let X2BonusProbability: Float = 0.9//0.2
-    static let X3BonusProbability: Float = 0.5//0.1
+	static let BonusTurnsLifetime = 2
+	static let MaxBonusesOnScreen = 3
+	static let MaxBonusesOnPanel = 3
+	static let TurnsToAutoSave = 5
+	static let MaxFieldSize = 7
+	static let StartFieldSize = 3
+	static let FreeVersionValueLimit = 5
+	
+	// Animations
+	static let SecondsPerCell = 0.20
+	static let BounceCellAnimationDuration = 0.12
+	static let BonusAnimationDuration = 0.5
+	static let GameOverScreenDelay = 1.2
+	static let StressTimerInterval = 6.0
+	static let StressTimerRollbackInterval = 0.5
+	static let HelpVCAnimationDelay = 1.0
+	static let BlockAnimationDuration = 1.0
+	static let CellAppearAnimationDuration = 0.5
+	static let CollectableUpdateAnimationDuration = 0.7
+	static let ExpandFieldAnimationDuration = 1.0
+	static let TutorialTextAppearDuration = 0.4
+	static let TutorialNodesAppearDuration = 0.6
+	static let TutorialHightlightMoveDuration = 1.0
+	
+	// Probabilities
+	static let RandomCellIsValue2Probability: Float = 0.3
+	static let BaseBonusDropProbability = 0.5
+    static let LockBonusProbability: Float = 0.5
+	static let UnlockBonusProbability: Float = 0.3
+	static let LastBlockedUnlockBonusProbability: Float = 0.05
+	static let X2BonusProbability: Float = 0.2
+	static let X3BonusProbability: Float = 0.1
+	static let ExpandFieldOriginalProbability: Float = 0.7
+	static let ExpandFieldDropProbability: Float = 0.25
+	
+	static let CollectableUnlockCellBonusProbability: Float = 1.0
+	static let CollectableSwipeBlockBonusProbability: Float = 10.0
+	static let CollectablePauseTimerBonusProbability: Float = 10.0
+	static let CollectablePickUpBonusProbability: Float = 1.0
 }
 
-enum SettingsKey : String {
-    
-    case FieldSize = "field_size"
-    case Palette = "palette"
-    case MotionBlur = "motion_blur"
-    case HapticFeedback = "haptic_feedback"
+enum SettingsKey: String {
+	case Palette = "palette"
+	case MotionBlur = "motion_blur"
+	case HapticFeedback = "haptic_feedback"
+	case StressTimer = "stress_timer"
+	case UseButtons = "use_buttons"
+	case BestScore = "best_score"
+	case TutorialShown = "tutorial_shown"
+	case Purchased = "purchased"
 }

@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum HapticFeedbackStatus : Int {
-    
-    case Enabled = 1
-    case Disabled = 2
+enum HapticFeedbackStatus: Int {
+	case Enabled = 1
+	case Disabled = 2
 }

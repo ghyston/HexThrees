@@ -8,76 +8,81 @@
 
 import Foundation
 import SpriteKit
+import os
 
-protocol MotionBlurNode : class {
-    
-    var effectNode : SKEffectNode { get set }
-    var blurFilter : CIFilter { get set }
-    var prevPosition : CGPoint? { get set }
-    var motionBlurDisabled : Bool { get set }
-    
-    func disableBlur()
-    func enableBlur()
-    
-    func addBlur()
-    func startBlur()
-    func stopBlur()
-    func updateMotionBlur(_ deltaTime: TimeInterval)
+protocol MotionBlurNode: class {
+	var effectNode: SKEffectNode { get set }
+	var blurFilter: CIFilter { get set }
+	var prevPosition: CGPoint? { get set }
+	var prevDelta: Double? { get set }
+	var motionBlurDisabled: Bool { get set }
+	
+	func disableBlur()
+	func enableBlur()
+	
+	func addBlur()
+	func startBlur()
+	func stopBlur()
+	func updateMotionBlur(_ deltaTime: TimeInterval)
 }
 
 extension MotionBlurNode where Self: SKNode {
-    
-    func addBlur() {
-        
-        blurFilter = CIFilter(name: "CIMotionBlur")!
-        addChild(effectNode)
-    }
-    
-    func startBlur() {
-        
-        if (motionBlurDisabled) {
-            return
-        }
-        
-        effectNode.filter = blurFilter
-        prevPosition = nil
-    }
-    
-    func stopBlur() {
-        effectNode.filter = nil
-        prevPosition = nil
-    }
-    
-    func updateMotionBlur(_ deltaTime: TimeInterval){
-        
-        if effectNode.filter == nil {
-            return
-        }
-        
-        if prevPosition == nil {
-            prevPosition = self.position
-            return
-        }
-        
-        let diff = CGVector(from: self.prevPosition!, to: self.position)
-        self.prevPosition = self.position
-        
-        let fpsFactor = CGFloat(deltaTime * 10);
-        
-        let angle = atan2(diff.dy, diff.dx)
-        let velocity = diff.squareLen() * fpsFactor
-        
-        blurFilter.setValue(angle, forKey: kCIInputAngleKey)
-        blurFilter.setValue(velocity, forKey: kCIInputRadiusKey)
-    }
-    
-    func disableBlur() {
-        
-        motionBlurDisabled = true
-    }
-    
-    func enableBlur() {
-        
-        motionBlurDisabled = false
-    }
+	func addBlur() {
+		blurFilter = CIFilter(name: "CIMotionBlur")!
+		addChild(effectNode)
+	}
+	
+	func startBlur() {
+		if motionBlurDisabled {
+			return
+		}
+		
+		os_signpost(.begin, log: .motionBlur, name: "startBlur")
+		effectNode.filter = blurFilter
+		blurFilter.setValue(0, forKey: kCIInputRadiusKey)
+		prevPosition = nil
+		prevDelta = nil
+	}
+	
+	func stopBlur() {
+		effectNode.filter = nil
+		prevPosition = nil
+		prevDelta = nil
+		os_signpost(.begin, log: .motionBlur, name: "endBlur")
+	}
+	
+	func updateMotionBlur(_ deltaTime: TimeInterval) {
+		if effectNode.filter == nil {
+			return
+		}
+		
+		if prevPosition == nil || prevDelta == nil {
+			prevPosition = self.position
+			prevDelta = deltaTime
+			return
+		}
+		os_signpost(.begin, log: .motionBlur, name: "updateBlur")
+		
+		let diff = CGVector(from: self.prevPosition!, to: self.position)
+		self.prevPosition = self.position
+		
+		let magic = 350.0
+		let fpsFactor = CGFloat(prevDelta! * magic)
+		prevDelta = deltaTime
+		
+		let angle = atan2(diff.dy, diff.dx)
+		let len = diff.squareLen()
+		let velocity = len / fpsFactor
+		
+		blurFilter.setValue(angle, forKey: kCIInputAngleKey)
+		blurFilter.setValue(velocity, forKey: kCIInputRadiusKey)
+	}
+	
+	func disableBlur() {
+		motionBlurDisabled = true
+	}
+	
+	func enableBlur() {
+		motionBlurDisabled = false
+	}
 }

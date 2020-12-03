@@ -8,26 +8,32 @@
 
 import Foundation
 
-class GameOverVC : UIViewController {
-    
-    var gameModel : GameModel?
-    
-    @IBOutlet weak var popupView: UIView!
-    @IBOutlet weak var ScoreLabel: UILabel!
-    
-    @IBAction func onResetGame(_ sender: Any) {
-        
-        NotificationCenter.default.post(name: .resetGame, object: nil)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        popupView.layer.cornerRadius = 20
-        
-        self.gameModel = ContainerConfig.instance.resolve() as GameModel
-        ScoreLabel.text = "\(self.gameModel!.score)"
-        
-    }
+class GameOverVC: UIViewController {
+	
+	@IBOutlet var popupView: UIView!
+	@IBOutlet var ScoreLabel: UILabel!
+	@IBOutlet var scoreDescription: UILabel!
+	
+	@IBAction func onResetGame(_ sender: Any) {
+		NotificationCenter.default.post(name: .resetGame, object: nil)
+		dismiss(animated: true, completion: nil)
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		popupView.layer.cornerRadius = 20
+		
+		let gameModel = ContainerConfig.instance.resolve() as GameModel
+		let prevRecord = UserDefaults.standard.integer(forKey: SettingsKey.BestScore.rawValue)
+		let currentScore = gameModel.score
+		if prevRecord < currentScore {
+			UserDefaults.standard.set(currentScore, forKey: SettingsKey.BestScore.rawValue)
+            scoreDescription.text = "gameOver.newRecord".localized()
+		}
+		else {
+            scoreDescription.text = "gameOver.yourScore".localized()
+		}
+		
+		ScoreLabel.text = "\(currentScore)"
+	}
 }

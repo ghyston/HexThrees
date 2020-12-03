@@ -9,31 +9,38 @@
 import Foundation
 
 @objc protocol CMD {
-    @objc func run()
+	@objc func run()
 }
 
 extension CMD {
-    
-    func runWithDelay(delay : Double) {
-        
-        Timer.scheduledTimer(
-            timeInterval: delay,
-            target: self,
-            selector: #selector(CMD.run),
-            userInfo: nil,
-            repeats: false)
-    }
+	func runWithDelay(delay: Double) -> Timer {
+		return Timer.scheduledTimer(
+			timeInterval: delay,
+			target: self,
+			selector: #selector(CMD.run),
+			userInfo: nil,
+			repeats: false)
+	}
 }
 
-class GameCMD : CMD {
-    
-    let gameModel: GameModel
-    init(_ gameModel: GameModel) {
-        self.gameModel = gameModel
-    }
-    
-    @objc func run() {
-        assert(false, "GameCMD should not be run")
-    }
+struct CmdParam {}
+
+class GameCMD: CMD {
+	let gameModel: GameModel
+	init(_ gameModel: GameModel) {
+		self.gameModel = gameModel
+	}
+
+	@objc func run() {
+		assert(false, "GameCMD should not be run")
+	}
 }
 
+class RunOnNodeCMD: GameCMD {
+	var node: BgCell?
+
+	func setup(node: BgCell) -> RunOnNodeCMD {
+		self.node = node
+		return self
+	}
+}

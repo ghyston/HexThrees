@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum MotionBlurStatus : Int {
-    
-    case Enabled = 1
-    case Disabled = 2
+enum MotionBlurStatus: Int {
+	case Enabled = 1
+	case Disabled = 2
 }

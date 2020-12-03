@@ -9,34 +9,29 @@
 import Foundation
 
 class MoveXDownIterator: BaseCellsIterator, CellsIterator {
-    
-    func next() -> LineCellsContainer? {
-        
-        line.clear()
-        
-        if x >= w {
-            x = 0
-            y += 1
-        }
-        
-        if y >= h {
-            return nil;
-        }
-        
-        for _ in x ..< w {
-            
-            let cell = getCell(x, y)
-            
-            x += 1
-            
-            if(cell.isBlocked) {
-                break
-            }
-            
-            line.add(cell)
-        }
-        
-        return line;
-    }
-    
+	func next() -> LineCellsContainer? {
+		line.clear()
+		
+		if x >= w {
+			x = 0
+			y += 1
+		}
+		
+		if y >= h {
+			return nil
+		}
+		
+		for _ in x ..< w {
+			defer { x += 1 }
+			
+			guard let cell = getCell(x, y),
+				!cell.isBlocked,
+				!cell.isBlockedFromSwipe
+			else { break }
+			
+			line.add(cell)
+		}
+		
+		return line
+	}
 }

@@ -9,47 +9,80 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    
-    var prevInterval = TimeInterval()
-    
-    class func newGameScene() -> GameScene {
-        
-        guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks")
-            abort()
-        }
-        
-        scene.scaleMode = .resizeFill
-        
-        /*let fShader = SKShader.init(fileNamed: "gridDervative.fsh")
-        let circle = SKShapeNode.init(circleOfRadius: 150)
-        let hexTexture = SKTexture.init(imageNamed: "hex")
-        
-        //circle.fillTexture = hexTexture
-        circle.fillShader = fShader
-        circle.zPosition = 20
-        circle.position.y = 200
-        scene.addChild(circle)*/
-        
-        return scene
-    }
-    
-    override func didMove(to view: SKView) {
-        
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        
-        
-        let delta = currentTime - prevInterval
-        prevInterval = currentTime
-        
-        //@todo: uglyuglyuglyuglyuglyuglyuglyuglyugly
-        //@todo: use runForAllSubnodes
-        for firstLevelChild in self.children {
-            for secondLevel in firstLevelChild.children where secondLevel is MotionBlurNode  {
-                (secondLevel as! MotionBlurNode).updateMotionBlur(delta)
-            }
-        }
-    }
+	var prevInterval: TimeInterval?
+	var panel: CollectableButtonsPanel?
+	var shaderManager: IShaderManager?
+	
+	var overlay: SKSpriteNode?
+	var greyLayer: SKSpriteNode?
+	var tutorialSwipe: SwipeGestureNode?
+	
+	override init(size: CGSize) {
+		super.init(size: size)
+		print("GameScene::init size:\(size)")
+		
+		anchorPoint.x = 0.5
+		anchorPoint.y = 0.5
+		self.scaleMode = .resizeFill
+		
+		let buttons = CollectableButtonsPanel(width: size.width)
+		buttons.position.y = -size.height / 2.0 + 3.0
+		addChild(buttons)
+		
+		self.panel = buttons
+		addCallbacks()
+	}
+	
+	public var fieldOutline: FieldOutline {
+		let existingBg = childNode(withName: FieldOutline.defaultNodeName)
+		let fieldBg = existingBg as? FieldOutline ?? FieldOutline()
+		if existingBg == nil {
+			fieldBg.name = FieldOutline.defaultNodeName
+			addChild(fieldBg)
+		}
+		return fieldBg
+	}
+	
+	func addFieldOutlineCell(where coords: AxialCoord, startPos: CGPoint, color: SKColor, using geometry: FieldGeometry) {
+		fieldOutline.addFieldOutlineCell(where: coords, startPos: startPos, color: color, using: geometry)
+	}
+	
+	func addFieldOutline(_ model: GameModel) {
+		fieldOutline.recalculateFieldBg(model: model)
+	}
+	
+	func scaleFieldOutline(by scale: CGFloat, _ model: GameModel) {
+		fieldOutline.updateGeometry(by: scale, using: model.geometry!)
+	}
+	
+	override func didMove(to view: SKView) {}
+	
+	public func updateSafeArea(bounds: CGRect, insects: UIEdgeInsets) {
+		panel?.position.y = -size.height / 2.0 + insects.bottom
+	}
+	
+	override func update(_ currentTime: TimeInterval) {
+		tutorialSwipe?.update()
+		
+		if prevInterval == nil {
+			prevInterval = currentTime
+		}
+		
+		let delta = currentTime - prevInterval!
+		prevInterval = currentTime
+		
+		shaderManager?.updateSelectableAnimation(delta)
+		
+		let updateNode: (_: SKNode) -> Void = {
+			($0 as? MotionBlurNode)?.updateMotionBlur(delta)
+			($0 as? AnimatedNode)?.updateAnimation(delta)
+		}
+		
+		runForAllSubnodes(lambda: updateNode)
+		drawOverlay()
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 }

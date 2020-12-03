@@ -9,8 +9,8 @@
 import Foundation
 
 enum MergingStrategyName: Int {
-    
-    case Fibonacci = 0
-    case PowerOfTwo = 1
-    case Hybrid = 2
+	case Fibonacci = 0
+	case PowerOfTwo = 1
+	case Hybrid = 2
+	case Tutorial = 3
 }

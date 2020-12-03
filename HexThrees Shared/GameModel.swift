@@ -9,103 +9,64 @@
 import Foundation
 import SpriteKit
 
-protocol ICellsStatisticCalculator {
-    
-    func next(cell: BgCell)
-    func clean()
-}
-
 class GameModel {
-    
-    var fieldWidth: Int
-    var fieldHeight: Int
-    var strategy: MergingStrategy
-    var geometry: FieldGeometry
-    var motionBlurEnabled: Bool
-    var hapticFeedbackEnabled: Bool
-    
-    // Some common properties
-    var bgHexes = [BgCell]()
-    var swipeStatus = SwipeStatus()
-    var score : Int = 0
-    var scoreBuffs = [ScoreBuff]()
-    var scoreMultiplier : Int = 1
-    var turnsWithoutBonus : Int = 0
-    
-    func getCell(_ x: Int, _ y: Int) -> BgCell {
-        
-        assert(x >= 0 && x < fieldWidth, "cell coordinate \(x) out of range")
-        assert(y >= 0 && y < fieldHeight, "cell coordinate \(y) out of range")
-        let index = y * fieldWidth + x
-        return bgHexes[index]
-    }
-    
-    func getBgCells(compare: (_: BgCell) -> Bool) -> [BgCell] {
-        
-        return self.bgHexes.filter(compare)
-    }
-    
-    func hasBgCells(compare: (_: BgCell) -> Bool) -> Bool {
-        
-        return self.bgHexes.first(where: compare) != nil
-    }
-    
-    func countBgCells(compare: (_: BgCell) -> Bool) -> Int {
-        
-        return self.bgHexes.filter(compare).count
-    }
-    
-    func calculateForSiblings(coord: AxialCoord, calc: inout ICellsStatisticCalculator) {
-        
-        calc.clean()
-        
-        let xMin = max(coord.c - 1, 0)
-        let xMax = min(coord.c + 1, fieldWidth - 1)
-        let yMin = max(coord.r - 1, 0)
-        let yMax = min(coord.r + 1, fieldHeight - 1)
-        
-        
-        for x in xMin...xMax  {
-            for y in yMin ... yMax {
-                
-                // here skipping self cell and corner cells (because of hex geometry)
-                if (x == coord.c && y == coord.r) || x == y {
-                    continue
-                }
-                
-                calc.next(cell: getCell(x, y))
-            }
-        }
-    }
-    
-    func recalculateScoreBaff(){
-        
-        self.scoreMultiplier = 1
-        for buff in scoreBuffs {
-            self.scoreMultiplier *= buff.factor
-        }
-    }
-    
-    init(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool) {
-        
-        self.geometry = FieldGeometry(
-            screenWidth: screenWidth,
-            fieldSize: fieldSize)
-        self.strategy = strategy
-        self.fieldWidth = fieldSize
-        self.fieldHeight = fieldSize
-        self.motionBlurEnabled = motionBlur
-        self.hapticFeedbackEnabled = hapticFeedback
-    }
-    
-    func reset(screenWidth: CGFloat, fieldSize: Int, strategy: MergingStrategy) {
-        
-        self.geometry = FieldGeometry(
-            screenWidth: screenWidth,
-            fieldSize: fieldSize)
-        self.strategy = strategy
-        self.fieldWidth = fieldSize
-        self.fieldHeight = fieldSize
-    }
-    
+	var strategy: MergingStrategy
+	var geometry: FieldGeometry?
+	var hapticManager: IHapticManager
+	var tutorialManager = TutorialManager()
+	
+	var motionBlurEnabled: Bool
+	var useButtonsEnabled: Bool
+	var purchased: Bool
+	
+	var stressTimer: ITimerModel
+	
+	// Some common properties
+	var field: HexField
+	var swipeStatus = SwipeStatus()
+	var score: Int = 0
+	var scoreBuffs = [ScoreBuff]()
+	var scoreMultiplier: Int = 1
+	var turnsWithoutBonus: Int = 0
+	var turnsWithoutSave: Int = 0
+	
+	var selectedBonusType: BonusType?
+	var selectCMD: RunOnNodeCMD?
+	var collectableBonuses = [BonusType: CollectableBonusModel]()
+	
+	func recalculateScoreBaff() {
+		self.scoreMultiplier = 1
+		for buff in self.scoreBuffs {
+			self.scoreMultiplier *= buff.factor
+		}
+	}
+	
+	func freeLimitReached() -> Bool {
+		!purchased && field.maxValue() >= GameConstants.FreeVersionValueLimit
+	}
+	
+	init(strategy: MergingStrategy, motionBlur: Bool, hapticFeedback: Bool, timerEnabled: Bool, useButtons: Bool, purchased: Bool) {
+		self.strategy = strategy
+		self.field = HexField()
+		self.motionBlurEnabled = motionBlur
+		self.useButtonsEnabled = useButtons
+		self.hapticManager = HapticManager(enabled: hapticFeedback)
+		self.purchased = purchased
+		
+		self.stressTimer = TimerModel()
+		if timerEnabled {
+			self.stressTimer.enable()
+		}
+		self.resetCollectables()
+	}
+	
+	func reset(strategy: MergingStrategy) {
+		self.strategy = strategy
+		self.field = HexField()
+		self.resetCollectables()
+	}
+	
+	private func resetCollectables() {
+		self.collectableBonuses.removeAll()
+	}
 }

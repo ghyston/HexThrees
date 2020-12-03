@@ -8,13 +8,11 @@
 
 import Foundation
 
-class RemoveCellCMD : GameCMD {
-    
-    func run(cell: BgCell, delay: Double) {
-        
-        assert(cell.gameCell != nil, "RemoveCellCMD: BgCell is empty")
-        
-        cell.gameCell?.removeFromParentWithDelay(delay: delay)
-        cell.gameCell = nil
-    }
+class RemoveCellCMD: GameCMD {
+	func run(cell: BgCell, delay: Double) {
+		assert(cell.gameCell != nil, "RemoveCellCMD: BgCell is empty")
+
+		cell.gameCell?.removeFromParentWithDelay(delay: delay)
+		cell.gameCell = nil
+	}
 }
