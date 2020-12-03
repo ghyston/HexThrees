@@ -1,4 +1,4 @@
-# HexTrees
+# HexThrees
 
 HexThrees is a small puzzle game that can help pass the time or gets you hands distracted while listening to music or podcast. The original idea was to build [Threes](https://apps.apple.com/us/app/threes/id779157948) and [2048](https://apps.apple.com/us/app/2048/id840919914) clone in hexagonal space, but, as I believe, HexThrees became something clearly different from original.
 
