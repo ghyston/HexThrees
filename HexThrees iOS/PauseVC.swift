@@ -32,7 +32,8 @@ class PauseVC: UIViewController {
 	@IBOutlet var hapticFeedbackSwitch: UISwitch!
 	@IBOutlet var timerSwitch: UISwitch!
 	@IBOutlet var useButtonsSwitch: UISwitch!
-	
+    @IBOutlet var showHintSwitch: UISwitch!
+    
 	@IBOutlet var titleLabel: UILabel!
 	@IBOutlet var bestScoreLabel: UILabel!
 	@IBOutlet var versionLabel: UILabel!
@@ -53,6 +54,7 @@ class PauseVC: UIViewController {
 		hapticFeedbackSwitch.isOn = gameModel?.hapticManager.isEnabled ?? false
 		timerSwitch.isOn = gameModel?.stressTimer.isEnabled() ?? false
 		useButtonsSwitch.isOn = gameModel?.useButtonsEnabled ?? false
+        showHintSwitch.isOn = gameModel?.showHint ?? false
 		
 		setupSegmentedControlDesign()
 		
@@ -155,7 +157,15 @@ class PauseVC: UIViewController {
 		SwitchPaletteCMD(gm).run(newMode.ensureDarkMode(traitCollection))
 		defaults.set(newMode.rawValue, forKey: SettingsKey.Palette.rawValue)
 	}
-	
+    
+    @IBAction func onShowHintSwitch(_ sender: Any) {
+        guard let gm = gameModel else {
+            return
+        }
+        
+        SwitchShowHintCmd(gm).run(isOn: showHintSwitch.isOn)
+    }
+    
 	@IBAction func onUseButtonsSwitch(_ sender: Any) {
 		guard let gm = gameModel else {
 			return

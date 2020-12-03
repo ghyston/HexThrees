@@ -14,7 +14,8 @@ import UIKit
 class GameVC: UIViewController {
 	@IBOutlet var scoreLabel: UILabel!
 	@IBOutlet var scoreMultiplierLabel: UILabel!
-	
+    @IBOutlet weak var hintLabel: UILabel!
+    
 	@IBOutlet var yUpBtn: UIButton!
 	@IBOutlet var leftBtn: UIButton!
 	@IBOutlet var xDownBtn: UIButton!
@@ -34,7 +35,8 @@ class GameVC: UIViewController {
 		palette: .Auto,
 		stressTimer: StressTimerStatus.Enabled,
 		useButtons: UseButtonStatus.Disabled,
-		purchased: false)
+		purchased: false,
+        showHint: ShowHintStatus.Enabled)
 	
 	let defaults = UserDefaults.standard
 	
@@ -102,6 +104,7 @@ class GameVC: UIViewController {
 			hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
 			timerEnabled: params.stressTimer == StressTimerStatus.Enabled,
 			useButtons: params.useButtons == UseButtonStatus.Enabled,
+            showHintEnabled: params.showHint == ShowHintStatus.Enabled,
 			purchased: params.purchased)
 		self.gameModel?.collectableBonuses.removeAll()
 		ContainerConfig.instance.register(self.gameModel!)
@@ -116,7 +119,8 @@ class GameVC: UIViewController {
 		
 		let prefStress = StressTimerStatus(rawValue: defaults.integer(forKey: SettingsKey.StressTimer.rawValue))
 		let useButtons = UseButtonStatus(rawValue: defaults.integer(forKey: SettingsKey.UseButtons.rawValue))
-		
+        let showHint = ShowHintStatus(rawValue: defaults.integer(forKey: SettingsKey.ShowHint.rawValue))
+        
 		return GameParams(
 			randomElementsCount: self.defaultGameParams.randomElementsCount,
 			blockedCellsCount: self.defaultGameParams.blockedCellsCount,
@@ -126,7 +130,8 @@ class GameVC: UIViewController {
 			palette: prefPalette ?? self.defaultGameParams.palette,
 			stressTimer: prefStress ?? self.defaultGameParams.stressTimer,
 			useButtons: useButtons ?? self.defaultGameParams.useButtons,
-			purchased: defaults.bool(forKey: SettingsKey.Purchased.rawValue))
+			purchased: defaults.bool(forKey: SettingsKey.Purchased.rawValue),
+            showHint: showHint ?? self.defaultGameParams.showHint)
 	}
 	
 	private func createPalette(_ palette: ColorSchemaType) {
@@ -153,6 +158,7 @@ class GameVC: UIViewController {
 	// @todo: I'm not proud of my next 100+ lines about create/start/restart, but these parts changes too often to make them clear
 	// common parts between start and restart
 	private func createGame(_ settings: GameParams) {
+        self.hintLabel.isHidden = settings.showHint == ShowHintStatus.Disabled
 		self.switchButtons(hidden: settings.useButtons == UseButtonStatus.Disabled)
 		self.createPalette(settings.palette)
 		self.createModel(settings)
@@ -189,6 +195,7 @@ class GameVC: UIViewController {
 		
 		if !tutorialManager.alreadyRun() {
 			self.createTutorialGame()
+            self.hintLabel.isHidden = true
 			tutorialManager.start(model: self.gameModel!)
 		} else if let save = save {
 			LoadGameCmd(self.gameModel!, save: save, screen: view.frame.size).run()
@@ -305,6 +312,12 @@ class GameVC: UIViewController {
 			selector: #selector(self.onUseButtonsChange),
 			name: .switchUseButtons,
 			object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.onShowHintChange),
+            name: .switchShowHint,
+            object: nil)
 		
 		NotificationCenter.default.addObserver(
 			self,
@@ -347,7 +360,17 @@ class GameVC: UIViewController {
 			selector: #selector(self.showProductNotFoundPopup),
 			name: .productNotFound,
 			object: nil)
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.onTutorialFinish),
+            name: .cleanTutorialScene,
+            object: nil)
 	}
+    
+    @objc func onTutorialFinish(notification: Notification) {
+        self.hintLabel.isHidden = false
+    }
 	
 	@objc func onGameReset(notification: Notification) {
 		self.restartGame()
@@ -396,6 +419,11 @@ class GameVC: UIViewController {
 		let use = notification.object as? Bool ?? false
 		self.switchButtons(hidden: !use)
 	}
+    
+    @objc func onShowHintChange(notification: Notification) {
+        let showHint = notification.object as? Bool ?? false
+        self.hintLabel.isHidden = !showHint
+    }
 	
 	@objc func onFieldExpand(notification: Notification) {
 		let cmd = ExpandHexFieldCmd(self.gameModel!)

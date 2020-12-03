@@ -18,4 +18,5 @@ struct GameParams {
 	let stressTimer: StressTimerStatus
 	let useButtons: UseButtonStatus
 	let purchased: Bool
+    let showHint: ShowHintStatus
 }

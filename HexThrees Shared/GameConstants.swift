@@ -57,4 +57,5 @@ enum SettingsKey: String {
 	case BestScore = "best_score"
 	case TutorialShown = "tutorial_shown"
 	case Purchased = "purchased"
+    case ShowHint = "show_hint"
 }
