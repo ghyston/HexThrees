@@ -119,6 +119,8 @@ class CollectableBtn: SKNode, AnimatedNode {
 			} else if let bonusCmd = BonusFabric.collectableNotSelectableBonusCMD(bonus: self.type, gameModel: self.gameModel) {
 				bonusCmd.run()
 				self.gameModel.collectableBonuses[self.type]?.use()
+                self.gameModel.collectableBonuses.removeValue(forKey: self.type)
+                
 				NotificationCenter.default.post(name: .useCollectables, object: self.type)
 			}
 		}

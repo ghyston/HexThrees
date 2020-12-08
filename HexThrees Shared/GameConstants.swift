@@ -43,8 +43,8 @@ class GameConstants {
 	static let ExpandFieldDropProbability: Float = 0.25
 	
 	static let CollectableUnlockCellBonusProbability: Float = 1.0
-	static let CollectableSwipeBlockBonusProbability: Float = 10.0
-	static let CollectablePauseTimerBonusProbability: Float = 10.0
+	static let CollectableSwipeBlockBonusProbability: Float = 1.0
+	static let CollectablePauseTimerBonusProbability: Float = 1.0
 	static let CollectablePickUpBonusProbability: Float = 1.0
 }
 
