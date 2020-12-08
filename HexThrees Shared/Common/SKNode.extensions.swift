@@ -36,6 +36,20 @@ extension SKNode {
 		let delayAction = SKAction.wait(forDuration: delayVal)
 		self.run(SKAction.sequence([delayAction, scaleAction]))
 	}
+    
+    func playDisappearAnimation(duration: TimeInterval = GameConstants.CellAppearAnimationDuration, delay: TimeInterval? = nil) {
+        
+        let scaleAction = SKAction.scale(to: 0.01, duration: duration)
+        scaleAction.timingMode = .easeInEaseOut
+        
+        guard let delayVal = delay else {
+            self.run(scaleAction)
+            return
+        }
+        
+        let delayAction = SKAction.wait(forDuration: delayVal)
+        self.run(SKAction.sequence([delayAction, scaleAction]))
+    }
 }
 
 extension SKAction {

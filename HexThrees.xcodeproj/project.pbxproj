@@ -143,6 +143,7 @@
 		3FC380D4248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */; };
 		3FC380D6248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */; };
 		3FC380D8248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC380D7248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift */; };
+		3FC70B6A257E5E270027516B /* PreviewVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC70B69257E5E270027516B /* PreviewVideoManager.swift */; };
 		3FD21DF22548276D00F65A23 /* RequestStoreProductCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD21DF12548276D00F65A23 /* RequestStoreProductCMD.swift */; };
 		3FD21DFE2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD21DFD2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift */; };
 		3FD8328C2436335300902B7C /* blockSwipe.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 3FD8328B2436335300902B7C /* blockSwipe.fsh */; };
@@ -332,6 +333,7 @@
 		3FC380D3248A529B00EEF6F3 /* TutorialKeepSwipingCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialKeepSwipingCmd.swift; sourceTree = "<group>"; };
 		3FC380D5248A9FA100EEF6F3 /* ShowPurchasePopupCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPurchasePopupCmd.swift; sourceTree = "<group>"; };
 		3FC380D7248AA51400EEF6F3 /* PurchaseFullVersionCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseFullVersionCmd.swift; sourceTree = "<group>"; };
+		3FC70B69257E5E270027516B /* PreviewVideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVideoManager.swift; sourceTree = "<group>"; };
 		3FD21DF12548276D00F65A23 /* RequestStoreProductCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStoreProductCMD.swift; sourceTree = "<group>"; };
 		3FD21DFD2549B2F600F65A23 /* FinalizeSuccPurchaseCMD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalizeSuccPurchaseCMD.swift; sourceTree = "<group>"; };
 		3FD8328B2436335300902B7C /* blockSwipe.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = blockSwipe.fsh; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				3F834B302446046D00A38263 /* ShaderManager.swift */,
 				3FF444A6244F4AD500C5F5D0 /* ShaderResourceContainer.swift */,
 				3F81B67524656AB400071127 /* Lifetimeable.swift */,
+				3FC70B69257E5E270027516B /* PreviewVideoManager.swift */,
 			);
 			path = "HexThrees Shared";
 			sourceTree = "<group>";
@@ -928,6 +931,7 @@
 				3F4FA82520E5FA2900971892 /* Container.swift in Sources */,
 				3FF8B998243E04D600703AF9 /* PickUpGameCellCmd.swift in Sources */,
 				3F8D115F2284995B0034BC6D /* StressTimerStatus.swift in Sources */,
+				3FC70B6A257E5E270027516B /* PreviewVideoManager.swift in Sources */,
 				3F555CF22091AE66003C67A7 /* GameCell.swift in Sources */,
 				3FB703B220E168EE009718F3 /* GameParams.swift in Sources */,
 				3F28469625277F7700911A90 /* IAPHelper.swift in Sources */,

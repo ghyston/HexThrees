@@ -174,7 +174,7 @@ class GameVC: UIViewController {
 			self.scene?.addChild($0)
 			$0.playAppearAnimation(
 				duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.5 ... 1.2),
-				delay: GameConstants.CellAppearAnimationDuration * 0.5)
+                delay: 1.0 + GameConstants.CellAppearAnimationDuration * 0.5)
 		})
 		self.updateSceneColor()
 	}
@@ -234,11 +234,24 @@ class GameVC: UIViewController {
 			model: self.gameModel!,
 			screenSize: view.frame.size)
 		
-		CmdFactory()
+        for (x,y) in PreviewVideoManager.initialCells {
+            
+            let bgCell = self.gameModel!.field[x,y]!
+            
+            AddGameCellCmd(self.gameModel!)
+                .setup(addTo: bgCell, isTutorial: false, value: 0)
+                .run()
+        }
+        
+        for (x,y) in PreviewVideoManager.blockedCells {
+            self.gameModel!.field[x,y]!.block()
+        }
+        
+		/*CmdFactory()
 			.AddRandomElements(
 				cells: settings.randomElementsCount,
 				blocked: settings.blockedCellsCount)
-			.run()
+			.run()*/
 		/*
 		// commented code below shows all bonus acions
 		// set fieldsize on setupNewField and block loadGame
@@ -272,7 +285,78 @@ class GameVC: UIViewController {
 			name: .updateScore,
 			object: self.gameModel?.score)
 		self.scene?.panel?.removeAllButtons()
+        
+        // preview set up
+        let repeatCount = 18
+        var actions: [SKAction] = []
+        for i in 0 ..< repeatCount {
+            actions.append(SKAction.wait(forDuration: 1.5 - 0.5 * Double(i) * (1.0 / Double(repeatCount)))) ///*0.2 + Double.random(in: 0.5 ... 1.0)*/
+            actions.append(SKAction.run { self.doRandomSwipe() })
+        }
+        
+        let repSeq = SKAction.sequence(actions)
+        
+        let bigSeq = SKAction.sequence([
+            SKAction.wait(forDuration: 1.0),
+            repSeq,
+            SKAction.run { self.dissapparateField() }])
+        
+        scene?.run(bigSeq);
 	}
+    
+    // MARK: Preview hardcoded functions
+    
+    //NOTE: mostly copied from HelpSwipeScene
+    @objc private func doRandomSwipe() {
+        let allDirections = SwipeDirection.allCases
+        
+        var nextSwipes : [SwipeDirection: Int] = [:]
+        
+        for direction in allDirections {
+            
+            print("dir: \(direction)")
+            var outCome = 0
+            
+            guard let iterator = IteratorFabric.create(self.gameModel!, direction.inverse()) else {
+                continue
+            }
+            
+            while let line = iterator.next() {
+                if line.count == 0 {
+                    continue
+                }
+                
+                let lineOutcome = line.checkScore(strategy: self.gameModel!.strategy)
+                line.debugLine(info: "\(lineOutcome)")
+                
+                outCome = outCome + lineOutcome
+            }
+            nextSwipes[direction] = outCome
+        }
+        
+        let swipeDirection = nextSwipes.max {a, b in a.value < b.value }!.key
+        
+        // this is just a hack. Dunno why this is happening and I dont have more time to investigate
+        /*if swipeDirection == .XUp  ||
+            swipeDirection == .XDown ||
+            swipeDirection == .YUp  ||
+            swipeDirection == .YDown {
+            swipeDirection = swipeDirection.inverse()
+        }*/
+        
+        handleSwipe(direction: swipeDirection)
+        print("-------------")
+    }
+    
+    @objc private func dissapparateField()
+    {
+        self.gameModel?.field.executeForAll(lambda: {
+            $0.playDisappearAnimation(
+                duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.5 ... 1.2),
+                delay: 1.2 + GameConstants.CellAppearAnimationDuration * 0.5)
+        })
+        self.scene?.fieldOutline.disappearField()
+    }
 	
 	// MARK: Callbacks
 	

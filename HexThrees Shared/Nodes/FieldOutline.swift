@@ -53,10 +53,16 @@ class FieldOutline: SKNode {
 					using: model.geometry!)
 				hexShape.fillColor = .darkGray
 				self.addChild(hexShape)
-				hexShape.playAppearAnimation(duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.7 ... 1.3))
+                hexShape.playAppearAnimation(duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.7 ... 1.3), delay: 1.0)
 			}
 		}
 	}
+    
+    func disappearField() {
+        for child in children {
+            child.playDisappearAnimation(duration: GameConstants.CellAppearAnimationDuration * Double.random(in: 0.7 ... 1.3), delay: 1.5)
+        }
+    }
 	
 	func addFieldOutlineCell(where coord: AxialCoord, startPos: CGPoint, color: SKColor, using geometry: FieldGeometry) {
 		let hexShape = FieldOutlineHex(

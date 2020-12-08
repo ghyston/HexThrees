@@ -43,4 +43,12 @@ class LineCellsContainer {
 	func clear() {
 		cells.removeAll(keepingCapacity: true)
 	}
+    
+    func debugLine(info: String = "")
+    {
+        for (index, cell) in cells.enumerated() {
+            print("\(index): (\(cell.coord.x),\(cell.coord.y)) \(cell.gameCell?.value ?? -1)")
+        }
+        print("info: \(info)\n")
+    }
 }
