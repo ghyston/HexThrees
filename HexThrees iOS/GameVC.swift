@@ -180,7 +180,7 @@ class GameVC: UIViewController {
 	}
 	
 	private func startGame() {
-		let save = FileHelper.loadSave() // @todo: use FileHelper by interface ?
+        let save = PreviewVideoManager.save3()// FileHelper.loadSave() // @todo: use FileHelper by interface ?
 		let settings = self.loadSettings()
 		self.createGame(settings)
 		

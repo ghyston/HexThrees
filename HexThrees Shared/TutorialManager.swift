@@ -112,6 +112,6 @@ class TutorialManager {
 	}
 	
 	func alreadyRun() -> Bool {
-		UserDefaults.standard.bool(forKey: SettingsKey.TutorialShown.rawValue)
+		true//UserDefaults.standard.bool(forKey: SettingsKey.TutorialShown.rawValue)
 	}
 }
