@@ -41,7 +41,8 @@ extension SelectableNode where Self: HexNode {
 		self.selectorShadeHex.path = self.hexShape.path
 		self.selectorShadeHex.zPosition = zPositions.selectorShadeShape.rawValue
 		self.selectorShadeHex.fillShader = shaderManager.selectableMuffleShader
-		self.selectorShadeHex.lineWidth = 0
+        self.selectorShadeHex.strokeShader = shaderManager.selectableMuffleShader
+		self.selectorShadeHex.lineWidth = 2
 	}
 	
 	func highlight() {

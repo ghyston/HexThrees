@@ -58,7 +58,7 @@ class GameScene: SKScene {
 	override func didMove(to view: SKView) {}
 	
 	public func updateSafeArea(bounds: CGRect, insects: UIEdgeInsets) {
-		panel?.position.y = -size.height / 2.0 + insects.bottom
+        panel?.position.y = -size.height / 2.0 + insects.bottom + 3.0
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
