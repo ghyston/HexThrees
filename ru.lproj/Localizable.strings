@@ -3,7 +3,7 @@
 "tutorial.welcome.sign" = "!";
 "tutorial.firstSwipe" = "смахните вправо ➡️";
 "tutorial.swipeUpLeft" = "смахните вверх/влево ↖️\nчтобы объединить\nклетки";
-"tutorial.newCells" = "новая плетка\nпоявляется после\nкаждого хода";
+"tutorial.newCells" = "новая клетка\nпоявляется после\nкаждого хода";
 "tutorial.keepSwipeToStop" = "продолжайте чтобы ↙️↘️\nостановить таймер";
 "tutorial.swipeLeft" = "ход влево ⬅️\nзабрать бонус";
 "tutorial.swipeRight" = "ход вправо ➡️\n забрать бонус";
