@@ -13,7 +13,7 @@ class GameConstants {
 	static let TurnsToAutoSave = 5
 	static let MaxFieldSize = 7
 	static let StartFieldSize = 3
-	static let FreeVersionValueLimit = 5
+	static let FreeVersionValueLimit = 6
 	
 	// Animations
 	static let SecondsPerCell = 0.20
