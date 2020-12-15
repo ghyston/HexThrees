@@ -13,7 +13,7 @@ class GameConstants {
 	static let TurnsToAutoSave = 5
 	static let MaxFieldSize = 7
 	static let StartFieldSize = 3
-	static let FreeVersionValueLimit = 5
+	static let FreeVersionValueLimit = 6
 	
 	// Animations
 	static let SecondsPerCell = 0.20
@@ -43,8 +43,8 @@ class GameConstants {
 	static let ExpandFieldDropProbability: Float = 0.25
 	
 	static let CollectableUnlockCellBonusProbability: Float = 1.0
-	static let CollectableSwipeBlockBonusProbability: Float = 10.0
-	static let CollectablePauseTimerBonusProbability: Float = 10.0
+	static let CollectableSwipeBlockBonusProbability: Float = 1.0
+	static let CollectablePauseTimerBonusProbability: Float = 1.0
 	static let CollectablePickUpBonusProbability: Float = 1.0
 }
 
