@@ -194,7 +194,7 @@ class PauseVC: UIViewController {
 	}
 	
 	func onConfirmReset(action: UIAlertAction) {
-		NotificationCenter.default.post(name: .resetGame, object: nil)
+		NotificationCenter.default.post(name: .resetGame, object: ResetGameReason.Manualy)
 		dismiss(animated: true, completion: nil)
 	}
 	

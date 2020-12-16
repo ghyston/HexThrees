@@ -25,6 +25,10 @@ class IAPHelper: NSObject {
 	
 	static let shared = IAPHelper()
 	
+    func requestReview() {
+        SKStoreReviewController.requestReview()
+    }
+    
 	func canBePurchased() -> Bool {
 		SKPaymentQueue.canMakePayments()
 	}

@@ -49,6 +49,8 @@
 		3F2D81F521C6C19100A48CD1 /* MergingStrategyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */; };
 		3F2D81F721C6C1D500A48CD1 /* HapticFeedbackStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F621C6C1D500A48CD1 /* HapticFeedbackStatus.swift */; };
 		3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */; };
+		3F31A47D258A180A00A3A729 /* AskForReviewCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F31A47C258A180A00A3A729 /* AskForReviewCmd.swift */; };
+		3F31A481258A198100A3A729 /* ResetGameReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F31A480258A198100A3A729 /* ResetGameReason.swift */; };
 		3F321934234F006900526D96 /* CollectableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F321933234F006900526D96 /* CollectableTest.swift */; };
 		3F3DDAA92485007D00417C3D /* TutorialEveryTurnDescriptionCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DDAA82485007D00417C3D /* TutorialEveryTurnDescriptionCmd.swift */; };
 		3F3DDAAB24850C0B00417C3D /* TutorialHighlightBonusCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3DDAAA24850C0B00417C3D /* TutorialHighlightBonusCmd.swift */; };
@@ -234,6 +236,8 @@
 		3F2D81F421C6C19100A48CD1 /* MergingStrategyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergingStrategyName.swift; sourceTree = "<group>"; };
 		3F2D81F621C6C1D500A48CD1 /* HapticFeedbackStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackStatus.swift; sourceTree = "<group>"; };
 		3F2D81F821C6C31600A48CD1 /* SwitchHapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchHapticFeedback.swift; sourceTree = "<group>"; };
+		3F31A47C258A180A00A3A729 /* AskForReviewCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForReviewCmd.swift; sourceTree = "<group>"; };
+		3F31A480258A198100A3A729 /* ResetGameReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetGameReason.swift; sourceTree = "<group>"; };
 		3F321933234F006900526D96 /* CollectableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectableTest.swift; sourceTree = "<group>"; };
 		3F3DDAA82485007D00417C3D /* TutorialEveryTurnDescriptionCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialEveryTurnDescriptionCmd.swift; sourceTree = "<group>"; };
 		3F3DDAAA24850C0B00417C3D /* TutorialHighlightBonusCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialHighlightBonusCmd.swift; sourceTree = "<group>"; };
@@ -555,6 +559,7 @@
 				3F8D115E2284995B0034BC6D /* StressTimerStatus.swift */,
 				3FF444A82452BBDA00C5F5D0 /* UseButtonStatus.swift */,
 				3FDB6F98257977B70058C1BE /* ShowHintStatus.swift */,
+				3F31A480258A198100A3A729 /* ResetGameReason.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -660,6 +665,7 @@
 				3FF8B997243E04D600703AF9 /* PickUpGameCellCmd.swift */,
 				3FF444AC2457258E00C5F5D0 /* TriggerFieldExpansionCmd.swift */,
 				3F81B67324655D1100071127 /* ExpandHexFieldCmd.swift */,
+				3F31A47C258A180A00A3A729 /* AskForReviewCmd.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -882,6 +888,7 @@
 				3FE9202F20D1AFDD009B7370 /* DoSwipeCmd.swift in Sources */,
 				3FAC646A20BC84980083C56C /* SwitchParentsCMD.swift in Sources */,
 				3F3DDAA92485007D00417C3D /* TutorialEveryTurnDescriptionCmd.swift in Sources */,
+				3F31A481258A198100A3A729 /* ResetGameReason.swift in Sources */,
 				3F21DF4920C8F79600A979D5 /* SKColor.extensions.swift in Sources */,
 				3F2B66FE2536415E00CB7625 /* RestorePurchaseCmd.swift in Sources */,
 				3F11E62E234BA188003294EC /* SelectableNode.swift in Sources */,
@@ -969,6 +976,7 @@
 				3F06B357207C81E000C8315A /* GameVC.swift in Sources */,
 				3FEBD12721346A5900D9FCBC /* BonusNode.swift in Sources */,
 				3F083AA2234CEE68000F5B6B /* EndCellSelectionCMD.swift in Sources */,
+				3F31A47D258A180A00A3A729 /* AskForReviewCmd.swift in Sources */,
 				3F06B355207C81E000C8315A /* AppDelegate.swift in Sources */,
 				3F432D862139174A00AF3DC0 /* ScoreBuff.swift in Sources */,
 				3F2D81F921C6C31600A48CD1 /* SwitchHapticFeedback.swift in Sources */,

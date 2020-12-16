@@ -373,6 +373,10 @@ class GameVC: UIViewController {
     }
 	
 	@objc func onGameReset(notification: Notification) {
+        if let reason = notification.object as? ResetGameReason {
+            AskForReviewCmd(self.gameModel!, resetReason: reason).run()
+        }
+        
 		self.restartGame()
 	}
 	
