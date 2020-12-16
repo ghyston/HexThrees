@@ -14,6 +14,8 @@ class GameConstants {
 	static let MaxFieldSize = 7
 	static let StartFieldSize = 3
 	static let FreeVersionValueLimit = 6
+    static let GameScoreRecordToAskForReview = 1000;
+    static let GameScoreToAskForReview = 4000;
 	
 	// Animations
 	static let SecondsPerCell = 0.20

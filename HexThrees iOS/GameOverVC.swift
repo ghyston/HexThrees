@@ -13,9 +13,15 @@ class GameOverVC: UIViewController {
 	@IBOutlet var popupView: UIView!
 	@IBOutlet var ScoreLabel: UILabel!
 	@IBOutlet var scoreDescription: UILabel!
+    
+    private var isRecord = false
 	
 	@IBAction func onResetGame(_ sender: Any) {
-		NotificationCenter.default.post(name: .resetGame, object: nil)
+        let reason = self.isRecord
+            ? ResetGameReason.GameOverRecord
+            : ResetGameReason.GameOver
+        
+        NotificationCenter.default.post(name: .resetGame, object: reason)
 		dismiss(animated: true, completion: nil)
 	}
 	
@@ -26,7 +32,9 @@ class GameOverVC: UIViewController {
 		let gameModel = ContainerConfig.instance.resolve() as GameModel
 		let prevRecord = UserDefaults.standard.integer(forKey: SettingsKey.BestScore.rawValue)
 		let currentScore = gameModel.score
-		if prevRecord < currentScore {
+        self.isRecord = prevRecord < currentScore
+        
+		if self.isRecord {
 			UserDefaults.standard.set(currentScore, forKey: SettingsKey.BestScore.rawValue)
             scoreDescription.text = "gameOver.newRecord".localized()
 		}
