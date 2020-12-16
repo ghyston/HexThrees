@@ -13,7 +13,7 @@ class GameConstants {
 	static let TurnsToAutoSave = 5
 	static let MaxFieldSize = 7
 	static let StartFieldSize = 3
-	static let FreeVersionValueLimit = 6
+	static let FreeVersionValueLimit = 7
     static let GameScoreRecordToAskForReview = 1000;
     static let GameScoreToAskForReview = 4000;
 	
