@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import os
 
-protocol MotionBlurNode: class {
+protocol MotionBlurNode: AnyObject {
 	var effectNode: SKEffectNode { get set }
 	var blurFilter: CIFilter { get set }
 	var prevPosition: CGPoint? { get set }

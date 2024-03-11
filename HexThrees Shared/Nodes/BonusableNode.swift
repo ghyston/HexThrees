@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-protocol BonusableNode: class {
+protocol BonusableNode: AnyObject {
 	var bonus: BonusNode? { get set }
 	
 	func addBonus(_ bonusNode: BonusNode)

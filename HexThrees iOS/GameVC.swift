@@ -292,7 +292,7 @@ class GameVC: UIViewController {
 		NotificationCenter.default.addObserver(
 			self,
 			selector: #selector(self.onGameEnd),
-			name: .gameOver,
+            name: .gameOver,
 			object: nil)
 		
 		NotificationCenter.default.addObserver(

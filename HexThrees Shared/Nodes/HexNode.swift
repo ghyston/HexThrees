@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-protocol HexNode: class {
+protocol HexNode: AnyObject {
 	var hexShape: SKShapeNode { get set }
 
 	func addShape(shape: SKShapeNode)

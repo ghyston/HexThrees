@@ -9,7 +9,7 @@
 import Foundation
 
 // this protocol is constrained to class, because this way self is mutable. Details: https://stackoverflow.com/a/32489442/1741428
-protocol LifeTimeable : class {
+protocol LifeTimeable : AnyObject {
 	var lifetime: Int { get set } //@todo: internal set?
 	func incLifetime()
 	func isOlderThan(val: Int) -> Bool

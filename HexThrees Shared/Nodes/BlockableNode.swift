@@ -13,7 +13,7 @@ protocol AnimatedNode {
 	func updateAnimation(_ delta: TimeInterval)
 }
 
-protocol BlockableNode: class {
+protocol BlockableNode: AnyObject {
 	var isBlocked: Bool { get set }
 	var blockablePlayback: IPlayback? { get set }
 	

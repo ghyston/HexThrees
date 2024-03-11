@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-protocol LabeledNode: class {
+protocol LabeledNode: AnyObject {
 	var label: SKLabelNode { get set }
 	
 	func addLabel(text: String)

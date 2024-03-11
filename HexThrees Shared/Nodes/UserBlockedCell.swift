@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-protocol UserBlockedNode: class {
+protocol UserBlockedNode: AnyObject {
 	var userBlockedHex: SKShapeNode { get set }
 	var isBlockedFromSwipe: Bool { get set }
 	var blockedPlayback: IPlayback? { get set }
