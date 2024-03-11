@@ -26,8 +26,7 @@ class HelpSwipeScene: SKScene, HelpScene {
 			hapticFeedback: false,
 			timerEnabled: false,
 			useButtons: false,
-            showHintEnabled: false,
-			purchased: true)
+            showHintEnabled: false)
 		
 		model.field.setupNewField(
 			model: model,

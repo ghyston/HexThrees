@@ -35,7 +35,6 @@ class GameVC: UIViewController {
 		palette: .Auto,
 		stressTimer: StressTimerStatus.Enabled,
 		useButtons: UseButtonStatus.Disabled,
-		purchased: false,
         showHint: ShowHintStatus.Enabled)
 	
 	let defaults = UserDefaults.standard
@@ -104,8 +103,7 @@ class GameVC: UIViewController {
 			hapticFeedback: params.hapticFeedback == HapticFeedbackStatus.Enabled,
 			timerEnabled: params.stressTimer == StressTimerStatus.Enabled,
 			useButtons: params.useButtons == UseButtonStatus.Enabled,
-            showHintEnabled: params.showHint == ShowHintStatus.Enabled,
-			purchased: params.purchased)
+            showHintEnabled: params.showHint == ShowHintStatus.Enabled)
 		self.gameModel?.collectableBonuses.removeAll()
 		ContainerConfig.instance.register(self.gameModel!)
 	}
@@ -130,7 +128,6 @@ class GameVC: UIViewController {
 			palette: prefPalette ?? self.defaultGameParams.palette,
 			stressTimer: prefStress ?? self.defaultGameParams.stressTimer,
 			useButtons: useButtons ?? self.defaultGameParams.useButtons,
-			purchased: defaults.bool(forKey: SettingsKey.Purchased.rawValue),
             showHint: showHint ?? self.defaultGameParams.showHint)
 	}
 	
@@ -162,7 +159,6 @@ class GameVC: UIViewController {
 		self.switchButtons(hidden: settings.useButtons == UseButtonStatus.Disabled)
 		self.createPalette(settings.palette)
 		self.createModel(settings)
-		self.loadStoreProducts()
 		
 		let cmdFactory: ICmdFactory = GameCmdFactory(self.gameModel!)
 		ContainerConfig.instance.register(cmdFactory)
@@ -206,23 +202,14 @@ class GameVC: UIViewController {
 		self.addFieldToScene()
 		
 		// Delay one second because random cells appers with random delay
-		let gameEndCheck = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
+		_ = CmdFactory().CheckGameEnd().runWithDelay(delay: 1.0)
 		
 		for bonus in self.gameModel!.collectableBonuses {
 			NotificationCenter.default.post(name: .updateCollectables, object: bonus.key)
 		}
 		
-		if self.gameModel!.freeLimitReached() {
-			gameEndCheck.invalidate()
-			_ = ShowPurchasePopupCmd(gameModel!).runWithDelay(delay: 1.0)
-			return
-		}
 	}
-	
-	private func loadStoreProducts() {
-		RequestStoreProductCMD(self.gameModel!).run()
-	}
-	
+		
 	private func createTutorialGame() {
 		self.gameModel!.field.setupNewField(
 			model: self.gameModel!,
@@ -324,42 +311,6 @@ class GameVC: UIViewController {
 			selector: #selector(self.onFieldExpand),
 			name: .expandField,
 			object: nil)
-		
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(self.onFreeLimitReached),
-			name: .freeLimitReached,
-			object: nil)
-		
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(self.onPurchaseSuccessfull),
-			name: .purchaseSuccessfull,
-			object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.onRestoreSuccessfull),
-            name: .restoreSuccessfull,
-            object: nil)
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(self.onRestoreFailed),
-            name: .restoreFailed,
-            object: nil)
-		
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(self.onPurchaseFailed),
-			name: .purchaiseFailed,
-			object: nil)
-		
-		NotificationCenter.default.addObserver(
-			self,
-			selector: #selector(self.showProductNotFoundPopup),
-			name: .productNotFound,
-			object: nil)
         
         NotificationCenter.default.addObserver(
             self,
@@ -458,24 +409,6 @@ class GameVC: UIViewController {
 		self.present(vc, animated: true, completion: nil)
 	}
 	
-	@objc private func onFreeLimitReached() {
-		guard !gameModel!.purchased else {
-			return
-		}
-		
-		guard IAPHelper.shared.canBePurchased() else {
-			showUnableToPurchasePopup()
-			return
-		}
-		
-		guard IAPHelper.shared.productIsSet() else {
-			showProductNotFoundPopup()
-			return
-		}
-		
-		showPurchasePopup()
-	}
-	
 	private func handleSwipe(direction: SwipeDirection) {
 		guard self.gameModel!.swipeStatus.isAllowed(direction) else {
 			return
@@ -510,178 +443,6 @@ class GameVC: UIViewController {
 	
 	@IBAction func onYDownClick(_ sender: Any) {
 		self.handleSwipe(direction: .YDown)
-	}
-}
-
-// MARK: Purchasement UI
-
-extension GameVC {
-	private func showPurchasePopup() {
-		let limitAlert = UIAlertController(
-			title: "purchase.title".localized(),
-            message: "purchase.message".localized(),
-			preferredStyle: UIAlertController.Style.alert)
-		
-		limitAlert.addAction(UIAlertAction(
-            title: "purchase.option.reset".localized(),
-			style: .destructive,
-			handler: onConfirmReset))
-		
-		let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
-		
-		limitAlert.addAction(UIAlertAction(
-            title: "purchase.option.buy".localizedWithFormat(arguments: price),
-			style: .default,
-			handler: onPurchaseClick))
-		
-		limitAlert.addAction(UIAlertAction(
-            title: "purchase.option.restore".localized(),
-			style: .default,
-			handler: onRestoreClick))
-		
-		present(limitAlert, animated: true, completion: nil)
-	}
-	
-	private func showUnableToPurchasePopup() {
-		let alert = UIAlertController(
-            title: "purchase.title".localized(),
-            message: "purchase.notAllowed".localized(),
-			preferredStyle: UIAlertController.Style.alert)
-		
-		alert.addAction(UIAlertAction(
-            title: "purchase.option.reset".localized(),
-			style: .destructive,
-			handler: onConfirmReset))
-		
-		present(alert, animated: true, completion: nil)
-	}
-	
-	@objc private func showProductNotFoundPopup() {
-		let alert = UIAlertController(
-			title: "purchase.title".localized(),
-            message: "purchase.productNotFound".localized(),
-			preferredStyle: UIAlertController.Style.alert)
-		
-		alert.addAction(UIAlertAction(
-			title: "purchase.option.reset".localized(),
-			style: .destructive,
-			handler: onConfirmReset))
-		
-		present(alert, animated: true, completion: nil)
-	}
-	
-	private func onConfirmReset(action: UIAlertAction) {
-		restartGame()
-	}
-	
-	private func onPurchaseClick(action: UIAlertAction) {
-		startLoadingSpinner()
-		PurchaseFullVersionCmd(self.gameModel!).run()
-	}
-	
-	private func onRestoreClick(action: UIAlertAction) {
-        startLoadingSpinner()
-		RestorePurchaseCmd(self.gameModel!).run()
-	}
-	
-	@objc private func onPurchaseSuccessfull() {
-        onHappyPurchase(customerMessage: "purchase.thankYou".localized())
-	}
-	
-	@objc private func onRestoreSuccessfull() {
-        onHappyPurchase(customerMessage: "purchase.restoredSucc".localized())
-	}
-	
-    @objc private func onRestoreFailed() {
-        onSadRestore()
-    }
-    
-	@objc private func onPurchaseFailed() {
-        onSadPurchase(customerMessage: "purchase.purchaseFeiled".localized())
-	}
-	
-	@objc func onPurchaseDeferred() {
-        onSadPurchase(customerMessage: "purchase.purchaseDeffered".localized())
-	}
-	
-	private func onHappyPurchase(customerMessage: String) {
-        stopLoadingSpinner()
-		FinalizeSuccPurchaseCMD(gameModel!).run()
-		let alert = UIAlertController(
-			title: "",
-			message: customerMessage,
-			preferredStyle: UIAlertController.Style.alert)
-		
-		alert.addAction(UIAlertAction(
-            title: "purchase.option.continueToPlay".localized(),
-			style: .default,
-			handler: onContinuePlay))
-		
-		present(alert, animated: true, completion: nil)
-	}
-	
-	private func onSadPurchase(customerMessage: String) {
-		stopLoadingSpinner()
-		let alert = UIAlertController(
-			title: "purchase.title".localized(),
-			message: customerMessage,
-			preferredStyle: UIAlertController.Style.alert)
-		
-		alert.addAction(UIAlertAction(
-			title: "purchase.option.reset".localized(),
-			style: .destructive,
-			handler: onConfirmReset))
-		
-		alert.addAction(UIAlertAction(
-            title: "purchase.tryAgain".localized(),
-			style: .default,
-			handler: onPurchaseClick))
-		
-		present(alert, animated: true, completion: nil)
-	}
-    
-    private func onSadRestore() {
-        stopLoadingSpinner()
-        let alert = UIAlertController(
-            title: "purchase.restore.title".localized(),
-            message: "purchase.restore.failed".localized(),
-            preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(
-            title: "purchase.tryAgain".localized(),
-            style: .default,
-            handler: onRestoreClick))
-        
-        let price = IAPHelper.shared.getFullVersionPriceFormatted() ?? "??"
-        
-        alert.addAction(UIAlertAction(
-            title: "purchase.option.buy".localizedWithFormat(arguments: price),
-            style: .default,
-            handler: onPurchaseClick))
-        
-        alert.addAction(UIAlertAction(
-            title: "purchase.option.reset".localized(),
-            style: .destructive,
-            handler: onConfirmReset))
-        
-        present(alert, animated: true, completion: nil)
-    }
-	
-	private func onContinuePlay(action: UIAlertAction) {
-		self.gameModel!.swipeStatus.unlockSwipes()
-		CheckGameEndCmd(self.gameModel!).run()
-	}
-	
-	private func startLoadingSpinner() {
-		NotificationCenter.default.post(
-			name: .showSpinner,
-			object: gameModel!.geometry?.createBgCellShape())
-	}
-	
-	private func stopLoadingSpinner() {
-		NotificationCenter.default.post(
-			name: .hideSpinner,
-			object: nil)
 	}
 }
 
