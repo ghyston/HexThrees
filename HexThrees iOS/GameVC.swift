@@ -55,7 +55,8 @@ class GameVC: UIViewController {
 		skView.presentScene(self.scene)
 		
 		skView.ignoresSiblingOrder = true
-		skView.showsFPS = false
+        skView.showsFPS = false
+        skView.preferredFramesPerSecond = 120
 		skView.showsNodeCount = false
 		
 		self.registerObservers()

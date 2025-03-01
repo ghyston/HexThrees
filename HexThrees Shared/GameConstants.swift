@@ -17,7 +17,7 @@ class GameConstants {
     static let GameScoreToAskForReview = 4000;
 	
 	// Animations
-	static let SecondsPerCell = 0.20
+	static let SecondsPerCell = 0.15
 	static let BounceCellAnimationDuration = 0.12
 	static let BonusAnimationDuration = 0.5
 	static let GameOverScreenDelay = 1.2
