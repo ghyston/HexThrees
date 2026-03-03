@@ -1157,7 +1157,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2025.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.HexThrees;
 				PRODUCT_NAME = HexThrees;
 				SDKROOT = iphoneos;
@@ -1183,7 +1183,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2025.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyston.HexThrees;
 				PRODUCT_NAME = HexThrees;
 				SDKROOT = iphoneos;

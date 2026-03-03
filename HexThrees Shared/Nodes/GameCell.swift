@@ -12,6 +12,7 @@ import SpriteKit
 class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 	var prevPosition: CGPoint?
 	var prevDelta: Double?
+	private var observersRegistered = false
 	
 	var hexShape: SKShapeNode
 	var label: SKLabelNode
@@ -52,6 +53,13 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		addLabel(text: "\(strategyValue)")
 		
 		self.updateColor()
+		registerObservers()
+	}
+	
+	private func registerObservers() {
+		guard !observersRegistered else {
+			return
+		}
 		
 		NotificationCenter.default.addObserver(
 			self,
@@ -64,6 +72,25 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 			selector: #selector(self.onMotionBlurSettingsChange),
 			name: .switchMotionBlur,
 			object: nil)
+		
+		observersRegistered = true
+	}
+	
+	func removeObservers() {
+		guard observersRegistered else {
+			return
+		}
+		
+		NotificationCenter.default.removeObserver(
+			self,
+			name: .switchPalette,
+			object: nil)
+		NotificationCenter.default.removeObserver(
+			self,
+			name: .switchMotionBlur,
+			object: nil)
+		
+		observersRegistered = false
 	}
 	
 	@objc func onColorChange(notification: Notification) {
@@ -191,6 +218,15 @@ class GameCell: SKNode, HexNode, LabeledNode, MotionBlurNode, AnimatedNode {
 		} else {
 			super.addChild(node)
 		}
+	}
+	
+	override func removeFromParent() {
+		removeObservers()
+		super.removeFromParent()
+	}
+	
+	deinit {
+		removeObservers()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
