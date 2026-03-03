@@ -1,0 +1,55 @@
+schema: spec-driven
+
+context: |
+  Project: HexThrees, an iOS-only puzzle game inspired by Threes/2048 on a hexagonal board.
+
+  Tech stack:
+  - Swift
+  - UIKit for view controllers and app flow
+  - SpriteKit for rendering, animation, shaders, and gameplay scene management
+  - Xcode project, no third-party dependencies
+
+  Repository structure:
+  - `HexThrees iOS/` contains app entry points and UIKit view controllers (`GameVC`, help/pause/game over flows, IAP helper, gesture recognizer).
+  - `HexThrees Shared/` contains most game logic, rendering nodes, commands, enums, assets, shaders, and utility types.
+  - `HexThreesTests/` contains unit tests for merging strategies, collectables, selectors, and playback behavior.
+  - `openspec/` is used for change proposals and specs.
+
+  Core architecture:
+  - `GameVC` bootstraps the game, loads settings, restores saves, creates `GameModel`, and presents `GameScene`.
+  - `GameModel` is the central mutable state holder: field, score, score buffs, timer, selected bonus, collectables, tutorial manager, and active merging strategy.
+  - `HexField` owns the board sockets/background cells and board-level queries like free cells, blocked cells, siblings, and socket traversal.
+  - Behavior is organized around command objects under `HexThrees Shared/Commands/`; `GameCmdFactory` exposes the main command entry points.
+  - Rendering is mostly SpriteKit-node based (`GameScene`, `Nodes/*`, shaders, palette manager). Keep gameplay state changes separated from scene/node updates where possible.
+  - Lightweight dependency resolution is done through `Container`/`ContainerConfig` rather than external DI frameworks.
+
+  Gameplay/domain notes:
+  - The board is hex-based with `GameConstants.MaxFieldSize = 7` and `StartFieldSize = 3`.
+  - Default merging strategy is `Hybrid`, combining Fibonacci-like early progression with powers-of-two later.
+  - Bonuses, blocked cells, score buffs, collectable bonuses, field expansion, tutorial flow, and a stress timer are all first-class gameplay systems.
+  - Changes to gameplay often require updates across commands, model state, scene/node behavior, and sometimes tutorial/help flows.
+
+  Persistence and settings:
+  - Save data is stored as `SavedGame.json` in the app documents directory via `FileHelper`.
+  - User preferences are stored in `UserDefaults` via `SettingsKey`.
+  - A change that affects game state usually needs save/load compatibility review.
+
+  Testing guidance:
+  - Existing tests focus on pure logic more than UIKit/SpriteKit UI.
+  - Prefer adding or updating tests in `HexThreesTests/` for deterministic logic such as strategies, selectors, saved-game encoding, playback, and command side effects when feasible.
+
+  Conventions and constraints:
+  - Preserve the current separation intent: model/commands for game logic, scene/nodes/view controllers for presentation and interaction.
+  - Follow existing naming and file organization even where inconsistent (for example `CMD` suffixes and mixed legacy naming), unless the change explicitly includes cleanup.
+  - Avoid introducing external dependencies unless there is a strong reason.
+  - Keep proposals grounded in the existing codebase rather than idealized architecture; this is a hobby project with pragmatic, incremental evolution.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
